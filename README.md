@@ -1,1 +1,3 @@
-### my-cv
+---
+permalink: /index.html
+---
