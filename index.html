@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <title>My CV</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-<div class="cv-viewer cv-preview">
+<header class="page-header" role="banner">
+    <h1 class="project-name">Welcome to my profile, thank you for visiting.</h1>
+    <a href="#section" class="btn">VIEW MY CV</a>
+    <a href="pdf/Nguyen%20Nhu%20Thuong.pdf" target="_blank" class="btn">DOWNLOAD MY CV</a>
+</header>
+<!--source code from https://www.visualcv.com-->
+<div id="section" class="cv-viewer cv-preview">
     <div class="cv-container animated fadeIn">
         <div class="cv-content">
             <div class="contact-spacer">
@@ -237,7 +244,7 @@
                             </h4><a data-bind="organization_url" target="_blank" rel="nofollow"
                                     href="https://vnext.vn/"><h5 data-bind="organization"><span class="needsclick"
                                                                                                 contenteditable="false"
-                                                                                                data-placeholder="Organization">V-next Software Company</span>
+                                                                                                data-placeholder="Organization">VNEXT Software Company</span>
                             </h5></a>
                                 <div id="tiny-react_1282835172721572966086538"
                                      class="mce-content-body mce-content-readonly" placeholder="Description"
@@ -381,6 +388,10 @@
             </div>
         </div>
     </div>
+</div>
+<!--source code from https://www.visualcv.com-->
+<div class="footer">
+    CV template copy from <a target="_blank" href="https://www.visualcv.com">VisualCV</a>
 </div>
 </body>
 </html>
