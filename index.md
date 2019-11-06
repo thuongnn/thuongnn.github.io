@@ -1,1 +1,3 @@
-### welcome to my page
+---
+permalink: /index.html
+---
