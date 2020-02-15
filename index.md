@@ -1,3 +1,3 @@
 ---
-permalink: /index.pdf
+permalink: /index.html
 ---
