@@ -1,0 +1,830 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://thuongnn.dev/posts/aws/databases/aws-dynamodb/"><meta name="generator" content="Astro v5.5.2"><!-- General Meta Tags --><title>[AWS] Amazon DynamoDB | thuongnn.dev</title><meta name="title" content="[AWS] Amazon DynamoDB | thuongnn.dev"><meta name="description" content="Tìm hiểu về dịch vụ cơ sở dữ liệu NoSQL được quản lý hoàn toàn bởi AWS, cung cấp hiệu suất cao và khả năng mở rộng."><meta name="author" content="thuongnn"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="[AWS] Amazon DynamoDB | thuongnn.dev"><meta property="og:description" content="Tìm hiểu về dịch vụ cơ sở dữ liệu NoSQL được quản lý hoàn toàn bởi AWS, cung cấp hiệu suất cao và khả năng mở rộng."><meta property="og:url" content="https://thuongnn.dev/posts/aws/databases/aws-dynamodb/"><meta property="og:image" content="https://thuongnn.dev/posts/aws/databases/aws-dynamodb/index.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2023-07-19T15:30:45.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://thuongnn.dev/posts/aws/databases/aws-dynamodb/"><meta property="twitter:title" content="[AWS] Amazon DynamoDB | thuongnn.dev"><meta property="twitter:description" content="Tìm hiểu về dịch vụ cơ sở dữ liệu NoSQL được quản lý hoàn toàn bởi AWS, cung cấp hiệu suất cao và khả năng mở rộng."><meta property="twitter:image" content="https://thuongnn.dev/posts/aws/databases/aws-dynamodb/index.png"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"[AWS] Amazon DynamoDB | thuongnn.dev","image":"https://thuongnn.dev/posts/aws/databases/aws-dynamodb/index.png","datePublished":"2023-07-19T15:30:45.000Z","author":[{"@type":"Person","name":"thuongnn","url":"https://thuongnn.dev/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="thuongnn.dev" href="https://thuongnn.dev/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CMTcOisY.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/about.DQgjlE2T.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+[data-astro-image]{width:100%;height:auto;object-fit:var(--fit);object-position:var(--pos);aspect-ratio:var(--w) / var(--h)}[data-astro-image=responsive]{max-width:calc(var(--w) * 1px);max-height:calc(var(--h) * 1px)}[data-astro-image=fixed]{width:calc(var(--w) * 1px);height:calc(var(--h) * 1px)}
+</style><style>[data-astro-transition-scope="astro-fam6wyqg-1"] { view-transition-name: aws-amazon-dynamo-db; }@layer astro { ::view-transition-old(aws-amazon-dynamo-db) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(aws-amazon-dynamo-db) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(aws-amazon-dynamo-db) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(aws-amazon-dynamo-db) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: aws; }@layer astro { ::view-transition-old(aws) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(aws) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(aws) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(aws) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: amazon-web-services; }@layer astro { ::view-transition-old(amazon-web-services) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(amazon-web-services) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(amazon-web-services) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(amazon-web-services) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="absolute -top-full left-16 z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"> <a href="/" class="absolute py-1 text-2xl leading-7 font-semibold whitespace-nowrap sm:static"> thuongnn.dev </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:ml-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="max-w-3xl mx-auto px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-3xl items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="mx-auto w-full max-w-3xl px-4 pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-fam6wyqg-1"> [AWS] Amazon DynamoDB </h1> <div class="flex items-center gap-4"> <div class="flex items-end space-x-2 opacity-80 my-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg> <span class="sr-only">Published:</span> <span class="text-sm italic sm:text-base"> <time datetime="2023-07-19T15:30:45.000Z">19 Jul, 2023</time> <span aria-hidden="true"> | </span> <span class="sr-only">&nbsp;at&nbsp;</span> <span class="text-nowrap">03:30 PM</span> </span> </div> <div class="opacity-80 max-sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/thuongnn/thuongnn.github.io/edit/master/src/data/blog/aws/databases/aws-dynamodb.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> </div> <article id="article" class="mx-auto prose mt-8 max-w-3xl"> <p>Bài viết được tham khảo và tổng hợp lại từ Jayendra’s Blog, xem bài viết gốc ở đây: <a href="https://jayendrapatil.com/aws-dynamodb">https://jayendrapatil.com/aws-dynamodb</a>.</p>
+<h2 id="table-of-contents">Table of contents</h2>
+<p></p><details><summary>Open Table of contents</summary><p></p>
+<ul>
+<li>
+<ul>
+<li><a href="#gi%E1%BB%9Bi-thi%E1%BB%87u-v%E1%BB%81-amazon-dynamodb">Giới thiệu về Amazon DynamoDB</a></li>
+<li><a href="#c%C3%A1c-th%C3%A0nh-ph%E1%BA%A7n-v%C3%A0-kh%C3%A1i-ni%E1%BB%87m-c%C6%A1-b%E1%BA%A3n">Các thành phần và khái niệm cơ bản</a>
+<ul>
+<li><a href="#b%E1%BA%A3ng-tables-m%E1%BB%A5c-items-v%C3%A0-thu%E1%BB%99c-t%C3%ADnh-attributes">Bảng (Tables), Mục (Items) và Thuộc tính (Attributes)</a></li>
+<li><a href="#kh%C3%B3a-keys">Khóa (Keys)</a></li>
+<li><a href="#dung-l%C6%B0%E1%BB%A3ng-capacity">Dung lượng (Capacity)</a></li>
+</ul>
+</li>
+<li><a href="#c%C3%A1c-thao-t%C3%A1c-trong-dynamodb-dynamodb-operations">Các thao tác trong DynamoDB (DynamoDB Operations)</a>
+<ul>
+<li><a href="#thao-t%C3%A1c-c%C6%A1-b%E1%BA%A3n">Thao tác cơ bản</a></li>
+<li><a href="#truy-v%E1%BA%A5n-v%C3%A0-qu%C3%A9t-query--scan">Truy vấn và quét (Query &#x26; Scan)</a></li>
+<li><a href="#t%C3%ADnh-nh%E1%BA%A5t-qu%C3%A1n-consistency">Tính nhất quán (Consistency)</a></li>
+</ul>
+</li>
+<li><a href="#t%C3%ADnh-n%C4%83ng-n%E1%BB%95i-b%E1%BA%ADt-c%E1%BB%A7a-dynamodb">Tính năng nổi bật của DynamoDB</a>
+<ul>
+<li><a href="#dynamodb-streams">DynamoDB Streams</a></li>
+<li><a href="#time-to-live-ttl">Time to Live (TTL)</a></li>
+<li><a href="#dynamodb-accelerator-dax">DynamoDB Accelerator (DAX)</a></li>
+<li><a href="#backup-v%C3%A0-restore">Backup và Restore</a></li>
+<li><a href="#global-tables">Global Tables</a></li>
+<li><a href="#m%C3%A3-h%C3%B3a-encryption">Mã hóa (Encryption)</a></li>
+<li><a href="#t%C3%ADnh-n%C4%83ng-b%E1%BB%95-sung-additional-features">Tính năng bổ sung (Additional Features)</a></li>
+</ul>
+</li>
+<li><a href="#so-s%C3%A1nh-dynamodb-v%E1%BB%9Bi-rdbms">So sánh DynamoDB với RDBMS</a></li>
+<li><a href="#h%E1%BA%A1n-ch%E1%BA%BF-c%E1%BB%A7a-dynamodb">Hạn chế của DynamoDB</a></li>
+<li><a href="#khi-n%C3%A0o-n%C3%AAn-s%E1%BB%AD-d%E1%BB%A5ng-dynamodb">Khi nào nên sử dụng DynamoDB?</a></li>
+</ul>
+</li>
+<li><a href="#aws-dynamodb-accelerator-dax">AWS DynamoDB Accelerator (DAX)</a>
+<ul>
+<li>
+<ul>
+<li><a href="#t%E1%BB%95ng-quan-v%E1%BB%81-dax"><strong>Tổng quan về DAX</strong></a></li>
+<li><a href="#%C4%91%E1%BA%B7c-%C4%91i%E1%BB%83m-ch%C3%ADnh"><strong>Đặc điểm chính</strong></a></li>
+<li><a href="#c%E1%BA%A5u-tr%C3%BAc-dax"><strong>Cấu trúc DAX</strong></a></li>
+<li><a href="#c%C3%A1ch-ho%E1%BA%A1t-%C4%91%E1%BB%99ng"><strong>Cách hoạt động</strong></a></li>
+<li><a href="#lo%E1%BA%A1i-cache-trong-dax"><strong>Loại cache trong DAX</strong></a></li>
+<li><a href="#write-strategies">Write Strategies</a></li>
+<li><a href="#tr%C6%B0%E1%BB%9Dng-h%E1%BB%A3p-s%E1%BB%AD-d%E1%BB%A5ng"><strong>Trường hợp sử dụng</strong></a></li>
+<li><a href="#l%C6%B0u-%C3%BD-k%E1%BB%B9-thu%E1%BA%ADt"><strong>Lưu ý kỹ thuật</strong></a></li>
+<li><a href="#chi-ph%C3%AD-s%E1%BB%AD-d%E1%BB%A5ng">Chi phí sử dụng</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p></p></details><p></p>
+<h2 id="giới-thiệu-về-amazon-dynamodb">Giới thiệu về Amazon DynamoDB</h2>
+<p>Amazon DynamoDB là dịch vụ cơ sở dữ liệu NoSQL được quản lý hoàn toàn (fully managed) bởi AWS, nổi bật với hiệu suất cao, khả năng mở rộng linh hoạt và độ trễ thấp.</p>
+<ul>
+<li><strong>Đặc điểm chính</strong>:
+<ul>
+<li>Là cơ sở dữ liệu kiểu key-value và document.</li>
+<li>Đảm bảo độ trễ tính bằng mili giây (millisecond latency) ngay cả với khối lượng dữ liệu lớn.</li>
+<li>Tự động mở rộng (scaling) theo nhu cầu mà không cần can thiệp thủ công.</li>
+<li>Không cần quản lý server (serverless), giảm gánh nặng vận hành.</li>
+<li>Hỗ trợ mã hóa dữ liệu (encryption at rest) bằng AWS KMS.</li>
+<li>Được thiết kế để xử lý hàng triệu yêu cầu mỗi giây.</li>
+</ul>
+</li>
+<li><strong>Ứng dụng thực tế</strong>:
+<ul>
+<li>Ứng dụng web và mobile với lưu lượng truy cập cao (high-traffic).</li>
+<li>Hệ thống trò chơi trực tuyến (gaming).</li>
+<li>Ứng dụng IoT, phân tích dữ liệu thời gian thực, và thương mại điện tử.</li>
+</ul>
+</li>
+</ul>
+<h2 id="các-thành-phần-và-khái-niệm-cơ-bản">Các thành phần và khái niệm cơ bản</h2>
+<h3 id="bảng-tables-mục-items-và-thuộc-tính-attributes">Bảng (Tables), Mục (Items) và Thuộc tính (Attributes)</h3>
+<ul>
+<li><strong>Bảng (Tables)</strong>:
+<ul>
+<li>Là tập hợp các mục dữ liệu, tương tự bảng trong cơ sở dữ liệu quan hệ (RDBMS).</li>
+<li>Ví dụ: Bảng <code>Users</code> chứa thông tin người dùng.</li>
+</ul>
+</li>
+<li><strong>Mục (Items)</strong>:
+<ul>
+<li>Một đơn vị dữ liệu trong bảng, giống như một hàng (row).</li>
+<li>Là tập hợp các cặp key-value, không cần schema cố định.</li>
+<li>Ví dụ: <code>{ "UserID": "123", "Name": "John", "Age": 30 }</code>.</li>
+</ul>
+</li>
+<li><strong>Thuộc tính (Attributes)</strong>:
+<ul>
+<li>Là các trường dữ liệu trong một mục, tương tự cột (column).</li>
+<li>Hỗ trợ nhiều kiểu dữ liệu:
+<ul>
+<li>Chuỗi (String), Số (Number), Nhị phân (Binary).</li>
+<li>Tập hợp (Set): String Set, Number Set, Binary Set.</li>
+<li>Tài liệu lồng nhau (Nested Documents): List, Map.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="khóa-keys">Khóa (Keys)</h3>
+<ul>
+<li><strong>Khóa chính (Primary Key)</strong>:
+<ul>
+<li>Dùng để định danh duy nhất mỗi mục trong bảng.</li>
+<li>Có hai loại:
+<ul>
+<li><strong>Partition Key (Khóa phân vùng)</strong>:
+<ul>
+<li>Một thuộc tính duy nhất (ví dụ: <code>UserID</code>).</li>
+<li>Quyết định phân vùng vật lý nơi dữ liệu được lưu trữ.</li>
+</ul>
+</li>
+<li><strong>Composite Key (Khóa tổng hợp)</strong>:
+<ul>
+<li>Gồm Partition Key và Sort Key (ví dụ: <code>UserID</code> + <code>OrderDate</code>).</li>
+<li>Sort Key cho phép sắp xếp dữ liệu trong cùng phân vùng.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Khóa phụ (Secondary Indexes)</strong>:
+<ul>
+<li>Dùng để truy vấn dữ liệu dựa trên các thuộc tính khác ngoài khóa chính.</li>
+<li><strong>Local Secondary Index (LSI)</strong>:
+<ul>
+<li>Chỉ áp dụng trong cùng Partition Key.</li>
+<li>Cần tạo khi tạo bảng, không thể thêm sau.</li>
+<li>Giới hạn: 5 LSI mỗi bảng.</li>
+<li>Ví dụ: Truy vấn tất cả đơn hàng của <code>UserID</code> theo <code>OrderStatus</code>.</li>
+</ul>
+</li>
+<li><strong>Global Secondary Index (GSI)</strong>:
+<ul>
+<li>Có thể truy vấn trên bất kỳ thuộc tính nào, không phụ thuộc Partition Key.</li>
+<li>Có thể thêm hoặc xóa sau khi bảng được tạo.</li>
+<li>Giới hạn: 20 GSI mỗi bảng (có thể yêu cầu AWS tăng).</li>
+<li>Ví dụ: Truy vấn người dùng theo <code>Email</code> thay vì <code>UserID</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="dung-lượng-capacity">Dung lượng (Capacity)</h3>
+<ul>
+<li><strong>Read Capacity Units (RCU)</strong>:
+<ul>
+<li>Đo khả năng đọc:
+<ul>
+<li>1 RCU = 1 lần đọc mạnh (strongly consistent read) 4KB/giây.</li>
+<li>1 RCU = 2 lần đọc cuối cùng (eventually consistent read) 4KB/giây.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Write Capacity Units (WCU)</strong>:
+<ul>
+<li>Đo khả năng ghi:
+<ul>
+<li>1 WCU = 1 lần ghi 1KB/giây.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Chế độ dung lượng</strong>:
+<ul>
+<li><strong>Provisioned Mode</strong>:
+<ul>
+<li>Người dùng tự xác định RCU và WCU.</li>
+<li>Hỗ trợ Auto Scaling để tự động điều chỉnh theo tải.</li>
+</ul>
+</li>
+<li><strong>On-Demand Mode</strong>:
+<ul>
+<li>Không cần cấu hình RCU/WCU trước.</li>
+<li>Tự động mở rộng theo lưu lượng thực tế, tính phí dựa trên số lần đọc/ghi thực hiện.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Lưu ý</strong>:
+<ul>
+<li>Nếu vượt quá dung lượng đã cấp (provisioned), yêu cầu sẽ bị từ chối (throttled) trừ khi bật Auto Scaling.</li>
+</ul>
+</li>
+</ul>
+<h2 id="các-thao-tác-trong-dynamodb-dynamodb-operations">Các thao tác trong DynamoDB (DynamoDB Operations)</h2>
+<h3 id="thao-tác-cơ-bản">Thao tác cơ bản</h3>
+<ul>
+<li><strong>PutItem</strong>: Thêm hoặc ghi đè một mục vào bảng.</li>
+<li><strong>GetItem</strong>: Lấy một mục cụ thể bằng khóa chính.</li>
+<li><strong>UpdateItem</strong>: Cập nhật một mục (có thể thêm thuộc tính mới).</li>
+<li><strong>DeleteItem</strong>: Xóa một mục dựa trên khóa chính.</li>
+<li><strong>Batch Operations</strong>:
+<ul>
+<li><strong>BatchGetItem</strong>: Lấy nhiều mục cùng lúc (tối đa 100 mục, 16MB).</li>
+<li><strong>BatchWriteItem</strong>: Ghi hoặc xóa nhiều mục cùng lúc (tối đa 25 yêu cầu, 16MB).</li>
+</ul>
+</li>
+</ul>
+<h3 id="truy-vấn-và-quét-query--scan">Truy vấn và quét (Query &#x26; Scan)</h3>
+<ul>
+<li><strong>Query</strong>:
+<ul>
+<li>Truy vấn dữ liệu dựa trên Partition Key và (tùy chọn) Sort Key.</li>
+<li>Hỗ trợ điều kiện lọc trên Sort Key (ví dụ: “OrderDate > 2023-01-01”).</li>
+<li>Hiệu quả hơn Scan, dùng LSI/GSI nếu cần truy vấn thuộc tính khác.</li>
+</ul>
+</li>
+<li><strong>Scan</strong>:
+<ul>
+<li>Quét toàn bộ bảng để tìm dữ liệu.</li>
+<li>Ít hiệu quả hơn Query, tiêu tốn nhiều RCU.</li>
+<li>Có thể dùng bộ lọc (filter) nhưng vẫn quét toàn bộ trước khi lọc.</li>
+</ul>
+</li>
+</ul>
+<h3 id="tính-nhất-quán-consistency">Tính nhất quán (Consistency)</h3>
+<ul>
+<li><strong>Strongly Consistent Read</strong>: Đảm bảo dữ liệu mới nhất sau khi ghi (dùng 1 RCU).</li>
+<li><strong>Eventually Consistent Read</strong>: Có thể trả về dữ liệu cũ trong vài giây sau khi ghi (dùng 0.5 RCU).</li>
+<li>Mặc định: Eventually Consistent, cần chỉ định nếu muốn Strongly Consistent.</li>
+</ul>
+<h2 id="tính-năng-nổi-bật-của-dynamodb">Tính năng nổi bật của DynamoDB</h2>
+<h3 id="dynamodb-streams">DynamoDB Streams</h3>
+<ul>
+<li>Ghi lại mọi thay đổi trong bảng (thêm, sửa, xóa) theo thứ tự thời gian.</li>
+<li>Dữ liệu stream lưu trữ trong 24 giờ.</li>
+<li><strong>Cấu hình</strong>:
+<ul>
+<li>Có thể chọn dữ liệu ghi lại: khóa, giá trị cũ, giá trị mới, hoặc cả hai.</li>
+</ul>
+</li>
+<li><strong>Ứng dụng</strong>:
+<ul>
+<li>Kích hoạt AWS Lambda khi có thay đổi.</li>
+<li>Đồng bộ dữ liệu với hệ thống khác (ví dụ: Amazon Elasticsearch).</li>
+</ul>
+</li>
+</ul>
+<h3 id="time-to-live-ttl">Time to Live (TTL)</h3>
+<ul>
+<li>Tự động xóa các mục hết hạn dựa trên thuộc tính timestamp.</li>
+<li><strong>Ví dụ</strong>: Đặt TTL trên “ExpirationTime” để xóa phiên người dùng sau 24 giờ.</li>
+<li><strong>Lưu ý</strong>:
+<ul>
+<li>Quá trình xóa không diễn ra ngay lập tức, có thể mất vài giờ.</li>
+<li>Không tiêu tốn WCU khi xóa.</li>
+</ul>
+</li>
+</ul>
+<h3 id="dynamodb-accelerator-dax">DynamoDB Accelerator (DAX)</h3>
+<ul>
+<li>Là lớp bộ nhớ đệm trong RAM (in-memory cache).</li>
+<li>Giảm độ trễ đọc xuống micro-giây (microseconds).</li>
+<li>Hỗ trợ GetItem, BatchGetItem, Query, Scan.</li>
+<li><strong>Ứng dụng</strong>: Các hệ thống cần đọc nhanh, ít ghi (read-heavy workloads).</li>
+</ul>
+<h3 id="backup-và-restore">Backup và Restore</h3>
+<ul>
+<li><strong>On-Demand Backup</strong>:
+<ul>
+<li>Tạo bản sao lưu toàn bộ bảng bất kỳ lúc nào.</li>
+<li>Lưu trữ trên S3, có thể khôi phục thành bảng mới.</li>
+</ul>
+</li>
+<li><strong>Point-in-Time Recovery (PITR)</strong>:
+<ul>
+<li>Khôi phục bảng về bất kỳ thời điểm nào trong 35 ngày qua.</li>
+<li>Cần bật trước, không thể kích hoạt sau khi cần.</li>
+</ul>
+</li>
+</ul>
+<h3 id="global-tables">Global Tables</h3>
+<ul>
+<li>Sao chép bảng trên nhiều vùng AWS (multi-region replication).</li>
+<li>Đảm bảo dữ liệu nhất quán toàn cầu với độ trễ thấp.</li>
+<li><strong>Yêu cầu</strong>: Cần bật DynamoDB Streams.</li>
+<li><strong>Ứng dụng</strong>: Ứng dụng đa khu vực (multi-region apps).</li>
+</ul>
+<h3 id="mã-hóa-encryption">Mã hóa (Encryption)</h3>
+<ul>
+<li>Mã hóa dữ liệu tại nghỉ bằng AWS KMS (mặc định).</li>
+<li>Hỗ trợ mã hóa phía client nếu cần kiểm soát khóa riêng.</li>
+</ul>
+<h3 id="tính-năng-bổ-sung-additional-features">Tính năng bổ sung (Additional Features)</h3>
+<ul>
+<li><strong>Transactions</strong>:
+<ul>
+<li>Hỗ trợ giao dịch (ACID) cho nhiều thao tác (tối đa 25 mục).</li>
+<li>Ví dụ: Cập nhật “Inventory” và “Order” cùng lúc.</li>
+</ul>
+</li>
+<li><strong>DynamoDB Auto Scaling</strong>:
+<ul>
+<li>Tự động điều chỉnh RCU/WCU trong chế độ Provisioned dựa trên tải.</li>
+</ul>
+</li>
+<li><strong>Tags</strong>:
+<ul>
+<li>Gắn thẻ (tags) để quản lý chi phí và tài nguyên.</li>
+</ul>
+</li>
+</ul>
+<h2 id="so-sánh-dynamodb-với-rdbms">So sánh DynamoDB với RDBMS</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th><strong>Tiêu chí</strong></th><th><strong>DynamoDB (NoSQL)</strong></th><th><strong>RDBMS (SQL)</strong></th></tr></thead><tbody><tr><td><strong>Mô hình dữ liệu</strong></td><td>Key-value, Document</td><td>Quan hệ (tables, rows, columns)</td></tr><tr><td><strong>Schema</strong></td><td>Linh hoạt, không cần định nghĩa trước</td><td>Cố định, cần schema rõ ràng</td></tr><tr><td><strong>Mở rộng</strong></td><td>Theo chiều ngang (horizontal scaling)</td><td>Theo chiều dọc (vertical scaling)</td></tr><tr><td><strong>Hiệu suất</strong></td><td>Cao với tải lớn, độ trễ thấp</td><td>Phụ thuộc vào kích thước server</td></tr><tr><td><strong>Truy vấn</strong></td><td>Giới hạn, không hỗ trợ JOIN</td><td>Hỗ trợ JOIN, GROUP BY, phức tạp</td></tr><tr><td><strong>Quản lý</strong></td><td>AWS quản lý hoàn toàn</td><td>Tự quản lý server</td></tr><tr><td><strong>Consistency</strong></td><td>Eventually hoặc Strongly Consistent</td><td>Strongly Consistent mặc định</td></tr></tbody></table>
+<h2 id="hạn-chế-của-dynamodb">Hạn chế của DynamoDB</h2>
+<ul>
+<li><strong>Giới hạn kích thước</strong>:
+<ul>
+<li>Mỗi mục tối đa 400 KB (bao gồm key và value).</li>
+<li>Batch operations giới hạn 16MB hoặc 25-100 mục.</li>
+</ul>
+</li>
+<li><strong>Truy vấn</strong>:
+<ul>
+<li>Không hỗ trợ JOIN, GROUP BY, hoặc các truy vấn SQL phức tạp.</li>
+<li>Scan kém hiệu quả với bảng lớn.</li>
+</ul>
+</li>
+<li><strong>Chi phí</strong>:
+<ul>
+<li>Provisioned mode: Chi phí cao nếu dự đoán sai dung lượng.</li>
+<li>On-Demand mode: Tiện lợi nhưng đắt hơn với tải lớn.</li>
+</ul>
+</li>
+<li><strong>Streams</strong>: Chỉ lưu trữ thay đổi trong 24 giờ.</li>
+<li><strong>LSI</strong>: Không thể thêm sau khi tạo bảng.</li>
+</ul>
+<h2 id="khi-nào-nên-sử-dụng-dynamodb">Khi nào nên sử dụng DynamoDB?</h2>
+<ul>
+<li><strong>Nên dùng khi</strong>:
+<ul>
+<li>Cần hiệu suất cao, độ trễ thấp với khối lượng dữ liệu lớn.</li>
+<li>Ứng dụng yêu cầu mở rộng linh hoạt (web, mobile, gaming, IoT).</li>
+<li>Không cần truy vấn quan hệ phức tạp.</li>
+<li>Muốn giảm quản lý hạ tầng.</li>
+</ul>
+</li>
+<li><strong>Không nên dùng khi</strong>:
+<ul>
+<li>Ứng dụng cần truy vấn phức tạp (JOIN, aggregation).</li>
+<li>Dữ liệu có cấu trúc cố định và ít thay đổi.</li>
+</ul>
+</li>
+</ul>
+<h1 id="aws-dynamodb-accelerator-dax">AWS DynamoDB Accelerator (DAX)</h1>
+<p><img alt="1.png" sizes="(min-width: 748px) 748px, 100vw" loading="lazy" decoding="async" fetchpriority="auto" style="--w: 748; --h: 405;" data-astro-image="responsive" width="748" height="405" src="/_astro/1.DOwftvjE_1AD0mM.webp" srcset="/_astro/1.DOwftvjE_Z1riMBN.webp 640w, /_astro/1.DOwftvjE_1AD0mM.webp 748w"></p>
+<h3 id="tổng-quan-về-dax"><strong>Tổng quan về DAX</strong></h3>
+<ul>
+<li><strong>DAX</strong> (DynamoDB Accelerator) là một <strong>in-memory cache</strong> được quản lý hoàn toàn, có tính sẵn sàng cao, thiết kế dành riêng cho <strong>Amazon DynamoDB</strong>.</li>
+<li>Cải thiện hiệu suất đọc lên đến <strong>10 lần</strong>, giảm thời gian phản hồi từ <strong>mili giây xuống micro giây</strong>, hỗ trợ hàng triệu yêu cầu mỗi giây.</li>
+<li>Là dịch vụ được quản lý, DAX tự động xử lý:
+<ul>
+<li><strong>Cache invalidation</strong> (xóa dữ liệu cũ).</li>
+<li><strong>Data population</strong> (điền dữ liệu vào cache).</li>
+<li><strong>Quản lý cluster</strong> (tự động mở rộng, vá lỗi, v.v.).</li>
+</ul>
+</li>
+</ul>
+<h3 id="đặc-điểm-chính"><strong>Đặc điểm chính</strong></h3>
+<ul>
+<li><strong>Tương thích API với DynamoDB</strong>: Chỉ cần chỉnh sửa tối thiểu mã ứng dụng để tích hợp DAX (sử dụng DAX SDK).</li>
+<li><strong>Hiệu quả chi phí</strong>:
+<ul>
+<li>Giảm tải đọc (<strong>Read Capacity Units - RCU</strong>) trên DynamoDB, từ đó giảm chi phí.</li>
+<li>Ngăn chặn vấn đề <strong>hot partitions</strong> (phân vùng quá tải do đọc nhiều).</li>
+</ul>
+</li>
+<li><strong>Hỗ trợ ứng dụng đọc nhiều</strong>: Lý tưởng cho ứng dụng cần hiệu suất đọc cao (read-intensive).</li>
+<li><strong>Chỉ hỗ trợ eventual consistency</strong>: Yêu cầu <strong>strong consistency</strong> sẽ được chuyển trực tiếp đến DynamoDB, không qua cache.</li>
+</ul>
+<h3 id="cấu-trúc-dax"><strong>Cấu trúc DAX</strong></h3>
+<ul>
+<li><strong>DAX Cluster</strong>:
+<ul>
+<li>Gồm <strong>1 primary node</strong> (xử lý cả đọc và ghi) và <strong>0 hoặc nhiều read-replica nodes</strong> (chỉ xử lý đọc).</li>
+<li><strong>Khuyến nghị production</strong>: Triển khai ít nhất <strong>3 node</strong>, mỗi node ở một <strong>Availability Zone (AZ)</strong> khác để đảm bảo <strong>fault-tolerant</strong> (chịu lỗi).</li>
+</ul>
+</li>
+<li><strong>Hạn chế khu vực</strong>: DAX cluster chỉ tương tác với bảng DynamoDB trong <strong>cùng AWS Region</strong>.</li>
+</ul>
+<h3 id="cách-hoạt-động"><strong>Cách hoạt động</strong></h3>
+<ul>
+<li><strong>Cache hit</strong>: Dữ liệu có sẵn trong DAX → trả về ngay, không cần truy cập DynamoDB.</li>
+<li><strong>Cache miss</strong>: Dữ liệu không có trong DAX → chuyển yêu cầu đến DynamoDB → nhận kết quả → lưu vào cache → trả về ứng dụng.</li>
+<li><strong>Strong consistency</strong>: Yêu cầu đọc strong consistency không lưu cache, được gửi trực tiếp đến DynamoDB.</li>
+<li><strong>Viết dữ liệu</strong>:
+<ul>
+<li>Dữ liệu được ghi vào DynamoDB trước, sau đó xử lý trong DAX tùy theo chiến lược ghi (<strong>Write-Through</strong> hoặc <strong>Write-Around</strong>).</li>
+<li>Giao dịch ghi chỉ thành công khi hoàn tất trên DynamoDB.</li>
+</ul>
+</li>
+</ul>
+<h3 id="loại-cache-trong-dax"><strong>Loại cache trong DAX</strong></h3>
+<ul>
+<li><strong>Item Cache</strong>:
+<ul>
+<li>Lưu trữ kết quả từ các thao tác <strong>GetItem</strong> và <strong>BatchGetItem</strong>.</li>
+<li>Tuân theo <strong>TTL mặc định 5 phút</strong> và thuật toán <strong>LRU</strong> (Least Recently Used).</li>
+</ul>
+</li>
+<li><strong>Query Cache</strong>:
+<ul>
+<li>Lưu trữ kết quả từ các yêu cầu <strong>Query</strong> và <strong>Scan</strong>.</li>
+<li>Không ảnh hưởng đến item cache, có <strong>TTL mặc định 5 phút</strong>.</li>
+</ul>
+</li>
+<li><strong>Ghi chú</strong>: Viết vào item cache không ảnh hưởng đến query cache và ngược lại.</li>
+</ul>
+<h3 id="write-strategies">Write Strategies</h3>
+<ul>
+<li><strong>Write-Through</strong>:
+<img alt="2.png" sizes="(min-width: 459px) 459px, 100vw" loading="lazy" decoding="async" fetchpriority="auto" style="--w: 459; --h: 524;" data-astro-image="responsive" width="459" height="524" src="/_astro/2.DdYMmKAd_jRTNX.webp" srcset="/_astro/2.DdYMmKAd_jRTNX.webp 459w">
+<ul>
+<li>Dữ liệu được ghi vào <strong>DynamoDB</strong> trước, sau đó cập nhật <strong>item cache</strong> trên <strong>primary node</strong>.</li>
+<li>Nếu có read-replica nodes, dữ liệu được nhân bản <strong>bất đồng bộ</strong> sang các node này.</li>
+<li><strong>Ưu điểm</strong>: Cache luôn phản ánh dữ liệu mới, phù hợp khi cần đọc dữ liệu ngay sau ghi.</li>
+<li><strong>Nhược điểm</strong>: Ghi chậm hơn do phải cập nhật cache; không giảm <strong>Write Capacity Units (WCU)</strong>.</li>
+</ul>
+</li>
+<li><strong>Write-Around</strong>:
+<img alt="3.png" sizes="(min-width: 809px) 809px, 100vw" loading="lazy" decoding="async" fetchpriority="auto" style="--w: 809; --h: 414;" data-astro-image="responsive" width="809" height="414" src="/_astro/3.D7CrPfGL_Z1JbEyf.webp" srcset="/_astro/3.D7CrPfGL_ZKAsdc.webp 640w, /_astro/3.D7CrPfGL_B5NFr.webp 750w, /_astro/3.D7CrPfGL_Z1JbEyf.webp 809w">
+<ul>
+<li>Dữ liệu được ghi <strong>trực tiếp vào DynamoDB</strong>, <strong>không cập nhật cache</strong> ngay lập tức.</li>
+<li>Cache chỉ được cập nhật khi có <strong>cache miss</strong> trong yêu cầu đọc sau đó.</li>
+<li><strong>Ưu điểm</strong>: Nhanh hơn Write-Through, giảm tải trên DAX cluster, phù hợp với ứng dụng ghi nhiều hoặc dữ liệu ít đọc lại.</li>
+<li><strong>Nhược điểm</strong>: Cache có thể chứa dữ liệu cũ (stale data) cho đến khi TTL hết hoặc cache miss, không tối ưu nếu cần đọc dữ liệu mới ngay.</li>
+</ul>
+</li>
+<li><strong>Lưu ý chung</strong>:
+<ul>
+<li>Cả hai chiến lược đều không giảm WCU trên DynamoDB.</li>
+<li>Write-Through tốt cho ứng dụng cần đồng bộ nhanh (như giỏ hàng).</li>
+<li>Write-Around phù hợp với hệ thống log hoặc ứng dụng ưu tiên tốc độ ghi.</li>
+</ul>
+</li>
+</ul>
+<h3 id="trường-hợp-sử-dụng"><strong>Trường hợp sử dụng</strong></h3>
+<ul>
+<li><strong>Không phù hợp</strong>:
+<ul>
+<li>Ứng dụng cần <strong>strong consistency</strong>.</li>
+<li>Ứng dụng <strong>ghi nhiều</strong> (write-intensive) hoặc đọc ít.</li>
+</ul>
+</li>
+<li><strong>Phù hợp</strong>:
+<ul>
+<li>Ứng dụng <strong>đọc nhiều</strong> (read-intensive) với dữ liệu ít thay đổi.</li>
+<li>Cần phản hồi nhanh ở mức micro giây (ví dụ: real-time apps, gaming, thương mại điện tử).</li>
+</ul>
+</li>
+</ul>
+<h3 id="lưu-ý-kỹ-thuật"><strong>Lưu ý kỹ thuật</strong></h3>
+<ul>
+<li><strong>TLS Support</strong>: Hỗ trợ mã hóa dữ liệu trong quá trình truyền (TLS) để tăng bảo mật.</li>
+<li><strong>Khả năng mở rộng</strong>: Có thể thêm node hoặc dùng node lớn hơn để tăng hiệu suất.</li>
+<li><strong>Tích hợp VPC</strong>: DAX chạy trong <strong>Amazon VPC</strong>, kiểm soát truy cập qua security groups.</li>
+<li><strong>Cấu hình</strong>:
+<ul>
+<li>Không tự động có sẵn; phải tạo DAX cluster thủ công.</li>
+<li>Cần chỉ định: node type, số lượng node, IAM role, subnet group, security group.</li>
+<li>TTL cache (item/query) mặc định 5 phút, có thể tùy chỉnh qua parameter group.</li>
+</ul>
+</li>
+</ul>
+<h3 id="chi-phí-sử-dụng">Chi phí sử dụng</h3>
+<ul>
+<li>DynamoDB tính phí dựa trên:
+<ul>
+<li><strong>RCU / WCU</strong>:
+<ul>
+<li>RCU: Chi phí cho mỗi đơn vị đọc (4KB dữ liệu mỗi giây).</li>
+<li>WCU: Chi phí cho mỗi đơn vị ghi (1KB dữ liệu mỗi giây).</li>
+<li>Có hai chế độ:
+<ul>
+<li><strong>On-demand</strong>: Trả tiền theo yêu cầu thực tế, không cần cấu hình trước.</li>
+<li><strong>Provisioned</strong>: Cấu hình RCU/WCU cố định, rẻ hơn nếu dự đoán được lưu lượng.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Lưu trữ dữ liệu</strong>: Tính phí dựa trên dung lượng dữ liệu lưu trong bảng (GB/tháng).</li>
+<li><strong>Tính năng bổ sung</strong>: Global Tables, Streams, Backups, PITR có chi phí riêng.</li>
+</ul>
+</li>
+<li>DAX là một dịch vụ <strong>tách biệt</strong>, nên khi bạn thêm DAX cluster, chi phí sẽ <strong>cộng thêm</strong> vào chi phí DynamoDB. DAX tính phí dựa trên:
+<ul>
+<li><strong>Loại node và số lượng node</strong>:
+<ul>
+<li>Mỗi node trong DAX cluster (primary hoặc read-replica) có giá riêng, tùy thuộc vào <strong>instance type</strong> (ví dụ: <code>dax.r4.large</code>, <code>dax.r5.xlarge</code>).</li>
+<li>Giá được tính <strong>theo giờ</strong> (hoặc theo giây, tùy region).</li>
+<li>Ví dụ: Một node <code>dax.r4.large</code> có thể tốn khoảng <code>$0.171/giờ</code> (giá tham khảo tại US East, có thể thay đổi theo region và thời điểm).</li>
+</ul>
+</li>
+<li><strong>Số lượng node</strong>:
+<ul>
+<li>Tối thiểu 1 node (primary), nhưng production thường cần 3+ node để chịu lỗi, nên chi phí tăng theo số node.</li>
+<li>Ví dụ: 3 node <code>dax.r4.large</code> sẽ tốn khoảng <code>$0.171 × 3 = $0.513/giờ</code>.</li>
+</ul>
+</li>
+<li><strong>Không tính phí lưu trữ riêng</strong>:
+<ul>
+<li>DAX là in-memory cache, không tính phí lưu trữ như DynamoDB, nhưng chi phí node đã bao gồm tài nguyên bộ nhớ.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>DAX có giúp tiết kiệm chi phí DynamoDB không?</strong>
+<ul>
+<li>Mặc dù DAX làm tăng tổng chi phí (do chi phí node), nó có thể <strong>giảm chi phí DynamoDB</strong> trong một số trường hợp:
+<ul>
+<li><strong>Giảm RCU</strong>: DAX lưu trữ dữ liệu đọc thường xuyên trong cache, giảm số lượng yêu cầu đọc trực tiếp tới DynamoDB, từ đó giảm RCU cần thiết. RCU tiết kiệm được có thể bù đắp một phần chi phí DAX.</li>
+<li><strong>Tối ưu hiệu suất</strong>: Với ứng dụng đọc nhiều, DAX giúp giảm tải trên DynamoDB, tránh việc phải tăng RCU để xử lý <strong>hot partitions</strong> hoặc lưu lượng đọc cao.</li>
+</ul>
+</li>
+<li>Tuy nhiên, <strong>tiết kiệm này không phải lúc nào cũng đủ bù chi phí DAX</strong>, đặc biệt nếu:
+<ul>
+<li>Ứng dụng không đọc nhiều (ít cache hit).</li>
+<li>Bạn cấu hình DAX cluster quá lớn (nhiều node hoặc instance type mạnh không cần thiết).</li>
+</ul>
+</li>
+<li><strong>Tóm lại</strong>
+<ul>
+<li>Thêm DAX cluster sẽ <strong>cộng thêm chi phí</strong> (dựa trên số node và loại instance), không được cung cấp miễn phí.</li>
+<li>DAX có thể giảm chi phí RCU của DynamoDB, nhưng tổng chi phí thường vẫn cao hơn trừ khi ứng dụng đọc rất nhiều và tận dụng tốt cache.</li>
+<li>Để tối ưu, hãy <strong>ước tính lưu lượng đọc</strong> và <strong>chọn cấu hình DAX hợp lý</strong> (ít node nhất có thể, instance type vừa đủ)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul> </article> <hr class="my-8 border-dashed"> <div class="opacity-80 sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/thuongnn/thuongnn.github.io/edit/master/src/data/blog/aws/databases/aws-dynamodb.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/aws/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>AWS</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/amazon-web-services/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Amazon Web Services</span> </a> </li> </ul> <div class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"> <div class="flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start"> <span class="italic">Share this post on:</span> <div class="text-center"> <a href="https://wa.me/?text=https://thuongnn.dev/posts/aws/databases/aws-dynamodb/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> <span class="sr-only">Share this post via WhatsApp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://thuongnn.dev/posts/aws/databases/aws-dynamodb/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://thuongnn.dev/posts/aws/databases/aws-dynamodb/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://thuongnn.dev/posts/aws/databases/aws-dynamodb/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg> <span class="sr-only">Share this post via Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://thuongnn.dev/posts/aws/databases/aws-dynamodb/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg> <span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&#38;body=https://thuongnn.dev/posts/aws/databases/aws-dynamodb/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Share this post via email</span> </a> </div> </div> <button id="back-to-top" class="focus-outline py-1 whitespace-nowrap hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span>Back to Top</span> </button> </div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/aws/databases/aws-aurora-serverless" class="flex w-full gap-1 hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">[AWS] Amazon Aurora Serverless</div> </div> </a> <a href="/posts/aws/databases/aws-elasticache" class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">[AWS] Amazon ElastiCache</div> </div> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="w-full mt-auto"> <div class="max-w-3xl mx-auto px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://github.com/thuongnn" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title=" thuongnn.dev on Github"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only"> thuongnn.dev on Github</span> </a><a href="https://www.facebook.com/thuongnn97" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">thuongnn.dev on Facebook</span> </a><a href="https://www.linkedin.com/in/thuongnn/" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on LinkedIn"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">thuongnn.dev on LinkedIn</span> </a><a href="mailto:thuongnn1997@gmail.com" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to thuongnn.dev"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to thuongnn.dev</span> </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2025</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ml-2 opacity-0 group-hover:opacity-100 focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "copy-code absolute right-3 -top-3 rounded bg-muted px-2 py-1 text-xs leading-4 text-foreground font-medium";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    document.querySelector("#back-to-top")?.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+  }
+  backToTop();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>

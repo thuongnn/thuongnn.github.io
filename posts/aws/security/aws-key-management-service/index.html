@@ -1,0 +1,636 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://thuongnn.dev/posts/aws/security/aws-key-management-service/"><meta name="generator" content="Astro v5.5.2"><!-- General Meta Tags --><title>[AWS] AWS KMS | thuongnn.dev</title><meta name="title" content="[AWS] AWS KMS | thuongnn.dev"><meta name="description" content="Tìm hiểu về dịch vụ quản lý khóa mã hóa của AWS, giúp tạo và kiểm soát các khóa mã hóa."><meta name="author" content="thuongnn"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="[AWS] AWS KMS | thuongnn.dev"><meta property="og:description" content="Tìm hiểu về dịch vụ quản lý khóa mã hóa của AWS, giúp tạo và kiểm soát các khóa mã hóa."><meta property="og:url" content="https://thuongnn.dev/posts/aws/security/aws-key-management-service/"><meta property="og:image" content="https://thuongnn.dev/posts/aws/security/aws-key-management-service/index.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2023-07-28T11:45:22.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://thuongnn.dev/posts/aws/security/aws-key-management-service/"><meta property="twitter:title" content="[AWS] AWS KMS | thuongnn.dev"><meta property="twitter:description" content="Tìm hiểu về dịch vụ quản lý khóa mã hóa của AWS, giúp tạo và kiểm soát các khóa mã hóa."><meta property="twitter:image" content="https://thuongnn.dev/posts/aws/security/aws-key-management-service/index.png"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"[AWS] AWS KMS | thuongnn.dev","image":"https://thuongnn.dev/posts/aws/security/aws-key-management-service/index.png","datePublished":"2023-07-28T11:45:22.000Z","author":[{"@type":"Person","name":"thuongnn","url":"https://thuongnn.dev/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="thuongnn.dev" href="https://thuongnn.dev/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CMTcOisY.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/about.DQgjlE2T.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+[data-astro-image]{width:100%;height:auto;object-fit:var(--fit);object-position:var(--pos);aspect-ratio:var(--w) / var(--h)}[data-astro-image=responsive]{max-width:calc(var(--w) * 1px);max-height:calc(var(--h) * 1px)}[data-astro-image=fixed]{width:calc(var(--w) * 1px);height:calc(var(--h) * 1px)}
+</style><style>[data-astro-transition-scope="astro-fam6wyqg-1"] { view-transition-name: aws-aws-kms; }@layer astro { ::view-transition-old(aws-aws-kms) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(aws-aws-kms) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(aws-aws-kms) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(aws-aws-kms) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: aws; }@layer astro { ::view-transition-old(aws) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(aws) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(aws) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(aws) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: amazon-web-services; }@layer astro { ::view-transition-old(amazon-web-services) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(amazon-web-services) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(amazon-web-services) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(amazon-web-services) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="absolute -top-full left-16 z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"> <a href="/" class="absolute py-1 text-2xl leading-7 font-semibold whitespace-nowrap sm:static"> thuongnn.dev </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:ml-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="max-w-3xl mx-auto px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-3xl items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="mx-auto w-full max-w-3xl px-4 pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-fam6wyqg-1"> [AWS] AWS KMS </h1> <div class="flex items-center gap-4"> <div class="flex items-end space-x-2 opacity-80 my-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg> <span class="sr-only">Published:</span> <span class="text-sm italic sm:text-base"> <time datetime="2023-07-28T11:45:22.000Z">28 Jul, 2023</time> <span aria-hidden="true"> | </span> <span class="sr-only">&nbsp;at&nbsp;</span> <span class="text-nowrap">11:45 AM</span> </span> </div> <div class="opacity-80 max-sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/thuongnn/thuongnn.github.io/edit/master/src/data/blog/aws/security/aws-key-management-service.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> </div> <article id="article" class="mx-auto prose mt-8 max-w-3xl"> <p>Bài viết được tham khảo và tổng hợp lại từ Jayendra’s Blog, xem bài viết gốc ở đây: <a href="https://jayendrapatil.com/aws-kms">https://jayendrapatil.com/aws-kms</a>.</p>
+<h2 id="table-of-contents">Table of contents</h2>
+<p></p><details><summary>Open Table of contents</summary><p></p>
+<ul>
+<li><a href="#envelope-encryption">Envelope encryption</a>
+<ul>
+<li>
+<ul>
+<li><a href="#l%E1%BB%A3i-%C3%ADch-c%E1%BB%A7a-envelope-encryption">Lợi ích của e<strong>nvelope encryption</strong>:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#kms-service-concepts"><strong>KMS Service Concepts</strong></a>
+<ul>
+<li>
+<ul>
+<li><a href="#kms-keys-ho%E1%BA%B7c-customer-master-keys-cmks"><strong>KMS Keys hoặc Customer Master Keys (CMKs)</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#customer-keys-and-aws-keys">Customer Keys and AWS Keys</a>
+<ul>
+<li>
+<ul>
+<li><a href="#aws-managed-keys">AWS Managed Keys</a></li>
+<li><a href="#customer-managed-keys"><strong>Customer Managed Keys</strong></a></li>
+<li><a href="#aws-owned-keys"><strong>AWS Owned Keys</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#key-material">Key Material</a></li>
+<li><a href="#key-material-origin">Key Material Origin</a></li>
+<li><a href="#data-keys">Data Keys</a></li>
+<li><a href="#encryption-context"><strong>Encryption Context</strong></a></li>
+<li><a href="#kms-access-control">KMS Access Control</a>
+<ul>
+<li>
+<ul>
+<li><a href="#key-policies"><strong>Key Policies</strong></a></li>
+<li><a href="#grants"><strong>Grants</strong></a></li>
+<li><a href="#grant-tokens"><strong>Grant Tokens</strong></a></li>
+<li><a href="#alias"><strong>Alias</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#key-rotation-trong-aws-kms">Key Rotation trong AWS KMS</a></li>
+<li><a href="#kms-key-deletion">KMS Key Deletion</a></li>
+<li><a href="#kms-multi-region-keys"><strong>KMS Multi-Region Keys</strong></a></li>
+<li><a href="#kms-vs-cloudhsm">KMS vs CloudHSM</a></li>
+</ul>
+<p></p></details><p></p>
+<h1 id="envelope-encryption">Envelope encryption</h1>
+<p><strong>Các dịch vụ đám mây AWS tích hợp với AWS KMS</strong> sử dụng một phương pháp gọi là <strong>envelope encryption</strong> để bảo vệ dữ liệu.</p>
+<p><strong>Envelope encryption</strong> là một phương pháp tối ưu hóa việc mã hóa dữ liệu bằng cách sử dụng hai loại khóa khác nhau (<strong>Master Key</strong> và <strong>Data Key</strong>).</p>
+<p>Với <strong>envelope encryption</strong>:</p>
+<ul>
+<li><strong>Data Key</strong> được tạo ra và được dịch vụ AWS sử dụng để mã hóa từng phần dữ liệu hoặc tài nguyên. <strong>Data Key</strong> sau đó được mã hóa dưới <strong>Master Key</strong> đã định nghĩa.</li>
+<li><strong>Data Key đã mã hóa</strong> được lưu trữ bởi dịch vụ AWS. Khi cần giải mã dữ liệu, <strong>Data Key đã mã hóa</strong> sẽ được dịch vụ AWS gửi đến KMS để giải mã bằng <strong>Master Key</strong> ban đầu. Sau đó, dịch vụ sẽ sử dụng <strong>Data Key</strong> đã giải mã để giải mã dữ liệu.</li>
+</ul>
+<h3 id="lợi-ích-của-envelope-encryption">Lợi ích của e<strong>nvelope encryption</strong>:</h3>
+<ol>
+<li><strong>Hiệu suất vượt trội:</strong>
+<ul>
+<li>Khi mã hóa dữ liệu trực tiếp với KMS, dữ liệu phải được truyền qua mạng.</li>
+<li>Với <strong>envelope encryption</strong>, KMS chỉ hỗ trợ mã hóa dữ liệu có kích thước dưới 4 KB, giúp giảm tải xử lý dữ liệu lớn.</li>
+</ul>
+</li>
+<li><strong>Giảm tải mạng:</strong>
+<ul>
+<li>Ứng dụng hoặc dịch vụ đám mây AWS chỉ cần truyền yêu cầu và nhận lại <strong>Data Key</strong>, thay vì truyền toàn bộ dữ liệu qua mạng, giúp giảm tải mạng đáng kể</li>
+</ul>
+</li>
+</ol>
+<h1 id="kms-service-concepts"><strong>KMS Service Concepts</strong></h1>
+<p><img alt="1.png" sizes="(min-width: 613px) 613px, 100vw" loading="lazy" decoding="async" fetchpriority="auto" style="--w: 613; --h: 219;" data-astro-image="responsive" width="613" height="219" src="/_astro/1.CIrKVCIk_ZnVeoz.webp" srcset="/_astro/1.CIrKVCIk_ZnVeoz.webp 613w"></p>
+<h3 id="kms-keys-hoặc-customer-master-keys-cmks"><strong>KMS Keys hoặc Customer Master Keys (CMKs)</strong></h3>
+<ul>
+<li>Đây là một biểu diễn logic (không phải là một tệp hoặc giá trị trực tiếp) của một khóa mã hóa được quản lý trong <strong>AWS Key Management Service (KMS)</strong>.</li>
+<li><strong>Loại khóa được hỗ trợ:</strong>
+<ul>
+<li><strong>Khóa đối xứng (symmetric key):</strong> Dùng để mã hóa/giải mã dữ liệu bằng một khóa duy nhất (AES 256-bit).</li>
+<li><strong>Khóa bất đối xứng (asymmetric key):</strong> Gồm một cặp khóa <strong>khóa công khai (public key)</strong> và <strong>khóa riêng (private key)</strong>, dùng để mã hóa hoặc ký số.</li>
+<li><strong>HMAC keys:</strong> Dùng để tạo và xác minh mã HMAC, thường dùng trong bảo mật dữ liệu và xác thực.</li>
+</ul>
+</li>
+<li><strong>Symmetric keys và private keys (của asymmetric key)</strong> không bao giờ rời khỏi AWS KMS ở trạng thái <strong>plaintext</strong>. Điều này đảm bảo khóa luôn được bảo vệ, tránh rủi ro bị lộ ra ngoài.</li>
+<li>Một <strong>KMS key</strong> bao gồm metadata, như <strong>Key ID</strong>, <strong>Key Spec</strong>, <strong>Key Usage</strong>, ngày tạo, mô tả, trạng thái khóa, và tham chiếu đến <strong>Key Material</strong> được sử dụng để thực hiện các hoạt động mã hóa với <strong>KMS key</strong>.</li>
+</ul>
+<h1 id="customer-keys-and-aws-keys">Customer Keys and AWS Keys</h1>
+<p><img alt="2.png" sizes="(min-width: 1024px) 1024px, 100vw" loading="lazy" decoding="async" fetchpriority="auto" style="--w: 1024; --h: 768;" data-astro-image="responsive" width="1024" height="768" src="/_astro/2.BSA98_J8_Z2rJvB8.webp" srcset="/_astro/2.BSA98_J8_Z1t1gRS.webp 640w, /_astro/2.BSA98_J8_Z2eyDRK.webp 750w, /_astro/2.BSA98_J8_ZDKpY7.webp 828w, /_astro/2.BSA98_J8_Z2rJvB8.webp 1024w"></p>
+<h3 id="aws-managed-keys">AWS Managed Keys</h3>
+<ul>
+<li>Là các khóa được <strong>AWS tạo, quản lý và sử dụng thay mặt bạn</strong> trong tài khoản AWS của bạn.</li>
+<li><strong>Tự động xoay vòng mỗi năm (~365 ngày)</strong> và không thể thay đổi lịch xoay vòng này.</li>
+<li>Có thể:
+<ul>
+<li>Xem các khóa được quản lý bởi AWS trong tài khoản của mình.</li>
+<li>Xem các chính sách khóa (key policies).</li>
+<li>Theo dõi việc sử dụng khóa trong <strong>CloudTrail logs</strong>.</li>
+</ul>
+</li>
+<li>Không thể:
+<ul>
+<li>Quản lý hoặc xoay vòng khóa.</li>
+<li>Thay đổi chính sách khóa (key policies).</li>
+<li>Sử dụng trực tiếp trong các hoạt động mã hóa; thay vào đó, dịch vụ AWS sẽ sử dụng chúng thay bạn.</li>
+</ul>
+</li>
+</ul>
+<h3 id="customer-managed-keys"><strong>Customer Managed Keys</strong></h3>
+<ul>
+<li>Là các khóa <strong>do bạn tạo và quản lý</strong> để mã hóa tài nguyên trong tài khoản của mình.</li>
+<li><strong>Xoay vòng tự động là tùy chọn</strong>: Nếu bật, khóa sẽ được xoay vòng tự động mỗi năm.</li>
+<li>Bạn có toàn quyền kiểm soát, bao gồm:
+<ul>
+<li>Xây dựng và duy trì <strong>key policies, IAM policies</strong> và <strong>grants</strong>.</li>
+<li>Bật và tắt các khóa.</li>
+<li>Xoay vòng vật liệu mã hóa (cryptographic material).</li>
+<li>Gắn thẻ (tags) hoặc tạo bí danh (aliases) tham chiếu đến KMS keys.</li>
+<li>Lên lịch xóa các khóa.</li>
+</ul>
+</li>
+</ul>
+<h3 id="aws-owned-keys"><strong>AWS Owned Keys</strong></h3>
+<ul>
+<li>Là một tập hợp các khóa <strong>thuộc sở hữu và quản lý bởi dịch vụ AWS</strong> để sử dụng trong nhiều tài khoản AWS.</li>
+<li>Các khóa này <strong>không nằm trong tài khoản AWS của bạn</strong>.</li>
+<li>Dịch vụ AWS có thể sử dụng các khóa này để bảo vệ tài nguyên trong tài khoản của bạn.</li>
+<li>Không thể: Xem, sử dụng, theo dõi, hoặc kiểm tra các khóa này.</li>
+</ul>
+<h1 id="key-material">Key Material</h1>
+<ul>
+<li>Các KMS key chứa một tham chiếu đến <strong>key material</strong>, được sử dụng để mã hóa và giải mã dữ liệu.</li>
+<li>Mặc định, AWS KMS sẽ tự động tạo <strong>key material</strong> khi một KMS key mới được tạo.</li>
+<li>KMS key có thể được tạo mà không có key material. Sau đó, bạn có thể:
+<ul>
+<li><strong>Nhập key material của riêng bạn</strong>.</li>
+<li>Hoặc <strong>tạo key material</strong> trong cụm AWS CloudHSM được liên kết với AWS KMS Custom Key Store.</li>
+</ul>
+</li>
+<li>Không thể trích xuất, xuất, xem hoặc quản lý key material.</li>
+<li>Key material không thể xóa riêng lẻ; để xóa key material, bạn phải xóa toàn bộ KMS key.</li>
+</ul>
+<h1 id="key-material-origin">Key Material Origin</h1>
+<p><strong>Key Material Origin</strong> là thuộc tính của KMS key xác định origin của key material được sử dụng trong KMS key. Các giá trị key material origin bao gồm:</p>
+<ol>
+<li><strong><code>AWS_KMS</code>:</strong>
+<ul>
+<li>AWS KMS tạo và quản lý key material cho KMS key trong AWS KMS.</li>
+</ul>
+</li>
+<li><strong><code>EXTERNAL</code>:</strong>
+<ul>
+<li>Key được sử dụng có key material nhập từ bên ngoài.</li>
+<li>Khách hàng chịu trách nhiệm quản lý và bảo mật key.</li>
+<li><strong>Chỉ hỗ trợ symmetric keys</strong>.</li>
+<li>Không hỗ trợ tự động xoay vòng và cần xoay vòng thủ công.</li>
+</ul>
+</li>
+<li><strong><code>AWS_CLOUDHSM</code>:</strong>
+<ul>
+<li>AWS KMS tạo key material trong cụm AWS CloudHSM liên kết với custom key store.</li>
+</ul>
+</li>
+<li><strong><code>EXTERNAL_KEY_STORE</code>:</strong>
+<ul>
+<li>Key material là khóa mật mã trong một trình quản lý khóa bên ngoài (external key manager) nằm ngoài AWS.</li>
+<li>Giá trị này <strong>chỉ hỗ trợ cho KMS keys</strong> trong một external key store.</li>
+</ul>
+</li>
+</ol>
+<h1 id="data-keys">Data Keys</h1>
+<ul>
+<li><strong>Data keys</strong> là các khóa mã hóa được sử dụng để mã hóa dữ liệu, bao gồm:
+<ul>
+<li>Lượng dữ liệu lớn.</li>
+<li>Các khóa mã hóa dữ liệu khác.</li>
+</ul>
+</li>
+<li>Không giống <strong>KMS keys</strong>, AWS KMS <strong>không lưu trữ</strong>, <strong>quản lý</strong>, hay <strong>theo dõi</strong> các <strong>data keys</strong>.</li>
+<li>Data keys chủ yếu được sử dụng bởi các dịch vụ bên ngoài AWS KMS.</li>
+<li><strong>Data keys</strong> được tạo thông qua AWS KMS nhưng không được lưu lại trong hệ thống KMS.</li>
+<li>Các ứng dụng hoặc dịch vụ bên ngoài AWS KMS chịu trách nhiệm sử dụng <strong>data keys</strong> để mã hóa và giải mã dữ liệu.</li>
+<li>Thường được sử dụng trong <strong>Envelope Encryption</strong> để mã hóa dữ liệu khối lượng lớn:
+<ul>
+<li>Dữ liệu được mã hóa bằng <strong>data keys</strong>.</li>
+<li><strong>Data keys</strong> lại được mã hóa bởi <strong>KMS keys</strong> để tăng cường bảo mật.</li>
+</ul>
+</li>
+</ul>
+<h1 id="encryption-context"><strong>Encryption Context</strong></h1>
+<ul>
+<li><strong>Encryption context</strong> là một tập hợp tùy chọn các cặp <strong>key–value</strong> chứa thông tin ngữ cảnh bổ sung liên quan đến dữ liệu.</li>
+<li>AWS KMS sử dụng <strong>encryption context</strong> như <strong>Authenticated Additional Data (AAD)</strong> để hỗ trợ mã hóa có xác thực.</li>
+<li>Encryption context không được mã hóa và hiển thị dưới dạng <strong>plaintext</strong> trong CloudTrail Logs.</li>
+<li>Không nên thêm các thông tin nhạy cảm trong encryption context.</li>
+<li>Dùng để <strong>phân loại</strong> và <strong>xác định</strong> các hoạt động mã hóa/giải mã trong CloudTrail Logs.</li>
+<li>Ứng dụng:
+<ul>
+<li>Giúp xác minh thêm rằng dữ liệu được mã hóa và giải mã trong đúng ngữ cảnh.</li>
+<li>Cải thiện bảo mật bằng cách sử dụng thêm một lớp xác thực không bí mật.</li>
+</ul>
+</li>
+</ul>
+<h1 id="kms-access-control">KMS Access Control</h1>
+<ul>
+<li>Cách chính để quản lý quyền truy cập vào các KMS keys trong AWS là sử dụng các policy.</li>
+<li>Quyền truy cập vào KMS keys có thể được kiểm soát thông qua:
+<ul>
+<li><strong>Key Policies</strong>
+<ul>
+<li><strong>Là các policy dựa trên tài nguyên (resource-based policies).</strong></li>
+<li><strong>Mỗi KMS key đều có một key policy.</strong></li>
+<li>Là cơ chế chính để kiểm soát quyền truy cập vào một key.</li>
+<li>Có thể được sử dụng độc lập để kiểm soát quyền truy cập vào các keys.</li>
+</ul>
+</li>
+<li><strong>IAM Policies</strong>
+<ul>
+<li>Sử dụng các <strong>IAM policies</strong> kết hợp với <strong>Key Policies</strong> để kiểm soát quyền truy cập vào các keys.</li>
+<li>Hữu ích để quản lý tất cả các quyền cho các danh tính IAM (IAM identities) trong IAM.</li>
+</ul>
+</li>
+<li>Grants
+<ul>
+<li>Sử dụng <strong>grants</strong> kết hợp với <strong>Key Policies</strong> và <strong>IAM Policies</strong> để cho phép truy cập vào các keys.</li>
+<li>Hữu ích để cấp quyền truy cập vào các keys đã được cấp quyền trong key policy và cho phép người dùng ủy quyền quyền truy cập của họ cho những người khác.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Để cho phép truy cập vào một KMS CMK, <strong>Key Policy</strong> <strong>PHẢI</strong> được sử dụng, dù là sử dụng độc lập hoặc kết hợp với <strong>IAM Policies</strong> hoặc <strong>Grants</strong>.</li>
+<li><strong>IAM Policies</strong> không đủ để cho phép truy cập vào các keys, mặc dù chúng có thể được sử dụng kết hợp với <strong>Key Policies</strong>.</li>
+<li>IAM user tạo một KMS key không được coi là chủ sở hữu key và họ không tự động có quyền sử dụng hoặc quản lý KMS key mà họ tạo ra.</li>
+</ul>
+<h3 id="key-policies"><strong>Key Policies</strong></h3>
+<ul>
+<li><strong>Vai trò chính:</strong> Xác định ai có quyền sử dụng và quản lý các KMS keys.</li>
+<li>Với <strong>Customer-managed key</strong>, bạn có thể thêm, xóa, hoặc thay đổi quyền bất kỳ lúc nào.</li>
+<li>Không thể chỉnh sửa <strong>Key Policy</strong> cho các <strong>AWS-owned</strong> hoặc <strong>AWS-managed keys</strong>.</li>
+</ul>
+<h3 id="grants"><strong>Grants</strong></h3>
+<ul>
+<li>Cung cấp quyền, là một giải pháp thay thế cho <strong>Key Policy</strong> và <strong>IAM Policy</strong>, cho phép các <strong>AWS principals</strong> sử dụng KMS keys.</li>
+<li>Thường dùng để cấp quyền <strong>tạm thời</strong> vì có thể tạo, sử dụng và xóa grant mà không cần thay đổi <strong>Key Policy</strong> hoặc <strong>IAM Policy</strong>.</li>
+<li>Quyền được chỉ định trong grant có thể không có hiệu lực ngay lập tức do cơ chế <strong>eventual consistency</strong>.</li>
+</ul>
+<h3 id="grant-tokens"><strong>Grant Tokens</strong></h3>
+<ul>
+<li><strong>Mục đích:</strong> Giảm thiểu độ trễ khi sử dụng grants.</li>
+<li>Dùng <strong>grant token</strong> nhận được từ phản hồi của API <code>CreateGrant</code> để quyền trong grant có hiệu lực ngay lập tức.</li>
+</ul>
+<h3 id="alias"><strong>Alias</strong></h3>
+<ul>
+<li>Là một <strong>tên thân thiện</strong> (friendly name) dành cho KMS keys, giúp dễ dàng tham chiếu.</li>
+<li>Alias là tài nguyên độc lập, không phải thuộc tính của KMS key.</li>
+<li>Alias có thể thêm, thay đổi, hoặc xóa mà không ảnh hưởng đến KMS key liên quan.</li>
+<li><strong>Ứng dụng:</strong>
+<ul>
+<li>Alias có thể tham chiếu đến các KMS keys khác nhau trong từng <strong>AWS Region</strong>.</li>
+<li>Có thể chuyển alias sang KMS key khác mà không cần thay đổi mã nguồn.</li>
+<li>Alias giúp cho phép hoặc từ chối quyền truy cập dựa trên alias mà không cần chỉnh sửa policy hoặc quản lý grants.</li>
+</ul>
+</li>
+</ul>
+<h1 id="key-rotation-trong-aws-kms">Key Rotation trong AWS KMS</h1>
+<ul>
+<li><strong>Key rotation</strong> là quá trình thay đổi <strong>key material</strong> để tăng cường bảo mật trong các hoạt động mã hóa. Key material mới được sử dụng cho các yêu cầu mã hóa tiếp theo, trong khi key material cũ vẫn được lưu trữ để giải mã dữ liệu đã mã hóa trước đó.</li>
+<li>Các Loại Key Rotation:
+<ul>
+<li>Automatic Key Rotation
+<ul>
+<li>Hỗ trợ cho <strong>symmetric encryption KMS keys</strong> với key material do AWS KMS tạo.</li>
+<li><strong>AWS Managed Keys t</strong>ự động xoay vòng mỗi năm và Không thể tùy chỉnh.</li>
+<li><strong>Customer Managed Keys m</strong>ặc định tắt, cần kích hoạt thủ công. Xoay vòng mỗi năm.</li>
+<li><strong>Không hỗ trợ</strong> Asymmetric keys, HMAC keys, keys trong custom key stores, keys với key material được nhập.</li>
+<li>Lợi ích:
+<ul>
+<li>Không thay đổi các thuộc tính của key như ID, ARN, và policy.</li>
+<li>Các ứng dụng hoặc alias liên kết không cần cập nhật.</li>
+<li>Không ảnh hưởng đến việc sử dụng key trong các dịch vụ AWS.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Manual Key Rotation
+<ul>
+<li>Người dùng tạo key mới và cập nhật ứng dụng hoặc alias để sử dụng key này.</li>
+<li>Không giữ lại ID, ARN, hoặc policy của key cũ.</li>
+<li>Thích hợp với các keys không hỗ trợ xoay vòng tự động (Asymmetric, HMAC, custom key store, imported material).</li>
+<li>Ưu điểm là linh hoạt kiểm soát tần suất xoay vòng, phù hợp khi cần tần suất xoay vòng dưới 1 năm.</li>
+<li>Nhược điểm là có thể cần mã hóa lại dữ liệu tùy thuộc vào cấu hình ứng dụng.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="kms-key-deletion">KMS Key Deletion</h1>
+<ul>
+<li><strong>KMS key deletion</strong> là quá trình xóa key material và tất cả metadata liên quan đến key. Đây là một hành động <strong>không thể hoàn tác</strong>.</li>
+<li>Các đặc điểm chính:
+<ul>
+<li><strong>Không thể phục hồi dữ liệu:</strong>
+<ul>
+<li>Dữ liệu được mã hóa bởi key đã bị xóa <strong>không thể khôi phục</strong>.</li>
+<li>Vì lý do này, <strong>AWS khuyến nghị vô hiệu hóa key</strong> trước khi thực hiện xóa.</li>
+</ul>
+</li>
+<li><strong>Loại Key có thể xóa:</strong>
+<ul>
+<li><strong>Customer Managed Keys</strong>: Có thể được lên lịch để xóa.</li>
+<li><strong>AWS Managed và Owned Keys</strong>: <strong>Không thể xóa.</strong></li>
+</ul>
+</li>
+<li><strong>Thời gian chờ bắt buộc:</strong>
+<ul>
+<li>Người dùng phải đặt thời gian chờ từ <strong>7 đến 30 ngày</strong> trước khi key bị xóa.</li>
+<li>Trong thời gian này, trạng thái của key là <strong>Pending deletion</strong>.</li>
+</ul>
+</li>
+<li><strong>Trạng thái và hoạt động trong thời gian chờ:</strong>
+<ul>
+<li>Key với trạng thái <strong>Pending deletion</strong>:
+<ul>
+<li><strong>Không thể sử dụng</strong> cho các hoạt động mã hóa hay giải mã.</li>
+<li>Key material không được xoay vòng.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Chỉ xóa khi được lên lịch:</strong>
+<ul>
+<li>AWS <strong>không bao giờ tự động xóa key</strong>. Việc xóa chỉ được thực hiện khi bạn <strong>chủ động lên lịch</strong> và thời gian chờ đã kết thúc.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="kms-multi-region-keys"><strong>KMS Multi-Region Keys</strong></h1>
+<ul>
+<li><strong>KMS Multi-Region Keys</strong> là một tính năng trong AWS KMS hỗ trợ tạo các key có thể sử dụng <strong>(multi-region)</strong>, cho phép mã hóa và giải mã dữ liệu ở các AWS Region khác nhau mà không cần gọi KMS qua các vùng hoặc mã hóa lại dữ liệu.</li>
+<li>Các đặc điểm chính:
+<ul>
+<li><strong>Tương tác linh hoạt giữa các Region:</strong>
+<ul>
+<li><strong>Cùng key material và key ID:</strong>
+<ul>
+<li>Các multi-region key trong các vùng khác nhau có cùng <strong>key material</strong> và <strong>key ID</strong>.</li>
+</ul>
+</li>
+<li><strong>Khả năng mã hóa/giải mã multi-region:</strong>
+<ul>
+<li>Dữ liệu được mã hóa ở một AWS Region có thể giải mã ở một AWS Region khác mà <strong>không cần mã hóa lại</strong>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Bảo mật cao:</strong>
+<ul>
+<li>Multi-Region keys <strong>không bao giờ rời khỏi AWS KMS ở trạng thái không được mã hóa</strong>.</li>
+<li>Bảo mật dữ liệu được duy trì chặt chẽ trong mọi giao dịch.</li>
+</ul>
+</li>
+<li><strong>Không phải là global key:</strong>
+<ul>
+<li>Mỗi multi-region key phải được <strong>tạo bản sao (replicated)</strong> và quản lý độc lập ở từng Region.</li>
+<li>Chúng không phải là <strong>global key</strong>, tức là không tự động áp dụng trên toàn bộ hệ thống AWS.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Lợi ích
+<ul>
+<li><strong>Hiệu suất: g</strong>iảm độ trễ khi sử dụng KMS trong các ứng dụng yêu cầu mã hóa/giải mã trên nhiều Region.</li>
+<li><strong>Tiện lợi: k</strong>hông cần thực hiện mã hóa lại khi dữ liệu di chuyển giữa các Region.</li>
+<li><strong>Tăng cường bảo mật và tuân thủ: d</strong>ữ liệu luôn được mã hóa khi truyền và lưu trữ, phù hợp với các yêu cầu bảo mật.</li>
+</ul>
+</li>
+<li>Lưu ý quan trọng
+<ul>
+<li>Việc quản lý và sao chép multi-region key cần thực hiện <strong>thủ công</strong>, đòi hỏi sự cẩn thận trong việc đồng bộ giữa các Region.</li>
+<li>Chỉ nên sử dụng multi-region key khi thực sự cần thiết, ví dụ trong các hệ thống phân tán toàn cầu.</li>
+</ul>
+</li>
+</ul>
+<h1 id="kms-vs-cloudhsm">KMS vs CloudHSM</h1>
+<p><img alt="3.png" sizes="(min-width: 1460px) 1460px, 100vw" loading="lazy" decoding="async" fetchpriority="auto" style="--w: 1460; --h: 1094;" data-astro-image="responsive" width="1460" height="1094" src="/_astro/3.P3WIK0H9_234Sv4.webp" srcset="/_astro/3.P3WIK0H9_2eg5qw.webp 640w, /_astro/3.P3WIK0H9_28cWrX.webp 750w, /_astro/3.P3WIK0H9_2fxBiC.webp 828w, /_astro/3.P3WIK0H9_Z79bDF.webp 1080w, /_astro/3.P3WIK0H9_1DWoAh.webp 1280w, /_astro/3.P3WIK0H9_234Sv4.webp 1460w"></p> </article> <hr class="my-8 border-dashed"> <div class="opacity-80 sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/thuongnn/thuongnn.github.io/edit/master/src/data/blog/aws/security/aws-key-management-service.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/aws/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>AWS</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/amazon-web-services/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Amazon Web Services</span> </a> </li> </ul> <div class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"> <div class="flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start"> <span class="italic">Share this post on:</span> <div class="text-center"> <a href="https://wa.me/?text=https://thuongnn.dev/posts/aws/security/aws-key-management-service/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> <span class="sr-only">Share this post via WhatsApp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://thuongnn.dev/posts/aws/security/aws-key-management-service/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://thuongnn.dev/posts/aws/security/aws-key-management-service/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://thuongnn.dev/posts/aws/security/aws-key-management-service/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg> <span class="sr-only">Share this post via Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://thuongnn.dev/posts/aws/security/aws-key-management-service/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg> <span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&#38;body=https://thuongnn.dev/posts/aws/security/aws-key-management-service/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Share this post via email</span> </a> </div> </div> <button id="back-to-top" class="focus-outline py-1 whitespace-nowrap hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span>Back to Top</span> </button> </div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/aws/security/iam-role-identity-providers-and-federation" class="flex w-full gap-1 hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">[AWS] IAM Role, Identity Providers and Federation</div> </div> </a> <a href="/posts/aws/security/aws-web-application-firewall" class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">[AWS] AWS WAF</div> </div> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="w-full mt-auto"> <div class="max-w-3xl mx-auto px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://github.com/thuongnn" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title=" thuongnn.dev on Github"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only"> thuongnn.dev on Github</span> </a><a href="https://www.facebook.com/thuongnn97" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">thuongnn.dev on Facebook</span> </a><a href="https://www.linkedin.com/in/thuongnn/" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on LinkedIn"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">thuongnn.dev on LinkedIn</span> </a><a href="mailto:thuongnn1997@gmail.com" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to thuongnn.dev"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to thuongnn.dev</span> </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2025</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ml-2 opacity-0 group-hover:opacity-100 focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "copy-code absolute right-3 -top-3 rounded bg-muted px-2 py-1 text-xs leading-4 text-foreground font-medium";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    document.querySelector("#back-to-top")?.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+  }
+  backToTop();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>

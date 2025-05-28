@@ -1,0 +1,504 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://thuongnn.dev/posts/aws/analytics/redshift/"><meta name="generator" content="Astro v5.5.2"><!-- General Meta Tags --><title>[AWS] Amazon Redshift | thuongnn.dev</title><meta name="title" content="[AWS] Amazon Redshift | thuongnn.dev"><meta name="description" content="Tìm hiểu về dịch vụ kho dữ liệu (data warehouse) được quản lý hoàn toàn bởi AWS, giúp phân tích dữ liệu quy mô lớn với hiệu suất cao."><meta name="author" content="thuongnn"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="[AWS] Amazon Redshift | thuongnn.dev"><meta property="og:description" content="Tìm hiểu về dịch vụ kho dữ liệu (data warehouse) được quản lý hoàn toàn bởi AWS, giúp phân tích dữ liệu quy mô lớn với hiệu suất cao."><meta property="og:url" content="https://thuongnn.dev/posts/aws/analytics/redshift/"><meta property="og:image" content="https://thuongnn.dev/posts/aws/analytics/redshift/index.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2023-01-18T16:20:18.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://thuongnn.dev/posts/aws/analytics/redshift/"><meta property="twitter:title" content="[AWS] Amazon Redshift | thuongnn.dev"><meta property="twitter:description" content="Tìm hiểu về dịch vụ kho dữ liệu (data warehouse) được quản lý hoàn toàn bởi AWS, giúp phân tích dữ liệu quy mô lớn với hiệu suất cao."><meta property="twitter:image" content="https://thuongnn.dev/posts/aws/analytics/redshift/index.png"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"[AWS] Amazon Redshift | thuongnn.dev","image":"https://thuongnn.dev/posts/aws/analytics/redshift/index.png","datePublished":"2023-01-18T16:20:18.000Z","author":[{"@type":"Person","name":"thuongnn","url":"https://thuongnn.dev/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="thuongnn.dev" href="https://thuongnn.dev/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CMTcOisY.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/about.DQgjlE2T.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+[data-astro-image]{width:100%;height:auto;object-fit:var(--fit);object-position:var(--pos);aspect-ratio:var(--w) / var(--h)}[data-astro-image=responsive]{max-width:calc(var(--w) * 1px);max-height:calc(var(--h) * 1px)}[data-astro-image=fixed]{width:calc(var(--w) * 1px);height:calc(var(--h) * 1px)}
+</style><style>[data-astro-transition-scope="astro-fam6wyqg-1"] { view-transition-name: aws-amazon-redshift; }@layer astro { ::view-transition-old(aws-amazon-redshift) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(aws-amazon-redshift) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(aws-amazon-redshift) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(aws-amazon-redshift) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: aws; }@layer astro { ::view-transition-old(aws) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(aws) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(aws) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(aws) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: amazon-web-services; }@layer astro { ::view-transition-old(amazon-web-services) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(amazon-web-services) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(amazon-web-services) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(amazon-web-services) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="absolute -top-full left-16 z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"> <a href="/" class="absolute py-1 text-2xl leading-7 font-semibold whitespace-nowrap sm:static"> thuongnn.dev </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:ml-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="max-w-3xl mx-auto px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-3xl items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="mx-auto w-full max-w-3xl px-4 pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-fam6wyqg-1"> [AWS] Amazon Redshift </h1> <div class="flex items-center gap-4"> <div class="flex items-end space-x-2 opacity-80 my-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg> <span class="sr-only">Published:</span> <span class="text-sm italic sm:text-base"> <time datetime="2023-01-18T16:20:18.000Z">18 Jan, 2023</time> <span aria-hidden="true"> | </span> <span class="sr-only">&nbsp;at&nbsp;</span> <span class="text-nowrap">04:20 PM</span> </span> </div> <div class="opacity-80 max-sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/thuongnn/thuongnn.github.io/edit/master/src/data/blog/aws/analytics/redshift.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> </div> <article id="article" class="mx-auto prose mt-8 max-w-3xl"> <p>Bài viết được tham khảo và tổng hợp lại từ Jayendra’s Blog, xem bài viết gốc ở đây: <a href="https://jayendrapatil.com/aws-redshift">https://jayendrapatil.com/aws-redshift</a>.</p>
+<h2 id="table-of-contents">Table of contents</h2>
+<p></p><details><summary>Open Table of contents</summary><p></p>
+<ul>
+<li><a href="#t%E1%BB%95ng-quan"><strong>Tổng quan</strong></a></li>
+<li><a href="#redshift-performance"><strong>Redshift Performance</strong></a></li>
+<li><a href="#redshift-architecture"><strong>Redshift Architecture</strong></a></li>
+<li><a href="#redshift-serverless"><strong>Redshift Serverless</strong></a></li>
+<li><a href="#redshift-single-vs-multi-node-cluster"><strong>Redshift Single vs Multi-Node Cluster</strong></a></li>
+<li><a href="#redshift-multi-az"><strong>Redshift Multi-AZ</strong></a></li>
+<li><a href="#redshift-availability--durability"><strong>Redshift Availability &#x26; Durability</strong></a></li>
+<li><a href="#redshift-backup--restore"><strong>Redshift Backup &#x26; Restore</strong></a></li>
+<li><a href="#redshift-scalability"><strong>Redshift Scalability</strong></a></li>
+<li><a href="#redshift-security"><strong>Redshift Security</strong></a></li>
+<li><a href="#advanced-topics"><strong>Advanced Topics</strong></a></li>
+<li><a href="#redshift-vs-emr-vs-rds"><strong>Redshift vs EMR vs RDS</strong></a></li>
+</ul>
+<p></p></details><p></p>
+<h1 id="tổng-quan"><strong>Tổng quan</strong></h1>
+<ul>
+<li><strong>Amazon Redshift</strong> là dịch vụ kho dữ liệu quy mô petabyte, được quản lý hoàn toàn, nhanh và mạnh mẽ. Redshift là giải pháp kho dữ liệu OLAP dựa trên PostgreSQL.</li>
+<li><strong>Redshift tự động hỗ trợ</strong>:
+<ul>
+<li>Thiết lập, vận hành và mở rộng kho dữ liệu, từ cung cấp dung lượng cơ sở hạ tầng.</li>
+<li>Vá lỗi và sao lưu kho dữ liệu, lưu trữ bản sao lưu trong thời gian do người dùng định nghĩa.</li>
+<li>Giám sát các node và ổ đĩa để hỗ trợ khôi phục sau sự cố.</li>
+<li>Giảm đáng kể chi phí kho dữ liệu, đồng thời phân tích nhanh khối lượng dữ liệu lớn.</li>
+<li>Cung cấp khả năng truy vấn nhanh trên <strong>structured</strong> và <strong>semi-structured data</strong>, sử dụng các công cụ SQL quen thuộc và công cụ BI thông qua kết nối ODBC/JDBC tiêu chuẩn.</li>
+<li>Sử dụng sao chép và sao lưu liên tục để tăng tính sẵn sàng, cải thiện độ bền dữ liệu, tự động khôi phục từ lỗi node hoặc thành phần.</li>
+<li>Mở rộng hoặc thu hẹp với vài cú nhấp chuột trong AWS Management Console hoặc một lệnh API.</li>
+<li>Phân phối và song song hóa truy vấn trên nhiều tài nguyên vật lý.</li>
+<li>Hỗ trợ VPC, SSL, mã hóa AES-256 và Module Bảo mật Phần cứng (HSMs) để bảo vệ dữ liệu trong quá trình truyền và khi lưu trữ.</li>
+</ul>
+</li>
+<li>Trước đây, Redshift chỉ hỗ trợ triển khai Single-AZ, các node nằm trong cùng AZ nếu AZ đó hỗ trợ cụm Redshift. Hiện nay, triển khai Multi-AZ đã được hỗ trợ cho một số loại.</li>
+<li><strong>Giám sát</strong>: Redshift sử dụng CloudWatch, cung cấp số liệu về sử dụng CPU, lưu trữ, lưu lượng đọc/ghi, và hỗ trợ số liệu tùy chỉnh do người dùng định nghĩa.</li>
+<li><strong>Ghi log</strong>: Hỗ trợ ghi log kiểm tra và tích hợp với AWS CloudTrail.</li>
+<li>Redshift có thể dễ dàng kích hoạt sao chép sang vùng thứ hai để khôi phục sau thảm họa.</li>
+</ul>
+<h1 id="redshift-performance"><strong>Redshift Performance</strong></h1>
+<ul>
+<li><strong>Xử lý Song song Khối lượng lớn (MPP)</strong>:
+<ul>
+<li>Tự động phân phối dữ liệu và tải truy vấn trên tất cả các node.</li>
+<li>Dễ dàng thêm node để mở rộng kho dữ liệu, duy trì hiệu năng truy vấn nhanh khi kho dữ liệu phát triển.</li>
+</ul>
+</li>
+<li><strong>Lưu trữ Dữ liệu theo Cột</strong>:
+<ul>
+<li>Sắp xếp dữ liệu theo cột, tối ưu cho kho dữ liệu và phân tích, nơi các truy vấn thường liên quan đến phép tổng hợp trên tập dữ liệu lớn.</li>
+<li>Dữ liệu cột được lưu trữ tuần tự trên phương tiện lưu trữ, giảm đáng kể số lượng I/O, cải thiện hiệu năng truy vấn.</li>
+</ul>
+</li>
+<li><strong>Nén Nâng cao</strong>:
+<ul>
+<li>Lưu trữ cột có thể được nén mạnh hơn so với lưu trữ dựa trên hàng, vì dữ liệu tương tự được lưu trữ tuần tự trên đĩa.</li>
+<li>Sử dụng nhiều kỹ thuật nén, đạt tỷ lệ nén cao so với cơ sở dữ liệu quan hệ truyền thống.</li>
+<li>Không yêu cầu chỉ mục hoặc materialized views, do đó sử dụng ít dung lượng hơn.</li>
+<li>Tự động lấy mẫu dữ liệu và chọn phương pháp nén phù hợp khi dữ liệu được nạp vào bảng rỗng.</li>
+</ul>
+</li>
+<li><strong>Bộ tối ưu hóa Truy vấn</strong>:
+<ul>
+<li>Động cơ thực thi truy vấn Redshift tích hợp bộ tối ưu hóa nhận biết MPP và tận dụng lưu trữ dữ liệu theo cột.</li>
+</ul>
+</li>
+<li><strong>Bộ nhớ đệm Kết quả</strong>:
+<ul>
+<li>Redshift lưu trữ kết quả của một số loại truy vấn trong bộ nhớ trên node chính.</li>
+<li>Khi người dùng gửi truy vấn, Redshift kiểm tra bộ nhớ đệm kết quả; nếu tìm thấy kết quả hợp lệ, Redshift sử dụng kết quả này mà không cần chạy lại truy vấn.</li>
+<li>Bộ nhớ đệm kết quả hoạt động minh bạch với người dùng.</li>
+</ul>
+</li>
+<li><strong>Mã Biên dịch</strong>:
+<ul>
+<li>Node chính phân phối mã được biên dịch tối ưu hóa hoàn toàn trên tất cả các node trong cụm. Việc biên dịch truy vấn giảm chi phí liên quan đến trình thông dịch, tăng tốc độ thực thi, đặc biệt cho các truy vấn phức tạp.</li>
+</ul>
+</li>
+</ul>
+<h1 id="redshift-architecture"><strong>Redshift Architecture</strong></h1>
+<p><img alt="1.png" sizes="(min-width: 1794px) 1794px, 100vw" loading="lazy" decoding="async" fetchpriority="auto" style="--w: 1794; --h: 824;" data-astro-image="responsive" width="1794" height="824" src="/_astro/1.70Z_Zahi_g3oR7.webp" srcset="/_astro/1.70Z_Zahi_Z2pkhPk.webp 640w, /_astro/1.70Z_Zahi_ZnG1PI.webp 750w, /_astro/1.70Z_Zahi_ZmSNyW.webp 828w, /_astro/1.70Z_Zahi_W1md0.webp 1080w, /_astro/1.70Z_Zahi_20RBfp.webp 1280w, /_astro/1.70Z_Zahi_Z2Scjl.webp 1668w, /_astro/1.70Z_Zahi_g3oR7.webp 1794w"></p>
+<ul>
+<li><strong>Cụm (Clusters)</strong>:
+<ul>
+<li>Thành phần cơ sở hạ tầng cốt lõi của kho dữ liệu Redshift.</li>
+<li>Một cụm bao gồm một hoặc nhiều node tính toán.</li>
+<li>Nếu cụm có từ hai node tính toán trở lên, một node chính bổ sung sẽ điều phối các node tính toán và xử lý giao tiếp bên ngoài.</li>
+<li>Ứng dụng khách chỉ tương tác trực tiếp với node chính; các node tính toán ẩn đối với ứng dụng bên ngoài.</li>
+</ul>
+</li>
+<li><strong>Node Chính (Leader Node)</strong>:
+<ul>
+<li>Quản lý giao tiếp với chương trình khách và tất cả giao tiếp với các node tính toán.</li>
+<li>Phân tích cú pháp và phát triển kế hoạch thực thi cho các hoạt động cơ sở dữ liệu.</li>
+<li>Dựa trên kế hoạch thực thi, node chính biên dịch mã, phân phối mã đã biên dịch đến các node tính toán, và gán một phần dữ liệu cho mỗi node tính toán.</li>
+<li>Chỉ phân phối câu lệnh SQL đến các node tính toán khi truy vấn tham chiếu đến bảng được lưu trữ trên các node này; các truy vấn khác chạy độc quyền trên node chính.</li>
+</ul>
+</li>
+<li><strong>Node Tính toán (Compute Nodes)</strong>:
+<ul>
+<li>Node chính biên dịch mã cho các thành phần riêng lẻ của kế hoạch thực thi và gán mã cho các node tính toán.</li>
+<li>Các node tính toán thực thi mã đã biên dịch và gửi kết quả trung gian về node chính để tổng hợp cuối cùng.</li>
+<li>Mỗi node tính toán có CPU, bộ nhớ và lưu trữ đĩa gắn kèm riêng, được xác định bởi loại node.</li>
+<li>Khi khối lượng công việc tăng, có thể tăng dung lượng tính toán và lưu trữ của cụm bằng cách tăng số lượng node, nâng cấp loại node, hoặc cả hai.</li>
+</ul>
+</li>
+<li><strong>Phân đoạn Node (Node Slices)</strong>:
+<ul>
+<li>Một node tính toán được chia thành các phân đoạn (slices).</li>
+<li>Mỗi phân đoạn được cấp một phần bộ nhớ và dung lượng đĩa của node, xử lý một phần khối lượng công việc được gán cho node.</li>
+<li>Node chính quản lý việc phân phối dữ liệu đến các phân đoạn và phân bổ khối lượng công việc cho các truy vấn hoặc hoạt động cơ sở dữ liệu khác. Các phân đoạn hoạt động song song để hoàn thành thao tác.</li>
+<li>Số lượng phân đoạn mỗi node được xác định bởi kích thước node của cụm.</li>
+<li>Khi tạo bảng, có thể chỉ định một cột làm khóa phân phối (distribution key). Khi bảng được nạp dữ liệu, các hàng được phân phối đến các phân đoạn node theo khóa phân phối, giúp Redshift sử dụng xử lý song song để nạp dữ liệu và thực thi truy vấn hiệu quả.</li>
+</ul>
+</li>
+<li><strong>Lưu trữ Quản lý (Managed Storage)</strong>:
+<ul>
+<li>Dữ liệu kho dữ liệu được lưu trữ trong tầng lưu trữ riêng Redshift Managed Storage (RMS).</li>
+<li>RMS cho phép mở rộng lưu trữ lên đến petabyte sử dụng lưu trữ S3.</li>
+<li>RMS tách biệt chi phí tính toán và lưu trữ, cho phép định cỡ cụm chỉ dựa trên nhu cầu tính toán.</li>
+<li>RMS tự động sử dụng lưu trữ cục bộ dựa trên SSD hiệu năng cao làm bộ đệm cấp 1.</li>
+<li>Tận dụng các tối ưu hóa như nhiệt độ khối dữ liệu, tuổi khối dữ liệu và mô hình khối lượng công việc để cung cấp hiệu năng cao, đồng thời tự động mở rộng lưu trữ sang S3 khi cần mà không yêu cầu hành động.</li>
+</ul>
+</li>
+</ul>
+<h1 id="redshift-serverless"><strong>Redshift Serverless</strong></h1>
+<ul>
+<li><strong>Redshift Serverless</strong> là tùy chọn không máy chủ của Redshift, giúp chạy và mở rộng phân tích trong vài giây mà không cần thiết lập hoặc quản lý cơ sở hạ tầng kho dữ liệu.</li>
+<li>Tự động cung cấp và mở rộng thông minh dung lượng kho dữ liệu để mang lại hiệu năng cao cho khối lượng công việc đòi hỏi cao và không thể dự đoán.</li>
+<li>Giúp người dùng dễ dàng lấy thông tin từ dữ liệu bằng cách nạp và truy vấn dữ liệu trong kho dữ liệu.</li>
+<li>Hỗ trợ tính năng <strong>Concurrency Scaling</strong>, cho phép hỗ trợ số lượng người dùng và truy vấn đồng thời không giới hạn với hiệu năng truy vấn nhanh ổn định.</li>
+<li>Khi Concurrency Scaling được kích hoạt, Redshift tự động thêm dung lượng cụm khi cụm gặp tình trạng xếp hàng truy vấn.</li>
+<li>Redshift Serverless đo lường dung lượng kho dữ liệu bằng <strong>Redshift Processing Units (RPUs)</strong>, là tài nguyên được sử dụng để xử lý khối lượng công việc.</li>
+<li>Hỗ trợ <strong>workgroups</strong> và <strong>namespaces</strong> để cách ly khối lượng công việc và quản lý các tài nguyên khác nhau.</li>
+</ul>
+<h1 id="redshift-single-vs-multi-node-cluster"><strong>Redshift Single vs Multi-Node Cluster</strong></h1>
+<ul>
+<li><strong>Single Node</strong>:
+<ul>
+<li>Cấu hình đơn node giúp bắt đầu nhanh chóng, tiết kiệm chi phí và có thể mở rộng sang cấu hình đa node khi nhu cầu tăng.</li>
+</ul>
+</li>
+<li><strong>Multi-Node</strong>:
+<ul>
+<li>Yêu cầu một node chính quản lý kết nối khách hàng và nhận truy vấn, cùng với hai hoặc nhiều node tính toán lưu trữ dữ liệu và thực hiện truy vấn/tính toán.</li>
+<li><strong>Node Chính</strong>:
+<ul>
+<li>Được cung cấp tự động, không tính phí.</li>
+<li>Nhận truy vấn từ ứng dụng khách, phân tích cú pháp truy vấn, phát triển kế hoạch thực thi, điều phối thực thi song song với các node tính toán, tổng hợp kết quả trung gian và trả kết quả về ứng dụng khách.</li>
+</ul>
+</li>
+<li><strong>Node Tính toán</strong>:
+<ul>
+<li>Có thể chứa từ 1 đến 128 node, tùy thuộc vào loại node.</li>
+<li>Thực thi các bước trong kế hoạch thực thi, truyền dữ liệu giữa các node để phục vụ truy vấn.</li>
+<li>Kết quả trung gian được gửi về node chính để tổng hợp trước khi trả về ứng dụng khách.</li>
+<li>Hỗ trợ loại node <strong>Dense Storage (DS)</strong> (sử dụng HDD cho kho dữ liệu lớn với chi phí thấp) hoặc <strong>Dense Compute (DC)</strong> (sử dụng CPU nhanh, RAM lớn và SSD cho hiệu năng cao).</li>
+<li>Không cho phép truy cập trực tiếp vào node tính toán.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="redshift-multi-az"><strong>Redshift Multi-AZ</strong></h1>
+<ul>
+<li>Triển khai Multi-AZ chạy kho dữ liệu đồng thời trên nhiều AZ của AWS, tiếp tục hoạt động trong các kịch bản lỗi không lường trước.</li>
+<li>Được quản lý như một kho dữ liệu duy nhất với một điểm cuối, không yêu cầu thay đổi ứng dụng.</li>
+<li>Hỗ trợ yêu cầu tính sẵn sàng cao, giảm thời gian khôi phục, đảm bảo dung lượng tự động khôi phục, phù hợp cho các ứng dụng phân tích quan trọng cần mức độ sẵn sàng và khả năng phục hồi cao trước lỗi AZ.</li>
+<li>Hỗ trợ <strong>RPO = 0</strong> (dữ liệu luôn cập nhật trong trường hợp lỗi) và <strong>RTO dưới một phút</strong>.</li>
+</ul>
+<h1 id="redshift-availability--durability"><strong>Redshift Availability &#x26; Durability</strong></h1>
+<ul>
+<li>Redshift sao chép dữ liệu trong cụm kho dữ liệu và liên tục sao lưu dữ liệu lên S3 (độ bền 11 9’s).</li>
+<li>Sao chép dữ liệu của mỗi ổ đĩa sang các node khác trong cụm.</li>
+<li>Tự động phát hiện và thay thế ổ đĩa hoặc node bị lỗi.</li>
+<li>Cụm RA3 và Redshift Serverless không bị ảnh hưởng tương tự vì dữ liệu được lưu trữ trên S3, ổ đĩa cục bộ chỉ dùng làm bộ đệm.</li>
+<li><strong>Nếu ổ đĩa lỗi</strong>:
+<ul>
+<li>Cụm vẫn sẵn sàng, truy vấn tiếp tục với độ trễ tăng nhẹ trong khi Redshift xây dựng lại ổ đĩa từ bản sao dữ liệu trên các ổ đĩa khác trong node.</li>
+<li>Cụm đơn node không hỗ trợ sao chép dữ liệu, cần khôi phục từ snapshot trên S3.</li>
+</ul>
+</li>
+<li><strong>Nếu node lỗi</strong>:
+<ul>
+<li>Tự động cung cấp node mới và bắt đầu khôi phục dữ liệu từ các ổ đĩa khác trong cụm hoặc từ S3.</li>
+<li>Ưu tiên khôi phục dữ liệu được truy vấn thường xuyên để các truy vấn phổ biến nhanh chóng đạt hiệu năng.</li>
+<li>Cụm không sẵn sàng cho truy vấn và cập nhật cho đến khi node thay thế được cung cấp và thêm vào cụm.</li>
+</ul>
+</li>
+<li><strong>Nếu AZ của cụm Redshift lỗi</strong>:
+<ul>
+<li>Cụm không sẵn sàng cho đến khi nguồn điện và mạng được khôi phục cho AZ.</li>
+<li>Dữ liệu của cụm được bảo toàn và có thể sử dụng khi AZ sẵn sàng.</li>
+<li>Có thể khôi phục cụm từ snapshot hiện có sang AZ mới trong cùng vùng.</li>
+</ul>
+</li>
+</ul>
+<h1 id="redshift-backup--restore"><strong>Redshift Backup &#x26; Restore</strong></h1>
+<ul>
+<li>Redshift duy trì ít nhất ba bản sao dữ liệu: bản gốc, bản sao trên node tính toán, và bản sao lưu trên S3.</li>
+<li>Sao chép toàn bộ dữ liệu trong cụm khi nạp dữ liệu và liên tục sao lưu lên S3.</li>
+<li>Mặc định, kích hoạt sao lưu tự động với thời gian lưu trữ 1 ngày, có thể mở rộng tối đa 35 ngày.</li>
+<li>Có thể tắt sao lưu tự động bằng cách đặt thời gian lưu trữ là 0.</li>
+<li>Hỗ trợ sao chép không đồng bộ snapshot sang S3 ở vùng khác để khôi phục sau thảm họa.</li>
+<li>Chỉ sao lưu dữ liệu đã thay đổi.</li>
+<li>Khôi phục sao lưu sẽ cung cấp một cụm kho dữ liệu mới.</li>
+</ul>
+<h1 id="redshift-scalability"><strong>Redshift Scalability</strong></h1>
+<ul>
+<li>Redshift cho phép mở rộng cụm bằng:
+<ul>
+<li>Tăng loại phiên bản node (mở rộng dọc).</li>
+<li>Tăng số lượng node (mở rộng ngang).</li>
+</ul>
+</li>
+<li>Thay đổi mở rộng thường được áp dụng trong maintenance window hoặc có thể áp dụng ngay lập tức.</li>
+<li><strong>Quy trình mở rộng</strong>:
+<ul>
+<li>Cụm hiện tại vẫn sẵn sàng cho hoạt động đọc, trong khi cụm kho dữ liệu mới được tạo trong quá trình mở rộng.</li>
+<li>Dữ liệu từ node tính toán trong cụm hiện tại được di chuyển song song sang node tính toán trong cụm mới.</li>
+<li>Khi cụm mới sẵn sàng, cụm hiện tại tạm thời không sẵn sàng trong khi bản ghi tên chuẩn (canonical name record) của cụm hiện tại được chuyển sang cụm mới.</li>
+</ul>
+</li>
+</ul>
+<h1 id="redshift-security"><strong>Redshift Security</strong></h1>
+<ul>
+<li>Hỗ trợ mã hóa dữ liệu tại chỗ và trong quá trình truyền (<strong>encryption at rest và in transit</strong>).</li>
+<li>Hỗ trợ kiểm soát truy cập dựa trên vai trò (RBAC). Kiểm soát truy cập cấp hàng cho phép gán một hoặc nhiều vai trò cho người dùng và gán quyền hệ thống/đối tượng theo vai trò.</li>
+<li>Hỗ trợ <strong>Hàm Người dùng Định nghĩa Lambda (UDFs)</strong> để tích hợp với các nhà cung cấp như Protegrity, cho phép mã hóa, che giấu dữ liệu (data masking), nhận diện hoặc bỏ nhận diện dữ liệu, bảo vệ hoặc bỏ bảo vệ dữ liệu nhạy cảm dựa trên quyền và nhóm của người dùng tại thời điểm truy vấn.</li>
+<li>Hỗ trợ <strong>Single Sign-On SSO</strong> và tích hợp với các nhà cung cấp danh tính tuân thủ SAML.</li>
+<li>Hỗ trợ xác thực đa yếu tố (MFA) để tăng cường bảo mật khi xác thực với cụm Redshift.</li>
+<li>Hỗ trợ mã hóa cụm không mã hóa bằng KMS. Tuy nhiên, không thể kích hoạt mã hóa HSM bằng cách sửa đổi cụm; thay vào đó, cần tạo cụm mới mã hóa HSM và di chuyển dữ liệu sang cụm mới.</li>
+<li><strong>Định tuyến VPC Nâng cao</strong> buộc tất cả lưu lượng COPY và UNLOAD giữa cụm và kho dữ liệu đi qua VPC.</li>
+</ul>
+<h1 id="advanced-topics"><strong>Advanced Topics</strong></h1>
+<p>Xem chi tiết ở đây:</p>
+<p><a href="Redshift%201d63fa6ae4838069b79bd9796a771bda/Redshift%20Advanced%20Topics%201d73fa6ae4838050a4b9c4a60e3a10af.md">Redshift Advanced Topics</a></p>
+<h1 id="redshift-vs-emr-vs-rds"><strong>Redshift vs EMR vs RDS</strong></h1>
+<ul>
+<li><strong>RDS</strong>:
+<ul>
+<li>Lý tưởng cho dữ liệu có cấu trúc và chạy cơ sở dữ liệu quan hệ truyền thống, giảm tải quản trị cơ sở dữ liệu.</li>
+<li>Phù hợp cho xử lý giao dịch trực tuyến (OLTP) và báo cáo/phân tích.</li>
+</ul>
+</li>
+<li><strong>Redshift</strong>:
+<ul>
+<li>Lý tưởng cho khối lượng dữ liệu có cấu trúc lớn cần được lưu trữ và truy vấn bằng SQL tiêu chuẩn và công cụ BI hiện có.</li>
+<li>Phù hợp cho khối lượng công việc phân tích và báo cáo trên tập dữ liệu rất lớn, tận dụng quy mô và tài nguyên của nhiều node, cung cấp cải tiến so với RDS.</li>
+<li>Ngăn chặn xử lý báo cáo và phân tích làm ảnh hưởng đến hiệu năng của khối lượng công việc OLTP.</li>
+</ul>
+</li>
+<li><strong>EMR</strong>:
+<ul>
+<li>Lý tưởng cho xử lý và chuyển đổi dữ liệu không cấu trúc hoặc bán cấu trúc để đưa vào Redshift.</li>
+<li>Phù hợp cho tập dữ liệu tạm thời, không lưu trữ lâu dài.</li>
+</ul>
+</li>
+</ul> </article> <hr class="my-8 border-dashed"> <div class="opacity-80 sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/thuongnn/thuongnn.github.io/edit/master/src/data/blog/aws/analytics/redshift.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/aws/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>AWS</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/amazon-web-services/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Amazon Web Services</span> </a> </li> </ul> <div class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"> <div class="flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start"> <span class="italic">Share this post on:</span> <div class="text-center"> <a href="https://wa.me/?text=https://thuongnn.dev/posts/aws/analytics/redshift/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> <span class="sr-only">Share this post via WhatsApp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://thuongnn.dev/posts/aws/analytics/redshift/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://thuongnn.dev/posts/aws/analytics/redshift/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://thuongnn.dev/posts/aws/analytics/redshift/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg> <span class="sr-only">Share this post via Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://thuongnn.dev/posts/aws/analytics/redshift/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg> <span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&#38;body=https://thuongnn.dev/posts/aws/analytics/redshift/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Share this post via email</span> </a> </div> </div> <button id="back-to-top" class="focus-outline py-1 whitespace-nowrap hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span>Back to Top</span> </button> </div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/aws/analytics/aws-glue" class="flex w-full gap-1 hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">[AWS] AWS Glue</div> </div> </a> <a href="/posts/aws/analytics/kinesis" class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">[AWS] Amazon Kinesis</div> </div> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="w-full mt-auto"> <div class="max-w-3xl mx-auto px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://github.com/thuongnn" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title=" thuongnn.dev on Github"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only"> thuongnn.dev on Github</span> </a><a href="https://www.facebook.com/thuongnn97" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">thuongnn.dev on Facebook</span> </a><a href="https://www.linkedin.com/in/thuongnn/" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on LinkedIn"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">thuongnn.dev on LinkedIn</span> </a><a href="mailto:thuongnn1997@gmail.com" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to thuongnn.dev"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to thuongnn.dev</span> </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2025</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ml-2 opacity-0 group-hover:opacity-100 focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "copy-code absolute right-3 -top-3 rounded bg-muted px-2 py-1 text-xs leading-4 text-foreground font-medium";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    document.querySelector("#back-to-top")?.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+  }
+  backToTop();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>

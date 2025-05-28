@@ -1,0 +1,873 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://thuongnn.dev/posts/aws/databases/aws-elasticache/"><meta name="generator" content="Astro v5.5.2"><!-- General Meta Tags --><title>[AWS] Amazon ElastiCache | thuongnn.dev</title><meta name="title" content="[AWS] Amazon ElastiCache | thuongnn.dev"><meta name="description" content="Tìm hiểu về dịch vụ cache được quản lý hoàn toàn bởi AWS, hỗ trợ Redis và Memcached."><meta name="author" content="thuongnn"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="[AWS] Amazon ElastiCache | thuongnn.dev"><meta property="og:description" content="Tìm hiểu về dịch vụ cache được quản lý hoàn toàn bởi AWS, hỗ trợ Redis và Memcached."><meta property="og:url" content="https://thuongnn.dev/posts/aws/databases/aws-elasticache/"><meta property="og:image" content="https://thuongnn.dev/posts/aws/databases/aws-elasticache/index.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2023-07-18T11:45:22.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://thuongnn.dev/posts/aws/databases/aws-elasticache/"><meta property="twitter:title" content="[AWS] Amazon ElastiCache | thuongnn.dev"><meta property="twitter:description" content="Tìm hiểu về dịch vụ cache được quản lý hoàn toàn bởi AWS, hỗ trợ Redis và Memcached."><meta property="twitter:image" content="https://thuongnn.dev/posts/aws/databases/aws-elasticache/index.png"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"[AWS] Amazon ElastiCache | thuongnn.dev","image":"https://thuongnn.dev/posts/aws/databases/aws-elasticache/index.png","datePublished":"2023-07-18T11:45:22.000Z","author":[{"@type":"Person","name":"thuongnn","url":"https://thuongnn.dev/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="thuongnn.dev" href="https://thuongnn.dev/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CMTcOisY.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/about.DQgjlE2T.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+[data-astro-image]{width:100%;height:auto;object-fit:var(--fit);object-position:var(--pos);aspect-ratio:var(--w) / var(--h)}[data-astro-image=responsive]{max-width:calc(var(--w) * 1px);max-height:calc(var(--h) * 1px)}[data-astro-image=fixed]{width:calc(var(--w) * 1px);height:calc(var(--h) * 1px)}
+</style><style>[data-astro-transition-scope="astro-fam6wyqg-1"] { view-transition-name: aws-amazon-elasti-cache; }@layer astro { ::view-transition-old(aws-amazon-elasti-cache) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(aws-amazon-elasti-cache) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(aws-amazon-elasti-cache) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(aws-amazon-elasti-cache) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: aws; }@layer astro { ::view-transition-old(aws) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(aws) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(aws) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(aws) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: amazon-web-services; }@layer astro { ::view-transition-old(amazon-web-services) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(amazon-web-services) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(amazon-web-services) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(amazon-web-services) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="absolute -top-full left-16 z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"> <a href="/" class="absolute py-1 text-2xl leading-7 font-semibold whitespace-nowrap sm:static"> thuongnn.dev </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:ml-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="max-w-3xl mx-auto px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-3xl items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="mx-auto w-full max-w-3xl px-4 pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-fam6wyqg-1"> [AWS] Amazon ElastiCache </h1> <div class="flex items-center gap-4"> <div class="flex items-end space-x-2 opacity-80 my-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg> <span class="sr-only">Published:</span> <span class="text-sm italic sm:text-base"> <time datetime="2023-07-18T11:45:22.000Z">18 Jul, 2023</time> <span aria-hidden="true"> | </span> <span class="sr-only">&nbsp;at&nbsp;</span> <span class="text-nowrap">11:45 AM</span> </span> </div> <div class="opacity-80 max-sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/thuongnn/thuongnn.github.io/edit/master/src/data/blog/aws/databases/aws-elasticache.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> </div> <article id="article" class="mx-auto prose mt-8 max-w-3xl"> <p>Bài viết được tham khảo và tổng hợp lại từ Jayendra’s Blog, xem bài viết gốc ở đây: <a href="https://jayendrapatil.com/aws-elasticache">https://jayendrapatil.com/aws-elasticache</a>.</p>
+<h2 id="table-of-contents">Table of contents</h2>
+<p></p><details><summary>Open Table of contents</summary><p></p>
+<ul>
+<li><a href="#t%E1%BB%95ng-quan-v%E1%BB%81-aws-elasticache"><strong>Tổng quan về AWS ElastiCache</strong></a></li>
+<li><a href="#t%C3%ADnh-n%C4%83ng-ch%C3%ADnh-c%E1%BB%A7a-elasticache"><strong>Tính năng chính của ElastiCache</strong></a>
+<ul>
+<li><a href="#hi%E1%BB%87u-su%E1%BA%A5t"><strong>Hiệu suất</strong></a></li>
+<li><a href="#t%C3%ADch-h%E1%BB%A3p-v%C3%A0-qu%E1%BA%A3n-l%C3%BD"><strong>Tích hợp và quản lý</strong></a></li>
+<li><a href="#b%E1%BA%A3o-m%E1%BA%ADt">Bảo mật</a></li>
+<li><a href="#%C4%91%E1%BB%99-b%E1%BB%81n-v%C3%A0-ch%E1%BB%8Bu-l%E1%BB%97i"><strong>Độ bền và chịu lỗi</strong></a></li>
+<li><a href="#backup-v%C3%A0-restore-redis">Backup và Restore (Redis)</a></li>
+<li><a href="#cluster-mode-redis">Cluster Mode (Redis)</a></li>
+<li><a href="#m%E1%BB%9F-r%E1%BB%99ng-v%C3%A0-to%C3%A0n-c%E1%BA%A7u-h%C3%B3a"><strong>Mở rộng và toàn cầu hóa</strong></a></li>
+</ul>
+</li>
+<li><a href="#so-s%C3%A1nh-memcached-v%C3%A0-redis"><strong>So sánh Memcached và Redis</strong></a></li>
+<li><a href="#caching-strategies"><strong>Caching Strategies</strong></a></li>
+<li><a href="#tr%C6%B0%E1%BB%9Dng-h%E1%BB%A3p-s%E1%BB%AD-d%E1%BB%A5ng"><strong>Trường hợp sử dụng</strong></a></li>
+<li><a href="#chi-ph%C3%AD-s%E1%BB%AD-d%E1%BB%A5ng"><strong>Chi phí sử dụng</strong></a></li>
+<li><a href="#l%C6%B0u-%C3%BD-k%E1%BB%B9-thu%E1%BA%ADt"><strong>Lưu ý kỹ thuật</strong></a></li>
+<li><a href="#tr%C6%B0%E1%BB%9Dng-h%E1%BB%A3p-s%E1%BB%AD-d%E1%BB%A5ng-c%E1%BB%A5-th%E1%BB%83"><strong>Trường hợp sử dụng cụ thể</strong></a></li>
+</ul>
+<p></p></details><p></p>
+<h2 id="tổng-quan-về-aws-elasticache"><strong>Tổng quan về AWS ElastiCache</strong></h2>
+<ul>
+<li><strong>AWS ElastiCache</strong> là dịch vụ <strong>in-memory caching</strong> được quản lý hoàn toàn, hỗ trợ hai engine: <strong>Memcached</strong> và <strong>Redis</strong>.</li>
+<li><strong>Mục đích</strong>:
+<ul>
+<li>Cải thiện hiệu suất ứng dụng bằng cách lưu trữ dữ liệu trong bộ nhớ (in-memory), giảm độ trễ so với cơ sở dữ liệu dựa trên đĩa (như DynamoDB, RDS).</li>
+<li>Giảm tải đọc cho cơ sở dữ liệu, tiết kiệm chi phí mở rộng.</li>
+</ul>
+</li>
+<li><strong>Lợi ích chính</strong>:
+<ul>
+<li><strong>Hiệu suất cao</strong>: Độ trễ truy xuất dưới mili giây (sub-millisecond).</li>
+<li><strong>Quản lý dễ dàng</strong>: Tự động hóa vá phần mềm, phát hiện lỗi, khôi phục, sao lưu (Redis), và quản lý cụm.</li>
+<li><strong>Tính bền bỉ</strong>: Tự động phát hiện và thay thế node lỗi, giảm nguy cơ quá tải cơ sở dữ liệu.</li>
+<li><strong>Tích hợp AWS</strong>: Hoạt động với EC2, CloudWatch, CloudTrail, SNS, và chạy trong Amazon VPC.</li>
+</ul>
+</li>
+<li><strong>Engine hỗ trợ</strong>:
+<ul>
+<li><strong>Memcached</strong>: Mô hình đơn giản, tập trung vào lưu trữ đối tượng, dễ mở rộng ngang, không hỗ trợ bền vững hoặc sao chép.</li>
+<li><strong>Redis</strong>: Hỗ trợ kiểu dữ liệu phức tạp (string, hash, list, set, sorted set, bitmap), bền vững dữ liệu, sao chép, Multi-AZ, backup/restore, và tính năng nâng cao như pub/sub.</li>
+</ul>
+</li>
+</ul>
+<h2 id="tính-năng-chính-của-elasticache"><strong>Tính năng chính của ElastiCache</strong></h2>
+<h3 id="hiệu-suất"><strong>Hiệu suất</strong></h3>
+<ul>
+<li>Lưu trữ dữ liệu tạm thời (transient) hoặc bản sao của dữ liệu bền vững (durable) trong bộ nhớ.</li>
+<li>Cải thiện thời gian tải trang và phản hồi truy vấn, đặc biệt cho ứng dụng đọc nhiều (read-intensive).</li>
+<li><strong>Ví dụ</strong>: Cache kết quả truy vấn SQL hoặc dữ liệu DynamoDB để giảm độ trễ.</li>
+</ul>
+<h3 id="tích-hợp-và-quản-lý"><strong>Tích hợp và quản lý</strong></h3>
+<ul>
+<li><strong>Tích hợp AWS</strong>:
+<ul>
+<li>Kết nối với <strong>EC2</strong> (chạy ứng dụng), <strong>CloudWatch</strong> (theo dõi hiệu suất), <strong>CloudTrail</strong> (ghi log API), <strong>SNS</strong> (thông báo sự kiện).</li>
+<li><strong>Amazon VPC</strong>: Cụm ElastiCache chạy trong VPC, kiểm soát truy cập qua security groups.</li>
+</ul>
+</li>
+<li><strong>Quản lý tự động</strong>:
+<ul>
+<li><strong>Vá phần mềm</strong>: Cập nhật engine Memcached/Redis trong khung giờ bảo trì.</li>
+<li><strong>Phát hiện lỗi</strong>: Tự động phát hiện node lỗi và thay thế.</li>
+<li><strong>Sao lưu (Redis)</strong>: Tạo snapshot để khôi phục dữ liệu.</li>
+<li><strong>Auto Discovery (Memcached)</strong>: Client tự động phát hiện node mới khi thêm/xóa khỏi cụm, sử dụng <strong>ElastiCache Auto Discovery Client</strong>.</li>
+</ul>
+</li>
+<li><strong>Cấu hình</strong>:
+<ul>
+<li>Chọn engine, instance type (ví dụ: <code>cache.t3.micro</code>, <code>cache.r5.xlarge</code>), số node, và region.</li>
+<li><strong>Subnet group</strong>: Chỉ định subnets trong VPC để triển khai cụm.</li>
+<li><strong>Parameter group</strong>: Tùy chỉnh tham số engine (như kích thước cache, timeout).</li>
+<li><strong>Maintenance Window</strong>: Khung giờ 60 phút/tuần để bảo trì (mặc định hoặc tùy chỉnh).</li>
+</ul>
+</li>
+</ul>
+<h3 id="bảo-mật">Bảo mật</h3>
+<ul>
+<li><strong>Mã hóa</strong>:
+<ul>
+<li><strong>At rest</strong>: Redis hỗ trợ mã hóa dữ liệu lưu trữ (bật khi tạo cụm, không thể thay đổi sau).</li>
+<li><strong>In transit</strong>: Hỗ trợ <strong>TLS</strong> cho kết nối client-cụm và giữa các node trong cụm.</li>
+</ul>
+</li>
+<li><strong>Xác thực</strong>:
+<ul>
+<li><strong>Redis</strong>:
+<ul>
+<li><strong>Redis AUTH</strong>: Yêu cầu mật khẩu cho client (phiên bản Redis &#x3C; 6).</li>
+<li><strong>RBAC (Role-Based Access Control)</strong>: Quản lý quyền truy cập chi tiết (Redis 6+).</li>
+</ul>
+</li>
+<li><strong>Memcached</strong>: Không hỗ trợ xác thực, chỉ dựa vào security group và VPC.</li>
+</ul>
+</li>
+<li><strong>IAM</strong>:
+<ul>
+<li>Kiểm soát quyền quản lý cụm (tạo, xóa, sửa) qua IAM policies.</li>
+<li>Không kiểm soát truy cập dữ liệu trong cache (dựa vào Redis AUTH/RBAC).</li>
+</ul>
+</li>
+<li><strong>Security Groups</strong>:
+<ul>
+<li>Giới hạn truy cập vào cụm ElastiCache, chỉ cho phép từ EC2 hoặc Lambda được phép.</li>
+</ul>
+</li>
+</ul>
+<h3 id="độ-bền-và-chịu-lỗi"><strong>Độ bền và chịu lỗi</strong></h3>
+<ul>
+<li><strong>Tự động thay thế node lỗi</strong>:
+<ul>
+<li>ElastiCache phát hiện node lỗi và thay thế bằng node mới.</li>
+<li><strong>Hiệu suất tạm giảm</strong>: Node mới cần thời gian khởi tạo và làm đầy cache (cache warming).</li>
+</ul>
+</li>
+<li><strong>Redis Multi-AZ</strong>:
+<ul>
+<li><strong>Cấu trúc</strong>:
+<ul>
+<li>Một <strong>replication group</strong> gồm 1 primary node (đọc/ghi) và tối đa 5 read replicas (chỉ đọc).</li>
+<li>Các node được đặt ở <strong>các Availability Zones (AZ) khác nhau</strong> trong cùng region để tăng khả năng chịu lỗi.</li>
+</ul>
+</li>
+<li><strong>Automatic Failover</strong>:
+<ul>
+<li>Nếu primary node lỗi, ElastiCache tự động:
+<ol>
+<li>Phát hiện lỗi (thường trong vài giây).</li>
+<li>Chọn read replica có <strong>độ trễ sao chép thấp nhất</strong> (dựa trên dữ liệu đồng bộ).</li>
+<li>Nâng cấp replica thành primary mới.</li>
+<li>Tạo replica mới để thay thế replica vừa được nâng cấp.</li>
+</ol>
+</li>
+<li><strong>Thời gian failover</strong>: Thường vài phút, phụ thuộc vào tình trạng cụm.</li>
+</ul>
+</li>
+<li><strong>Không bật Auto Failover</strong>:
+<ul>
+<li>Nếu primary lỗi, ElastiCache tạo primary mới và đồng bộ với replica hiện có.</li>
+<li>Manual intervention cần thiết nếu không có replica.</li>
+</ul>
+</li>
+<li><strong>Yêu cầu</strong>:
+<ul>
+<li>Phải có ít nhất 1 read replica để bật Multi-AZ.</li>
+<li>Chỉ hỗ trợ Redis, không áp dụng cho Memcached.</li>
+</ul>
+</li>
+<li><strong>Lợi ích</strong>:
+<ul>
+<li>Tăng tính sẵn sàng cao (high availability), giảm nguy cơ gián đoạn dịch vụ.</li>
+<li>Đảm bảo ứng dụng tiếp tục hoạt động khi một AZ lỗi.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Memcached</strong>:
+<ul>
+<li>Không hỗ trợ Multi-AZ hoặc sao chép.</li>
+<li>Nếu node lỗi, dữ liệu trên node đó mất, cần làm đầy lại cache.</li>
+</ul>
+</li>
+</ul>
+<h3 id="backup-và-restore-redis">Backup và Restore (Redis)</h3>
+<ul>
+<li><strong>Backup (Snapshot)</strong>:
+<ul>
+<li>Redis hỗ trợ tạo <strong>snapshot</strong> (bản sao dữ liệu tại thời điểm cụ thể).</li>
+<li><strong>Loại snapshot</strong>:
+<ul>
+<li><strong>Tự động</strong>: Cấu hình lịch sao lưu hàng ngày trong khung giờ backup (mặc định hoặc tùy chỉnh).</li>
+<li><strong>Thủ công</strong>: Người dùng kích hoạt qua AWS Console, CLI, hoặc SDK.</li>
+</ul>
+</li>
+<li><strong>Lưu trữ</strong>:
+<ul>
+<li>Snapshot được lưu trong <strong>Amazon S3</strong>, tính phí riêng dựa trên dung lượng.</li>
+<li>Có thể sao chép snapshot giữa các region để disaster recovery.</li>
+</ul>
+</li>
+<li><strong>Thời gian backup</strong>:
+<ul>
+<li>Phụ thuộc vào kích thước dữ liệu, có thể ảnh hưởng hiệu suất nếu cụm nhỏ.</li>
+<li>Chỉ backup primary node, không ảnh hưởng replicas.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Restore</strong>:
+<ul>
+<li>Khôi phục dữ liệu từ snapshot để tạo <strong>cụm mới</strong> (không ghi đè cụm hiện tại).</li>
+<li><strong>Quy trình</strong>:
+<ol>
+<li>Chọn snapshot từ S3.</li>
+<li>Tạo cụm mới với cấu hình tương tự (hoặc khác).</li>
+<li>Dữ liệu được khôi phục vào primary node, sau đó sao chép sang replicas (nếu có).</li>
+</ol>
+</li>
+<li><strong>Trường hợp sử dụng</strong>:
+<ul>
+<li>Phục hồi sau lỗi dữ liệu (xóa nhầm, hỏng dữ liệu).</li>
+<li>Tạo cụm thử nghiệm từ dữ liệu sản xuất.</li>
+<li>Di chuyển dữ liệu sang region khác.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Lưu ý</strong>:
+<ul>
+<li>Memcached <strong>không hỗ trợ backup/restore</strong> (dữ liệu tạm thời, mất khi node lỗi).</li>
+<li>Backup không lưu trạng thái pub/sub hoặc cấu hình cụm, chỉ lưu dữ liệu.</li>
+<li>Cần bật <strong>persistence</strong> (RDB hoặc AOF) để đảm bảo snapshot đáng tin cậy.</li>
+</ul>
+</li>
+</ul>
+<h3 id="cluster-mode-redis">Cluster Mode (Redis)</h3>
+<ul>
+<li><strong>Redis Cluster Mode Enabled</strong>:
+<ul>
+<li>Chia dữ liệu thành <strong>nhiều shard</strong> (phân vùng), mỗi shard có primary node và tối đa 5 replicas.</li>
+<li><strong>Mỗi cụm</strong> hỗ trợ tối đa <strong>90 node</strong> (shard + replicas).</li>
+<li><strong>Slot phân phối</strong>: Dữ liệu được chia thành 16,384 slot, mỗi shard quản lý một phần.</li>
+<li><strong>Lợi ích</strong>:
+<ul>
+<li>Tăng dung lượng lưu trữ và thông lượng (throughput) bằng cách phân phối dữ liệu.</li>
+<li>Hỗ trợ workload lớn hơn so với cụm không bật Cluster Mode (non-clustered).</li>
+</ul>
+</li>
+<li><strong>Mở rộng</strong>:
+<ul>
+<li><strong>Thêm shard</strong>: Tăng dung lượng và thông lượng.</li>
+<li><strong>Thêm replica</strong>: Tăng khả năng đọc và chịu lỗi.</li>
+<li><strong>Resharding</strong>: Tự động tái phân phối slot khi thêm/xóa shard, không gián đoạn dịch vụ.</li>
+</ul>
+</li>
+<li><strong>Hạn chế</strong>:
+<ul>
+<li>Không hỗ trợ <strong>Global Datastore</strong> (chỉ Cluster Mode Disabled hỗ trợ).</li>
+<li>Một số lệnh Redis (như multi-key operations) có thể phức tạp hơn.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Redis Cluster Mode Disabled</strong>:
+<ul>
+<li>Một primary node và tối đa 5 replicas, không chia shard.</li>
+<li>Phù hợp với workload nhỏ hơn, quản lý đơn giản hơn.</li>
+<li>Hỗ trợ <strong>Global Datastore</strong> và tất cả tính năng Redis (pub/sub, Lua scripts).</li>
+</ul>
+</li>
+<li><strong>Lựa chọn</strong>:
+<ul>
+<li><strong>Cluster Mode Enabled</strong>: Workload lớn, cần dung lượng/thông lượng cao.</li>
+<li><strong>Cluster Mode Disabled</strong>: Workload nhỏ, cần tính năng nâng cao hoặc Global Datastore.</li>
+</ul>
+</li>
+</ul>
+<h3 id="mở-rộng-và-toàn-cầu-hóa"><strong>Mở rộng và toàn cầu hóa</strong></h3>
+<ul>
+<li><strong>Scaling</strong>:
+<ul>
+<li><strong>Memcached</strong>:
+<ul>
+<li><strong>Mở rộng ngang</strong>: Thêm node vào cụm, client tự quản lý phân phối dữ liệu.</li>
+<li><strong>Không mở rộng dọc</strong>: Không đổi instance type.</li>
+</ul>
+</li>
+<li><strong>Redis</strong>:
+<ul>
+<li><strong>Mở rộng ngang</strong>: Thêm read replicas (tối đa 5/shard) hoặc shard (Cluster Mode Enabled).</li>
+<li><strong>Mở rộng dọc</strong>: Thay đổi instance type (ví dụ: từ cache.t3.micro sang cache.r5.large).</li>
+<li><strong>Online scaling</strong>: Redis hỗ trợ thêm/xóa replica/shard mà không gián đoạn (Cluster Mode Enabled).</li>
+</ul>
+</li>
+<li><strong>Lưu ý</strong>:
+<ul>
+<li>Scaling có thể gây giảm hiệu suất tạm thời do làm đầy cache.</li>
+<li>Redis yêu cầu đồng bộ dữ liệu khi thêm replica.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Global Datastore (Redis, Cluster Mode Disabled)</strong>:
+<ul>
+<li>Sao chép dữ liệu qua <strong>nhiều AWS Region</strong> (primary region và tối đa 2 secondary regions).</li>
+<li><strong>Cách hoạt động</strong>:
+<ul>
+<li>Primary region xử lý đọc/ghi, secondary regions chỉ đọc.</li>
+<li>Dữ liệu được sao chép <strong>bất đồng bộ</strong> từ primary sang secondary.</li>
+<li><strong>Failover toàn cầu</strong>: Nếu primary region lỗi, nâng cấp secondary region thành primary.</li>
+</ul>
+</li>
+<li><strong>Lợi ích</strong>:
+<ul>
+<li>Đọc với độ trễ thấp ở nhiều khu vực.</li>
+<li>Hỗ trợ disaster recovery giữa các region.</li>
+</ul>
+</li>
+<li><strong>Chi phí</strong>: Tính phí sao chép dữ liệu giữa region.</li>
+</ul>
+</li>
+<li><strong>Cross-Region Read Replicas (Redis)</strong>:
+<ul>
+<li>Tạo cụm replica ở region khác, đồng bộ bất đồng bộ từ primary.</li>
+<li><strong>Trường hợp sử dụng</strong>:
+<ul>
+<li>Đọc cục bộ ở region xa.</li>
+<li>Phục hồi khi region chính lỗi.</li>
+</ul>
+</li>
+<li><strong>Hạn chế</strong>: Không tự động failover như Global Datastore.</li>
+</ul>
+</li>
+</ul>
+<h2 id="so-sánh-memcached-và-redis"><strong>So sánh Memcached và Redis</strong></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th><strong>Tiêu chí</strong></th><th><strong>Memcached</strong></th><th><strong>Redis</strong></th></tr></thead><tbody><tr><td><strong>Mô hình</strong></td><td>Đơn giản, tập trung vào lưu trữ đối tượng</td><td>Hỗ trợ kiểu dữ liệu phức tạp (string, hash, list, set, sorted set, bitmap)</td></tr><tr><td><strong>Mở rộng</strong></td><td>Mở rộng ngang (thêm node)</td><td>Mở rộng ngang (replica) và dọc (instance lớn hơn)</td></tr><tr><td><strong>Bền vững dữ liệu</strong></td><td>Không hỗ trợ</td><td>Hỗ trợ persistence (RDB, AOF)</td></tr><tr><td><strong>Sao chép</strong></td><td>Không hỗ trợ</td><td>Hỗ trợ primary-replica, Multi-AZ, failover</td></tr><tr><td><strong>Tính năng nâng cao</strong></td><td>Không có</td><td>Pub/sub, xếp hạng, backup/restore</td></tr><tr><td><strong>Xác thực</strong></td><td>Không hỗ trợ</td><td>Redis AUTH, RBAC</td></tr><tr><td><strong>Phù hợp</strong></td><td>Lưu trữ đối tượng đơn giản, tải cao</td><td>Ứng dụng phức tạp, cần bền vững, pub/sub</td></tr></tbody></table>
+<ul>
+<li><strong>Memcached</strong>:
+<ul>
+<li>Phù hợp khi cần mô hình cache đơn giản, chạy trên node lớn với nhiều core/thread.</li>
+<li>Lý tưởng để giảm tải cơ sở dữ liệu bằng cách lưu trữ đối tượng.</li>
+</ul>
+</li>
+<li><strong>Redis</strong>:
+<ul>
+<li>Phù hợp cho ứng dụng cần kiểu dữ liệu phức tạp, bền vững dữ liệu, hoặc tính năng như xếp hạng, pub/sub.</li>
+<li>Hỗ trợ backup/restore, sao chép, và failover tự động.</li>
+</ul>
+</li>
+</ul>
+<h2 id="caching-strategies"><strong>Caching Strategies</strong></h2>
+<ul>
+<li><strong>Lazy Loading</strong>:
+<ul>
+<li>Dữ liệu chỉ được lưu vào cache khi <strong>cache miss</strong>:
+<ol>
+<li>Ứng dụng yêu cầu dữ liệu.</li>
+<li>ElastiCache kiểm tra cache.</li>
+<li>Nếu miss, lấy từ cơ sở dữ liệu, lưu vào cache, trả về ứng dụng.</li>
+</ol>
+</li>
+<li><strong>Ưu điểm</strong>:
+<ul>
+<li>Đơn giản, chỉ lưu dữ liệu cần thiết.</li>
+<li>Tiết kiệm bộ nhớ cache.</li>
+</ul>
+</li>
+<li><strong>Nhược điểm</strong>:
+<ul>
+<li>Cache miss gây độ trễ cao (do truy cập cơ sở dữ liệu).</li>
+<li>Dữ liệu cũ (stale data) nếu TTL chưa hết.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Write-Through</strong>:
+<ul>
+<li>Ghi dữ liệu vào cache đồng thời khi ghi vào cơ sở dữ liệu.</li>
+<li><strong>Ưu điểm</strong>:
+<ul>
+<li>Cache luôn có dữ liệu mới, giảm cache miss.</li>
+<li>Tốt cho ứng dụng đọc ngay sau ghi.</li>
+</ul>
+</li>
+<li><strong>Nhược điểm</strong>:
+<ul>
+<li>Tăng độ trễ ghi (do ghi vào cả cache và cơ sở dữ liệu).</li>
+<li>Lãng phí bộ nhớ nếu dữ liệu ít đọc.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>TTL (Time-to-Live)</strong>:
+<ul>
+<li>Đặt thời gian sống cho mỗi mục trong cache (ví dụ: 5 phút, 1 giờ).</li>
+<li>Dữ liệu tự động xóa khi hết TTL, giảm nguy cơ stale data.</li>
+<li><strong>Cấu hình</strong>:
+<ul>
+<li>Redis: Dùng lệnh EXPIRE hoặc cấu hình mặc định.</li>
+<li>Memcached: Đặt TTL khi lưu mục (không tự động gia hạn).</li>
+</ul>
+</li>
+<li><strong>Lưu ý</strong>:
+<ul>
+<li>TTL quá ngắn → cache miss nhiều.</li>
+<li>TTL quá dài → stale data hoặc tốn bộ nhớ.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Tối ưu hiệu suất</strong>:
+<ul>
+<li>Tăng <strong>cache hit ratio</strong> (tỷ lệ truy cập cache thành công) bằng cách:
+<ul>
+<li>Chọn chiến lược phù hợp (Lazy Loading cho dữ liệu ít đọc, Write-Through cho dữ liệu thường xuyên đọc).</li>
+<li>Điều chỉnh TTL dựa trên tần suất cập nhật dữ liệu.</li>
+</ul>
+</li>
+<li>Theo dõi hiệu suất qua CloudWatch (cache hits, misses, CPU, memory).</li>
+</ul>
+</li>
+</ul>
+<h2 id="trường-hợp-sử-dụng"><strong>Trường hợp sử dụng</strong></h2>
+<ul>
+<li><strong>Session Management</strong>:
+<ul>
+<li>Lưu trạng thái phiên người dùng (như thông tin đăng nhập, giỏ hàng).</li>
+<li><strong>Redis</strong>: Bền vững, hỗ trợ pub/sub cho cập nhật thời gian thực.</li>
+<li><strong>Memcached</strong>: Nhẹ, phù hợp cho session tạm thời.</li>
+</ul>
+</li>
+<li><strong>Database Caching</strong>:
+<ul>
+<li>Cache kết quả truy vấn từ DynamoDB, RDS, hoặc cơ sở dữ liệu tự quản.</li>
+<li><strong>Ví dụ</strong>: Cache danh sách sản phẩm, bài viết, hoặc kết quả tìm kiếm.</li>
+</ul>
+</li>
+<li><strong>Real-time Analytics</strong>:
+<ul>
+<li>Redis hỗ trợ pub/sub, sorted set cho bảng xếp hạng, đếm lượt xem.</li>
+<li><strong>Ví dụ</strong>: Bảng xếp hạng game, thống kê mạng xã hội.</li>
+</ul>
+</li>
+<li><strong>Queue Management</strong>:
+<ul>
+<li>Redis dùng list để tạo hàng đợi nhẹ (như xử lý tác vụ).</li>
+<li><strong>Ví dụ</strong>: Hàng đợi tin nhắn hoặc tác vụ xử lý nền.</li>
+</ul>
+</li>
+<li><strong>Disaster Recovery</strong>:
+<ul>
+<li>Redis Global Datastore và Cross-Region Replicas hỗ trợ đọc cục bộ và khôi phục region.</li>
+</ul>
+</li>
+<li><strong>Tính toán nặng</strong>:
+<ul>
+<li>Cache kết quả tính toán phức tạp (như gợi ý sản phẩm, phân tích dữ liệu).</li>
+</ul>
+</li>
+</ul>
+<h2 id="chi-phí-sử-dụng"><strong>Chi phí sử dụng</strong></h2>
+<ul>
+<li><strong>Tính phí dựa trên</strong>:
+<ul>
+<li><strong>Loại node</strong>: Ví dụ, <code>cache.t3.micro</code> rẻ hơn <code>cache.r5.xlarge</code>.</li>
+<li><strong>Số lượng node</strong>: Cụm càng nhiều node, chi phí càng cao.</li>
+<li><strong>Thời gian chạy</strong>: Tính phí theo giờ hoặc giây (tùy region).</li>
+</ul>
+</li>
+<li><strong>Không tính phí lưu trữ riêng</strong>: Chi phí node đã bao gồm tài nguyên CPU, bộ nhớ, và mạng.</li>
+<li><strong>Tính năng bổ sung</strong>:
+<ul>
+<li><strong>Backup (Redis)</strong>: Phí lưu trữ snapshot trong S3.</li>
+<li><strong>Global Datastore/Cross-Region Replicas</strong>: Phí truyền dữ liệu giữa region</li>
+</ul>
+</li>
+<li><strong>Tiết kiệm chi phí</strong>:
+<ul>
+<li><strong>Reserved Instances</strong>: Cam kết 1-3 năm để giảm chi phí (lên đến 70%).</li>
+<li><strong>Giảm tải cơ sở dữ liệu</strong>: Cache hiệu quả giảm RCU (DynamoDB) hoặc IOPS (RDS).</li>
+<li><strong>Chọn instance type hợp lý</strong>: Dùng node nhỏ cho workload nhẹ, node lớn cho workload nặng.</li>
+</ul>
+</li>
+<li><strong>So với DAX</strong>:
+<ul>
+<li>ElastiCache thường rẻ hơn DAX (DAX node đắt hơn, ví dụ: <code>dax.r4.large</code> ~$0.171/giờ).</li>
+<li>DAX tối ưu riêng cho DynamoDB, trong khi ElastiCache linh hoạt hơn (hỗ trợ RDS, cơ sở dữ liệu tự quản, v.v.).</li>
+</ul>
+</li>
+</ul>
+<h2 id="lưu-ý-kỹ-thuật"><strong>Lưu ý kỹ thuật</strong></h2>
+<ul>
+<li><strong>Cấu hình cụm</strong>:
+<ul>
+<li><strong>Engine</strong>: Chọn Memcached hoặc Redis (phiên bản cụ thể, ví dụ: Redis 7.x).</li>
+<li><strong>Node type</strong>: Tùy thuộc vào CPU, bộ nhớ, và mạng (xem AWS Pricing).</li>
+<li><strong>Số node</strong>: Memcached tối đa 100 node, Redis tối đa 90 node (Cluster Mode Enabled).</li>
+<li><strong>VPC</strong>: Cụm chạy trong subnets được chỉ định, cần security group phù hợp.</li>
+</ul>
+</li>
+<li><strong>Bảo trì</strong>:
+<ul>
+<li><strong>Maintenance Window</strong>: Cấu hình khung giờ bảo trì (60 phút/tuần) để vá hoặc nâng cấp.</li>
+<li><strong>Impact</strong>: Redis Multi-AZ giảm gián đoạn; Memcached có thể mất dữ liệu tạm thời.</li>
+</ul>
+</li>
+<li><strong>Monitoring</strong>:
+<ul>
+<li><strong>CloudWatch Metrics</strong>:
+<ul>
+<li><strong>Cache hit/miss</strong>: Đo hiệu quả cache.</li>
+<li><strong>CPU/Memory</strong>: Theo dõi tải node.</li>
+<li><strong>Network</strong>: Kiểm tra băng thông.</li>
+<li><strong>Errors</strong>: Phát hiện lỗi kết nối, timeout.</li>
+</ul>
+</li>
+<li><strong>CloudTrail</strong>: Ghi log thao tác quản lý (tạo/xóa cụm, snapshot).</li>
+<li><strong>SNS Notifications</strong>: Cảnh báo khi node lỗi, failover, hoặc bảo trì.</li>
+</ul>
+</li>
+<li><strong>Hiệu suất</strong>:
+<ul>
+<li><strong>Memcached</strong>:
+<ul>
+<li>Client quản lý phân phối dữ liệu (hashing) giữa các node.</li>
+<li>Cần cấu hình client (như libmemcached) để tận dụng Auto Discovery.</li>
+</ul>
+</li>
+<li><strong>Redis</strong>:
+<ul>
+<li>Tự động quản lý phân phối dữ liệu (Cluster Mode Enabled).</li>
+<li>Hỗ trợ lệnh nâng cao (Lua scripts, transactions) cho ứng dụng phức tạp.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Bảo mật</strong>:
+<ul>
+<li>Bật mã hóa at rest/in transit cho Redis.</li>
+<li>Dùng <strong>Redis AUTH</strong> hoặc <strong>RBAC</strong> để kiểm soát truy cập dữ liệu.</li>
+<li>Giới hạn kết nối qua security group (ví dụ: chỉ cho phép từ EC2 trong VPC).</li>
+</ul>
+</li>
+<li><strong>Hạn chế</strong>:
+<ul>
+<li><strong>Memcached</strong>:
+<ul>
+<li>Không bền vững, không sao chép, không backup.</li>
+<li>Phụ thuộc client để quản lý node.</li>
+</ul>
+</li>
+<li><strong>Redis</strong>:
+<ul>
+<li>Cluster Mode Enabled giới hạn một số lệnh multi-key.</li>
+<li>Snapshot có thể gây giảm hiệu suất trên cụm nhỏ.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="trường-hợp-sử-dụng-cụ-thể"><strong>Trường hợp sử dụng cụ thể</strong></h2>
+<ul>
+<li><strong>Session Management</strong>:
+<ul>
+<li><strong>Redis</strong>: Lưu session bền vững, hỗ trợ pub/sub để đồng bộ trạng thái (như trạng thái đăng nhập).</li>
+<li><strong>Memcached</strong>: Lưu session tạm thời, nhẹ và nhanh.</li>
+</ul>
+</li>
+<li><strong>Database Caching</strong>:
+<ul>
+<li>Cache kết quả truy vấn từ DynamoDB, RDS, Aurora, hoặc cơ sở dữ liệu tự quản.</li>
+<li><strong>Ví dụ</strong>: Cache danh mục sản phẩm, bài viết, hoặc dữ liệu người dùng.</li>
+</ul>
+</li>
+<li><strong>Real-time Analytics</strong>:
+<ul>
+<li>Redis dùng sorted set cho bảng xếp hạng, pub/sub cho cập nhật thời gian thực.</li>
+<li><strong>Ví dụ</strong>: Bảng xếp hạng game, đếm lượt xem bài viết.</li>
+</ul>
+</li>
+<li><strong>Queue Management</strong>:
+<ul>
+<li>Redis dùng list để tạo hàng đợi nhẹ, thay thế SQS trong một số trường hợp.</li>
+<li><strong>Ví dụ</strong>: Xử lý tác vụ nền, hàng đợi tin nhắn.</li>
+</ul>
+</li>
+<li><strong>Disaster Recovery</strong>:
+<ul>
+<li>Redis Global Datastore và Cross-Region Replicas đảm bảo dữ liệu khả dụng khi region lỗi.</li>
+<li><strong>Ví dụ</strong>: Cache toàn cầu cho ứng dụng thương mại điện tử.</li>
+</ul>
+</li>
+<li><strong>Tính toán nặng</strong>:
+<ul>
+<li>Cache kết quả tính toán phức tạp (như gợi ý sản phẩm, ML inference).</li>
+<li><strong>Ví dụ</strong>: Lưu trữ kết quả phân tích dữ liệu để tái sử dụng.</li>
+</ul>
+</li>
+</ul> </article> <hr class="my-8 border-dashed"> <div class="opacity-80 sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/thuongnn/thuongnn.github.io/edit/master/src/data/blog/aws/databases/aws-elasticache.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/aws/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>AWS</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/amazon-web-services/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Amazon Web Services</span> </a> </li> </ul> <div class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"> <div class="flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start"> <span class="italic">Share this post on:</span> <div class="text-center"> <a href="https://wa.me/?text=https://thuongnn.dev/posts/aws/databases/aws-elasticache/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> <span class="sr-only">Share this post via WhatsApp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://thuongnn.dev/posts/aws/databases/aws-elasticache/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://thuongnn.dev/posts/aws/databases/aws-elasticache/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://thuongnn.dev/posts/aws/databases/aws-elasticache/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg> <span class="sr-only">Share this post via Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://thuongnn.dev/posts/aws/databases/aws-elasticache/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg> <span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&#38;body=https://thuongnn.dev/posts/aws/databases/aws-elasticache/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Share this post via email</span> </a> </div> </div> <button id="back-to-top" class="focus-outline py-1 whitespace-nowrap hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span>Back to Top</span> </button> </div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/aws/databases/aws-dynamodb" class="flex w-full gap-1 hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">[AWS] Amazon DynamoDB</div> </div> </a> <a href="/posts/aws/storage/elastic-block-store-storage" class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">[AWS] Amazon Elastic Block Store (EBS)</div> </div> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="w-full mt-auto"> <div class="max-w-3xl mx-auto px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://github.com/thuongnn" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title=" thuongnn.dev on Github"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only"> thuongnn.dev on Github</span> </a><a href="https://www.facebook.com/thuongnn97" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">thuongnn.dev on Facebook</span> </a><a href="https://www.linkedin.com/in/thuongnn/" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on LinkedIn"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">thuongnn.dev on LinkedIn</span> </a><a href="mailto:thuongnn1997@gmail.com" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to thuongnn.dev"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to thuongnn.dev</span> </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2025</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ml-2 opacity-0 group-hover:opacity-100 focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "copy-code absolute right-3 -top-3 rounded bg-muted px-2 py-1 text-xs leading-4 text-foreground font-medium";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    document.querySelector("#back-to-top")?.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+  }
+  backToTop();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>
