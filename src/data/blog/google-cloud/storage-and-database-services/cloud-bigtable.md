@@ -13,5 +13,5 @@ description: Tìm hiểu về Cloud Bigtable trong Google Cloud.
 
 ### Khác nhau giữa Cloud BigTable và Cloud BigQuery
 
-- Nếu yêu cầu của bạn là cơ sở dữ liệu trực tiếp, **BigTable** là thứ bạn cần (Không thực sự là **OLTP** hệ thống). Nếu đó là mục đích phân tích nhiều hơn, thì **BigQuery** là thứ bạn cần!
-- Hãy nghĩ về **OLTP** vs **OLAP**; Hoặc nếu bạn đã quen thuộc với Cassandra vs Hadoop, BigTable gần tương đương với Cassandra, BigQuery gần tương đương với Hadoop (Đồng ý, đó không phải là một so sánh công bằng, nhưng bạn hiểu ý)
+- Nếu yêu cầu của bạn là cơ sở dữ liệu trực tiếp, **BigTable** là thứ bạn cần (Không thực sự là **OLTP** hệ thống). Nếu đó là mục đích phân tích nhiều hơn, thì **BigQuery** là thứ bạn cần!
+- Hãy nghĩ về **OLTP** vs **OLAP**; Hoặc nếu bạn đã quen thuộc với Cassandra vs Hadoop, BigTable gần tương đương với Cassandra, BigQuery gần tương đương với Hadoop (Đồng ý, đó không phải là một so sánh công bằng, nhưng bạn hiểu ý)

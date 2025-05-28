@@ -12,6 +12,7 @@ description: Tìm hiểu về dịch vụ Cloud CDN trong Google Cloud.
 ## Table of contents
 
 # Google Cloud CDN
+
 ![](https://github.com/user-attachments/assets/9732d303-76f4-4d43-82d4-70f1dfba4485)
 
 - Google Cloud CDN (Content Delivery Network) caches website and application content closer to the user
@@ -19,11 +20,11 @@ description: Tìm hiểu về dịch vụ Cloud CDN trong Google Cloud.
 - Cloud CDN works with **external HTTP(S) Load Balancing** to deliver content to the users.
 - Cloud CDN requires the use of Google Premium Network Tier which provides the Global Anycast IP address
 - Cloud CDN content can be sourced from various types of backends (also referred to as origin servers) :
-    - Instance groups
-    - Zonal network endpoint groups (NEGs)
-    - Serverless NEGs: One or more App Engine, Cloud Run, or Cloud Functions services
-    - Internet NEGs, for endpoints that are outside of Google Cloud (also known as custom origins)
-    - Buckets in Cloud Storage
+  - Instance groups
+  - Zonal network endpoint groups (NEGs)
+  - Serverless NEGs: One or more App Engine, Cloud Run, or Cloud Functions services
+  - Internet NEGs, for endpoints that are outside of Google Cloud (also known as custom origins)
+  - Buckets in Cloud Storage
 - Cloud CDN with Google Cloud Armor enforces security policies only for requests for dynamic content, cache misses, or other requests that are destined for the origin server. Cache hits are served even if the downstream Google Cloud Armor security policy would prevent that request from reaching the origin server.
 
 # Cloud CDN Flow
@@ -35,28 +36,28 @@ description: Tìm hiểu về dịch vụ Cloud CDN trong Google Cloud.
 - Cloud CDN doesn’t perform any URL redirection. The Cloud CDN cache is located at the GFE.
 - Caching happens automatically for all cacheable content, once Cloud CDN is enabled
 - Cache Hits and Cache Misses
-    - A cache is a group of servers that stores and manages content so that future requests for that content can be served faster.
-    - Cached content is a copy of cacheable content that is stored on origin servers.
-    - Cache Hit – GFE sends the cached response, if the GFE looks in the Cloud CDN cache and finds a cached response to the user’s request
-    - Cache Miss – GFE determines that it can’t fulfill the request from the cache, if the content is requested first time or expired or evicated
+  - A cache is a group of servers that stores and manages content so that future requests for that content can be served faster.
+  - Cached content is a copy of cacheable content that is stored on origin servers.
+  - Cache Hit – GFE sends the cached response, if the GFE looks in the Cloud CDN cache and finds a cached response to the user’s request
+  - Cache Miss – GFE determines that it can’t fulfill the request from the cache, if the content is requested first time or expired or evicated
 - Cache Hit Ratio
-    - Cache Hit Ration is the percentage of times that a requested object is served from the cache
+  - Cache Hit Ration is the percentage of times that a requested object is served from the cache
 - Cache Egress and Cache Fill
-    - Cache Egress – Data transfer from a cache to the client
-    - Cache Fill – Data transfer to a cache
+  - Cache Egress – Data transfer from a cache to the client
+  - Cache Fill – Data transfer to a cache
 - Cache Eviction
-    - Cloud CDN removes or evicts content to insert new content once the it reaches its capacity
-    - Content evicted is usually the one that hasn’t recently been accessed, regardless of the content’s expiration time
+  - Cloud CDN removes or evicts content to insert new content once the it reaches its capacity
+  - Content evicted is usually the one that hasn’t recently been accessed, regardless of the content’s expiration time
 - Cache Expiration
-    - Content in HTTP(S) caches can have a configurable expiration time or Time To Live (TTL)
+  - Content in HTTP(S) caches can have a configurable expiration time or Time To Live (TTL)
 - Cache Invalidation
-    - Cache Invalidation allows one to force an object or set of objects to be ignored by the cache
-    - Invalidations don’t affect cached copies in web browser caches or caches operated by third-party internet service providers.
-    - Cache Invalidation are eventual
-    - Invalidations are rate-limited and use patterns to control the same *for e.g. use /images/* instead of each request for /images/1.jpg etc.*
+  - Cache Invalidation allows one to force an object or set of objects to be ignored by the cache
+  - Invalidations don’t affect cached copies in web browser caches or caches operated by third-party internet service providers.
+  - Cache Invalidation are eventual
+  - Invalidations are rate-limited and use patterns to control the same _for e.g. use /images/_ instead of each request for /images/1.jpg etc.\*
 - Cache Preloading
-    - Caching is **reactive** in that an object is stored in a particular cache only if a request goes through that cache and if the response is cacheable.
-    - Caches cannot be preloaded except by causing the individual caches to respond to requests.
+  - Caching is **reactive** in that an object is stored in a particular cache only if a request goes through that cache and if the response is cacheable.
+  - Caches cannot be preloaded except by causing the individual caches to respond to requests.
 - An object stored in one cache does not automatically replicate into other caches; cache fill happens only in response to a client-initiated request.
 
 # Cloud CDN Signed URL
@@ -73,8 +74,8 @@ description: Tìm hiểu về dịch vụ Cloud CDN trong Google Cloud.
 - Cache static content
 - Use proper expiration time or TTL for time sensitive data
 - Use custom cache keys to improve cache hit ratio
-    - Cloud CDN, by default, uses entire request URL to build the cache key
-    - Cache keys can be customized to include or omit any combination of protocol, host, and query string
+  - Cloud CDN, by default, uses entire request URL to build the cache key
+  - Cache keys can be customized to include or omit any combination of protocol, host, and query string
 - Use versioning to update content instead of cache invalidation
-    - Versioning content serves a different version of the same content, effectively removing it by showing users new content before the cache entry expires
-    - Invalidation is eventually consistent and should be used as a last resort
+  - Versioning content serves a different version of the same content, effectively removing it by showing users new content before the cache entry expires
+  - Invalidation is eventually consistent and should be used as a last resort

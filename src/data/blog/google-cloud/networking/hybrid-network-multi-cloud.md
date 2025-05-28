@@ -64,69 +64,69 @@ Kiến trúc đối với K8S (Không cần phải peer 2 VPC với nhau vì mô
 ![6](https://github.com/user-attachments/assets/ba82cf73-ead5-4086-be8f-aaba246d5e75)
 
 - **Các thức hoạt động**
-    - Workloads that you deploy in Google Cloud can communicate with the API gateway by using private IP addresses. Other systems in the private computing environment cannot be reached from within Google Cloud.
-    - Communication from the private computing environment to any workloads deployed in Google Cloud is not allowed.
+  - Workloads that you deploy in Google Cloud can communicate with the API gateway by using private IP addresses. Other systems in the private computing environment cannot be reached from within Google Cloud.
+  - Communication from the private computing environment to any workloads deployed in Google Cloud is not allowed.
 - **Mô tả chi tiết**
-    - On the Google Cloud side, you deploy workloads into a Shared VPC.
-    - Using either [Cloud Interconnect](https://cloud.google.com/network-connectivity/docs/interconnect) or [Cloud VPN](https://cloud.google.com/network-connectivity/docs/vpn), you connect the VPC to a perimeter network in the private computing environment, allowing calls to the API gateway.
-    - Using firewall rules, you disallow incoming connections to the VPC.
-    - Optionally, you use [Cloud Router](https://cloud.google.com/network-connectivity/docs/router/docs) to dynamically exchange routes between environments.
-    - All environments share a common, overlap-free RFC 1918 IP address space.
+  - On the Google Cloud side, you deploy workloads into a Shared VPC.
+  - Using either [Cloud Interconnect](https://cloud.google.com/network-connectivity/docs/interconnect) or [Cloud VPN](https://cloud.google.com/network-connectivity/docs/vpn), you connect the VPC to a perimeter network in the private computing environment, allowing calls to the API gateway.
+  - Using firewall rules, you disallow incoming connections to the VPC.
+  - Optionally, you use [Cloud Router](https://cloud.google.com/network-connectivity/docs/router/docs) to dynamically exchange routes between environments.
+  - All environments share a common, overlap-free RFC 1918 IP address space.
 - **Best practices**
-    - Consider using [Apigee for Private Cloud](https://docs.apigee.com/private-cloud/versions) as the API gateway solution.
-    - Also consider the [general best practices](https://cloud.google.com/architecture/hybrid-and-multi-cloud-network-topologies#best-practices-topologies) for hybrid and multi-cloud networking topologies.
+  - Consider using [Apigee for Private Cloud](https://docs.apigee.com/private-cloud/versions) as the API gateway solution.
+  - Also consider the [general best practices](https://cloud.google.com/architecture/hybrid-and-multi-cloud-network-topologies#best-practices-topologies) for hybrid and multi-cloud networking topologies.
 
 ## **Gated ingress**
 
 ![7](https://github.com/user-attachments/assets/39834ede-6c5e-46b6-acc5-607a8ea6a6f3)
 
 - **Cách thức hoạt động**
-    - Workloads that you deploy in the private computing environment are able to communicate with the API gateway by using private IP addresses. Other systems deployed in Google Cloud cannot be reached.
-    - Communication from Google Cloud to the private computing environment is not allowed.
+  - Workloads that you deploy in the private computing environment are able to communicate with the API gateway by using private IP addresses. Other systems deployed in Google Cloud cannot be reached.
+  - Communication from Google Cloud to the private computing environment is not allowed.
 - **Mô tả chi tiết**
-    - On the Google Cloud side, you deploy workloads into an application VPC.
-    - You establish a [Cloud Interconnect](https://cloud.google.com/network-connectivity/docs/interconnect) or [Cloud VPN](https://cloud.google.com/network-connectivity/docs/vpn) connection between a dedicated transit VPC and the private computing environment.
-    - You establish the connection between the transit VPC and the application VPC by using VMs that are running the API gateway. These VMs use two networking interfaces: one connected to the transit VPC, and one to the application VPC. To balance traffic to multiple API gateway instances, you configure an [internal load balancer](https://cloud.google.com/kubernetes-engine/docs/how-to/internal-load-balancing) in the transit VPC.
-    - You deploy [Cloud NAT](https://cloud.google.com/nat/docs) in the application VPC to allow workloads to access the internet. This gateway avoids having to equip VM instances with external IP addresses, which you don't want in systems that are deployed behind an API gateway.
-    - Optionally, you can use [Cloud Router](https://cloud.google.com/network-connectivity/docs/router) to dynamically exchange routes between environments.
-    - All environments share a common, overlap-free RFC 1918 IP address space
+  - On the Google Cloud side, you deploy workloads into an application VPC.
+  - You establish a [Cloud Interconnect](https://cloud.google.com/network-connectivity/docs/interconnect) or [Cloud VPN](https://cloud.google.com/network-connectivity/docs/vpn) connection between a dedicated transit VPC and the private computing environment.
+  - You establish the connection between the transit VPC and the application VPC by using VMs that are running the API gateway. These VMs use two networking interfaces: one connected to the transit VPC, and one to the application VPC. To balance traffic to multiple API gateway instances, you configure an [internal load balancer](https://cloud.google.com/kubernetes-engine/docs/how-to/internal-load-balancing) in the transit VPC.
+  - You deploy [Cloud NAT](https://cloud.google.com/nat/docs) in the application VPC to allow workloads to access the internet. This gateway avoids having to equip VM instances with external IP addresses, which you don't want in systems that are deployed behind an API gateway.
+  - Optionally, you can use [Cloud Router](https://cloud.google.com/network-connectivity/docs/router) to dynamically exchange routes between environments.
+  - All environments share a common, overlap-free RFC 1918 IP address space
 - **Best practices**
-    - Consider using [Apigee for Private Cloud](https://docs.apigee.com/private-cloud/versions) as API gateway solution.
-    - Also consider the [general best practices](https://cloud.google.com/architecture/hybrid-and-multi-cloud-network-topologies#best-practices-topologies) for hybrid and multi-cloud networking topologies.
+  - Consider using [Apigee for Private Cloud](https://docs.apigee.com/private-cloud/versions) as API gateway solution.
+  - Also consider the [general best practices](https://cloud.google.com/architecture/hybrid-and-multi-cloud-network-topologies#best-practices-topologies) for hybrid and multi-cloud networking topologies.
 
 ## **Gated ingress and egress**
 
 ![8](https://github.com/user-attachments/assets/f6ae6100-14d0-4cf6-86d2-9b17f646bdf3)
 
 - **Cách thức hoạt động**
-    - Workloads that you deploy in Google Cloud can communicate with the API gateway by using private IP addresses. Other systems deployed in the private computing environment cannot be reached.
-    - Conversely, workloads that you deploy in the private computing environment can communicate with the Google Cloud-side API gateway by using private IP addresses. Other systems deployed in Google Cloud cannot be reached.
+  - Workloads that you deploy in Google Cloud can communicate with the API gateway by using private IP addresses. Other systems deployed in the private computing environment cannot be reached.
+  - Conversely, workloads that you deploy in the private computing environment can communicate with the Google Cloud-side API gateway by using private IP addresses. Other systems deployed in Google Cloud cannot be reached.
 - **Mô tả chi tiết**
-    - On the Google Cloud side, you deploy workloads to a Shared VPC and do not expose them to the internet.
-    - You establish a [Cloud Interconnect](https://cloud.google.com/network-connectivity/docs/interconnect) or [Cloud VPN](https://cloud.google.com/network-connectivity/docs/vpn) connection between a dedicated transit VPC and the private computing environment.
-    - You establish the connection between the transit VPC and the application VPC by using VMs that are running the API gateway. These VMs use two networking interfaces: one connected to the transit VPC, and one to the application VPC. To balance traffic to multiple API gateway instances, you configure an [internal load balancer](https://cloud.google.com/kubernetes-engine/docs/how-to/internal-load-balancing) in the transit VPC.
-    - You also use [Cloud NAT](https://cloud.google.com/nat/docs). Cloud NAT allows workloads to access the internet and to communicate with the API gateway that is running in the private computing environment.
-    - Optionally, you can use [Cloud Router](https://cloud.google.com/network-connectivity/docs/router) to dynamically exchange routes between environments.
-    - All environments share a common, overlap-free RFC 1918 IP address space.
+  - On the Google Cloud side, you deploy workloads to a Shared VPC and do not expose them to the internet.
+  - You establish a [Cloud Interconnect](https://cloud.google.com/network-connectivity/docs/interconnect) or [Cloud VPN](https://cloud.google.com/network-connectivity/docs/vpn) connection between a dedicated transit VPC and the private computing environment.
+  - You establish the connection between the transit VPC and the application VPC by using VMs that are running the API gateway. These VMs use two networking interfaces: one connected to the transit VPC, and one to the application VPC. To balance traffic to multiple API gateway instances, you configure an [internal load balancer](https://cloud.google.com/kubernetes-engine/docs/how-to/internal-load-balancing) in the transit VPC.
+  - You also use [Cloud NAT](https://cloud.google.com/nat/docs). Cloud NAT allows workloads to access the internet and to communicate with the API gateway that is running in the private computing environment.
+  - Optionally, you can use [Cloud Router](https://cloud.google.com/network-connectivity/docs/router) to dynamically exchange routes between environments.
+  - All environments share a common, overlap-free RFC 1918 IP address space.
 - **Best practices**
-    - Consider using [Apigee for Private Cloud](https://docs.apigee.com/private-cloud/versions) as API gateway solution.
-    - Also consider the [general best practices](https://cloud.google.com/architecture/hybrid-and-multi-cloud-network-topologies#best-practices-topologies) for hybrid and multi-cloud networking topologies.
+  - Consider using [Apigee for Private Cloud](https://docs.apigee.com/private-cloud/versions) as API gateway solution.
+  - Also consider the [general best practices](https://cloud.google.com/architecture/hybrid-and-multi-cloud-network-topologies#best-practices-topologies) for hybrid and multi-cloud networking topologies.
 
 # `4. Mô hình Handover`
 
 ![9](https://github.com/user-attachments/assets/dd189563-fee6-441a-8d5c-fed417efd620)
 
 - Cách thức hoạt động
-    - Workloads that are running in a private computing environment upload data to shared storage locations. Depending on use cases, uploads might happen in bulk or in small messages.
-    - Google Cloud-hosted workloads then consume data from these locations and process it in a streaming or batch fashion.
+  - Workloads that are running in a private computing environment upload data to shared storage locations. Depending on use cases, uploads might happen in bulk or in small messages.
+  - Google Cloud-hosted workloads then consume data from these locations and process it in a streaming or batch fashion.
 - Mô tả chi tiết
-    - On the Google Cloud side, you deploy workloads into an application VPC. These workloads can include data processing, analytics, and analytics-related frontend applications.
-    - To securely expose frontend applications to corporate users, you can use [Identity-Aware Proxy](https://cloud.google.com/iap).
-    - You use a set of Cloud Storage buckets or Pub/Sub queues to upload data from the private computing environment and to make it available for further processing by workloads deployed in Google Cloud. Using IAM policies, you can restrict access to trusted workloads.
-    - Because there is no private network connectivity between environments, RFC 1918 IP address spaces are allowed to overlap between environments.
+  - On the Google Cloud side, you deploy workloads into an application VPC. These workloads can include data processing, analytics, and analytics-related frontend applications.
+  - To securely expose frontend applications to corporate users, you can use [Identity-Aware Proxy](https://cloud.google.com/iap).
+  - You use a set of Cloud Storage buckets or Pub/Sub queues to upload data from the private computing environment and to make it available for further processing by workloads deployed in Google Cloud. Using IAM policies, you can restrict access to trusted workloads.
+  - Because there is no private network connectivity between environments, RFC 1918 IP address spaces are allowed to overlap between environments.
 - Best practices
-    - Lock down access to Cloud Storage buckets and Pub/Sub topics.
-    - To reduce latency and to avoid passing data over the public internet, consider using [Direct Peering](https://cloud.google.com/network-connectivity/docs/direct-peering/direct-peering) or [Carrier Peering](https://cloud.google.com/network-connectivity/docs/carrier-peering/carrier-peering).
-    - Use [VPC Service Controls](https://cloud.google.com/vpc-service-controls) to restrict access to the Cloud Storage or Pub/Sub locations to specific IP address ranges.
-    - Equip VM instances in the VPC with public IP addresses so that they can access the internet directly. Otherwise, deploy [Cloud NAT](https://cloud.google.com/nat/docs) in the same VPC to handle egress traffic.
-    - Also consider the [general best practices](https://cloud.google.com/architecture/hybrid-and-multi-cloud-network-topologies) for hybrid and multi-cloud networking topologies.
+  - Lock down access to Cloud Storage buckets and Pub/Sub topics.
+  - To reduce latency and to avoid passing data over the public internet, consider using [Direct Peering](https://cloud.google.com/network-connectivity/docs/direct-peering/direct-peering) or [Carrier Peering](https://cloud.google.com/network-connectivity/docs/carrier-peering/carrier-peering).
+  - Use [VPC Service Controls](https://cloud.google.com/vpc-service-controls) to restrict access to the Cloud Storage or Pub/Sub locations to specific IP address ranges.
+  - Equip VM instances in the VPC with public IP addresses so that they can access the internet directly. Otherwise, deploy [Cloud NAT](https://cloud.google.com/nat/docs) in the same VPC to handle egress traffic.
+  - Also consider the [general best practices](https://cloud.google.com/architecture/hybrid-and-multi-cloud-network-topologies) for hybrid and multi-cloud networking topologies.

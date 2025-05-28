@@ -40,7 +40,7 @@ Khi Internet NEG đã hỗ trợ cấu hình đối với những backend nằm 
 
 Các On-Premise backend của khách hàng lúc này sẽ được Google bảo vệ trước những cuộc tấn công DDoS, có khả năng phục vụ một lượng lớn người dùng đầu cuối tăng đột ngột và giúp khách hàng nhanh chóng đạt được mục tiêu về Business đã đặt ra khi chuyển đổi lên Google Cloud.
 
-*Bài viết được lược dịch từ:* [Google Cloud Blog](https://cloud.google.com/blog/products/networking/enabling-hybrid-deployments-with-cloud-cdn-and-load-balancing)
+_Bài viết được lược dịch từ:_ [Google Cloud Blog](https://cloud.google.com/blog/products/networking/enabling-hybrid-deployments-with-cloud-cdn-and-load-balancing)
 
 # Types of NEGs
 

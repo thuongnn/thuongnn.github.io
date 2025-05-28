@@ -10,4 +10,3 @@ description: Tìm hiểu về Cloud Run trong Google Cloud.
 ---
 
 ![Untitled](https://github.com/user-attachments/assets/69f372b6-ce3a-4686-91e1-d61fbb9bbd12)
-
