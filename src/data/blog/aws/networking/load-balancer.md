@@ -181,7 +181,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
   - **Khuyến nghị của AWS:**
     - Sử dụng **Application Load Balancer** cho Layer 7.
     - Sử dụng **Network Load Balancer** cho Layer 4 khi làm việc với VPC.
-    ![4.png](@/assets/images/networking/load-balancer/4.png)
+      ![4.png](@/assets/images/networking/load-balancer/4.png)
 
 ## Tính năng chung
 

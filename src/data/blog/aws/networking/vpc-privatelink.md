@@ -18,7 +18,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - **VPC Interface Endpoint** là một cách triển khai cụ thể của AWS PrivateLink trong VPC. Nếu bạn sử dụng PrivateLink để kết nối đến dịch vụ AWS (như CloudWatch) hoặc endpoint services của đối tác, bạn sẽ cần thiết lập một **VPC Interface Endpoint**.
   - **AWS PrivateLink**: Công nghệ để tạo kết nối riêng tư.
   - **VPC Interface Endpoint**: Một loại endpoint dựa trên PrivateLink, dùng để thực thi kết nối đó trong VPC
-  Nói cách khác, mọi VPC Interface Endpoint đều dựa trên PrivateLink, nhưng PrivateLink không chỉ giới hạn ở Interface Endpoint.
+    Nói cách khác, mọi VPC Interface Endpoint đều dựa trên PrivateLink, nhưng PrivateLink không chỉ giới hạn ở Interface Endpoint.
 - VPC Interface Endpoints cung cấp khả năng kết nối đến các dịch vụ được hỗ trợ bởi AWS PrivateLink. Các dịch vụ này bao gồm:
   - Các dịch vụ AWS như CloudTrail, CloudWatch, v.v.
   - Dịch vụ được lưu trữ bởi khách hàng hoặc đối tác AWS khác trong VPC của họ (gọi là **endpoint services**).

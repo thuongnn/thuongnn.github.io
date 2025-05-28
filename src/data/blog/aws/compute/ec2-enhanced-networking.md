@@ -63,6 +63,7 @@ aws ec2 describe-instances --instance-id i-xxxxxxxxxxxxx --query 'Reservations[*
 ## **Cách bật Enhanced Networking trên EC2**
 
 - **Bật ENA (Elastic Network Adapter)**
+
   1. **Kiểm tra instance type**: Chỉ các instance thế hệ mới mới hỗ trợ ENA.
   2. **Dùng AMI hỗ trợ ENA**:
      - Amazon Linux 2
@@ -79,7 +80,9 @@ aws ec2 describe-instances --instance-id i-xxxxxxxxxxxxx --query 'Reservations[*
      ```bash
      aws ec2 modify-instance-attribute --instance-id i-xxxxxxxxxxxxx --ena-support
      ```
+
 - **Bật SR-IOV (Intel 82599 VF)**
+
   1. **Dùng instance hỗ trợ SR-IOV** (C3, R3, M4, D2, v.v.).
   2. **Cài đặt driver Intel SR-IOV** nếu chưa có:
 

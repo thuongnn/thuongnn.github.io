@@ -34,7 +34,7 @@ AWS phân loại EC2 instances thành nhiều nhóm dựa trên mục đích s�
   - Các dòng phổ biến:
     - ✅ **T-series (T3, T3a, T2):** Hỗ trợ "CPU burst", tối ưu chi phí cho tải công việc không liên tục.
     - ✅ **M-series (M7, M6, M5, M4):** Cân bằng giữa CPU và RAM, dùng cho ứng dụng doanh nghiệp, web server.
-  📌 **Dùng cho: Web server, ứng dụng doanh nghiệp, database nhỏ.**
+      📌 **Dùng cho: Web server, ứng dụng doanh nghiệp, database nhỏ.**
 
 ---
 
@@ -43,7 +43,7 @@ AWS phân loại EC2 instances thành nhiều nhóm dựa trên mục đích s�
   - Phù hợp cho các ứng dụng **yêu cầu CPU cao như xử lý batch, media transcoding, high-performance computing (HPC)**.
   - Các dòng phổ biến:
     - ✅ **C7, C6, C5, C4:** Tối ưu cho hiệu suất xử lý cao, dùng cho khoa học dữ liệu, machine learning, video encoding.
-  📌 **Dùng cho: Xử lý dữ liệu lớn, AI/ML, ứng dụng khoa học, game server.**
+      📌 **Dùng cho: Xử lý dữ liệu lớn, AI/ML, ứng dụng khoa học, game server.**
 
 ---
 
@@ -54,7 +54,7 @@ AWS phân loại EC2 instances thành nhiều nhóm dựa trên mục đích s�
     - ✅ **R7, R6, R5, R4:** Dùng cho database in-memory, caching, xử lý dữ liệu lớn.
     - ✅ **X2, X1, X1e:** Tối ưu cho SAP HANA, phân tích dữ liệu lớn.
     - ✅ **Z1d:** Hiệu suất CPU cao kèm bộ nhớ lớn.
-  📌 **Dùng cho: SAP, Oracle, Redis, ElasticSearch, ứng dụng Big Data.**
+      📌 **Dùng cho: SAP, Oracle, Redis, ElasticSearch, ứng dụng Big Data.**
 
 ---
 
@@ -64,7 +64,7 @@ AWS phân loại EC2 instances thành nhiều nhóm dựa trên mục đích s�
     - ✅ **I4, I3, I2:** Dùng **NVMe SSD** để cung cấp tốc độ truy cập nhanh.
     - ✅ **D3, D2:** Dùng **HDD**, phù hợp với lưu trữ dữ liệu khối lượng lớn.
     - ✅ **H1:** Kết hợp HDD với hiệu suất cao.
-  📌 **Dùng cho: NoSQL DB, Big Data, phân tích log, data warehouse.**
+      📌 **Dùng cho: NoSQL DB, Big Data, phân tích log, data warehouse.**
 
 ---
 
@@ -74,7 +74,7 @@ AWS phân loại EC2 instances thành nhiều nhóm dựa trên mục đích s�
     - ✅ **P4, P3, P2:** GPU NVIDIA Tesla, phù hợp với AI/ML, deep learning.
     - ✅ **G5, G4:** GPU NVIDIA, dùng cho video streaming, gaming.
     - ✅ **F1:** Dùng FPGA, tối ưu cho xử lý dữ liệu theo yêu cầu.
-  📌 **Dùng cho: AI/ML, Deep Learning, Big Data, Video processing.**
+      📌 **Dùng cho: AI/ML, Deep Learning, Big Data, Video processing.**
 
 ---
 
