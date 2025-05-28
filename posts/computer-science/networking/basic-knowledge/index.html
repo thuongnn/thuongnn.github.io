@@ -1,0 +1,1541 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://thuongnn.dev/posts/computer-science/networking/basic-knowledge/"><meta name="generator" content="Astro v5.5.2"><!-- General Meta Tags --><title>[Computer Science] Kiến thức về networking cơ bản | thuongnn.dev</title><meta name="title" content="[Computer Science] Kiến thức về networking cơ bản | thuongnn.dev"><meta name="description" content="Tổng hợp câu hỏi và trả lời về networking cơ bản."><meta name="author" content="thuongnn"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="[Computer Science] Kiến thức về networking cơ bản | thuongnn.dev"><meta property="og:description" content="Tổng hợp câu hỏi và trả lời về networking cơ bản."><meta property="og:url" content="https://thuongnn.dev/posts/computer-science/networking/basic-knowledge/"><meta property="og:image" content="https://thuongnn.dev/posts/computer-science/networking/basic-knowledge/index.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2020-06-24T20:29:35.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://thuongnn.dev/posts/computer-science/networking/basic-knowledge/"><meta property="twitter:title" content="[Computer Science] Kiến thức về networking cơ bản | thuongnn.dev"><meta property="twitter:description" content="Tổng hợp câu hỏi và trả lời về networking cơ bản."><meta property="twitter:image" content="https://thuongnn.dev/posts/computer-science/networking/basic-knowledge/index.png"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"[Computer Science] Kiến thức về networking cơ bản | thuongnn.dev","image":"https://thuongnn.dev/posts/computer-science/networking/basic-knowledge/index.png","datePublished":"2020-06-24T20:29:35.000Z","author":[{"@type":"Person","name":"thuongnn","url":"https://thuongnn.dev/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="thuongnn.dev" href="https://thuongnn.dev/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CMTcOisY.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/about.BH1RUIRV.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+[data-astro-image]{width:100%;height:auto;object-fit:var(--fit);object-position:var(--pos);aspect-ratio:var(--w) / var(--h)}[data-astro-image=responsive]{max-width:calc(var(--w) * 1px);max-height:calc(var(--h) * 1px)}[data-astro-image=fixed]{width:calc(var(--w) * 1px);height:calc(var(--h) * 1px)}
+</style><style>[data-astro-transition-scope="astro-fam6wyqg-1"] { view-transition-name: computer-science-ki\1EBFn-th\1EE9 c-v\1EC1-networking-c\1A1-b\1EA3n; }@layer astro { ::view-transition-old(computer-science-ki\1EBFn-th\1EE9 c-v\1EC1-networking-c\1A1-b\1EA3n) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(computer-science-ki\1EBFn-th\1EE9 c-v\1EC1-networking-c\1A1-b\1EA3n) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(computer-science-ki\1EBFn-th\1EE9 c-v\1EC1-networking-c\1A1-b\1EA3n) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(computer-science-ki\1EBFn-th\1EE9 c-v\1EC1-networking-c\1A1-b\1EA3n) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: networking; }@layer astro { ::view-transition-old(networking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(networking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(networking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(networking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: computer-science; }@layer astro { ::view-transition-old(computer-science) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(computer-science) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(computer-science) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(computer-science) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="absolute -top-full left-16 z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"> <a href="/" class="absolute py-1 text-2xl leading-7 font-semibold whitespace-nowrap sm:static"> thuongnn.dev </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:ml-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="max-w-3xl mx-auto px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-3xl items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="mx-auto w-full max-w-3xl px-4 pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-fam6wyqg-1"> [Computer Science] Kiến thức về networking cơ bản </h1> <div class="flex items-center gap-4"> <div class="flex items-end space-x-2 opacity-80 my-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg> <span class="sr-only">Published:</span> <span class="text-sm italic sm:text-base"> <time datetime="2020-06-24T20:29:35.000Z">24 Jun, 2020</time> <span aria-hidden="true"> | </span> <span class="sr-only">&nbsp;at&nbsp;</span> <span class="text-nowrap">08:29 PM</span> </span> </div> <div class="opacity-80 max-sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/satnaing/astro-paper/edit/main/src/data/blog/computer-science/networking/basic-knowledge.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> </div> <article id="article" class="mx-auto prose mt-8 max-w-3xl"> <p>Bài viết tổng hợp câu trả lời cho các câu hỏi networking cơ bản trong computer science được fork từ repo: <a href="https://github.com/vietnakid/learning-material.git">https://github.com/vietnakid/learning-material.git</a></p>
+<h2 id="table-of-contents">Table of contents</h2>
+<p></p><details><summary>Open Table of contents</summary><p></p>
+<ul>
+<li><a href="#concept-of-tcp">Concept of TCP</a></li>
+<li><a href="#what-are-the-differences-between-tcp-and-udp-and-in-which-case-we-use-which">What are the differences between TCP and UDP? And in which case we use which?</a></li>
+<li><a href="#how-ping-command-works-what-is-ttl-how-does-ttl-will-be-changed">How Ping command works? What is TTL?? How does TTL will be changed??</a></li>
+<li><a href="#how-http-works">How HTTP works?</a></li>
+<li><a href="#when-you-type-googlecom-into-your-browser-that-will-happen-when-you-type-enter-till-everything-is-displayed-on-your-screen">When you type “google.com” into your browser, that will happen when you type enter till everything is displayed on your screen?</a></li>
+<li><a href="#what-is-the-connection-pool">What is the connection pool?</a>
+<ul>
+<li><a href="#how-to-implement-connection-pool-in-your-programing-language">How to implement connection pool in your programing language?</a></li>
+</ul>
+</li>
+<li><a href="#what-is-socket">What is socket?</a></li>
+<li><a href="#what-is-tcp-proxy-reverse-proxy-and-vpn">What is TCP proxy? reverse proxy? and VPN?</a></li>
+</ul>
+<p></p></details><p></p>
+<h2 id="concept-of-tcp">Concept of TCP</h2>
+<ul>
+<li>
+<p><strong>How TCP open a connection? what does it need to open a connection?</strong></p>
+<p>TCP mở kết nối thông qua một quá trình gọi là <strong>3-way handshake</strong> (bắt tay 3 bước). Để mở kết nối, nó cần:</p>
+<ul>
+<li>Địa chỉ IP nguồn và đích (<strong>source</strong>/<strong>destination IP</strong>).</li>
+<li>Cổng nguồn và đích (<strong>source</strong>/<strong>destination port</strong>).</li>
+<li>Một số trình tự ban đầu (<strong>initial sequence number</strong>) để theo dõi thứ tự các gói tin.
+Quá trình bắt đầu khi một bên (client) gửi yêu cầu kết nối đến bên kia (server).</li>
+</ul>
+</li>
+<li>
+<p><strong>Why there are 3 way handshakes but not 2 way?</strong></p>
+<p><strong>3-way handshake</strong> (<code>SYN</code> → <code>SYN-ACK</code> → <code>ACK</code>) là cần thiết để đảm bảo cả hai bên (client và server) đều sẵn sàng và đồng bộ với nhau trước khi truyền dữ liệu.</p>
+<p>Nếu chỉ có 2 bước (ví dụ: <code>SYN</code> → <code>ACK</code>), sẽ thiếu sự xác nhận từ client rằng nó đã nhận được phản hồi từ server, dẫn đến khả năng một bên không biết trạng thái của bên kia. Cụ thể:</p>
+<ul>
+<li>Bước 1 (<code>SYN</code>) - Client gửi yêu cầu kết nối.</li>
+<li>Bước 2 (<code>SYN-ACK</code>) - Server xác nhận đã nhận yêu cầu và đồng ý kết nối.</li>
+<li>Bước 3 (<code>ACK</code>) - Client xác nhận lại rằng nó đã nhận phản hồi từ server.</li>
+</ul>
+<p>Với 3 bước, cả hai bên đều chắc chắn rằng kết nối đã được thiết lập đúng, tránh trường hợp một bên gửi dữ liệu mà bên kia chưa sẵn sàng.</p>
+</li>
+<li>
+<p><strong>What is syn, ack mean?</strong></p>
+<ul>
+<li><strong><code>SYN</code></strong> (Synchronize): Là cờ trong gói tin TCP, dùng để yêu cầu bắt đầu một kết nối và đồng bộ số thứ tự (sequence number) giữa hai bên.</li>
+<li><strong><code>ACK</code></strong> (Acknowledge): Là cờ xác nhận rằng một gói tin đã được nhận thành công. Nó thường đi kèm với số thứ tự của gói tin tiếp theo mà bên nhận mong đợi.</li>
+<li>Ví dụ:
+<ul>
+<li>Client gửi SYN: “Tao muốn kết nối, đây là số thứ tự ban đầu của tao.”</li>
+<li>Server trả SYN-ACK: “OK, tao đồng ý, đây là số thứ tự của tao, và tao xác nhận số thứ tự của mày.”</li>
+<li>Client trả ACK: “Tao xác nhận số thứ tự của mày, giờ bắt đầu được rồi.”</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Why they have to send 2 “random” sequence numbers? The purpose of this sequence number?</strong></p>
+<ul>
+<li><strong>Tại sao 2 số ngẫu nhiên?</strong>: Mỗi bên (client và server) chọn một số thứ tự ban đầu (initial sequence number - ISN) ngẫu nhiên để bắt đầu quá trình đếm gói tin. Điều này tránh xung đột nếu có kết nối cũ chưa đóng hoàn toàn (do mạng trễ hoặc lỗi), đảm bảo các gói tin thuộc về kết nối hiện tại chứ không phải kết nối trước đó.</li>
+<li><strong>Mục đích của số thứ tự (sequence number)</strong>:
+<ul>
+<li>Đánh dấu từng byte dữ liệu trong luồng truyền để theo dõi thứ tự.</li>
+<li>Đảm bảo dữ liệu được gửi và nhận đúng thứ tự.</li>
+<li>Giúp phát hiện gói tin bị mất hoặc trùng lặp.</li>
+</ul>
+</li>
+<li>Ví dụ: Nếu client gửi 100 byte bắt đầu từ số thứ tự 1000, server sẽ biết byte tiếp theo phải là 1100.</li>
+</ul>
+</li>
+<li>
+<p><strong>What if the 3rd handshake fail? How the server can detect it and what does it do in this case?</strong></p>
+<ul>
+<li><strong>Nếu bước 3 (ACK) thất bại</strong>: Server đã gửi SYN-ACK nhưng không nhận được ACK từ client, nghĩa là kết nối không được hoàn tất.</li>
+<li><strong>Server phát hiện thế nào</strong>: Server đặt một bộ đếm thời gian (timeout) sau khi gửi SYN-ACK. Nếu không nhận được ACK trong thời gian này, nó cho rằng kết nối thất bại.</li>
+<li><strong>Server làm gì</strong>: Server sẽ bỏ qua kết nối đó (hủy trạng thái chờ) và giải phóng tài nguyên. Client có thể thử lại bằng cách gửi SYN mới.</li>
+</ul>
+</li>
+<li>
+<p><strong>How TCP handles the connection?</strong></p>
+<ul>
+<li><strong>Theo dõi trạng thái</strong>: Dùng các trạng thái như <strong>LISTEN</strong>, <strong>SYN_SENT</strong>, <strong>ESTABLISHED</strong>, v.v., để biết kết nối đang ở giai đoạn nào.</li>
+<li><strong>Số thứ tự và xác nhận</strong>: Đảm bảo dữ liệu được gửi/nhận đúng thứ tự qua sequence number và ACK.</li>
+<li><strong>Kiểm soát luồng</strong>: Điều chỉnh tốc độ gửi dữ liệu dựa trên khả năng xử lý của bên nhận (dùng cơ chế “sliding window”).</li>
+<li><strong>Xử lý lỗi</strong>: Phát hiện và sửa lỗi (xem câu hỏi tiếp theo).</li>
+</ul>
+</li>
+<li>
+<p><strong>What happens if some bits are wrong due to connection errors? How to detect them and fix them?</strong></p>
+<ul>
+<li><strong>Phát hiện lỗi</strong>: TCP dùng <strong>checksum</strong> (tổng kiểm tra) trong header của gói tin. Checksum được tính từ dữ liệu và so sánh ở đầu nhận. Nếu không khớp, gói tin bị coi là lỗi.</li>
+<li><strong>Sửa lỗi</strong>: TCP không sửa trực tiếp mà yêu cầu gửi lại gói tin bị lỗi. Bên nhận gửi ACK với số thứ tự của gói tin mong đợi tiếp theo, báo cho bên gửi biết gói nào bị mất hoặc hỏng để gửi lại.</li>
+</ul>
+</li>
+<li>
+<p><strong>How the timeout is handled? what if the timeout is expired?</strong></p>
+<ul>
+<li><strong>Xử lý timeout</strong>: TCP đặt thời gian chờ cho mỗi gói tin. Nếu không nhận được ACK trong thời gian này, bên gửi cho rằng gói tin bị mất và gửi lại.</li>
+<li><strong>Nếu hết timeout</strong>:
+<ul>
+<li>Bên gửi gửi lại gói tin với cùng số thứ tự.</li>
+<li>Nếu timeout lặp lại nhiều lần, TCP có thể cho rằng kết nối bị đứt và đóng nó.</li>
+</ul>
+</li>
+<li>Thời gian timeout thường được điều chỉnh động dựa trên độ trễ mạng (RTT - Round Trip Time).</li>
+</ul>
+</li>
+<li>
+<p><strong>What will happen if some “packet” is missing on the way?</strong></p>
+<ul>
+<li><strong>Phát hiện</strong>: Bên nhận thấy số thứ tự của gói tin tiếp theo không liên tục (ví dụ: nhận 1000, rồi 1200 thay vì 1100).</li>
+<li><strong>Xử lý</strong>: Bên nhận gửi ACK với số thứ tự của gói tin bị mất (ví dụ: ACK 1100), báo cho bên gửi gửi lại gói đó. Đây là cơ chế <strong>retransmission</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>How to detect the appropriate number of packets to send (speed of sending packet)?</strong></p>
+<p>TCP dùng cơ chế <strong>congestion control</strong> (kiểm soát tắc nghẽn) và <strong>sliding window</strong>:</p>
+<ul>
+<li><strong>Sliding window</strong>: Quy định số byte tối đa có thể gửi trước khi cần ACK. Cửa sổ này tăng giảm tùy theo khả năng của mạng và bên nhận.</li>
+<li><strong>Congestion control</strong>: Dùng các thuật toán như Slow Start, Congestion Avoidance để tăng dần tốc độ gửi, tránh làm tắc mạng. Nếu phát hiện mất gói, tốc độ giảm xuống.</li>
+</ul>
+</li>
+<li>
+<p><strong>How TCP close the connection?</strong></p>
+<p>TCP đóng kết nối bằng <strong>4-way handshake</strong>:</p>
+<ol>
+<li>Bên muốn đóng (A) gửi <strong><code>FIN</code></strong> (Finish).</li>
+<li>Bên kia (B) trả <strong><code>ACK</code></strong> để xác nhận.</li>
+<li>B gửi <strong><code>FIN</code></strong> khi sẵn sàng đóng.</li>
+<li>A trả <strong><code>ACK</code></strong> để hoàn tất.</li>
+</ol>
+<p>Sau đó, cả hai vào trạng thái <strong>TIME_WAIT</strong> để đảm bảo không còn gói tin lạc hậu nào.</p>
+</li>
+<li>
+<p><strong>What if the internet is dropped in the middle of the connection? Or in case one peer is crash?</strong></p>
+<ul>
+<li><strong>Mạng ngắt</strong>: Nếu không nhận được ACK trong thời gian dài (qua nhiều lần timeout), TCP cho rằng kết nối bị mất và đóng nó.</li>
+<li><strong>Một bên crash</strong>: Bên còn lại sẽ không nhận phản hồi (ACK hoặc FIN). Sau nhiều lần thử gửi lại không thành, bên sống sót sẽ đóng kết nối.</li>
+</ul>
+</li>
+<li>
+<p><strong>How long you can keep a TCP connection alive?</strong></p>
+<ul>
+<li>Không có giới hạn cố định về thời gian tối đa một kết nối TCP có thể tồn tại, miễn là hai bên vẫn gửi/nhận dữ liệu hoặc giữ kết nối mở (dùng gói <strong>keep-alive</strong> nếu cần).</li>
+<li>Tuy nhiên, trong thực tế, thời gian phụ thuộc vào:
+<ul>
+<li>Cấu hình hệ điều hành (timeout mặc định).</li>
+<li>Ứng dụng (có thể tự đóng sau thời gian không hoạt động).</li>
+<li>NAT/firewall (có thể ngắt kết nối nếu không có hoạt động).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="what-are-the-differences-between-tcp-and-udp-and-in-which-case-we-use-which">What are the differences between TCP and UDP? And in which case we use which?</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th><strong>Tiêu chí</strong></th><th><strong><code>TCP</code> (Transmission Control Protocol)</strong></th><th><strong><code>UDP</code> (User Datagram Protocol)</strong></th></tr></thead><tbody><tr><td>Định nghĩa</td><td><strong>TCP</strong> là giao thức truyền tải đáng tin cậy, đảm bảo dữ liệu được gửi và nhận chính xác, theo đúng thứ tự.</td><td><strong>UDP</strong> là giao thức truyền tải nhanh nhưng không đảm bảo dữ liệu đến đúng thứ tự hay thậm chí là đến được.</td></tr><tr><td>Kiểu kết nối</td><td>Có kết nối (connection-oriented). Trước khi gửi dữ liệu, nó thiết lập một kết nối giữa hai thiết bị (qua quá trình bắt tay 3 bước - three-way handshake).</td><td>Không có kết nối (connectionless). Dữ liệu được gửi trực tiếp mà không cần thiết lập trước.</td></tr><tr><td>Độ tin cậy</td><td>Đảm bảo độ tin cậy cao nhờ cơ chế kiểm tra lỗi, sắp xếp lại thứ tự gói tin nếu cần, và gửi lại nếu dữ liệu bị mất.</td><td>Không có cơ chế kiểm tra lỗi hay gửi lại. Nếu gói tin bị mất, nó không được khôi phục.</td></tr><tr><td>Tốc độ</td><td>Chậm hơn do phải xử lý kiểm tra lỗi và đảm bảo thứ tự.</td><td>Nhanh hơn vì không có các bước kiểm tra bổ sung.</td></tr><tr><td>Kiểm soát lỗi</td><td>Có checksum, phát hiện lỗi và gửi lại nếu cần.</td><td>Có checksum nhưng không gửi lại nếu lỗi.</td></tr><tr><td>Kiểm soát luồng</td><td>Có (flow control) để tránh quá tải.</td><td>Không có.</td></tr><tr><td>Kiểm soát tắc nghẽn</td><td>Có (congestion control) để điều chỉnh tốc độ mạng.</td><td>Không có.</td></tr><tr><td>Header size</td><td>Lớn hơn (20 bytes tối thiểu).</td><td>Nhỏ hơn (8 bytes).</td></tr><tr><td>Cách truyền dữ liệu</td><td>Truyền dữ liệu dạng luồng (stream), đảm bảo dữ liệu liên tục và không bị ngắt quãng.</td><td>Truyền dữ liệu dạng gói tin (datagram), từng gói độc lập với nhau.</td></tr><tr><td>Trường hợp sử dụng</td><td>HTTP/HTTPS, FTP, SMTP (email), SSH.</td><td>DNS, DHCP, video streaming, game online.</td></tr></tbody></table>
+<h2 id="how-ping-command-works-what-is-ttl-how-does-ttl-will-be-changed">How Ping command works? What is TTL?? How does TTL will be changed??</h2>
+<ul>
+<li><strong>How Ping command works?</strong>
+<ul>
+<li><strong>Ping</strong> là một công cụ dùng để kiểm tra kết nối mạng giữa hai thiết bị (thường là máy tính của bạn và một máy chủ). Nó gửi các gói tin nhỏ và đo thời gian phản hồi.</li>
+<li><strong>Cách hoạt động</strong>:
+<ol>
+<li>Máy của bạn gửi một gói tin <strong>ICMP Echo Request</strong> (Internet Control Message Protocol) tới địa chỉ IP đích.</li>
+<li>Nếu thiết bị đích nhận được, nó trả lại một gói tin <strong>ICMP Echo Reply</strong>.</li>
+<li>Ping tính thời gian từ lúc gửi đến lúc nhận được phản hồi (thường tính bằng mili-giây, ms) và báo cáo kết quả.</li>
+</ol>
+</li>
+<li><strong>Kết quả ping cho biết</strong>: thời gian phản hồi, số gói tin bị mất (nếu có), và tình trạng kết nối.</li>
+</ul>
+</li>
+<li><strong>What is TTL?</strong>
+<ul>
+<li><strong>TTL (Time To Live)</strong>: Là một giá trị trong gói tin IP, biểu thị số lần tối đa gói tin có thể “sống” (được chuyển tiếp qua các router) trước khi bị hủy.</li>
+<li><strong>Ý nghĩa</strong>: Ngăn gói tin bị “lạc” mãi trong mạng nếu không tìm được đích (tránh vòng lặp vô hạn).</li>
+<li><strong>Đơn vị</strong>: TTL không tính bằng thời gian mà bằng số “hops” (số router mà gói tin đi qua).</li>
+<li><strong>Mục đích</strong>: Ngăn gói tin “lang thang” vô hạn trong mạng nếu không tìm được đích (ví dụ: do vòng lặp định tuyến).</li>
+</ul>
+</li>
+<li><strong>How does TTL will be changed?</strong>
+<ul>
+<li><strong>Ban đầu</strong>: Khi gói tin được gửi, TTL được thiết lập một giá trị khởi đầu (thường là 32, 64, 128 hoặc 255, tùy hệ điều hành).</li>
+<li><strong>Quá trình</strong>:
+<ol>
+<li>Mỗi khi gói tin đi qua một router, router giảm TTL đi <strong>1 đơn vị</strong>.</li>
+<li>Nếu TTL giảm xuống <strong>0</strong> trước khi đến đích, gói tin bị hủy và router gửi thông báo <strong>“TTL Exceeded”</strong> về máy gửi (thường thấy trong lỗi “Time out”).</li>
+<li>Nếu gói tin đến đích mà TTL vẫn lớn hơn 0, nó được xử lý bình thường.</li>
+</ol>
+</li>
+<li><strong>Ví dụ</strong>:
+<ul>
+<li>Gửi gói tin với TTL = 64.</li>
+<li>Qua 3 router: TTL lần lượt là 63 → 62 → 61.</li>
+<li>Nếu đích ở router thứ 4, TTL cuối cùng là 60 khi đến nơi.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Ứng dụng thực tế</strong>
+<ul>
+<li><strong>Ping</strong>: Giúp bạn thấy thời gian phản hồi và biết thiết bị đích có “sống” không.</li>
+<li><strong>TTL</strong>: Dùng để phân tích đường đi của gói tin (như trong lệnh <strong>tracert</strong> hoặc <strong>traceroute</strong>), vì mỗi lần TTL giảm cho biết gói tin đã qua bao nhiêu router.</li>
+</ul>
+</li>
+</ul>
+<h2 id="how-http-works">How HTTP works?</h2>
+<ul>
+<li><strong>How HTTP works?</strong>
+<ul>
+<li><strong>HTTP (HyperText Transfer Protocol)</strong> là giao thức truyền dữ liệu giữa client (trình duyệt) và server.</li>
+<li><strong>Cách hoạt động</strong>:
+<ol>
+<li>Client gửi <strong>request</strong> (yêu cầu) tới server (ví dụ: GET để lấy dữ liệu, POST để gửi data).</li>
+<li>Server xử lý và trả về <strong>response</strong> (dữ liệu, mã trạng thái như 200 OK, 404 Not Found).</li>
+<li>Kết nối thường đóng ngay sau khi hoàn tất (trừ khi dùng persistent connection).</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>Why did people say that HTTP is stateless? The reason they make it stateless?</strong>
+<ul>
+<li><strong>Stateless nghĩa là gì?</strong>: Mỗi request là độc lập, server không tự nhớ thông tin từ request trước đó.</li>
+<li><strong>Lý do</strong>:
+<ul>
+<li><strong>Đơn giản hóa</strong>: Server không cần lưu trữ trạng thái, giảm tải bộ nhớ và xử lý.</li>
+<li><strong>Mở rộng dễ dàng</strong>: Dễ triển khai trên nhiều server (load balancing) vì không cần đồng bộ trạng thái.</li>
+</ul>
+</li>
+<li><strong>Hạn chế</strong>: Client phải gửi lại toàn bộ thông tin cần thiết trong mỗi request (ví dụ: cookie, token).</li>
+</ul>
+</li>
+<li><strong>Can we make a persistent HTTP connection? pros and cons of this way?</strong>
+<ul>
+<li><strong>Có thể</strong>: HTTP/1.1 hỗ trợ <strong>persistent connection</strong> (keep-alive), không đóng kết nối ngay sau 1 request.</li>
+<li><strong>Ưu điểm</strong>:
+<ul>
+<li>Giảm thời gian thiết lập kết nối (TCP handshake) cho nhiều request.</li>
+<li>Tăng tốc độ tải trang (như tải nhiều file HTML, CSS, JS).</li>
+</ul>
+</li>
+<li><strong>Nhược điểm</strong>:
+<ul>
+<li>Server phải giữ kết nối mở, tăng tải nếu có nhiều client.</li>
+<li>Có thể gây nghẽn nếu không quản lý tốt.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Why HTTP require cookie each time we send the request?</strong>
+<ul>
+<li>Vì HTTP stateless, server không nhớ client giữa các request. <strong>Cookie</strong> chứa thông tin (như ID phiên, trạng thái đăng nhập) để server nhận diện client.</li>
+<li><strong>Cách hoạt động</strong>: Client gửi cookie trong header của mỗi request, server dùng nó để “nhớ” ngữ cảnh.</li>
+</ul>
+</li>
+<li><strong>Can someone use your cookie and log in your Facebook account? How to migrate this?</strong>
+<ul>
+<li><strong>Có thể</strong>: Nếu ai đó lấy được cookie (ví dụ: qua mạng không an toàn), họ có thể giả mạo bạn (gọi là <strong>session hijacking</strong>).</li>
+<li><strong>Giảm thiểu</strong>:
+<ul>
+<li>Dùng <strong>HTTPS</strong>: Mã hóa dữ liệu, ngăn chặn nghe lén.</li>
+<li>Cookie với thuộc tính <strong>HttpOnly</strong> và <strong>Secure</strong>: Không cho truy cập qua JavaScript và chỉ gửi qua HTTPS.</li>
+<li>Thời hạn cookie ngắn và dùng <strong>token</strong> thay vì chỉ dựa vào cookie.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>What is HTTP session? How does authentication work in HTTP?</strong>
+<ul>
+<li><strong>HTTP session</strong>: Là cách theo dõi trạng thái giữa client và server (dù HTTP stateless), thường dùng cookie chứa <strong>session ID</strong>.</li>
+<li><strong>Xác thực</strong>:
+<ol>
+<li>Client gửi thông tin đăng nhập (username/password).</li>
+<li>Server kiểm tra, tạo session ID, gửi lại trong cookie.</li>
+<li>Client gửi session ID trong mỗi request để chứng minh danh tính.</li>
+</ol>
+</li>
+<li><strong>Ví dụ</strong>: Đăng nhập website, session giữ bạn “đăng nhập” đến khi hết hạn.</li>
+</ul>
+</li>
+<li><strong>What is JWT?</strong>
+<ul>
+<li><strong>JWT (JSON Web Token)</strong>: Là token mã hóa chứa thông tin (header, payload, signature) để xác thực.</li>
+<li><strong>Cách hoạt động</strong>:
+<ol>
+<li>Server tạo JWT sau khi đăng nhập, gửi cho client.</li>
+<li>Client gửi JWT trong header (thường là Authorization: Bearer <token>) mỗi request.</token></li>
+<li>Server kiểm tra chữ ký để xác nhận token hợp lệ.</li>
+</ol>
+</li>
+<li><strong>Ưu điểm</strong>: Không cần lưu session trên server, dễ mở rộng.</li>
+</ul>
+</li>
+<li><strong>Which type of “data” HTTP can help us to get or push?</strong>
+<ul>
+<li>HTTP truyền được hầu hết mọi loại dữ liệu:
+<ul>
+<li><strong>Binary file</strong>: File nhị phân (zip, exe).</li>
+<li><strong>Image</strong>: JPG, PNG, GIF.</li>
+<li><strong>Text file</strong>: TXT, JSON, XML.</li>
+<li><strong>Video file</strong>: MP4, AVI.</li>
+<li><strong>Music file</strong>: MP3, WAV.</li>
+</ul>
+</li>
+<li><strong>Cách truyền</strong>: Dùng header Content-Type để chỉ định loại dữ liệu (ví dụ: image/png, application/json).</li>
+</ul>
+</li>
+<li><strong>REST/RESTful?</strong>
+<ul>
+<li><strong>REST (Representational State Transfer)</strong>: Là phong cách thiết kế API dùng HTTP để giao tiếp.</li>
+<li><strong>Đặc điểm RESTful</strong>:
+<ul>
+<li>Dùng các phương thức HTTP: GET (lấy), POST (gửi), PUT (cập nhật), DELETE (xóa).</li>
+<li>Tài nguyên định danh qua URL (ví dụ: /users/123).</li>
+<li>Stateless: Mỗi request chứa đủ thông tin cần thiết.</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>: API lấy danh sách user: GET /api/users.</li>
+</ul>
+</li>
+<li><strong>AJAX technique?</strong>
+<ul>
+<li><strong>AJAX (Asynchronous JavaScript and XML)</strong>: Là cách gửi request HTTP từ trình duyệt mà không cần tải lại trang.</li>
+<li><strong>Cách hoạt động</strong>:
+<ol>
+<li>JavaScript gửi request (thường dùng fetch hoặc XMLHttpRequest).</li>
+<li>Server trả về dữ liệu (JSON, XML).</li>
+<li>Trang web cập nhật động (ví dụ: tải thêm bài viết mà không refresh).</li>
+</ol>
+</li>
+<li><strong>Ứng dụng</strong>: Tăng trải nghiệm người dùng (như chat, autocomplete).</li>
+</ul>
+</li>
+<li><strong>How HTTPs work?</strong>
+<ul>
+<li><strong>HTTPS</strong>: HTTP + SSL/TLS (mã hóa).</li>
+<li><strong>Cách hoạt động</strong>:
+<ol>
+<li>Client và server thiết lập kết nối an toàn qua <strong>TLS handshake</strong>.</li>
+<li>Dữ liệu được mã hóa trước khi gửi, chỉ bên nhận mới giải mã được.</li>
+</ol>
+</li>
+<li><strong>Mục đích</strong>: Bảo mật, ngăn nghe lén, giả mạo.</li>
+</ul>
+</li>
+<li><strong>Learn about some useful headers</strong>
+<ul>
+<li><strong>Request Headers</strong>:
+<ul>
+<li>User-Agent: Thông tin trình duyệt/OS.</li>
+<li>Authorization: Token/xác thực (ví dụ: Bearer JWT).</li>
+<li>Content-Type: Loại dữ liệu gửi (ví dụ: application/json).</li>
+</ul>
+</li>
+<li><strong>Response Headers</strong>:
+<ul>
+<li>Content-Type: Loại dữ liệu trả về.</li>
+<li>Set-Cookie: Gửi cookie cho client.</li>
+<li>Cache-Control: Điều khiển bộ đệm (ví dụ: no-cache).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="when-you-type-googlecom-into-your-browser-that-will-happen-when-you-type-enter-till-everything-is-displayed-on-your-screen">When you type “google.com” into your browser, that will happen when you type enter till everything is displayed on your screen?</h2>
+<p>Thường sẽ có các bước chính sau đây:</p>
+<ol>
+<li><strong>DNS Lookup</strong>: Trình duyệt tìm địa chỉ IP của “google.com”.</li>
+<li><strong>Thiết lập kết nối</strong>: Trình duyệt dùng IP để kết nối tới server qua TCP (hoặc UDP).</li>
+<li><strong>Gửi HTTP/HTTPS Request</strong>: Yêu cầu nội dung từ server.</li>
+<li><strong>Nhận Response</strong>: Server trả về HTML, sau đó tải thêm tài nguyên như JS, hình ảnh.</li>
+<li><strong>Hiển thị</strong>: Trình duyệt render nội dung lên màn hình.</li>
+</ol>
+<hr>
+<ul>
+<li><strong>DNS Lookup</strong>
+<ul>
+<li><strong>Trường hợp đã truy cập google.com trước</strong>:
+<ul>
+<li>Trình duyệt kiểm tra <strong>browser cache</strong> xem có IP của “google.com” chưa. Nếu có, dùng ngay IP đó.</li>
+<li>Nếu không, kiểm tra <strong>hệ điều hành cache</strong> (ví dụ: Windows DNS cache).</li>
+<li>Nếu vẫn không có, gửi yêu cầu DNS đến resolver (thường là DNS server của ISP hoặc công cộng như <code>8.8.8.8</code>).</li>
+</ul>
+</li>
+<li><strong>Trường hợp không biết IP</strong>:
+<ul>
+<li>Trình duyệt gửi yêu cầu DNS qua hệ thống phân giải tên miền (DNS resolution):
+<ol>
+<li><strong>Local Resolver:</strong> Hỏi DNS server cục bộ (thường do ISP cung cấp).</li>
+<li><strong>Root Server:</strong> Nếu resolver không biết, nó hỏi root DNS server để tìm TLD (Top-Level Domain) “.com”.</li>
+<li><strong>TLD Server:</strong> Root server trả về địa chỉ của server quản lý “.com”.</li>
+<li><strong>Authoritative Server:</strong> TLD server chỉ đến server DNS của “google.com”.</li>
+<li><strong>IP Returned:</strong> Server DNS của Google trả về địa chỉ IP (ví dụ: <code>142.250.190.14</code>).</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Which protocol DNS use and why?</strong>
+<ul>
+<li>DNS chủ yếu dùng <strong>UDP</strong> (port 53) vì:
+<ul>
+<li><strong>Tốc độ nhanh:</strong> UDP không cần thiết lập kết nối (connectionless), phù hợp với yêu cầu nhỏ và nhanh như tra cứu DNS.</li>
+<li><strong>Hiệu quả:</strong> Gói tin DNS thường nhỏ (&#x3C; 512 bytes), không cần cơ chế phức tạp của TCP.</li>
+</ul>
+</li>
+<li>Tuy nhiên, DNS cũng có thể dùng <strong>TCP</strong> trong trường hợp:
+<ul>
+<li>Gói tin lớn (DNS qua TCP khi trả về bản ghi lớn, như DNSSEC).</li>
+<li>Cần độ tin cậy cao hơn (TCP đảm bảo dữ liệu không mất mát).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>The other of place to look up DNS</strong>
+<ul>
+<li><strong>Local Cache</strong>: Trình duyệt hoặc OS (Windows, macOS).</li>
+<li><strong>Router Cache</strong>: Router gia đình lưu IP từ lần truy cập trước.</li>
+<li><strong>ISP DNS Server</strong>: Nhà cung cấp dịch vụ Internet thường lưu cache DNS.</li>
+<li><strong>Public DNS</strong>: Google (<code>8.8.8.8</code>), Cloudflare (<code>1.1.1.1</code>).</li>
+</ul>
+</li>
+<li><strong>TCP or UDP will be used in this case? why?</strong>
+<ul>
+<li>Sau khi có IP từ DNS:
+<ul>
+<li><strong>TCP</strong> được dùng để kết nối với server “google.com”.</li>
+<li>Lý do: HTTP/HTTPS yêu cầu độ tin cậy cao (dữ liệu phải đến đúng thứ tự, không mất mát), mà TCP cung cấp qua 3-way handshake, kiểm soát lỗi, và tái truyền.</li>
+</ul>
+</li>
+<li>UDP không được dùng ở đây vì nó không đảm bảo thứ tự hay độ tin cậy, không phù hợp với giao thức web.</li>
+</ul>
+</li>
+<li><strong>How to know “<a href="http://google.com/">google.com</a>” require HTTP or https? how browser can know and redirect from HTTP to HTTPs?</strong>
+<ul>
+<li><strong>Ban đầu:</strong> Nếu bạn nhập “google.com”, trình duyệt mặc định thử <strong>HTTPS</strong> (cổng 443) vì hầu hết website lớn hiện nay dùng HTTPS.</li>
+<li><strong>HSTS (HTTP Strict Transport Security):</strong>
+<ul>
+<li>Google gửi header HSTS trong lần truy cập trước, yêu cầu trình duyệt luôn dùng HTTPS cho “google.com”.</li>
+<li>Trình duyệt lưu danh sách HSTS, tự động chuyển sang HTTPS mà không thử HTTP.</li>
+</ul>
+</li>
+<li><strong>Redirect</strong>:
+<ul>
+<li>Nếu thử HTTP (cổng 80), server Google trả về mã trạng thái <strong>301 Moved Permanently</strong> hoặc <strong>307 Temporary Redirect</strong> với URL HTTPS (<a href="https://google.com/">https://google.com</a>).</li>
+<li>Trình duyệt theo URL mới và gửi lại yêu cầu qua HTTPS.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>After you get the <code>HTML content</code> for “google.com” how to get the <code>*.js</code> and <code>image</code> files?</strong>
+<ul>
+<li>Trình duyệt phân tích HTML:
+<ul>
+<li>Tìm các thẻ như <code>&#x3C;script src="example.js"></code>, <code>&#x3C;img src="image.jpg"></code>, hoặc <code>&#x3C;link rel="stylesheet" href="style.css"></code>.</li>
+</ul>
+</li>
+<li>Gửi yêu cầu HTTP/HTTPS riêng cho từng tài nguyên (JS, ảnh, CSS) dựa trên URL trong thẻ.</li>
+<li>Server trả về nội dung tương ứng (file JS, ảnh, v.v.).</li>
+</ul>
+</li>
+<li><em><em>When getting <code>*.js</code> or <code>image</code> files do why use another <code>TCP connection</code> or use the same one as in the get <code>HTML content</code>? How DNS lookup work in this case</em>?</em>**
+<ul>
+<li><strong>TCP Connection:</strong>
+<ul>
+<li><strong>HTTP/1.1:</strong> Có thể dùng lại kết nối TCP ban đầu (Keep-Alive) để tải JS, ảnh, tiết kiệm thời gian thiết lập.</li>
+<li><strong>HTTP/2 hoặc HTTP/3:</strong> Dùng một kết nối TCP (hoặc UDP với HTTP/3) để tải đồng thời nhiều tài nguyên qua multiplexing.</li>
+<li>Nếu tài nguyên nằm trên domain khác (ví dụ: “static.google.com”), cần TCP connection mới.</li>
+</ul>
+</li>
+<li><strong>DNS Lookup:</strong>
+<ul>
+<li>Nếu tài nguyên trên cùng “google.com”, không cần DNS lookup lại (đã có IP).</li>
+<li>Nếu trên domain khác (ví dụ: “cdn.google.com”), trình duyệt thực hiện DNS lookup riêng cho domain đó.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>After your browser display “<a href="http://google.com/">google.com</a>” fully, is there any connection open?</strong>
+<ul>
+<li>Nếu dùng <strong>Keep-Alive</strong> (HTTP/1.1) hoặc HTTP/2:
+<ul>
+<li>Kết nối TCP vẫn mở trong một khoảng thời gian (timeout, thường vài giây đến vài phút) để tái sử dụng nếu mày tải thêm nội dung.</li>
+</ul>
+</li>
+<li>Nếu không có Keep-Alive hoặc server đóng kết nối:
+<ul>
+<li>Kết nối TCP đóng sau khi tải hết (4-way handshake: FIN → ACK).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Caching can apply to which steps? How caching applied?</strong>
+<ul>
+<li><strong>DNS Lookup:</strong>
+<ul>
+<li><strong>Áp dụng:</strong> Browser, OS, router, hoặc ISP cache IP của “google.com”.</li>
+<li><strong>Cách hoạt động:</strong> Lưu cặp domain-IP với thời gian sống (TTL) từ DNS response, tránh lookup lại.</li>
+</ul>
+</li>
+<li><strong>HTML/JS/CSS/Images:</strong>
+<ul>
+<li><strong>Áp dụng:</strong> Browser cache nội dung dựa trên header HTTP như <code>Cache-Control</code>, <code>Expires</code>, hoặc <code>ETag</code>.</li>
+<li><strong>Cách hoạt động:</strong> Nếu tài nguyên còn trong cache và chưa hết hạn, trình duyệt dùng bản local thay vì tải lại.</li>
+</ul>
+</li>
+<li><strong>HSTS</strong>:
+<ul>
+<li><strong>Áp dụng:</strong> Cache chính sách HTTPS trong browser.</li>
+<li><strong>Cách hoạt động:</strong> Trình duyệt nhớ dùng HTTPS mà không thử HTTP.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="what-is-the-connection-pool">What is the connection pool?</h2>
+<ul>
+<li><strong>Connection Pool</strong> là một tập hợp các kết nối (thường là tới cơ sở dữ liệu, server, hoặc dịch vụ khác) được tạo sẵn, duy trì và tái sử dụng thay vì mở/m đóng kết nối mới mỗi lần cần.</li>
+<li><strong>Ý tưởng</strong>: Thay vì mỗi yêu cầu mạng tạo một kết nối mới (tốn thời gian và tài nguyên), chương trình lấy kết nối từ “hồ chứa” (pool), dùng xong thì trả lại.</li>
+<li>Ưu điểm của Connection Pool
+<ul>
+<li><strong>Hiệu suất cao:</strong>
+<ul>
+<li>Giảm thời gian thiết lập kết nối (như TCP handshake hoặc xác thực database).</li>
+<li>Tái sử dụng kết nối tiết kiệm tài nguyên CPU và bộ nhớ.</li>
+</ul>
+</li>
+<li><strong>Quản lý tài nguyên</strong> - giới hạn số kết nối tối đa, tránh quá tải server/database</li>
+<li><strong>Tăng khả năng mở rộng</strong> - hỗ trợ nhiều yêu cầu đồng thời mà không cần tạo kết nối mới mỗi lần</li>
+<li><strong>Ổn định</strong> - tránh tình trạng “connection leak” (quên đóng kết nối) nếu được quản lý tốt.</li>
+</ul>
+</li>
+<li>Nhược điểm của Connection Pool
+<ul>
+<li><strong>Tốn tài nguyên ban đầu</strong> - cần khởi tạo và duy trì một số kết nối ngay cả khi không dùng.</li>
+<li><strong>Quản lý phức tạp</strong> - phải xử lý timeout, kết nối “chết”, hoặc hết kết nối trong pool.</li>
+<li><strong>Rủi ro nghẽn</strong> - nếu pool quá nhỏ và tất cả kết nối bị chiếm dụng, các yêu cầu mới phải đợi.</li>
+<li><strong>Cấu hình khó tối ưu</strong> - số lượng kết nối tối đa/thiểu, thời gian chờ… cần điều chỉnh phù hợp với ứng dụng</li>
+</ul>
+</li>
+</ul>
+<h3 id="how-to-implement-connection-pool-in-your-programing-language">How to implement connection pool in your programing language?</h3>
+<p><strong>Đối với Java</strong></p>
+<ol>
+<li>
+<p>Nếu dùng Maven, thêm vào pom.xml</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#7FDBCA">&#x3C;</span><span style="color:#22863A;--shiki-dark:#CAECE6">dependency</span><span style="color:#24292EFF;--shiki-dark:#7FDBCA">></span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#7FDBCA">    &#x3C;</span><span style="color:#22863A;--shiki-dark:#CAECE6">groupId</span><span style="color:#24292EFF;--shiki-dark:#7FDBCA">></span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">com.zaxxer</span><span style="color:#24292EFF;--shiki-dark:#7FDBCA">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#CAECE6">groupId</span><span style="color:#24292EFF;--shiki-dark:#7FDBCA">></span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#7FDBCA">    &#x3C;</span><span style="color:#22863A;--shiki-dark:#CAECE6">artifactId</span><span style="color:#24292EFF;--shiki-dark:#7FDBCA">></span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">HikariCP</span><span style="color:#24292EFF;--shiki-dark:#7FDBCA">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#CAECE6">artifactId</span><span style="color:#24292EFF;--shiki-dark:#7FDBCA">></span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#7FDBCA">    &#x3C;</span><span style="color:#22863A;--shiki-dark:#CAECE6">version</span><span style="color:#24292EFF;--shiki-dark:#7FDBCA">></span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">5.0.1</span><span style="color:#24292EFF;--shiki-dark:#7FDBCA">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#CAECE6">version</span><span style="color:#24292EFF;--shiki-dark:#7FDBCA">></span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#7FDBCA">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#CAECE6">dependency</span><span style="color:#24292EFF;--shiki-dark:#7FDBCA">></span></span></code></pre>
+</li>
+<li>
+<p>Cấu hình Connection Pool</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">import</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> com</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">zaxxer</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">hikari</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">HikariConfig</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">import</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> com</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">zaxxer</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">hikari</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">HikariDataSource</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">import</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> java</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">sql</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">Connection</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">import</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> java</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">sql</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">SQLException</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">public</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> class</span><span style="color:#6F42C1;--shiki-dark:#FFCB8B"> DatabaseConnectionPool</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    private</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> static</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> HikariDataSource</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> dataSource</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    static</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">        // Cấu hình pool</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">        HikariConfig</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> config</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> new</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> HikariConfig</span><span style="color:#6F42C1;--shiki-dark:#D9F5DD">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">        config</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setJdbcUrl</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">jdbc:mysql://localhost:3306/your_database</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// URL database</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">        config</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setUsername</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">your_username</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">        config</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setPassword</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">your_password</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">        config</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setMaximumPoolSize</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">10</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// Số kết nối tối đa</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">        config</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setMinimumIdle</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">5</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;      </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// Số kết nối tối thiểu khi không hoạt động</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">        config</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setIdleTimeout</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">30000</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;  </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// Thời gian chờ trước khi đóng kết nối nhàn rỗi (ms)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">        // Khởi tạo pool</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        dataSource </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> new</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> HikariDataSource</span><span style="color:#6F42C1;--shiki-dark:#D9F5DD">(</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">config</span><span style="color:#6F42C1;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">    // Lấy kết nối từ pool</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    public</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> static</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> Connection</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> getConnection</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> throws</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> SQLException</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">        return</span><span style="color:#1976D2;--shiki-dark:#C5E478"> dataSource</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">getConnection</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">    // Đóng pool (khi ứng dụng tắt)</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    public</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> static</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> closePool</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">        if</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> (dataSource </span><span style="color:#D32F2F;--shiki-dark:#C792EA">!=</span><span style="color:#1976D2;--shiki-dark:#82AAFF"> null</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> &#x26;&#x26;</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> !</span><span style="color:#1976D2;--shiki-dark:#C5E478">dataSource</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">isClosed</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">) {</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">            dataSource</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">close</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+</li>
+<li>
+<p>Sử dụng trong chương trình</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">import</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> java</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">sql</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">Connection</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">import</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> java</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">sql</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">PreparedStatement</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">import</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> java</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">sql</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">ResultSet</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">public</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> class</span><span style="color:#6F42C1;--shiki-dark:#FFCB8B"> Main</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    public</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> static</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> main</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#D32F2F;--shiki-dark:#C792EA">String</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">[] </span><span style="color:#24292EFF;--shiki-dark:#D7DBE0">args</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">        try</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> (</span><span style="color:#D32F2F;--shiki-dark:#C792EA">Connection</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> conn</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#1976D2;--shiki-dark:#C5E478"> DatabaseConnectionPool</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">getConnection</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">) {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">            PreparedStatement</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> stmt</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#1976D2;--shiki-dark:#C5E478"> conn</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">prepareStatement</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">SELECT * FROM users</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">            ResultSet</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> rs</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#1976D2;--shiki-dark:#C5E478"> stmt</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">executeQuery</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">            while</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> (</span><span style="color:#1976D2;--shiki-dark:#C5E478">rs</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">next</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">) {</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">                System</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#FAF39F;--shiki-dark-font-style:italic">out</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">println</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">User: </span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> +</span><span style="color:#1976D2;--shiki-dark:#C5E478"> rs</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">getString</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">name</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">))</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">            }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        } </span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">catch</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD"> (</span><span style="color:#D32F2F;--shiki-dark:#C792EA">SQLException</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> e</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">            e</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">printStackTrace</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        } </span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">finally</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">            DatabaseConnectionPool</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">closePool</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// Đóng pool khi xong</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+</li>
+</ol>
+<p><strong>Đối với ngôn ngữ khác</strong></p>
+<ul>
+<li>
+<p><strong>Python</strong>: Dùng thư viện như <code>sqlalchemy</code> với <code>pool_size</code> :</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">from</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> sqlalchemy </span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">import</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> create_engine</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">engine </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#6F42C1;--shiki-dark:#B2CCD6"> create_engine</span><span style="color:#212121;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">mysql+pymysql://user:pass@localhost/db</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D9F5DD">,</span><span style="color:#212121;--shiki-dark:#D7DBE0"> pool_size</span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C">5</span><span style="color:#212121;--shiki-dark:#D9F5DD">,</span><span style="color:#212121;--shiki-dark:#D7DBE0"> max_overflow</span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C">10</span><span style="color:#212121;--shiki-dark:#D6DEEB">)</span></span></code></pre>
+</li>
+<li>
+<p><strong>Node.js</strong>: Dùng <code>mysql2</code> với pool:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">const</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> mysql</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> require</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">mysql2</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">);</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">const</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> pool</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic"> mysql</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">createPool</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#24292EFF;--shiki-dark:#C792EA">{</span></span>
+<span class="line"><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">  host</span><span style="color:#D32F2F;--shiki-dark:#C792EA">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">localhost</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#C792EA">,</span></span>
+<span class="line"><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">  user</span><span style="color:#D32F2F;--shiki-dark:#C792EA">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">root</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#C792EA">,</span></span>
+<span class="line"><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">  password</span><span style="color:#D32F2F;--shiki-dark:#C792EA">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">password</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#C792EA">,</span></span>
+<span class="line"><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">  database</span><span style="color:#D32F2F;--shiki-dark:#C792EA">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">mydb</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#C792EA">,</span></span>
+<span class="line"><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">  connectionLimit</span><span style="color:#D32F2F;--shiki-dark:#C792EA">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 10</span><span style="color:#212121;--shiki-dark:#C792EA">,</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C792EA">}</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">);</span></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">pool</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">query</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">SELECT * FROM users</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD"> (</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0">err</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> results</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =></span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">  console</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0">results</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">);</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">});</span></span></code></pre>
+</li>
+<li>
+<p><strong>Golang</strong> dùng gói <code>database/sql</code> để quản lý pool tự động. Dưới đây là ví dụ kết nối tới MySQL:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="go"><code><span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">package</span><span style="color:#6F42C1;--shiki-dark:#D6DEEB"> main</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">import</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> (</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">    "</span><span style="color:#22863A;--shiki-dark:#ECC48D">database/sql</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">    _</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">github.com/go-sql-driver/mysql</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // Driver MySQL</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">    "</span><span style="color:#22863A;--shiki-dark:#ECC48D">log</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">func</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> main</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">() {</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">    // Khởi tạo connection pool</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">    db</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="color:#24292EFF;--shiki-dark:#C5E478">err</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> :=</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> sql</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Open</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">mysql</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">user:password@tcp(127.0.0.1:3306)/your_database</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    if</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> err</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> !=</span><span style="color:#1976D2;--shiki-dark:#FF5874"> nil</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">        log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Fatal</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">Error opening database:</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="color:#24292EFF;--shiki-dark:#C5E478">err</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    defer</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> db</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Close</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">() </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// Đóng pool khi chương trình kết thúc</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">    // Cấu hình pool</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">    db</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">SetMaxOpenConns</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">10</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)      </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// Số kết nối tối đa</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">    db</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">SetMaxIdleConns</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">5</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)       </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// Số kết nối nhàn rỗi tối đa</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">    db</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">SetConnMaxLifetime</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">30</span><span style="color:#D32F2F;--shiki-dark:#FFEB95">e</span><span style="color:#1976D2;--shiki-dark:#F78C6C">9</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">) </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// Thời gian sống tối đa của mỗi kết nối (30 giây, tính bằng nanosecond)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">    // Kiểm tra kết nối</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">    err</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> db</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Ping</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">()</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    if</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> err</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> !=</span><span style="color:#1976D2;--shiki-dark:#FF5874"> nil</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">        log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Fatal</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">Error pinging database:</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="color:#24292EFF;--shiki-dark:#C5E478">err</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">    log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Println</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">Connected to database!</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">    // Sử dụng kết nối từ pool</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">    rows</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="color:#24292EFF;--shiki-dark:#C5E478">err</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> :=</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> db</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Query</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">SELECT id, name FROM users</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    if</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> err</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> !=</span><span style="color:#1976D2;--shiki-dark:#FF5874"> nil</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">        log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Fatal</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">Error querying:</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="color:#24292EFF;--shiki-dark:#C5E478">err</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    defer</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> rows</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Close</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">    // Duyệt kết quả</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    for</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> rows</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Next</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">() {</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">        var</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> id</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> int</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">        var</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> name</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> string</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">        if</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> err</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> :=</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> rows</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Scan</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">&#x26;</span><span style="color:#24292EFF;--shiki-dark:#C5E478">id</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">&#x26;</span><span style="color:#24292EFF;--shiki-dark:#C5E478">name</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">); </span><span style="color:#24292EFF;--shiki-dark:#C5E478">err</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> !=</span><span style="color:#1976D2;--shiki-dark:#FF5874"> nil</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">            log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Fatal</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">Error scanning:</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="color:#24292EFF;--shiki-dark:#C5E478">err</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">        log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Printf</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">ID: </span><span style="color:#1976D2;--shiki-dark:#FF5874">%d</span><span style="color:#22863A;--shiki-dark:#ECC48D">, Name: </span><span style="color:#1976D2;--shiki-dark:#FF5874">%s</span><span style="color:#22863A;--shiki-dark:#F78C6C">\n</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="color:#24292EFF;--shiki-dark:#C5E478">id</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="color:#24292EFF;--shiki-dark:#C5E478">name</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+</li>
+</ul>
+<h2 id="what-is-socket">What is socket?</h2>
+<ul>
+<li><strong>Socket</strong> là một điểm cuối (endpoint) để giao tiếp hai chiều giữa hai chương trình qua mạng (hoặc trong cùng một máy). Nó giống như một <code>port</code> để gửi/nhận dữ liệu.</li>
+<li>Trong lập trình, socket là giao diện trừu tượng giữa ứng dụng và tầng mạng (TCP/IP, UDP).</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p><strong>Why socket is a “file” in linux?</strong></p>
+<ul>
+<li><strong>Why do we need socket?</strong>
+<ul>
+<li>Socket cho phép giao tiếp mạng (network communication) giữa client và server, hoặc giữa các tiến trình (inter-process communication - IPC).</li>
+<li>Nó trừu tượng hóa các chi tiết giao thức (như TCP, UDP) để lập trình viên dễ dàng gửi/nhận dữ liệu mà không cần xử lý tầng thấp (như IP header).</li>
+</ul>
+</li>
+<li><strong>Why socket is a “file” in Linux?</strong>
+<ul>
+<li>Trong Linux (và các hệ thống Unix), mọi thứ được biểu diễn như một “file” (philosophy “<code>everything is a file</code>”). Socket là một loại file đặc biệt (socket file descriptor) trong hệ thống file.</li>
+<li>Điều này cho phép dùng các hàm I/O chung như <code>read()</code>, <code>write()</code>, <code>close()</code> để thao tác với socket, tương tự file thông thường.</li>
+<li>Khi tạo socket bằng <code>socket()</code> trong C, nó trả về một file descriptor (số nguyên), được kernel quản lý giống như file.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>What is <code>src port</code> when you create a connection to a “server”?</strong></p>
+<ul>
+<li><strong>Src port (Source Port)</strong>: Là cổng nguồn, được hệ điều hành client gán ngẫu nhiên (ephemeral port) khi khởi tạo kết nối tới server.</li>
+<li>Cách hoạt động:
+<ul>
+<li>Khi client (ví dụ: trình duyệt) mở kết nối TCP đến server (như “<a href="http://google.com/">google.com:80</a>”), hệ điều hành chọn một cổng nguồn tạm thời (ephemeral port) từ dải cổng cao (thường 1024-65535).</li>
+<li>Cặp <code>(src IP, src port, dest IP, dest port)</code> tạo thành một định danh duy nhất cho kết nối (TCP tuple).</li>
+</ul>
+</li>
+<li>Ví dụ: Trình duyệt kết nối đến <a href="http://google.com:443/">google.com:443</a>, hệ điều hành có thể gán <code>src port = 54321</code>. Kết nối sẽ là <code>(client_IP:54321, google_IP:443)</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>What one server can handle multiple connections to the same port?</strong></p>
+<ul>
+<li>Server dùng <strong>multiplexing</strong> để xử lý nhiều kết nối trên cùng một cổng:
+<ul>
+<li>Khi client kết nối đến server (ví dụ: port 80), server chấp nhận kết nối qua socket lắng nghe (listening socket) và tạo một socket mới (connected socket) cho mỗi client.</li>
+<li>Mỗi kết nối được phân biệt bằng <strong>tuple</strong> <code>(src IP, src port, dest IP, dest port)</code>, nên dù cùng <code>dest port</code> (port 80), các kết nối vẫn khác nhau do <code>src IP</code> hoặc <code>src port</code> khác.</li>
+</ul>
+</li>
+<li>Công cụ:
+<ul>
+<li><strong>select(), poll(), epoll()</strong> (trong Linux) hoặc <strong>I/O completion ports</strong> (Windows) để quản lý nhiều socket cùng lúc.</li>
+<li><strong>Multithreading</strong> hoặc <strong>goroutines</strong> (Go) để xử lý từng kết nối riêng biệt.</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>: 100 client kết nối tới port 80, server phân biệt nhờ src port khác nhau từ mỗi client.</li>
+</ul>
+</li>
+<li>
+<p><strong>What is the maximum number of connections a server can handle? (if it has unlimited resource) (in case of the same client and in case of multiple clients)</strong></p>
+<ul>
+<li>Trường hợp lý thuyết (vô hạn tài nguyên):
+<ul>
+<li>Một server lắng nghe trên 1 port (ví dụ: 80) có thể xử lý tối đa <strong>$2^{32}$ (src IP) × $2^{16}$ (src port)</strong> = $2^{48}$ <strong>kết nối</strong> (khoảng 281 nghìn tỷ), vì:
+<ul>
+<li>src IP: 32 bit (IPv4).</li>
+<li>src port: 16 bit (0-65535).</li>
+</ul>
+</li>
+<li>Tuy nhiên, thực tế bị giới hạn bởi tài nguyên (CPU, RAM, hệ điều hành) và số file descriptor tối đa (thường 1024 hoặc cấu hình cao hơn).</li>
+</ul>
+</li>
+<li><strong>Same client:</strong>
+<ul>
+<li>Từ 1 client (1 src IP), tối đa là <strong>65,535 kết nối</strong> (do src port từ 0-65535). Thực tế thấp hơn vì hệ điều hành dành một số cổng cho mục đích khác.</li>
+</ul>
+</li>
+<li><strong>Multiple clients</strong>:
+<ul>
+<li>Với nhiều client, giới hạn tăng lên, nhưng vẫn phụ thuộc vào cấu hình server (số socket mở, băng thông)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>When you open multiple tabs on your chrome, how OS knows which packet (both sending and receiving) correspond to which tab? (how about in case you open many tabs to the same page “for eg: google.com”)</strong></p>
+<ul>
+<li><strong>Cách OS phân biệt:</strong>
+<ul>
+<li>Mỗi tab trong Chrome tạo một kết nối TCP riêng, với <strong>src port</strong> khác nhau (dù cùng <strong>src IP</strong> và <strong>dest IP/port</strong>).</li>
+<li>OS dùng tuple <code>(src IP, src port, dest IP, dest port)</code> để ánh xạ gói tin đến socket tương ứng.</li>
+<li>Chrome quản lý socket trong tiến trình của nó và gắn kết quả với tab cụ thể.</li>
+</ul>
+</li>
+<li><strong>Trường hợp nhiều tab tới <a href="http://google.com/">google.com</a>:</strong>
+<ul>
+<li>Các kết nối vẫn khác nhau do <code>src port</code> ngẫu nhiên. Ví dụ: <code>(client_IP:54321, google_IP:443)</code> và <code>(client_IP:54322, google_IP:443)</code>.</li>
+<li>OS không quan tâm tab, chỉ chuyển gói tin đến socket, còn Chrome xử lý nội bộ để hiển thị đúng tab.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>What are the maximum numbers of connection your machine can connect to “google.com” (if you have unlimited resource)</strong></p>
+<ul>
+<li>Từ 1 máy (1 src IP) đến “<a href="http://google.com/">google.com</a>” (1 dest IP, port 443):
+<ul>
+<li>Tối đa là <strong>65,535 kết nối</strong>, vì giới hạn bởi số cổng nguồn (ephemeral ports) từ 0-65535.</li>
+</ul>
+</li>
+<li>Thực tế:
+<ul>
+<li>Hệ điều hành giới hạn số file descriptor (thường 1024, có thể tăng bằng <code>ulimit</code>).</li>
+<li>Chrome cũng có giới hạn nội bộ (thường 6 kết nối đồng thời đến cùng domain với HTTP/1.1).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Can two processes listen to the same port on your machine? Why? How?</strong></p>
+<ul>
+<li>
+<p><strong>Không thể (mặc định):</strong></p>
+<ul>
+<li>Trong TCP/UDP, chỉ một tiến trình được phép bind (lắng nghe) trên một cổng cụ thể của một địa chỉ IP, vì kernel không biết chuyển gói tin đến đâu nếu có xung đột.</li>
+<li>Lỗi: <code>Address already in use</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Ngoại lệ (có thể):</strong></p>
+<ul>
+<li>
+<p>Dùng tùy chọn <code>SO_REUSEADDR</code> hoặc <code>SO_REUSEPORT</code> (trong Linux).</p>
+<ul>
+<li><code>SO_REUSEADDR</code>: Cho phép tái sử dụng cổng nếu kết nối cũ đang ở trạng thái <code>TIME_WAIT</code>.</li>
+<li><code>SO_REUSEPORT</code>: (Linux 3.9+) Cho phép nhiều tiến trình bind cùng port, kernel phân phối gói tin (dùng cho load balancing).</li>
+</ul>
+</li>
+<li>
+<p>Code <strong>Golang</strong> ví dụ:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="go"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">ln</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="color:#24292EFF;--shiki-dark:#C5E478">err</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> :=</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> net</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Listen</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">tcp</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">:8080</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">ln</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.(</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#6F42C1;--shiki-dark:#D6DEEB">net</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;--shiki-dark:#D6DEEB">TCPListener</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">).</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">SetReusePort</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#1976D2;--shiki-dark:#FF5874">true</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Ứng dụng:</strong> Web server như Nginx dùng <code>SO_REUSEPORT</code> để nhiều worker lắng nghe cùng port.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>What is <code>buffer</code>? why we always need buffer when working with “file”?</strong></p>
+<ul>
+<li><strong>Buffer</strong>: Là vùng bộ nhớ tạm để lưu dữ liệu trước khi ghi/đọc từ file hoặc socket.</li>
+<li>Tại sao cần?:
+<ul>
+<li><strong>Hiệu suất</strong>: Đọc/ghi trực tiếp từng byte vào file/socket rất chậm. Buffer gom dữ liệu thành khối lớn, giảm số lần gọi hệ thống (system call).</li>
+<li><strong>Đồng bộ</strong>: Socket/file hoạt động bất đồng bộ, buffer giúp điều hòa tốc độ giữa sender/receiver.</li>
+<li><strong>Giảm tải:</strong> Tránh truy cập phần cứng (đĩa, mạng) liên tục.</li>
+<li>Ví dụ: Đọc 1MB từ file mà không buffer sẽ chậm hơn đọc vào buffer rồi xử lý.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>What is <code>unix socket</code>? When to use it?</strong></p>
+<ul>
+<li>
+<p>Unix Socket (Unix Domain Socket):</p>
+<ul>
+<li>Unix socket (hoặc Unix domain socket) là cơ chế giao tiếp giữa các tiến trình (IPC) trên cùng một máy, không qua mạng.</li>
+<li>Nó dùng file trong hệ thống file (ví dụ: <code>/tmp/mysocket.sock</code>) làm điểm kết nối thay vì IP/port.</li>
+</ul>
+</li>
+<li>
+<p>Khi nào dùng?</p>
+<ul>
+<li><strong>IPC cục bộ:</strong> Khi hai tiến trình trên cùng máy cần giao tiếp nhanh (ví dụ: Nginx và PHP-FPM).</li>
+<li><strong>Hiệu suất:</strong> Nhanh hơn TCP vì không qua tầng mạng (network stack).</li>
+<li><strong>Bảo mật:</strong> Chỉ hoạt động trong máy, không tiếp xúc mạng bên ngoài.</li>
+<li>Ví dụ: Giao tiếp giữa server Nginx và ứng dụng backend.</li>
+</ul>
+</li>
+<li>
+<p>Ưu điểm</p>
+<ul>
+<li>Nhanh hơn TCP (không qua stack mạng).</li>
+<li>Bảo mật hơn (chỉ trong máy).</li>
+</ul>
+</li>
+<li>
+<p>Code <strong>Golang</strong> ví dụ:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="go"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">ln</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="color:#24292EFF;--shiki-dark:#C5E478">err</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> :=</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> net</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Listen</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">unix</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">/tmp/mysocket</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">conn</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="color:#24292EFF;--shiki-dark:#C5E478">err</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> :=</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> ln</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Accept</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">()</span></span></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="what-is-tcp-proxy-reverse-proxy-and-vpn">What is TCP proxy? reverse proxy? and VPN?</h2>
+<ul>
+<li><strong>TCP Proxy</strong>:
+<ul>
+<li>Là một máy trung gian chuyển tiếp dữ liệu TCP giữa client và server.</li>
+<li>Hoạt động ở tầng giao vận (layer 4), không quan tâm nội dung dữ liệu.</li>
+<li>Ví dụ: Chuyển gói tin từ client tới server qua port cụ thể.</li>
+</ul>
+</li>
+<li><strong>Reverse Proxy</strong>:
+<ul>
+<li>Là proxy đứng trước server, nhận request từ client và chuyển đến server phù hợp.</li>
+<li>Hoạt động ở tầng ứng dụng (layer 7), có thể phân tích HTTP (header, URL).</li>
+<li>Ví dụ: Nginx nhận request và gửi tới backend server.</li>
+</ul>
+</li>
+<li><strong>VPN (Virtual Private Network)</strong>:
+<ul>
+<li>Tạo đường hầm mã hóa giữa client và server qua mạng công cộng (Internet).</li>
+<li>Giả lập mạng riêng, dùng để bảo mật và truy cập tài nguyên nội bộ.</li>
+<li>Ví dụ: OpenVPN mã hóa dữ liệu từ máy bạn tới server công ty.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p><strong>How your router at your home works?</strong></p>
+<ul>
+<li><strong>Router</strong> là thiết bị kết nối mạng nội bộ (LAN - Local Area Network) của mày với mạng bên ngoài (WAN - Wide Area Network, như Internet).</li>
+<li><strong>Cách hoạt động cơ bản</strong>:
+<ol>
+<li><strong>Kết nối WAN</strong>: Router nhận IP công cộng (public IP) từ ISP (nhà cung cấp Internet) qua modem (thường dùng DHCP hoặc PPPoE).</li>
+<li><strong>Tạo LAN</strong>: Router tạo mạng nội bộ (LAN) bằng cách gán IP riêng (private IP) cho các thiết bị trong nhà (như <code>192.168.1.x</code>) qua DHCP.</li>
+<li><strong>Chuyển tiếp gói tin</strong>:
+<ul>
+<li>Router dùng <strong>NAT (Network Address Translation)</strong> để chuyển gói tin từ LAN ra WAN và ngược lại.</li>
+<li>Khi mày gửi yêu cầu (ví dụ: vào “google.com”), router thay đổi địa chỉ nguồn (src IP) thành public IP của nó, rồi gửi đi.</li>
+<li>Khi nhận phản hồi, router chuyển gói tin về đúng thiết bị trong LAN dựa trên bảng NAT.</li>
+</ul>
+</li>
+<li><strong>Định tuyến</strong>: Router đọc header IP của gói tin (src IP, dst IP) để quyết định gửi gói tin đi đâu (LAN hay WAN).</li>
+</ol>
+</li>
+<li><strong>Ví dụ</strong>:
+<ul>
+<li>Máy tính (<code>192.168.1.100</code>) gửi yêu cầu đến Google (<code>142.250.190.14</code>).</li>
+<li>Router thay src IP thành public IP (ví dụ: <code>203.0.113.1</code>), gửi đi.</li>
+<li>Google trả lời về <code>203.0.113.1</code>, router dùng NAT để gửi lại cho <code>192.168.1.100</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Inside LAN network, it uses IP or MAC address? Why?</strong></p>
+<ul>
+<li>Trong LAN: Router (và các thiết bị khác) dùng <strong>cả IP và MAC address</strong>, nhưng ở các tầng khác nhau:
+<ul>
+<li><strong>MAC address:</strong> Dùng ở tầng liên kết dữ liệu (Data Link Layer - Layer 2).</li>
+<li><strong>IP address:</strong> Dùng ở tầng mạng (Network Layer - Layer 3).</li>
+</ul>
+</li>
+<li><strong>Tại sao dùng cả hai?</strong>
+<ul>
+<li><strong>MAC address</strong>:
+<ul>
+<li>Là địa chỉ phần cứng duy nhất của thiết bị (như card mạng), dùng để giao tiếp trực tiếp trong cùng mạng LAN.</li>
+<li>Khi gửi gói tin trong LAN, giao thức <strong>ARP (Address Resolution Protocol)</strong> ánh xạ IP sang MAC để tìm đúng thiết bị.</li>
+<li>Ví dụ: Máy A (<code>192.168.1.100</code>) muốn gửi gói tin đến Máy B (<code>192.168.1.101</code>), nó dùng ARP để lấy MAC của Máy B và gửi qua switch.</li>
+</ul>
+</li>
+<li><strong>IP address</strong>:
+<ul>
+<li>Dùng để định tuyến gói tin giữa các mạng khác nhau (LAN → WAN).</li>
+<li>Router cần IP để biết gói tin đi ra ngoài (WAN) hay ở lại trong LAN.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Tóm lại trong LAN: <strong>MAC</strong> để gửi gói tin giữa các thiết bị qua switch, <strong>IP</strong> để router quyết định có chuyển ra ngoài không.</li>
+</ul>
+</li>
+<li>
+<p><strong>How does it know which packet comes from (or arrive at) which machine?</strong></p>
+<ul>
+<li>
+<p>Gửi từ máy trong LAN ra ngoài - Router dùng <strong>NAT table</strong>:</p>
+<ul>
+<li>
+<p>Khi máy (<code>192.168.1.100:54321</code>) gửi gói tin ra Google (<code>142.250.190.14:443</code>), router thay src IP thành public IP (<code>203.0.113.1</code>) và ghi lại trong bảng NAT.</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Private IP:Port       Public IP:Port       Dest IP:Port</span></span>
+<span class="line"><span>192.168.1.100:54321   203.0.113.1:54321    142.250.190.14:443</span></span></code></pre>
+</li>
+<li>
+<p>Router giữ thông tin này để biết gói tin thuộc về máy nào.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Nhận từ ngoài vào LAN:</p>
+<ul>
+<li>Khi Google trả lời (dst IP: <code>203.0.113.1:54321</code>), router tra bảng NAT:
+<ul>
+<li>Thấy <code>203.0.113.1:54321</code> ánh xạ về <code>192.168.1.100:54321</code>.</li>
+<li>Router thay dst IP thành <code>192.168.1.100</code> và gửi gói tin vào LAN.</li>
+</ul>
+</li>
+<li>Trong LAN, switch dùng MAC address để chuyển gói tin đến đúng máy.</li>
+</ul>
+</li>
+<li>
+<p><strong>Kết luận:</strong> Router dựa vào bảng NAT (IP/port mapping) để biết gói tin thuộc về máy nào.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>What is the difference between Hub and Switch inside LAN?</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tiêu chí</th><th>Hub</th><th>Switch</th></tr></thead><tbody><tr><td>Tầng hoạt động</td><td>Layer 1 (Physical)</td><td>Layer 2 (Data Link)</td></tr><tr><td>Cách xử lý</td><td>Phát tất cả gói tin đến mọi cổng</td><td>Chuyển gói tin đến đúng cổng (MAC)</td></tr><tr><td>Hiệu suất</td><td>Thấp, dễ tắc nghẽn (collision)</td><td>Cao, không collision</td></tr><tr><td>Thông minh</td><td>Không, chỉ khuếch đại tín hiệu</td><td>Có, lưu bảng MAC để định tuyến</td></tr><tr><td>Ví dụ</td><td>Cũ, hiếm dùng</td><td>Phổ biến trong LAN hiện đại</td></tr></tbody></table>
+<ul>
+<li><strong>Hub</strong>: Như “ổ cắm điện”, nhận gói tin từ một máy rồi gửi đồng thời đến tất cả máy khác → lãng phí băng thông, dễ xung đột.</li>
+<li><strong>Switch</strong>: “Thông minh”, học địa chỉ MAC của từng cổng (MAC table), chỉ gửi gói tin đến đúng đích → hiệu quả hơn.</li>
+</ul>
+</li>
+<li>
+<p><strong>How <code>src IP/PORT</code> and <code>dst IP/PORT</code> change on the way to the server?</strong></p>
+<ul>
+<li>Trong LAN → Router:
+<ul>
+<li>Src IP: IP cục bộ (<code>192.168.1.x</code>).</li>
+<li>Src Port: Port ngẫu nhiên của client.</li>
+<li>Dst IP: IP server (<code>142.250.190.78</code>).</li>
+<li>Dst Port: Port server (80/443).</li>
+</ul>
+</li>
+<li>Router → Server (qua NAT):
+<ul>
+<li>Src IP: IP công cộng của router.</li>
+<li>Src Port: Port tạm (do NAT gán).</li>
+<li>Dst IP/Port: Không đổi.</li>
+</ul>
+</li>
+<li><strong>Trở về</strong>: Router dùng bảng NAT để ánh xạ lại IP/Port về máy trong LAN.</li>
+</ul>
+</li>
+<li>
+<p><strong>How <code>load-balancer</code> works?</strong></p>
+<ul>
+<li><strong>Load Balancer</strong>:
+<ul>
+<li>Phân phối request từ client tới nhiều server backend.</li>
+<li>Ngược với router (chuyển gói tin ra ngoài), load balancer gom traffic vào và phân phối.</li>
+</ul>
+</li>
+<li><strong>Cách hoạt động</strong>:
+<ol>
+<li>Nhận request từ client (qua IP công cộng của load balancer).</li>
+<li>Chọn server backend dựa trên thuật toán (round-robin, least connections, IP hash).</li>
+<li>Chuyển tiếp request tới server được chọn.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>When we send a packet to a <code>load-balancer</code> how does it forward to the desired server?</strong></p>
+<ul>
+<li><strong>Cách chuyển tiếp</strong> - Load balancer có hai cách chính để chuyển gói tin:
+<ol>
+<li>NAT (Network Address Translation)
+<ul>
+<li>LB thay đổi <strong>dst IP</strong> của gói tin từ VIP (IP của LB) thành IP của server backend.</li>
+<li>Ví dụ:
+<ul>
+<li>Client gửi: <code>src: 192.168.1.100:54321</code>, <code>dst: 142.250.190.14:80</code>.</li>
+<li>LB thay đổi: <code>dst: 10.0.0.1:80</code> (IP backend).</li>
+</ul>
+</li>
+<li>LB lưu ánh xạ trong bảng NAT để biết cách gửi phản hồi về client.</li>
+</ul>
+</li>
+<li>Proxy (Application Layer)
+<ul>
+<li>LB đóng vai trò trung gian, nhận toàn bộ yêu cầu, rồi tạo kết nối mới đến server backend.</li>
+<li>LB đọc nội dung (như HTTP header) để chọn server (content-based routing).</li>
+<li>Ví dụ: LB thấy header <code>Host: [api.example.com](http://api.example.com/)</code> → gửi đến server API.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>Có giữ dữ liệu trong bộ nhớ không?</strong>
+<ul>
+<li><strong>Có</strong>, LB cần lưu một số thông tin trong RAM:
+<ul>
+<li><strong>Bảng NAT:</strong> Nếu dùng NAT, LB lưu ánh xạ giữa client (<code>src IP:port</code>) và server backend (<code>dst IP:port</code>).</li>
+<li><strong>Session state:</strong> Để duy trì “stickiness” (gửi yêu cầu từ cùng client đến cùng server), LB lưu session ID hoặc cookie.</li>
+<li><strong>Danh sách backend:</strong> LB giữ danh sách server (IP, trạng thái hoạt động) và thống kê (số kết nối, tải).</li>
+</ul>
+</li>
+<li>Thông tin này thường nhỏ (vài KB mỗi kết nối), nhưng với hàng triệu kết nối, RAM có thể tăng đáng kể.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>When the server wants to send data back to the client, does the connection need to go through the <code>load-balancer</code>?</strong></p>
+<ul>
+<li>Tuỳ theo cấu hình:
+<ul>
+<li>Qua load balancer (Symmetric):
+<ul>
+<li>Server gửi phản hồi về LB (src: backend IP, dst: VIP).</li>
+<li>LB thay đổi src IP thành VIP, rồi gửi về client.</li>
+<li>Cách này phổ biến với NAT hoặc proxy, đảm bảo client chỉ thấy VIP.</li>
+<li>Ví dụ:
+<ul>
+<li>Backend gửi: src: <code>10.0.0.1:80</code>, <code>dst: 192.168.1.100:54321</code>.</li>
+<li>LB thay đổi: src: <code>142.250.190.14:80</code>, <code>dst: 192.168.1.100:54321</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Trực tiếp đến client (Direct Server Return - DSR):
+<ul>
+<li>Server gửi thẳng phản hồi về client, bỏ qua LB.</li>
+<li>LB chỉ xử lý chiều đi (client → server), còn chiều về (server → client) đi thẳng.</li>
+<li>Cần cấu hình đặc biệt (backend phải biết VIP và giả lập nó).</li>
+<li>Ưu điểm: Giảm tải cho LB, nhưng phức tạp hơn.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Thường gặp:</strong> Phản hồi đi qua LB để đơn giản hóa quản lý và giữ tính nhất quán</li>
+</ul>
+</li>
+<li>
+<p><strong>What is different between <code>reverse proxy</code> and <code>load-balancer</code>?</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tiêu chí</th><th><strong>Reverse Proxy</strong></th><th><strong>Load Balancer</strong></th></tr></thead><tbody><tr><td>Mục đích chính</td><td>Chuyển tiếp yêu cầu đến backend</td><td>Phân phối yêu cầu đến nhiều server</td></tr><tr><td>Tầng hoạt động</td><td>Thường Layer 7 (Application - HTTP)</td><td>Layer 4 (Transport - TCP) hoặc Layer 7</td></tr><tr><td>Logic</td><td>Dựa trên nội dung (URL, header)</td><td>Dựa trên thuật toán (round-robin, v.v.)</td></tr><tr><td>Chức năng bổ sung</td><td>Cache, SSL termination, nén dữ liệu</td><td>Chỉ tập trung phân phối tải</td></tr><tr><td>Ví dụ</td><td>Nginx làm reverse proxy</td><td>HAProxy, AWS ELB làm load balancer</td></tr></tbody></table>
+<ul>
+<li><strong>Reverse Proxy</strong>:
+<ul>
+<li>Tập trung vào tầng ứng dụng (layer 7), xử lý HTTP (caching, SSL termination).</li>
+<li>Có thể làm load balancing, nhưng không phải chức năng chính.</li>
+</ul>
+</li>
+<li><strong>Load Balancer</strong>:
+<ul>
+<li>Tập trung phân phối tải, có thể hoạt động ở Layer 4 (TCP) hoặc Layer 7 (HTTP).</li>
+<li>Không nhất thiết làm proxy, có thể chỉ dùng NAT.</li>
+</ul>
+</li>
+<li><strong>Giống nhau:</strong> Cả hai đều đứng trước backend, che giấu server thật từ client.</li>
+</ul>
+</li>
+<li>
+<p><strong>Can <code>load-balancer</code> be a bottleneck? (Because it is the end-point of too many requests) (bottleneck about RAM or CPU or Network?)</strong></p>
+<ul>
+<li><strong>Có, LB có thể là bottleneck</strong> - Vì LB là điểm tập trung lưu lượng (single point of entry), nếu không đủ tài nguyên, nó sẽ giới hạn hiệu suất hệ thống.</li>
+<li><strong>Các loại bottleneck</strong>:
+<ul>
+<li><code>RAM</code>
+<ul>
+<li>LB lưu bảng NAT, session state, danh sách backend → với hàng triệu kết nối, RAM có thể cạn kiệt.</li>
+<li>Ví dụ: 1 triệu kết nối, mỗi kết nối 1KB → cần 1GB RAM chỉ cho bảng NAT.</li>
+</ul>
+</li>
+<li><code>CPU</code>
+<ul>
+<li>Xử lý NAT, kiểm tra header (Layer 7), mã hóa SSL (nếu có) đòi hỏi CPU cao.</li>
+<li>Với lưu lượng lớn, CPU yếu sẽ không xử lý kịp.</li>
+</ul>
+</li>
+<li><code>Network</code>
+<ul>
+<li>LB nhận toàn bộ traffic vào/ra → băng thông NIC (network interface card) có thể bị bão hòa.</li>
+<li>Ví dụ: NIC 1Gbps không đủ cho 10Gbps lưu lượng.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Giải pháp tránh bottleneck</strong>:
+<ul>
+<li><strong>Scale horizontally:</strong> Dùng nhiều LB (ví dụ: DNS round-robin hoặc LB cấp cao hơn).</li>
+<li><strong>Scale vertically:</strong> Tăng RAM, CPU, băng thông cho LB.</li>
+<li><strong>DSR:</strong> Để server gửi phản hồi trực tiếp, giảm tải mạng cho LB.</li>
+<li><strong>Hardware LB:</strong> Dùng thiết bị chuyên dụng (F5, Citrix) thay vì phần mềm.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul> </article> <hr class="my-8 border-dashed"> <div class="opacity-80 sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/satnaing/astro-paper/edit/main/src/data/blog/computer-science/networking/basic-knowledge.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/networking/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Networking</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/computer-science/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Computer Science</span> </a> </li> </ul> <div class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"> <div class="flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start"> <span class="italic">Share this post on:</span> <div class="text-center"> <a href="https://wa.me/?text=https://thuongnn.dev/posts/computer-science/networking/basic-knowledge/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> <span class="sr-only">Share this post via WhatsApp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://thuongnn.dev/posts/computer-science/networking/basic-knowledge/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://thuongnn.dev/posts/computer-science/networking/basic-knowledge/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://thuongnn.dev/posts/computer-science/networking/basic-knowledge/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg> <span class="sr-only">Share this post via Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://thuongnn.dev/posts/computer-science/networking/basic-knowledge/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg> <span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&#38;body=https://thuongnn.dev/posts/computer-science/networking/basic-knowledge/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Share this post via email</span> </a> </div> </div> <button id="back-to-top" class="focus-outline py-1 whitespace-nowrap hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span>Back to Top</span> </button> </div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/computer-science/operating-system/basic-knowledge" class="flex w-full gap-1 hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">[Computer Science] Kiến thức về OS cơ bản</div> </div> </a> <a href="/posts/computer-science/how-to-add-subtract-multiply-divide-decimals" class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">Máy tính cộng trừ nhân chia số thập phân như thế nào?</div> </div> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="w-full mt-auto"> <div class="max-w-3xl mx-auto px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://github.com/thuongnn" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title=" thuongnn.dev on Github"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only"> thuongnn.dev on Github</span> </a><a href="https://www.facebook.com/thuongnn97" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">thuongnn.dev on Facebook</span> </a><a href="https://www.linkedin.com/in/thuongnn/" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on LinkedIn"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">thuongnn.dev on LinkedIn</span> </a><a href="mailto:thuongnn1997@gmail.com" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to thuongnn.dev"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to thuongnn.dev</span> </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2025</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ml-2 opacity-0 group-hover:opacity-100 focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "copy-code absolute right-3 -top-3 rounded bg-muted px-2 py-1 text-xs leading-4 text-foreground font-medium";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    document.querySelector("#back-to-top")?.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+  }
+  backToTop();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>

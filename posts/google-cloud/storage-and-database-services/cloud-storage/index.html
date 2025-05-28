@@ -1,0 +1,539 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://thuongnn.dev/posts/google-cloud/storage-and-database-services/cloud-storage/"><meta name="generator" content="Astro v5.5.2"><!-- General Meta Tags --><title>[Google Cloud] Cloud Storage | thuongnn.dev</title><meta name="title" content="[Google Cloud] Cloud Storage | thuongnn.dev"><meta name="description" content="Tìm hiểu về Cloud Storage trong Google Cloud."><meta name="author" content="thuongnn"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="[Google Cloud] Cloud Storage | thuongnn.dev"><meta property="og:description" content="Tìm hiểu về Cloud Storage trong Google Cloud."><meta property="og:url" content="https://thuongnn.dev/posts/google-cloud/storage-and-database-services/cloud-storage/"><meta property="og:image" content="https://thuongnn.dev/posts/google-cloud/storage-and-database-services/cloud-storage/index.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2022-10-13T21:41:35.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://thuongnn.dev/posts/google-cloud/storage-and-database-services/cloud-storage/"><meta property="twitter:title" content="[Google Cloud] Cloud Storage | thuongnn.dev"><meta property="twitter:description" content="Tìm hiểu về Cloud Storage trong Google Cloud."><meta property="twitter:image" content="https://thuongnn.dev/posts/google-cloud/storage-and-database-services/cloud-storage/index.png"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"[Google Cloud] Cloud Storage | thuongnn.dev","image":"https://thuongnn.dev/posts/google-cloud/storage-and-database-services/cloud-storage/index.png","datePublished":"2022-10-13T21:41:35.000Z","author":[{"@type":"Person","name":"thuongnn","url":"https://thuongnn.dev/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="thuongnn.dev" href="https://thuongnn.dev/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CMTcOisY.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/about.BH1RUIRV.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+[data-astro-image]{width:100%;height:auto;object-fit:var(--fit);object-position:var(--pos);aspect-ratio:var(--w) / var(--h)}[data-astro-image=responsive]{max-width:calc(var(--w) * 1px);max-height:calc(var(--h) * 1px)}[data-astro-image=fixed]{width:calc(var(--w) * 1px);height:calc(var(--h) * 1px)}
+</style><style>[data-astro-transition-scope="astro-fam6wyqg-1"] { view-transition-name: google-cloud-cloud-storage; }@layer astro { ::view-transition-old(google-cloud-cloud-storage) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(google-cloud-cloud-storage) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(google-cloud-cloud-storage) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(google-cloud-cloud-storage) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: google-cloud; }@layer astro { ::view-transition-old(google-cloud) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(google-cloud) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(google-cloud) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(google-cloud) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="absolute -top-full left-16 z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"> <a href="/" class="absolute py-1 text-2xl leading-7 font-semibold whitespace-nowrap sm:static"> thuongnn.dev </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:ml-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="max-w-3xl mx-auto px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-3xl items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="mx-auto w-full max-w-3xl px-4 pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-fam6wyqg-1"> [Google Cloud] Cloud Storage </h1> <div class="flex items-center gap-4"> <div class="flex items-end space-x-2 opacity-80 my-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg> <span class="sr-only">Published:</span> <span class="text-sm italic sm:text-base"> <time datetime="2022-10-13T21:41:35.000Z">13 Oct, 2022</time> <span aria-hidden="true"> | </span> <span class="sr-only">&nbsp;at&nbsp;</span> <span class="text-nowrap">09:41 PM</span> </span> </div> <div class="opacity-80 max-sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/satnaing/astro-paper/edit/main/src/data/blog/google-cloud/storage-and-database-services/cloud-storage.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> </div> <article id="article" class="mx-auto prose mt-8 max-w-3xl"> <h2 id="table-of-contents">Table of contents</h2>
+<p></p><details><summary>Open Table of contents</summary><p></p>
+<ul>
+<li><a href="#gi%E1%BB%9Bi-thi%E1%BB%87u">Giới thiệu</a>
+<ul>
+<li><a href="#cloud-storage---objects-and-buckets"><strong>Cloud Storage - Objects and Buckets</strong></a></li>
+<li><a href="#cloud-storage---storage-classes"><strong>Cloud Storage - Storage Classes</strong></a></li>
+<li><a href="#cloud-storage---uploading-and-downloading-objects"><strong>Cloud Storage - Uploading and Downloading Objects</strong></a></li>
+<li><a href="#object-versioning"><strong>Object Versioning</strong></a></li>
+<li><a href="#object-lifecycle-management"><strong>Object Lifecycle Management</strong></a></li>
+<li><a href="#cloud-storage---encryption"><strong>Cloud Storage - Encryption</strong></a></li>
+<li><a href="#cloud-storage---scenarios"><strong>Cloud Storage - Scenarios</strong></a></li>
+</ul>
+</li>
+<li><a href="#h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%AD-d%E1%BB%A5ng">Hướng dẫn sử dụng</a>
+<ul>
+<li><a href="#cloud-storage---command-line---gsutil---1"><strong>Cloud Storage - Command Line - gsutil - 1</strong></a></li>
+<li><a href="#cloud-storage---command-line---gsutil---2"><strong>Cloud Storage - Command Line - gsutil - 2</strong></a></li>
+</ul>
+</li>
+</ul>
+<p></p></details><p></p>
+<h2 id="giới-thiệu">Giới thiệu</h2>
+<p><img src="https://github.com/user-attachments/assets/623b564f-a67f-4f0b-b68b-e8d4119e8001" alt="CloudStorage.png"></p>
+<ul>
+<li>Đây là dịch vụ storage phổ biến nhất, với khả năng linh hoạt và chi phí sử dụng thấp.</li>
+<li>Có thể lưu trữ các objects với dung lượng lưu trữ lớn, sử dụng cách tiếp cận <strong>key-value</strong>:
+<ul>
+<li>GCP coi các object mà người dùng upload lên như là một đơn vị và không thể cập nhật chúng sau khi upload ⇒ Vậy nên chú ý khi làm việc với Cloud Storage, GCP có hỗ trợ đánh phiên bản nếu như chúng ta muốn cập nhật chúng.</li>
+<li>Hỗ trợ Access Control ở tầng Object.</li>
+<li>Còn gọi với tên khác là <strong>Object Storage</strong>.</li>
+</ul>
+</li>
+<li>Cung cấp REST API để truy cập và modify objects, GCP cung cấp CLI (gsutil) &#x26; Client Libraries (C++, C#, Java, Node.js, PHP, Python &#x26; Ruby) để làm việc này.</li>
+<li>Lưu trữ nhiều loại tệp dữ liệu - text, binary, backup và archives.
+<ul>
+<li>Media files and archives, Application packages and logs</li>
+<li>Backups of your databases or storage devices</li>
+<li>Staging data during on-premise to cloud database migration</li>
+</ul>
+</li>
+</ul>
+<h3 id="cloud-storage---objects-and-buckets"><strong>Cloud Storage - Objects and Buckets</strong></h3>
+<ul>
+<li>Trong Cloud Storage các <strong>Object</strong> sẽ được lưu trữ trong một thứ gọi là <strong>Buckets</strong>.
+<ul>
+<li>Bucket là <strong>globally unique</strong> của GCP vậy nên tên Bucket sẽ không được trùng nhau.</li>
+<li>Bucket names sẽ được sử dụng để cấu tạo nên <strong>Object URLs</strong> vậy nên tên sẽ chỉ bao gồm các lower case letters, numbers, hyphens, underscores và periods. Tối đa 3-63 ký tự.</li>
+<li>Một Bucket thì có thể lưu trữ không giới hạn các Objects và mỗi một Bucket sẽ được gắn với một Project cụ thể.</li>
+</ul>
+</li>
+<li>Tên của một Object không được trùng nhau trong Buckets và kích thước tối đa của một Object lên tới <strong>5TB</strong>.</li>
+</ul>
+<h3 id="cloud-storage---storage-classes"><strong>Cloud Storage - Storage Classes</strong></h3>
+<ul>
+<li>
+<p>Thực tế sẽ có nhiều loại dữ liệu sẽ được lưu trữ lên Google Cloud Storage, ví dụ như:</p>
+<ul>
+<li>Media files and archives</li>
+<li>Application packages and logs</li>
+<li>Backups of your databases or storage devices</li>
+<li>Long term archives</li>
+</ul>
+</li>
+<li>
+<p>Mỗi một loại dữ liệu sẽ có những nhu cầu sử dụng khác nhau, vậy có cách nào giảm thiểu chi phí sử dụng với chi phí thấp đối với các Object rất ít khi truy cập?</p>
+<p><strong>Storage Classes</strong> chính là câu trả lời, nó sẽ giúp chúng ta tối ưu chi phí dựa trên tải truy cập vào Object.</p>
+</li>
+<li>
+<p>Google Cloud Storage có thể đảm bảo độ bền của dịch vụ đạt tới <strong>99.999999999%(11 9’s)</strong></p>
+</li>
+<li>
+<p>Bảng so sánh các loại Storage Classes trong GCP</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Storage Class</th><th>Name</th><th>Minimum Storage duration</th><th>Typical Monthly availability</th><th>Use case</th></tr></thead><tbody><tr><td>Standard</td><td>STANDARD</td><td>None</td><td>> 99.99% in multi region and dual region, 99.99% in regions</td><td>Frequently used data/Short period of time</td></tr><tr><td>Nearline storage</td><td>NEARLINE</td><td>30 days</td><td>99.95% in multi region and dual region, 99.9% in regions</td><td>Read or modify <strong>once a month</strong> on average</td></tr><tr><td>Coldline storage</td><td>COLDLINE</td><td>90 days</td><td>99.95% in multi region and dual region, 99.9% in regions</td><td>Read or modify <strong>at most once a quarter</strong></td></tr><tr><td>Archive storage</td><td>ARCHIVE</td><td>365 days</td><td>99.95% in multi region and dual region, 99.9% in regions</td><td><strong>Less than once a year</strong></td></tr></tbody></table>
+</li>
+</ul>
+<h3 id="cloud-storage---uploading-and-downloading-objects"><strong>Cloud Storage - Uploading and Downloading Objects</strong></h3>
+<p>Dưới đây là bảng so sánh các kịch bản Upload/Download Object trên Google Cloud Storage</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Option</th><th>Recommended for Scenarios</th></tr></thead><tbody><tr><td>Simple Upload</td><td>Small files (that can be re uploaded in case of failures) + NO object metadata</td></tr><tr><td>Multipart upload</td><td>Small files (that can be re uploaded in case of failures) + object metadata</td></tr><tr><td>Resumable upload</td><td>Larger files. RECOMMENDED for most usecases(even for small files - costs one additional HTTP request)</td></tr><tr><td>Streaming transfers</td><td>Upload an object of unknown size</td></tr><tr><td>Parallel composite uploads</td><td>File divided up to 32 chunks and uploaded in parallel.Significantly faster if network and disk speed are not limiting factors.</td></tr><tr><td>Simple download</td><td>Downloading objects to a destination</td></tr><tr><td>Streaming download</td><td>Downloading data to a process</td></tr><tr><td>Sliced object download</td><td>Slice and download large objects</td></tr></tbody></table>
+<h3 id="object-versioning"><strong>Object Versioning</strong></h3>
+<ul>
+<li>Mặc định thì Google Cloud Storage sẽ không cho phép ghi đè các Object, thay vào đó chúng ta có thể Upload lên nhiều version khác nhau của một Object
+<ul>
+<li>Có thể bật/tắt tính năng này ở mọi Bucket level, bất cứ lúc nào.</li>
+<li><strong>Live version</strong> là version mới nhất.
+<ul>
+<li>Nếu chúng ta xoá đi <strong>Live version</strong> thì nó sẽ trở thành noncurrent object version.</li>
+<li>Và nếu xoá đi noncurrent object version thì object đó sẽ bị xoá hẳn.</li>
+</ul>
+</li>
+<li>Các version cũ hơn sẽ được phân biệt bởi object key + a generation number</li>
+<li>Giảm thiểu chi phí sử dụng bằng cách xoá đi các Object bị cũ (noncurrent) versions!</li>
+</ul>
+</li>
+</ul>
+<h3 id="object-lifecycle-management"><strong>Object Lifecycle Management</strong></h3>
+<ul>
+<li>
+<p>Vấn đề hay gặp là vòng đời của một tệp dữ liệu khi được Upload lên sẽ chỉ thường xuyên truy cập ở một thời điểm nhất định, sau đó sẽ dần ít truy cập hơn.</p>
+<ul>
+<li>Chúng ta có thể tiết kiệm chi phí sử dụng hơn bằng cách di chuyển các Object có tần suất truy cập ít vào những Storage Classes hợp lý hơn, fit hơn với Storage Classes đó.</li>
+<li>Bởi vậy GCP đã cung cấp một tính năng gọi là <code>Object Lifecycle Management</code>, tính năng này sẽ <strong>tự động di chuyển các Object của Cloud Storage tới các Storage Classes</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Điều kiện để di chuyển các Object sang các Storage Classes khác dựa trên:</p>
+<ul>
+<li>Age, CreatedBefore, IsLive, MatchesStorageClass, NumberOfNewerVersions,…</li>
+<li>Có thể set multiple conditions: tất cả các điều kiện phải cùng được thoả mãn trước khi di chuyển Object đó sang Storage Classes khác.</li>
+</ul>
+</li>
+<li>
+<p>Có 02 loại action là:</p>
+<ul>
+<li><strong>SetStorageClass</strong> actions - thay đổi loại của Storage Class của một Object sang một loại khác.</li>
+<li><strong>Deletion</strong> actions - xoá luôn Object đó đi.</li>
+</ul>
+</li>
+<li>
+<p>Các loại chuyển đổi được cho phép trong GCP:</p>
+<ul>
+<li>(Standard hoặc Multi-Regional hoặc Regional) sang (Nearline hoặc Coldline hoặc Archive)</li>
+<li>Nearline sang (Coldline hoặc Archive)</li>
+<li>Coldline sang Archive</li>
+</ul>
+</li>
+<li>
+<p>Example rule:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">  "</span><span style="color:#22863A;--shiki-dark:#ECC48D">lifecycle</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    {</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">      "</span><span style="color:#22863A;--shiki-dark:#ECC48D">rule</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        [</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">          {</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">            "</span><span style="color:#22863A;--shiki-dark:#ECC48D">action</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> { </span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">type</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">Delete</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> }</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">            "</span><span style="color:#22863A;--shiki-dark:#ECC48D">condition</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> { </span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">age</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 30</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">isLive</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#FF5874"> true</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> }</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">          }</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">          {</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">            "</span><span style="color:#22863A;--shiki-dark:#ECC48D">action</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">              { </span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">type</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">SetStorageClass</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">storageClass</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">NEARLINE</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> }</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">            "</span><span style="color:#22863A;--shiki-dark:#ECC48D">condition</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> { </span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">age</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 365</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">matchesStorageClass</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">STANDARD</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">] }</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">          }</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        ]</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+</li>
+</ul>
+<h3 id="cloud-storage---encryption"><strong>Cloud Storage - Encryption</strong></h3>
+<ul>
+<li>Mặc định thì GCP luôn luôn mã hoá mọi dữ liệu ở server side.</li>
+<li>Cấu hình <strong>Server-side</strong> encryption (sẽ được thực hiện bởi Google Cloud Storage):
+<ul>
+<li><strong>Google-managed encryption key</strong> - là mặc định, không có cấu hình bắt buộc nào.</li>
+<li><strong>Customer-managed</strong> encryption keys - được tạo ra bởi <strong>Cloud Key Management Service (KMS)</strong>, đây là công cụ được quản lý bởi người dùng trong KMS.
+<ul>
+<li>Cloud Storage Service Account phải có quyền truy cập vào keys trong KMS để có thể mã hoá và giải mã sử dụng <strong>Customer-Managed</strong> encryption key</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>(OPTIONAL) <strong>Client-side</strong> encryption - mã hoá được thực hiện bởi người dùng trước khi Upload lên Google Cloud Storage.
+<ul>
+<li>GCP sẽ không biết gì về keys đã được sử dụng để mã hoá.</li>
+</ul>
+</li>
+</ul>
+<h3 id="cloud-storage---scenarios"><strong>Cloud Storage - Scenarios</strong></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Scenario</th><th>Description</th></tr></thead><tbody><tr><td>How do you speed up large uploads (example: 100 GB) to Cloud Storage?</td><td>Use Parallel composite uploads (File is broken in to small chunks and uploaded)</td></tr><tr><td>You want to permanently store application logs for regulatory reasons. You don’t expect to access them at all.</td><td>Cloud storage - Archive</td></tr><tr><td>Log files stored in Cloud storage. You expect to access them once in quarter.</td><td>Cold Line</td></tr><tr><td>How do you change storage class of an existing bucket in Cloud Storage?</td><td><strong>Step 1</strong>: Change Default Storage Class of the bucket. <strong>Step 2</strong>: Update the Storage Class of the objects in the bucket.</td></tr></tbody></table>
+<h2 id="hướng-dẫn-sử-dụng">Hướng dẫn sử dụng</h2>
+<h3 id="cloud-storage---command-line---gsutil---1"><strong>Cloud Storage - Command Line - gsutil - 1</strong></h3>
+<ul>
+<li>(<strong>REMEMBER</strong>) <strong>gsutil</strong> is the CLI for Cloud Storage (<strong>NOT gcloud</strong>)</li>
+<li>Cloud Storage (<strong>gsutil</strong>)
+<ul>
+<li><code>gsutil mb gs://BKT_NAME</code> (Create Cloud Storage bucket)</li>
+<li><code>gsutil ls -a gs://BKT_NAME</code> (List current and non-current object versions)</li>
+<li><code>gsutil cp gs://SRC_BKT/SRC_OBJ gs://DESTN_BKT/NAME_COPY</code> (Copy objects)
+<ul>
+<li>o ‘<strong>GSUtil:encryption_key=ENCRYPTION_KEY</strong>’ - Encrypt Object</li>
+</ul>
+</li>
+<li><code>gsutil mv</code> (Rename/Move objects)
+<ul>
+<li><code>gsutil mv gs://BKT_NAME/OLD_OBJ_NAME gs://BKT_NAME/NEW_OBJ_NAME</code></li>
+<li><code>gsutil mv gs://OLD_BUCKET_NAME/OLD_OBJECT_NAME gs://NEW_BKT_NAME/NEW_OBJ_NAME</code></li>
+</ul>
+</li>
+<li><code>gsutil rewrite -s STORAGE_CLASS gs://BKT_NAME/OBJ_PATH</code> (Ex: Change Storage Class for objects)</li>
+<li>*gsutil <strong>cp*</strong> : Upload and Download Objects
+<ul>
+<li><code>gsutil cp LOCAL_LOCATION gs://DESTINATION_BKT_NAME/</code> (Upload)</li>
+<li><code>gsutil cp gs://BKT_NAME/OBJ_PATH LOCAL_LOCATION</code> (Download)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="cloud-storage---command-line---gsutil---2"><strong>Cloud Storage - Command Line - gsutil - 2</strong></h3>
+<ul>
+<li>Cloud Storage (gsutil)
+<ul>
+<li><code>gsutil versioning set on/off gs://BKT_NAME</code> (Enable/Disable tính năng Versioning)</li>
+<li><code>gsutil uniformbucketlevelaccess set on/off gs://BKT_NAME</code></li>
+<li>*gsutil <strong>acl ch*</strong> (Cấu hình Access Permissions cho Objects cụ thể)
+<ul>
+<li><code>gsutil acl ch -u AllUsers:R gs://BKT_NAME/OBJ_PATH</code> (Make specific object public)</li>
+<li><code>gsutil acl ch -u john.doe@example.com:WRITE gs://BKT_NAME/OBJ_PATH</code>
+<ul>
+<li>Permissions - READ (R), WRITE (W), OWNER (O)</li>
+<li>Scope - User, allAuthenticatedUsers, allUsers(-u), Group (-g), Project (-p) etc</li>
+</ul>
+</li>
+<li><code>gsutil acl set JSON_FILE gs://BKT_NAME</code> - sử dụng tệp phân quyền định dạng JSON để cấu hình cho Bucket</li>
+</ul>
+</li>
+<li><code>gsutil iam ch MBR_TYPE:MBR_NAME:IAM_ROLE gs://BKT_NAME</code> (Cấu hình IAM role)
+<ul>
+<li><code>gsutil iam ch user:me@myemail.com:objectCreator gs://BKT_NAME</code></li>
+<li><code>gsutil iam ch allUsers:objectViewer gs://BKT_NAME</code> - cấu hình toàn bộ Object trong Bucket có quyền đọc.</li>
+</ul>
+</li>
+<li><code>gsutil signurl -d 10m YOUR_KEY gs://BUCKET_NAME/OBJECT_PATH</code> - tạo ra một URL cho phép tạm thời truy cập vào Object.</li>
+</ul>
+</li>
+</ul> </article> <hr class="my-8 border-dashed"> <div class="opacity-80 sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/satnaing/astro-paper/edit/main/src/data/blog/google-cloud/storage-and-database-services/cloud-storage.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/google-cloud/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Google Cloud</span> </a> </li> </ul> <div class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"> <div class="flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start"> <span class="italic">Share this post on:</span> <div class="text-center"> <a href="https://wa.me/?text=https://thuongnn.dev/posts/google-cloud/storage-and-database-services/cloud-storage/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> <span class="sr-only">Share this post via WhatsApp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://thuongnn.dev/posts/google-cloud/storage-and-database-services/cloud-storage/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://thuongnn.dev/posts/google-cloud/storage-and-database-services/cloud-storage/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://thuongnn.dev/posts/google-cloud/storage-and-database-services/cloud-storage/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg> <span class="sr-only">Share this post via Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://thuongnn.dev/posts/google-cloud/storage-and-database-services/cloud-storage/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg> <span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&#38;body=https://thuongnn.dev/posts/google-cloud/storage-and-database-services/cloud-storage/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Share this post via email</span> </a> </div> </div> <button id="back-to-top" class="focus-outline py-1 whitespace-nowrap hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span>Back to Top</span> </button> </div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/google-cloud/storage-and-database-services/persistent-disk" class="flex w-full gap-1 hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">[Google Cloud] Persistent Disk</div> </div> </a> <a href="/posts/google-cloud/networking/hybrid-network-multi-cloud" class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">[Google Cloud] Hybrid Network &amp; Multi-Cloud</div> </div> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="w-full mt-auto"> <div class="max-w-3xl mx-auto px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://github.com/thuongnn" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title=" thuongnn.dev on Github"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only"> thuongnn.dev on Github</span> </a><a href="https://www.facebook.com/thuongnn97" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">thuongnn.dev on Facebook</span> </a><a href="https://www.linkedin.com/in/thuongnn/" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on LinkedIn"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">thuongnn.dev on LinkedIn</span> </a><a href="mailto:thuongnn1997@gmail.com" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to thuongnn.dev"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to thuongnn.dev</span> </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2025</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ml-2 opacity-0 group-hover:opacity-100 focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "copy-code absolute right-3 -top-3 rounded bg-muted px-2 py-1 text-xs leading-4 text-foreground font-medium";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    document.querySelector("#back-to-top")?.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+  }
+  backToTop();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>
