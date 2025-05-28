@@ -13,10 +13,18 @@ import { SITE } from "@/config";
 import { SOCIALS } from "@/constants";
 
 const posts = await getCollection("blog");
-const sortedPosts = getSortedPosts(posts);
+const recentPosts = getSortedPosts(posts);
 
-const recentPosts = sortedPosts;
-const gcpPosts = posts.filter(({ data }) => data.folder == "gcp");
+const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
+const randomPosts = [...posts].sort((a, b) => {
+  // Sử dụng currentHour làm seed cho việc xáo trộn
+  const seedA = (currentHour + a.data.title.length) % posts.length;
+  const seedB = (currentHour + b.data.title.length) % posts.length;
+  return seedA - seedB;
+});
+
+const awsPosts = randomPosts.filter(({ data }) => data.folder == "aws");
+const gcpPosts = randomPosts.filter(({ data }) => data.folder == "gcp");
 ---
 
 <Layout>
@@ -64,6 +72,27 @@ const gcpPosts = posts.filter(({ data }) => data.folder == "gcp");
     </section>
 
     <Hr />
+
+    {
+      awsPosts.length > 0 && (
+        <section id="aws" class="pt-12 pb-6">
+          <h2 class="text-2xl font-semibold tracking-wide">
+            <a
+              href="/tags/aws"
+              class="inline-block decoration-dashed underline-offset-4"
+            >
+              Amazon Web Services (AWS)
+            </a>
+          </h2>
+          <ul>
+            {awsPosts.map(
+              (data, index) =>
+                index < SITE.postPerIndex && <Card variant="h3" {...data} />
+            )}
+          </ul>
+        </section>
+      )
+    }
 
     {
       gcpPosts.length > 0 && (

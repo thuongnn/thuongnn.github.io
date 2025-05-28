@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-07-20T10:20:15Z
 title: "[AWS] Amazon Aurora Serverless"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -17,7 +18,7 @@ Amazon Aurora Serverless là một cấu hình **tự động điều chỉnh th
 
 # **Kiến trúc của Aurora Serverless**
 
-![1.png](@/assets/images/databases/aws-aurora-serverless/1.png)
+![1.png](@/assets/images/aws/databases/aws-aurora-serverless/1.png)
 
 - **Tách biệt giữa lưu trữ và tính toán**: Aurora Serverless tách biệt hai thành phần này, cho phép mở rộng hoặc thu hẹp công suất tính toán mà không ảnh hưởng đến lưu trữ.
 - **Proxy fleet**: Khi tạo một endpoint cơ sở dữ liệu, nó kết nối đến một **proxy fleet** chịu trách nhiệm định tuyến tải công việc đến các tài nguyên tính toán, giúp quản lý kết nối tự động và duy trì kết nối liên tục khi Aurora Serverless tự động điều chỉnh tài nguyên.

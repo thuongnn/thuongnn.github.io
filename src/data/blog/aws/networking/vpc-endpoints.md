@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-05-14T11:45:22Z
 title: "[AWS] VPC Endpoints"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -13,7 +14,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 ## Table of contents
 
-![1.png](@/assets/images/networking/vpc-endpoints/1.png)
+![1.png](@/assets/images/aws/networking/vpc-endpoints/1.png)
 
 - VPC Endpoints cho phép tạo private connection giữa VPC và các dịch vụ AWS, VPC Endpoint services được cung cấp bởi PrivateLink thông qua địa chỉ IP riêng của nó.
 - Endpoints không yêu cầu địa chỉ Public IP, truy cập qua Internet, thiết bị NAT, kết nối VPN, hoặc AWS Direct Connect.
@@ -32,7 +33,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - Gateway Endpoint không kích hoạt tính năng AWS PrivateLink.
 - Chính sách VPC Endpoint (VPC Endpoint policy) và chính sách dựa trên tài nguyên (Resource-based policies) có thể được sử dụng để kiểm soát chi tiết quyền truy cập.
 
-![2.png](@/assets/images/networking/vpc-endpoints/2.png)
+![2.png](@/assets/images/aws/networking/vpc-endpoints/2.png)
 
 ### **Gateway Endpoint Configuration**
 

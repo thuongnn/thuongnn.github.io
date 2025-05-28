@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-07-17T09:15:33Z
 title: "[AWS] Amazon Elastic Block Store (EBS)"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -64,7 +65,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # **EBS Volume Types**
 
-![1.png](@/assets/images/storage/elastic-block-store-storage/1.png)%201743fa6ae4838071ae93f555536b3400/image.png)
+![1.png](@/assets/images/aws/storage/elastic-block-store-storage/1.png)%201743fa6ae4838071ae93f555536b3400/image.png)
 
 # **EBS Volume**
 

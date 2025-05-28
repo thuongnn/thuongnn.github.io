@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-05-12T14:30:45Z
 title: "[AWS] VPN and Direct Connect"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -29,7 +30,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # **VPN Components**
 
-![1.png](@/assets/images/networking/vpn-and-direct-connect/1.png)
+![1.png](@/assets/images/aws/networking/vpn-and-direct-connect/1.png)
 
 - **Virtual Private Gateway – VGW**
   - Virtual Private Gateway (VGW) là thiết bị tập trung VPN ở phía AWS của kết nối VPN.
@@ -97,7 +98,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # VPN Connection Redundancy
 
-![2.png](@/assets/images/networking/vpn-and-direct-connect/2.png)
+![2.png](@/assets/images/aws/networking/vpn-and-direct-connect/2.png)
 
 - **Kết nối VPN** được sử dụng để kết nối mạng của khách hàng với VPC.
 - Mỗi kết nối VPN có hai _tunnel_ để đảm bảo kết nối trong trường hợp một trong các kết nối VPN không khả dụng, với mỗi _tunnel_ sử dụng một địa chỉ _Public IP_ của _virtual private gateway_ (VGW) duy nhất.
@@ -111,7 +112,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # Multiple Site-to-Site VPN Connections
 
-![3.png](@/assets/images/networking/vpn-and-direct-connect/3.png)
+![3.png](@/assets/images/aws/networking/vpn-and-direct-connect/3.png)
 
 - VPC có một attached _virtual private gateway_ và remote network bao gồm một _customer gateway_, cần được cấu hình để kích hoạt kết nối VPN.
 - Cần thiết lập định tuyến để mọi _traffic_ từ VPC hướng đến remote network được định tuyến tới _virtual private gateway_.
@@ -124,7 +125,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - _VPN CloudHub_ hoạt động theo mô hình **hub-and-spoke** đơn giản, sử dụng _Virtual Private Gateway_ ở detached mode có thể sử dụng mà không cần VPC.
 - Thiết kế này phù hợp với khách hàng có nhiều văn phòng chi nhánh và kết nối Internet hiện có, những người muốn triển khai một mô hình hub-and-spoke thuận tiện, có thể là chi phí thấp cho kết nối chính hoặc dự phòng giữa các văn phòng từ xa này.
 
-![4.png](@/assets/images/networking/vpn-and-direct-connect/4.png)
+![4.png](@/assets/images/aws/networking/vpn-and-direct-connect/4.png)
 
 - Kiến trúc _VPN CloudHub_ với các đường chấm màu xanh chỉ ra việc định tuyến _traffic_ giữa các remote sites qua các kết nối VPN của chúng.
 - _AWS VPN CloudHub_ yêu cầu một _virtual private gateway_ với nhiều _customer gateway._ Mỗi _customer gateway_ phải sử dụng một _Border Gateway Protocol (BGP)_ Autonomous System Number (ASN) duy nhất.
@@ -138,4 +139,4 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # [**VPN vs Direct Connect**](https://jayendrapatil.com/aws-direct-connect-vs-vpn/)
 
-![5.png](@/assets/images/networking/vpn-and-direct-connect/5.png)
+![5.png](@/assets/images/aws/networking/vpn-and-direct-connect/5.png)

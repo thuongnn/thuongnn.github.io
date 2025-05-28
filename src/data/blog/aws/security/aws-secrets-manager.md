@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-07-23T11:45:22Z
 title: "[AWS] AWS Secrets Manager"
+folder: "aws"
 draft: false
 tags:
   - AWS

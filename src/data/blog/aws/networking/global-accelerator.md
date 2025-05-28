@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-05-10T15:30:45Z
 title: "[AWS] AWS Global Accelerator"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -33,11 +34,11 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - Hỗ trợ bảo vệ địa chỉ **IP** của khách hàng ngoại trừ các **NLBs** và **EIPs** endpoints.
 - Tích hợp với **AWS Shield Standard**, giúp giảm thiểu thời gian ngừng hoạt động và độ trễ từ các cuộc tấn công **DDoS** bằng cách sử dụng giám sát traffic mạng luôn bật và giảm thiểu tự động.
 - **Không hỗ trợ on-premises endpoints**. Tuy nhiên, một **NLB** có thể được cấu hình để xử lý các on-premises endpoints trong khi **Global Accelerator** chỉ đến **NLB**.
-  ![1.png](@/assets/images/networking/global-accelerator/1.png)
+  ![1.png](@/assets/images/aws/networking/global-accelerator/1.png)
 
 # AWS CloudFront vs Global Accelerator
 
-![2.png](@/assets/images/networking/global-accelerator/2.png)
+![2.png](@/assets/images/aws/networking/global-accelerator/2.png)
 
 - **Global Accelerator** và **CloudFront** đều sử dụng **AWS global network** và các **edge locations** của nó trên khắp thế giới.
 - Cả hai dịch vụ đều tích hợp với **AWS Shield** để bảo vệ khỏi **DDoS**.

@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-03-27T15:30:45Z
 title: "[AWS] EC2 Placement Groups"
+folder: "aws"
 draft: false
 tags:
   - AWS

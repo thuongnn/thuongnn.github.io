@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-07-24T15:30:45Z
 title: "[AWS] Amazon Inspector"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -13,7 +14,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 ## Table of contents
 
-![1.png](@/assets/images/security/aws-inspector/1.png)
+![1.png](@/assets/images/aws/security/aws-inspector/1.png)
 
 Amazon Inspector là một công cụ bảo mật tự động đánh giá các tài nguyên AWS để phát hiện lỗ hổng và kiểm tra các cấu hình sai.
 

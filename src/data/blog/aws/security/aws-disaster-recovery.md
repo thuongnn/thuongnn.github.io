@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-07-22T09:15:33Z
 title: "[AWS] AWS Disaster Recovery"
+folder: "aws"
 draft: false
 tags:
   - AWS

@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-05-07T14:30:45Z
 title: "[AWS] Security Groups and Network ACLs"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -13,7 +14,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 ## Table of contents
 
-![1.png](@/assets/images/networking/security-groups-and-nacls/1.png)
+![1.png](@/assets/images/aws/networking/security-groups-and-nacls/1.png)
 
 Trong một VPC, cả **Security Groups** và **Network ACLs (NACLs)** cùng hoạt động để xây dựng một lớp phòng thủ mạng đa tầng:
 
@@ -70,4 +71,4 @@ Trong một VPC, cả **Security Groups** và **Network ACLs (NACLs)** cùng ho�
 
 # **Security Group vs NACLs**
 
-![2.png](@/assets/images/networking/security-groups-and-nacls/2.png)
+![2.png](@/assets/images/aws/networking/security-groups-and-nacls/2.png)

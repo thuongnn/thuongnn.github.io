@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-07-19T15:30:45Z
 title: "[AWS] Amazon DynamoDB"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -216,7 +217,7 @@ Amazon DynamoDB là dịch vụ cơ sở dữ liệu NoSQL được quản lý h
 
 # AWS DynamoDB Accelerator (DAX)
 
-![1.png](@/assets/images/databases/aws-dynamodb/1.png)
+![1.png](@/assets/images/aws/databases/aws-dynamodb/1.png)
 
 ### **Tổng quan về DAX**
 
@@ -265,13 +266,13 @@ Amazon DynamoDB là dịch vụ cơ sở dữ liệu NoSQL được quản lý h
 ### Write Strategies
 
 - **Write-Through**:
-  ![2.png](@/assets/images/databases/aws-dynamodb/2.png)
+  ![2.png](@/assets/images/aws/databases/aws-dynamodb/2.png)
   - Dữ liệu được ghi vào **DynamoDB** trước, sau đó cập nhật **item cache** trên **primary node**.
   - Nếu có read-replica nodes, dữ liệu được nhân bản **bất đồng bộ** sang các node này.
   - **Ưu điểm**: Cache luôn phản ánh dữ liệu mới, phù hợp khi cần đọc dữ liệu ngay sau ghi.
   - **Nhược điểm**: Ghi chậm hơn do phải cập nhật cache; không giảm **Write Capacity Units (WCU)**.
 - **Write-Around**:
-  ![3.png](@/assets/images/databases/aws-dynamodb/3.png)
+  ![3.png](@/assets/images/aws/databases/aws-dynamodb/3.png)
   - Dữ liệu được ghi **trực tiếp vào DynamoDB**, **không cập nhật cache** ngay lập tức.
   - Cache chỉ được cập nhật khi có **cache miss** trong yêu cầu đọc sau đó.
   - **Ưu điểm**: Nhanh hơn Write-Through, giảm tải trên DAX cluster, phù hợp với ứng dụng ghi nhiều hoặc dữ liệu ít đọc lại.

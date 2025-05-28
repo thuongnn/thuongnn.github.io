@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-03-09T11:22:35Z
 title: "[AWS] AWS Glue"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -13,7 +14,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 ## Table of contents
 
-![1.png](@/assets/images/analytics/aws-glue/1.png)
+![1.png](@/assets/images/aws/analytics/aws-glue/1.png)
 
 - **AWS Glue** là một dịch vụ ETL (trích xuất, chuyển đổi và tải dữ liệu) được quản lý hoàn toàn, tự động hóa các bước chuẩn bị dữ liệu tốn thời gian cho phân tích.
 - Là dịch vụ **không máy chủ** và hỗ trợ mô hình thanh toán theo sử dụng, không cần cung cấp hoặc quản lý cơ sở hạ tầng.

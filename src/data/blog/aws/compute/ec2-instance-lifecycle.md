@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-04-01T15:30:45Z
 title: "[AWS] EC2 Instance Lifecycle"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -13,7 +14,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 ## Table of contents
 
-![1.png](@/assets/images/compute/ec2-instance-lifecycle/1.png)
+![1.png](@/assets/images/aws/compute/ec2-instance-lifecycle/1.png)
 
 AWS EC2 instances có vòng đời cụ thể với nhiều trạng thái khác nhau từ khi tạo đến khi bị xóa. Hiểu rõ về **vòng đời của EC2 instance** giúp bạn quản lý tài nguyên hiệu quả, tối ưu chi phí và đảm bảo hiệu suất ứng dụng.
 

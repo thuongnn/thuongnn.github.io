@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-01-17T10:45:33Z
 title: "[AWS] Amazon Kinesis"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -40,7 +41,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # **Kinesis Data Streams Terminology**
 
-![1.png](@/assets/images/analytics/kinesis/1.png)
+![1.png](@/assets/images/aws/analytics/kinesis/1.png)
 
 - **Bản ghi Dữ liệu (Data Record)**:
   - Là đơn vị dữ liệu được lưu trữ trong luồng dữ liệu Kinesis.
@@ -137,7 +138,7 @@ Dữ liệu có thể được thêm vào Kinesis Data Streams qua các thao tá
 
 # Kinesis Enhanced Fan-out
 
-![2.png](@/assets/images/analytics/kinesis/2.png)
+![2.png](@/assets/images/aws/analytics/kinesis/2.png)
 
 - Cho phép khách hàng mở rộng số lượng người tiêu dùng đọc từ luồng dữ liệu song song, duy trì hiệu suất cao mà không tranh chấp thông lượng đọc với các người tiêu dùng khác.
 - Cung cấp các đường ống thông lượng logic 2 MB/giây giữa người tiêu dùng và shard cho người tiêu dùng Kinesis Data Streams.
@@ -158,7 +159,7 @@ Dữ liệu có thể được thêm vào Kinesis Data Streams qua các thao tá
 
 Tham khảo bài viết @ [Kinesis Data Streams vs Kinesis Firehose](https://jayendrapatil.com/aws-kinesis-data-streams-vs-kinesis-firehose/)
 
-![3.png](@/assets/images/analytics/kinesis/3.png)
+![3.png](@/assets/images/aws/analytics/kinesis/3.png)
 
 # Kinesis Data Streams so với SQS
 
@@ -166,4 +167,4 @@ Tham khảo bài viết @ [Kinesis Data Streams vs SQS](https://jayendrapatil.co
 
 # Kinesis so với S3
 
-![4.png](@/assets/images/analytics/kinesis/4.png)
+![4.png](@/assets/images/aws/analytics/kinesis/4.png)

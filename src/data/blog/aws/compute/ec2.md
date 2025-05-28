@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-03-20T08:30:15Z
 title: "[AWS] Amazon Elastic Compute Cloud (EC2)"
+folder: "aws"
 draft: false
 tags:
   - AWS

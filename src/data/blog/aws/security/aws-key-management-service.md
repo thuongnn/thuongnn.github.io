@@ -1,7 +1,8 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-28T11:45:22Z
-title: "[AWS] AWS KMS"
+title: "[AWS] AWS Key Management Service"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -67,7 +68,7 @@ Với **envelope encryption**:
 
 # **KMS Service Concepts**
 
-![1.png](@/assets/images/security/aws-key-management-service/1.png)
+![1.png](@/assets/images/aws/security/aws-key-management-service/1.png)
 
 ### **KMS Keys hoặc Customer Master Keys (CMKs)**
 
@@ -81,7 +82,7 @@ Với **envelope encryption**:
 
 # Customer Keys and AWS Keys
 
-![2.png](@/assets/images/security/aws-key-management-service/2.png)
+![2.png](@/assets/images/aws/security/aws-key-management-service/2.png)
 
 ### AWS Managed Keys
 
@@ -276,4 +277,4 @@ Với **envelope encryption**:
 
 # KMS vs CloudHSM
 
-![3.png](@/assets/images/security/aws-key-management-service/3.png)
+![3.png](@/assets/images/aws/security/aws-key-management-service/3.png)

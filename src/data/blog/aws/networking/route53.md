@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-05-06T10:35:12Z
 title: "[AWS] Amazon Route 53"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -13,7 +14,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 ## Table of contents
 
-![1.png](@/assets/images/networking/route53/1.png)
+![1.png](@/assets/images/aws/networking/route53/1.png)
 
 - **Route 53** là một dịch vụ **DNS** web có tính sẵn sàng cao và khả năng mở rộng.
 - **Route 53** cung cấp ba chức năng chính:
@@ -71,7 +72,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # Route 53 Alias vs CNAME
 
-![2.png](@/assets/images/networking/route53/2.png)
+![2.png](@/assets/images/aws/networking/route53/2.png)
 
 # Route 53 Hosted Zone
 
@@ -119,14 +120,14 @@ Chi tiết thêm tại: [AWS Route 53 Routing Policy](https://jayendrapatil.com/
 
 ### **Inbound Endpoint – Forward DNS queries từ On-premise tới AWS**
 
-![3.png](@/assets/images/networking/route53/3.png)
+![3.png](@/assets/images/aws/networking/route53/3.png)
 
 - Các **DNS resolvers** trên mạng **on-premises** có thể chuyển tiếp truy vấn DNS đến **Resolver** trong một VPC được chỉ định.
 - Điều này giúp các DNS resolvers dễ dàng **phân giải tên miền** cho tài nguyên AWS như **EC2 instances** hoặc các bản ghi trong **Route 53 private hosted zone**.
 
 ### Outbound Endpoint – forward queries từ AWS VPC tới **On**-premise
 
-![4.png](@/assets/images/networking/route53/4.png)
+![4.png](@/assets/images/aws/networking/route53/4.png)
 
 - **Route 53 Resolver** có thể được cấu hình để chuyển tiếp các truy vấn DNS nhận được từ **EC2 instances** trong VPC tới **DNS resolvers** trên **on-premises networks**.
   - Để chuyển tiếp các truy vấn cụ thể, tạo các **Resolver rules** để chỉ định:

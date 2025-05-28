@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-07-26T14:30:45Z
 title: "[AWS] AWS Shield"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -11,7 +12,7 @@ description: Tìm hiểu về dịch vụ bảo vệ DDoS của AWS, giúp bảo
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-shield.
 
-## Table of contents
+---
 
 AWS Shield là một dịch vụ được thiết kế để bảo vệ các ứng dụng AWS khỏi các cuộc tấn công DDoS, cung cấp các biện pháp tự động giảm thiểu tác động mà không cần sự can thiệp thủ công.
 

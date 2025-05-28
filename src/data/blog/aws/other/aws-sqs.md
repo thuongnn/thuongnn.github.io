@@ -1,7 +1,8 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-31T14:30:45Z
-title: "[AWS] Amazon SQS"
+title: "[AWS] AWS Simple Queue Service – SQS"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -44,7 +45,7 @@ Xem chi tiết tại [SQS FIFO Queue](https://jayendrapatil.com/aws-sqs-fifo-que
 
 # SQS Standard Queues vs SQS FIFO Queues
 
-![1.png](@/assets/images/other/aws-sqs/1.png)
+![1.png](@/assets/images/aws/other/aws-sqs/1.png)
 
 # **SQS Use Cases**
 
@@ -96,7 +97,7 @@ Xem chi tiết tại [SQS FIFO Queue](https://jayendrapatil.com/aws-sqs-fifo-que
 
 ### **Priority Queue Pattern**
 
-![2.png](@/assets/images/other/aws-sqs/2.png)
+![2.png](@/assets/images/aws/other/aws-sqs/2.png)
 
 1. Sử dụng SQS để tạo nhiều hàng đợi cho các mức độ ưu tiên riêng lẻ.
 2. Đặt các quy trình cần thực thi ngay lập tức (yêu cầu công việc) vào hàng đợi ưu tiên cao.
@@ -105,7 +106,7 @@ Xem chi tiết tại [SQS FIFO Queue](https://jayendrapatil.com/aws-sqs-fifo-que
 
 ### **SQS Job Observer Pattern**
 
-![3.png](@/assets/images/other/aws-sqs/3.png)
+![3.png](@/assets/images/aws/other/aws-sqs/3.png)
 
 1. Đưa các yêu cầu công việc vào hàng đợi dưới dạng tin nhắn SQS.
 2. Máy chủ hàng loạt lấy tin nhắn từ SQS và xử lý chúng.
@@ -113,4 +114,4 @@ Xem chi tiết tại [SQS FIFO Queue](https://jayendrapatil.com/aws-sqs-fifo-que
 
 # SQS vs Kinesis Data Streams
 
-![4.png](@/assets/images/other/aws-sqs/4.png)
+![4.png](@/assets/images/aws/other/aws-sqs/4.png)

@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-04-02T10:20:15Z
 title: "[AWS] EC2 Spot Instances"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -22,14 +23,14 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - **Chi phí thay đổi theo thời gian**, dựa trên cung-cầu tài nguyên của AWS.
 - **Phù hợp với workload có thể chịu gián đoạn** như xử lý batch, AI/ML, Big Data.
 
-### **Lợi ích của Spot Instances**
+## **Lợi ích của Spot Instances**
 
 - ✅ **Tiết kiệm tới 90% chi phí so với On-Demand**.
 - ✅ **Có thể mở rộng nhanh chóng với chi phí thấp**, phù hợp với workload đòi hỏi tài nguyên lớn.
 - ✅ **Tích hợp dễ dàng với Auto Scaling, EC2 Fleet, Spot Fleet** để tăng khả năng chịu lỗi.
 - ✅ **Hỗ trợ Spot Block (không bị gián đoạn trong 1 - 6 giờ)** nếu cần đảm bảo chạy liên tục trong thời gian ngắn.
 
-### **Hạn chế của Spot Instances**
+## **Hạn chế của Spot Instances**
 
 - ❌ **Có thể bị thu hồi bất cứ lúc nào** nếu giá vượt mức bạn đặt hoặc AWS cần tài nguyên.
 - ❌ **Không phù hợp với ứng dụng yêu cầu chạy liên tục hoặc có trạng thái** (stateful applications).
@@ -44,7 +45,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 # **Cách mua Spot Instances**
 
 - **Spot Request (Yêu cầu Spot đơn lẻ)**
-  ![1.png](@/assets/images/compute/ec2-spot-instances/1.png)
+  ![1.png](@/assets/images/aws/compute/ec2-spot-instances/1.png)
   - Tạo **một Spot Instance** và AWS sẽ cấp phát nếu giá đấu thầu >= giá Spot hiện tại.
   - Nếu instance bị thu hồi, phải tạo yêu cầu mới để khởi động lại.
 - **Spot Fleet (Nhóm Spot Instances)**

@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-05-08T09:15:33Z
 title: "[AWS] Amazon CloudFront Security"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -72,14 +73,14 @@ CloudFront Security có nhiều tính năng, bao gồm:
 ### Canned Policy vs Custom Policy
 
 - Canned policy hoặc Custom policy là một policy statement, được sử dụng bởi các Signed URLs, giúp xác định các restrictions, ví dụ như ngày và giờ hết hạn.
-  ![1.png](@/assets/images/networking/cloudfront-security/1.png)
+  ![1.png](@/assets/images/aws/networking/cloudfront-security/1.png)
 - CloudFront xác thực thời gian hết hạn khi bắt đầu event.
 - Nếu người dùng đang tải xuống một đối tượng lớn và URL hết hạn, quá trình tải xuống vẫn sẽ tiếp tục, và điều này cũng áp dụng với RTMP distribution.
 - Tuy nhiên, nếu người dùng đang sử dụng yêu cầu GET phạm vi (range GET requests), hoặc khi đang phát video và bỏ qua một vị trí khác có thể kích hoạt một sựevent khác, yêu cầu sẽ bị lỗi.
 
 ### S3 Origin Access Identity – OAI
 
-![2.png](@/assets/images/networking/cloudfront-security/2.png)
+![2.png](@/assets/images/aws/networking/cloudfront-security/2.png)
 
 - **Origin Access Identity (OAI)** có thể được sử dụng để ngăn người dùng truy cập trực tiếp các **object** từ S3.
 - Các **object** S3 gốc phải được cấp quyền đọc công khai, vì vậy các **object** này có thể được truy cập từ cả S3 và CloudFront.
@@ -95,7 +96,7 @@ CloudFront Security có nhiều tính năng, bao gồm:
 # Custom Headers
 
 - Các **Custom headers** có thể được CloudFront thêm vào, và các header này có thể được sử dụng tại Origin để xác thực yêu cầu đã đến từ CloudFront
-  ![3.png](@/assets/images/networking/cloudfront-security/3.png)
+  ![3.png](@/assets/images/aws/networking/cloudfront-security/3.png)
 - Một viewer truy cập vào trang web hoặc ứng dụng và yêu cầu một hoặc nhiều tệp, chẳng hạn như tệp hình ảnh và tệp HTML.
 - DNS sẽ chuyển hướng yêu cầu đến edge location của CloudFront có thể phục vụ yêu cầu tốt nhất – thường là edge location gần nhất về mặt độ trễ.
 - Tại edge location, AWS WAF kiểm tra yêu cầu đến dựa trên các web ACL rules đã được cấu hình.

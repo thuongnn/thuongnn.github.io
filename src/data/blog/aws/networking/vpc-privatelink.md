@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-05-13T09:15:33Z
 title: "[AWS] VPC PrivateLink"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -13,7 +14,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 ## Table of contents
 
-![1.png](@/assets/images/networking/vpc-privatelink/1.png)
+![1.png](@/assets/images/aws/networking/vpc-privatelink/1.png)
 
 - **VPC Interface Endpoint** là một cách triển khai cụ thể của AWS PrivateLink trong VPC. Nếu bạn sử dụng PrivateLink để kết nối đến dịch vụ AWS (như CloudWatch) hoặc endpoint services của đối tác, bạn sẽ cần thiết lập một **VPC Interface Endpoint**.
   - **AWS PrivateLink**: Công nghệ để tạo kết nối riêng tư.

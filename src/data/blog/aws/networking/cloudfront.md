@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-05-11T10:20:15Z
 title: "[AWS] Amazon CloudFront"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -32,7 +33,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # **Edge Locations & Regional Edge Caches**
 
-![1.png](@/assets/images/networking/cloudfront/1.png)
+![1.png](@/assets/images/aws/networking/cloudfront/1.png)
 
 - CloudFront **Edge Locations** hay **POPs** đảm bảo rằng nội dung phổ biến có thể được phục vụ nhanh chóng đến người xem.
 - CloudFront cũng có **Regional Edge Caches**, giúp đưa nhiều nội dung lại gần hơn với người xem, ngay cả khi nội dung đó không đủ phổ biến để duy trì tại một POP, từ đó cải thiện hiệu suất cho nội dung đó.
@@ -42,7 +43,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # Configuration & Content Delivery
 
-![2.png](@/assets/images/networking/cloudfront/2.png)
+![2.png](@/assets/images/aws/networking/cloudfront/2.png)
 
 ### **Configuration**
 
@@ -70,7 +71,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # **CloudFront Origin Groups**
 
-![3.png](@/assets/images/networking/cloudfront/3.png)
+![3.png](@/assets/images/aws/networking/cloudfront/3.png)
 
 - **Origin Groups** có thể được sử dụng để chỉ định hai origins nhằm cấu hình **origin failover** cho tính năng **high availability**.
 - **Origin failover** có thể được sử dụng để chỉ định một **primary origin** và một **secondary origin**, mà CloudFront sẽ tự động chuyển sang khi **primary origin** trả về mã lỗi HTTP cụ thể.

@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-01-18T16:20:18Z
 title: "[AWS] Amazon Redshift"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -55,7 +56,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # **Redshift Architecture**
 
-![1.png](@/assets/images/analytics/redshift/1.png)
+![1.png](@/assets/images/aws/analytics/redshift/1.png)
 
 - **Cụm (Clusters)**:
   - Thành phần cơ sở hạ tầng cốt lõi của kho dữ liệu Redshift.

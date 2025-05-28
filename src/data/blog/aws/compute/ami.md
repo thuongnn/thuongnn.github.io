@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-03-21T11:45:22Z
 title: "[AWS] Amazon Machine Image (AMI)"
+folder: "aws"
 draft: false
 tags:
   - AWS

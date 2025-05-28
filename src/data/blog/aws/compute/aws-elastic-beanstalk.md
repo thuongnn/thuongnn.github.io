@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-03-24T14:30:45Z
 title: "[AWS] AWS Elastic Beanstalk"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -26,7 +27,7 @@ AWS **Elastic Beanstalk** là dịch vụ **Platform as a Service (PaaS)** giúp
 
 ## **Kiến trúc của AWS Elastic Beanstalk**
 
-![1.png](@/assets/images/compute/aws-elastic-beanstalk/1.png)
+![1.png](@/assets/images/aws/compute/aws-elastic-beanstalk/1.png)
 
 📌 **Application** – Ứng dụng chính chứa nhiều môi trường.
 

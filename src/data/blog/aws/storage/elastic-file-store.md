@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-07-15T10:20:15Z
 title: "[AWS] Amazon Elastic File System (EFS)"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -45,7 +46,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 ### Standard storage classes
 
-![1.png](@/assets/images/storage/elastic-file-store/1.png)
+![1.png](@/assets/images/aws/storage/elastic-file-store/1.png)
 
 - **EFS Standard**
   - **Lưu trữ cấp vùng (regional storage class)** dành cho dữ liệu được truy cập thường xuyên.
@@ -58,7 +59,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 ### One Zone storage classes
 
-![2.png](@/assets/images/storage/elastic-file-store/2.png)
+![2.png](@/assets/images/aws/storage/elastic-file-store/2.png)
 
 - **EFS One Zone**
   - Dành cho **các tệp được truy cập thường xuyên**, được lưu trữ **dự phòng trong một Vùng sẵn sàng (AZ)** trong một khu vực AWS.

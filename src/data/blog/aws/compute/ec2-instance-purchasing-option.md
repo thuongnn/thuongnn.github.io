@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-03-23T10:20:15Z
 title: "[AWS] EC2 Instance Purchasing Options"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -13,7 +14,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 ## Table of contents
 
-### **Các tùy chọn mua EC2 Instance trên AWS**
+# **Các tùy chọn mua EC2 Instance trên AWS**
 
 AWS cung cấp nhiều **tùy chọn mua EC2 instance** để giúp tối ưu hóa chi phí theo nhu cầu sử dụng. Mỗi tùy chọn có **ưu điểm và hạn chế** riêng, phù hợp với từng loại workload khác nhau.
 

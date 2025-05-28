@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-07-21T14:30:45Z
 title: "[AWS] Amazon RDS Aurora"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -23,7 +24,7 @@ Amazon Aurora là dịch vụ cơ sở dữ liệu quan hệ được AWS quản
 
 # **Kiến trúc của Amazon Aurora**
 
-![1.png](@/assets/images/databases/aws-rds-aurora/1.png)
+![1.png](@/assets/images/aws/databases/aws-rds-aurora/1.png)
 
 Amazon Aurora sử dụng **kiến trúc cluster** gồm:
 
@@ -80,7 +81,7 @@ Aurora cung cấp nhiều loại endpoint giúp quản lý kết nối:
 
 # **Các biến thể của Amazon Aurora**
 
-### **Aurora Serverless**
+## **Aurora Serverless**
 
 - ✔ **Không cần cấu hình trước dung lượng** → AWS tự động tăng/giảm tài nguyên.
 - ✔ **Chỉ trả phí khi có truy vấn** → Giúp tiết kiệm chi phí đáng kể.
@@ -93,7 +94,7 @@ Aurora cung cấp nhiều loại endpoint giúp quản lý kết nối:
   - **Không hỗ trợ Multi-AZ cho bản Serverless v1**.
   - **Không tương thích với một số tính năng của Aurora tiêu chuẩn** như Global Database.
 
-### **Aurora Global Database**
+## **Aurora Global Database**
 
 - ✔ **Đồng bộ dữ liệu giữa các khu vực (Region) chỉ trong ~1 giây**.
 - ✔ **Hỗ trợ tối đa 5 khu vực chỉ đọc (read-only region)**.
@@ -101,12 +102,12 @@ Aurora cung cấp nhiều loại endpoint giúp quản lý kết nối:
 - 📌 **Dùng khi nào?**
   - Ứng dụng toàn cầu cần độ trễ thấp.
   - Cần khả năng phục hồi thảm họa nhanh chóng.
-- ❌ **Hạn chế**:
+- ❌ **Hạn chế**:
   - **Chi phí cao** → Phải trả phí cho nhiều cụm Aurora chạy ở các region khác nhau.
   - **Region chỉ đọc không thể ghi dữ liệu** → Chỉ có thể đọc, mọi thay đổi phải thực hiện trên region chính.
   - **Chuyển đổi Region chính (failover) không tự động** → Cần thao tác thủ công hoặc dùng AWS Managed Failover.
 
-### **Aurora Cloning**
+## **Aurora Cloning**
 
 - ✔ **Tạo bản sao nhanh chóng**: Nhân bản cơ sở dữ liệu chỉ trong vài phút mà không cần sao chép toàn bộ dữ liệu.
 - ✔ **Tiết kiệm dung lượng lưu trữ**: Bản clone **chia sẻ dữ liệu gốc** và chỉ tạo bản sao của dữ liệu khi có thay đổi.
@@ -115,12 +116,12 @@ Aurora cung cấp nhiều loại endpoint giúp quản lý kết nối:
   - Cần môi trường **Dev/Test** mà không ảnh hưởng đến database chính.
   - **Phân tích dữ liệu** trên bản sao để tránh tác động đến hệ thống production.
   - **Debug & Troubleshooting**, thử nghiệm các thay đổi mà không ảnh hưởng đến dữ liệu gốc.
-- ❌ **Hạn chế**:
+- ❌ **Hạn chế**:
   - **Không thể clone giữa các tài khoản AWS khác nhau**.
   - **Không thể clone giữa các Region khác nhau** → Clone chỉ hoạt động trong cùng một AWS Region.
   - **Dung lượng có thể tăng nhanh nếu dữ liệu thay đổi nhiều** → Nếu có nhiều thay đổi, bản clone sẽ nhanh chóng tiêu tốn nhiều dung lượng lưu trữ hơn mong đợi.
 
-### **Aurora Parallel Query**
+## **Aurora Parallel Query**
 
 - **Mô tả**: Tính năng **Aurora Parallel Query** cho phép **phân tán tải tính toán của một truy vấn đơn lẻ** trên hàng nghìn CPU trong tầng lưu trữ của Aurora. Thay vì thực thi toàn bộ truy vấn trên một instance duy nhất, Aurora đẩy một phần tải công việc xuống tầng lưu trữ, giúp tăng hiệu suất đáng kể.
 - **Lợi ích**:
@@ -131,7 +132,7 @@ Aurora cung cấp nhiều loại endpoint giúp quản lý kết nối:
 - **Hạn chế**:
   - Chỉ khả dụng cho phiên bản Aurora tương thích với **MySQL 5.6**.
 
-### **Aurora Scaling**
+## **Aurora Scaling**
 
 - **Mô tả**: Aurora cung cấp khả năng **tự động mở rộng lưu trữ** và **mở rộng tính toán** để đáp ứng nhu cầu ứng dụng mà không ảnh hưởng đến hiệu suất.
 - **Các hình thức mở rộng**:
@@ -141,7 +142,7 @@ Aurora cung cấp nhiều loại endpoint giúp quản lý kết nối:
     - **Mở rộng đọc**: Hỗ trợ mở rộng ngang với **tối đa 15 read replicas** để phân tải các hoạt động đọc.
     - **Tự động mở rộng**: Thiết lập chính sách tự động thêm read replicas dựa trên các điều kiện như CPU hoặc số lượng kết nối, với số lượng replica tối thiểu và tối đa được xác định trước.
 
-### **Aurora Backtrack**
+## **Aurora Backtrack**
 
 - **Mô tả**: **Aurora Backtrack** cho phép **"quay ngược" cụm cơ sở dữ liệu** về một thời điểm cụ thể mà không cần phải khôi phục từ bản sao lưu, giúp khắc phục nhanh chóng các lỗi không mong muốn.
 - **Đặc điểm**:

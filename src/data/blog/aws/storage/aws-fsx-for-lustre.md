@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-07-11T14:30:45Z
 title: "[AWS] Amazon FSx for Lustre"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -25,16 +26,16 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # **FSx for Lustre - Các tùy chọn triển khai**
 
-### **Scratch File Systems**
+## **Scratch File Systems**
 
 - **Dành cho lưu trữ tạm thời, xử lý dữ liệu ngắn hạn**.
 - **Hiệu suất cao** với throughput có thể **tăng gấp 6 lần mức cơ bản (200 MBps/TiB)**.
 - **Không nhân bản dữ liệu**, dữ liệu sẽ mất nếu file server gặp lỗi.
 - **Lý tưởng cho workload xử lý nặng nhưng ngắn hạn** và tối ưu chi phí.
 
-### **Persistent File Systems**
+## **Persistent File Systems**
 
-![1.png](@/assets/images/storage/aws-fsx-for-lustre/1.png)
+![1.png](@/assets/images/aws/storage/aws-fsx-for-lustre/1.png)
 
 - **Dành cho lưu trữ dài hạn** và workload cần **tính sẵn sàng cao**.
 - **Tự động sao chép dữ liệu trong cùng một AZ** để đảm bảo độ bền.
@@ -49,7 +50,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - **Có thể liên kết FSx for Lustre với một S3 bucket**, giúp truy cập dữ liệu S3 từ hệ thống file.
 - **Tên và tiền tố (prefix) của đối tượng S3 hiển thị dưới dạng file và thư mục** trong hệ thống file.
 
-### **Cách FSx for Lustre tải dữ liệu từ S3**
+## **Cách FSx for Lustre tải dữ liệu từ S3**
 
 - Mặc định, S3 objects được tải theo cơ chế "**lazy-loading**".
   - Dữ liệu chỉ được tải từ S3 khi lần đầu tiên được ứng dụng truy cập.

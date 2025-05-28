@@ -1,7 +1,8 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-27T09:15:33Z
-title: "[AWS] AWS WAF"
+title: "[AWS] AWS Web Application Firewall"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -56,9 +57,9 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 AWS WAF (Web Application Firewall) cho phép kiểm soát hành vi của các yêu cầu web thông qua sự kết hợp của **conditions**, **rules** và **web access control lists (Web ACLs)**.
 
-![1.png](@/assets/images/security/aws-web-application-firewall/1.png)
+![1.png](@/assets/images/aws/security/aws-web-application-firewall/1.png)
 
-### **Conditions**
+## **Conditions**
 
 Điều kiện xác định các đặc điểm cụ thể của các yêu cầu web mà AWS WAF sẽ theo dõi. Các điều kiện này có thể bao gồm:
 
@@ -71,7 +72,7 @@ AWS WAF (Web Application Firewall) cho phép kiểm soát hành vi của các y�
 
 Một số điều kiện có thể **nhận nhiều giá trị**, cho phép khớp phức tạp hơn.
 
-### Actions
+## **Actions**
 
 Dựa trên các điều kiện, AWS WAF có thể thực hiện một số hành động:
 
@@ -80,7 +81,7 @@ Dựa trên các điều kiện, AWS WAF có thể thực hiện một số hàn
 - **Giám sát (Đếm)**: Đếm số lượng yêu cầu khớp với các đặc điểm cụ thể mà không chặn chúng. Điều này hữu ích khi kiểm tra các cấu hình mới để đảm bảo chúng không vô tình chặn lưu lượng hợp pháp.
 - **CAPTCHA**: Kiểm tra CAPTCHA đối với các yêu cầu để xác minh xem chúng có đến từ bot hay người dùng thật.
 
-### Rules
+## **Rules**
 
 Các quy tắc AWS WAF xác định cách kiểm tra các yêu cầu HTTP(S) và hành động thực hiện khi yêu cầu khớp với các điều kiện cụ thể.
 
@@ -91,7 +92,7 @@ Các quy tắc AWS WAF xác định cách kiểm tra các yêu cầu HTTP(S) và
   - Bao gồm mã SQL độc hại trong chuỗi truy vấn.
   - Tất cả ba điều kiện phải được thỏa mãn (AND) để quy tắc được kích hoạt và hành động tương ứng được thực hiện.
 
-### Rule Groups
+## **Rule Groups**
 
 **Rule Groups** là một tập hợp các quy tắc có thể được tái sử dụng và thêm vào Web ACL. Rule groups chia thành ba loại chính:
 
@@ -99,7 +100,7 @@ Các quy tắc AWS WAF xác định cách kiểm tra các yêu cầu HTTP(S) và
 - Các rule do người dùng tạo và duy trì.
 - Các rule do các dịch vụ khác như AWS Firewall Manager hoặc Shield Advanced quản lý.
 
-### **Web ACLs (Web Access Control Lists)**
+## **Web ACLs (Web Access Control Lists)**
 
 **Web ACL** cung cấp kiểm soát chi tiết đối với các yêu cầu web mà tài nguyên được bảo vệ phản hồi. Các tính năng chính của Web ACL bao gồm:
 
@@ -117,22 +118,22 @@ Các quy tắc AWS WAF xác định cách kiểm tra các yêu cầu HTTP(S) và
 
 # AWS WAF based Architecture
 
-![2.png](@/assets/images/security/aws-web-application-firewall/2.png)
+![2.png](@/assets/images/aws/security/aws-web-application-firewall/2.png)
 
 Kiến trúc này mô tả cách AWS WAF tích hợp với AWS CloudFront, Lambda và S3 để cập nhật các quy tắc WAF động dựa trên các mẫu yêu cầu. Dưới đây là phân tích các thành phần và cách chúng tương tác:
 
-### **1. CloudFront Nhận Các Yêu Cầu Web**
+## **1. CloudFront Nhận Các Yêu Cầu Web**
 
 - **CloudFront** hoạt động như một mạng phân phối nội dung (CDN) xử lý các yêu cầu web thay mặt cho ứng dụng web của bạn.
 - **Gửi yêu cầu** đến ứng dụng của bạn, lưu trữ nội dung và cung cấp quyền truy cập nhanh cho người dùng.
 - **Ghi lại nhật ký truy cập**: CloudFront ghi lại chi tiết các yêu cầu mà nó xử lý và gửi chúng đến một **S3 bucket** để lưu trữ. Những nhật ký này chứa thông tin như địa chỉ IP, URL yêu cầu, mã trạng thái phản hồi, v.v.
 
-### **2. S3 Bucket Lưu Trữ Nhật Ký Truy Cập**
+## **2. S3 Bucket Lưu Trữ Nhật Ký Truy Cập**
 
 - **S3 bucket** lưu trữ tất cả các nhật ký truy cập của CloudFront. Các nhật ký này có thể được Lambda function truy cập để xử lý.
 - Mỗi khi một nhật ký mới được lưu trữ trong S3 bucket, một **Lambda function** sẽ được kích hoạt để xử lý các nhật ký.
 
-### **3. Lambda Function Xử Lý Nhật Ký**
+## **3. Lambda Function Xử Lý Nhật Ký**
 
 - **Phân tích Nhật Ký**: Lambda function được kích hoạt mỗi khi có nhật ký mới được thêm vào S3 bucket. Nó phân tích các tệp nhật ký để kiểm tra các mẫu yêu cầu và mã lỗi.
 - **Xác định Các Yêu Cầu Xấu**: Lambda function tìm các yêu cầu gây ra mã lỗi HTTP như:
@@ -142,17 +143,17 @@ Kiến trúc này mô tả cách AWS WAF tích hợp với AWS CloudFront, Lambd
   - **405** (Phương thức không được phép)
 - **Đếm Các Yêu Cầu Xấu**: Hàm Lambda đếm số lượng yêu cầu gây ra các lỗi này, xác định các địa chỉ IP có thể là yêu cầu xâm phạm hoặc sai sót.
 
-### **4. Lưu Trữ Tạm Thời trong S3**
+## **4. Lưu Trữ Tạm Thời trong S3**
 
 - Lambda function lưu trữ kết quả phân tích (như các bad IP Address) tạm thời trong S3 bucket. Điều này cho phép xử lý thêm và theo dõi các địa chỉ IP liên quan đến yêu cầu không mong muốn.
 
-### **5. Cập Nhật Quy Tắc AWS WAF**
+## **5. Cập Nhật Quy Tắc AWS WAF**
 
 - **Cập Nhật Động**: Dựa trên phân tích các nhật ký truy cập, Lambda function cập nhật **quy tắc AWS WAF** để chặn các địa chỉ IP đã xác định.
 - **Chặn Tạm Thời**: Lambda function có thể thiết lập **thời gian chặn tạm thời** cho các địa chỉ IP này (ví dụ: vài giờ hoặc vài ngày). Trong thời gian này, WAF sẽ chặn yêu cầu từ các IP này để giảm thiểu các cuộc tấn công hoặc hành vi xâm phạm.
 - Sau khi hết thời gian chặn, **AWS WAF sẽ cho phép** các địa chỉ IP này truy cập lại vào ứng dụng của bạn nhưng vẫn tiếp tục theo dõi hoạt động của chúng.
 
-### **6. Giám Sát và Thống Kê qua CloudWatch**
+## **6. Giám Sát và Thống Kê qua CloudWatch**
 
 - **Thông Số Thực Thi**: Lambda function xuất bản các thông số thực thi vào **CloudWatch**, bao gồm:
   - Số lượng **yêu cầu** đã phân tích.
@@ -160,7 +161,7 @@ Kiến trúc này mô tả cách AWS WAF tích hợp với AWS CloudFront, Lambd
   - **Dữ liệu liên quan khác** (ví dụ: số lượng mã lỗi phát hiện được).
 - Những thông số này giúp giám sát hiệu quả của Lambda function và các cập nhật của WAF.
 
-### **7. Tích Hợp Thông Báo SNS**
+## **7. Tích Hợp Thông Báo SNS**
 
 - **Tích Hợp CloudWatch với SNS**: Các thông số từ CloudWatch có thể được tích hợp với **Simple Notification Service (SNS)** để gửi thông báo. Điều này giúp các quản trị viên nhận được cảnh báo khi các ngưỡng nhất định được đạt tới, chẳng hạn như:
   - Một số lượng yêu cầu nhất định gây ra mã lỗi.
@@ -169,39 +170,39 @@ Kiến trúc này mô tả cách AWS WAF tích hợp với AWS CloudFront, Lambd
 
 # Web Application Firewall Sandwich Architecture
 
-![3.png](@/assets/images/security/aws-web-application-firewall/3.png)
+![3.png](@/assets/images/aws/security/aws-web-application-firewall/3.png)
 
-### **Các cuộc tấn công DDoS ở lớp ứng dụng và cách WAF giúp giảm thiểu**
+## **Các cuộc tấn công DDoS ở lớp ứng dụng và cách WAF giúp giảm thiểu**
 
 Các cuộc tấn công DDoS ở lớp ứng dụng thường nhắm vào các ứng dụng web với lưu lượng thấp hơn so với các cuộc tấn công hạ tầng. **WAF** có thể được tích hợp như một phần của hạ tầng để giảm thiểu các cuộc tấn công này.
 
-### **Cách WAF Hoạt Động**
+## **Cách WAF Hoạt Động**
 
 WAF hoạt động như một bộ lọc áp dụng một tập hợp các quy tắc vào lưu lượng web, nhằm bảo vệ ứng dụng khỏi các lỗ hổng như **XSS** (Cross-Site Scripting) và **SQL Injection**. Bên cạnh đó, WAF cũng có thể giúp tăng cường khả năng chống lại các cuộc tấn công DDoS bằng cách giảm thiểu các cuộc tấn công **HTTP GET** hoặc **POST flood**.
 
-### **Các Loại Tấn Công DDoS**
+## **Các Loại Tấn Công DDoS**
 
 - **HTTP GET Floods**: Đây là kiểu tấn công yêu cầu một URL cụ thể với tần suất rất cao hoặc yêu cầu tất cả các đối tượng từ ứng dụng của bạn. Mục tiêu là làm quá tải các tài nguyên của ứng dụng bằng cách gửi nhiều yêu cầu.
 - **HTTP POST Floods**: Tấn công này tìm các quá trình tốn kém trong ứng dụng, ví dụ như đăng nhập hoặc tìm kiếm trong cơ sở dữ liệu, và cố gắng kích hoạt chúng để làm quá tải ứng dụng.
 
-### **Các Tính Năng của WAF để Ngăn Chặn Tấn Công DDoS**
+## **Các Tính Năng của WAF để Ngăn Chặn Tấn Công DDoS**
 
 - **Giới hạn tần suất HTTP**: WAF có thể giới hạn số lượng yêu cầu mà mỗi người dùng có thể gửi trong một khoảng thời gian nhất định. Khi vượt quá ngưỡng này, WAF có thể chặn hoặc lưu trữ các yêu cầu mới để đảm bảo người dùng khác vẫn có thể truy cập ứng dụng.
 - **Kiểm tra các yêu cầu HTTP**: WAF có thể kiểm tra và nhận diện các yêu cầu không phù hợp với các mẫu thông thường.
 
-### **Mô Hình "WAF Sandwich"**
+## **Mô Hình "WAF Sandwich"**
 
 Trong mô hình **"WAF sandwich"**, EC2 chạy phần mềm WAF (không phải AWS WAF) được đặt trong một nhóm **Auto Scaling** và nằm giữa hai **ELB** (Elastic Load Balancer).
 
 - **Load balancer frontend**: Đây là một load balancer công cộng trong VPC mặc định, có nhiệm vụ phân phối tất cả lưu lượng vào EC2 chạy phần mềm WAF.
 - Khi có lượng lưu lượng tăng đột biến, mô hình này cho phép tự động mở rộng và thêm các EC2 WAF mới để đáp ứng yêu cầu.
 
-### **Quy Trình Hoạt Động**
+## **Quy Trình Hoạt Động**
 
 1. **Lưu lượng đến WAF EC2**: Tất cả lưu lượng từ người dùng sẽ được chuyển đến EC2 chạy WAF thông qua load balancer phía trước.
 2. **Kiểm tra và lọc lưu lượng**: Sau khi lưu lượng đã được kiểm tra và lọc, WAF EC2 sẽ chuyển lưu lượng đã lọc tới **load balancer backend**.
 3. **Phân phối tới ứng dụng**: Load balancer nội bộ sẽ phân phối lưu lượng vào các **EC2 ứng dụng** của bạn.
 
-### **Lợi Ích của Cấu Hình Này**
+## **Lợi Ích của Cấu Hình Này**
 
 Cấu hình này cho phép các EC2 WAF có thể mở rộng và đáp ứng yêu cầu mà không ảnh hưởng đến khả năng sẵn có của ứng dụng EC2, giúp bảo vệ ứng dụng khỏi các cuộc tấn công mà vẫn duy trì hoạt động ổn định.

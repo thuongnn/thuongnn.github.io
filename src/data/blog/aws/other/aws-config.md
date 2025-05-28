@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-08-01T09:15:33Z
 title: "[AWS] AWS Config"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -48,7 +49,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # **AWS Config Concepts**
 
-![1.png](@/assets/images/other/aws-config/1.png)
+![1.png](@/assets/images/aws/other/aws-config/1.png)
 
 - **AWS Resources**:
   - Là các thực thể được **tạo** và **quản lý** _ví dụ: phiên bản EC2, Security groups_.
@@ -76,7 +77,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # **AWS Config Flow**
 
-![2.png](@/assets/images/other/aws-config/2.png)
+![2.png](@/assets/images/aws/other/aws-config/2.png)
 
 - Khi **AWS Config** được bật, nó **khám phá** các tài nguyên được hỗ trợ hiện có trong tài khoản và tạo một **configuration item** cho mỗi tài nguyên.
 - Theo mặc định, AWS Config tạo **configuration items** cho **mọi tài nguyên được hỗ trợ** trong **region** nhưng có thể được tùy chỉnh để giới hạn ở các **loại tài nguyên** cụ thể.
@@ -94,7 +95,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # **AWS Config Remediation**
 
-![3.png](@/assets/images/other/aws-config/3.png)
+![3.png](@/assets/images/aws/other/aws-config/3.png)
 
 - **AWS Config** chỉ là một dịch vụ **phát hiện** và **không ngăn chặn thay đổi**, nhưng tích hợp với các dịch vụ AWS khác để **khắc phục**.
 - Cho phép **khắc phục** các tài nguyên **non-compliant** được đánh giá bởi **config rules**.

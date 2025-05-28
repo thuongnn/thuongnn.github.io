@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-01-16T14:30:45Z
 title: "[AWS] Amazon CloudWatch"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -27,7 +28,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # **CloudWatch Architecture**
 
-![1.png](@/assets/images/analytics/cloudwatch/1.png)
+![1.png](@/assets/images/aws/analytics/cloudwatch/1.png)
 
 - CloudWatch thu thập các số liệu khác nhau từ nhiều tài nguyên.
 - Các số liệu này, dưới dạng thống kê, có sẵn cho người dùng thông qua **Bảng điều khiển (Console)** hoặc **CLI**.

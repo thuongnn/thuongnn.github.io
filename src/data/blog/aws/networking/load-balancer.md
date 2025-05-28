@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-05-09T11:45:22Z
 title: "[AWS] Elastic Load Balancing"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -15,7 +16,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # AWS Application Load Balancer -ALB
 
-![1.png](@/assets/images/networking/load-balancer/1.png)
+![1.png](@/assets/images/aws/networking/load-balancer/1.png)
 
 - Application Load Balancer hoạt động ở layer 7 (application layer) cho phép định nghĩa các routing rules dựa trên nội dung giữa nhiều dịch vụ hoặc container chạy trên một hoặc nhiều EC2 instances.
 - Load balancer có thể tự động scale khi traffic truy cập đến ứng dụng thay đổi theo thời gian.
@@ -23,7 +24,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 ## Application Load Balancer Components
 
-![2.png](@/assets/images/networking/load-balancer/2.png)
+![2.png](@/assets/images/aws/networking/load-balancer/2.png)
 
 **Application Load Balancer (ALB) Components trong AWS** bao gồm các thành phần chính sau:
 
@@ -155,7 +156,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # AWS Classic Load Balancer vs Application Load Balancer vs Network Load Balancer
 
-![3.png](@/assets/images/networking/load-balancer/3.png)
+![3.png](@/assets/images/aws/networking/load-balancer/3.png)
 
 - Elastic Load Balancing hỗ trợ 3 loại load balancer sau:
   - Classic Load Balancer – CLB
@@ -181,7 +182,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
   - **Khuyến nghị của AWS:**
     - Sử dụng **Application Load Balancer** cho Layer 7.
     - Sử dụng **Network Load Balancer** cho Layer 4 khi làm việc với VPC.
-      ![4.png](@/assets/images/networking/load-balancer/4.png)
+      ![4.png](@/assets/images/aws/networking/load-balancer/4.png)
 
 ## Tính năng chung
 

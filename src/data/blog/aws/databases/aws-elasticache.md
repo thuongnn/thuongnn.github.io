@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-07-18T11:45:22Z
 title: "[AWS] Amazon ElastiCache"
+folder: "aws"
 draft: false
 tags:
   - AWS

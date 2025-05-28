@@ -1,7 +1,8 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-30T10:20:15Z
-title: "[AWS] Amazon SNS"
+title: "[AWS] Simple Notification Service – SNS"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -15,7 +16,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # **Tổng quan**
 
-![1.png](@/assets/images/other/aws-sns/1.png)
+![1.png](@/assets/images/aws/other/aws-sns/1.png)
 
 - **Simple Notification Service (SNS)** là dịch vụ web quản lý và điều phối việc gửi hoặc phân phối tin nhắn đến các điểm cuối hoặc ứng dụng khách đã đăng ký.
 - SNS cho phép tạo **Chủ đề (Topic)**, là một điểm truy cập logic và kênh giao tiếp.

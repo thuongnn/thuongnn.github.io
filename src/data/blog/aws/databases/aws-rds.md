@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-09-15T15:30:45Z
 title: "[AWS] Amazon Relational Database Service (RDS)"
+folder: "aws"
 draft: false
 tags:
   - AWS

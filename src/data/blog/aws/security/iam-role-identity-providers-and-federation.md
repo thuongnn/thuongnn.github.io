@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-07-29T15:30:45Z
 title: "[AWS] IAM Role, Identity Providers and Federation"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -21,7 +22,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # Web Identity Federation without Cognito
 
-![1.png](@/assets/images/security/iam-role-identity-providers-and-federation/1.png)
+![1.png](@/assets/images/aws/security/iam-role-identity-providers-and-federation/1.png)
 
 1. Mobile hoặc Web Application cần được cấu hình với IdP, nơi mỗi ứng dụng sẽ có một ID hoặc client ID duy nhất (còn gọi là audience)
 2. Tạo một thực thể Nhà cung cấp nhận dạng (IdP) cho IdP tương thích với OIDC trong IAM.
@@ -40,14 +41,14 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # **Mobile or Web Identity Federation with Cognito**
 
-![2.png](@/assets/images/security/iam-role-identity-providers-and-federation/2.png)
+![2.png](@/assets/images/aws/security/iam-role-identity-providers-and-federation/2.png)
 
 - **Amazon Cognito** là một dịch vụ trung gian danh tính được khuyến nghị cho hầu hết các trường hợp liên kết danh tính web. Đây là giải pháp dễ sử dụng và cung cấp các khả năng bổ sung như quyền truy cập ẩn danh (không xác thực).
 - Cognito hỗ trợ người dùng ẩn danh, xác thực đa yếu tố (MFA) và cũng giúp đồng bộ hóa dữ liệu người dùng giữa các thiết bị và nhà cung cấp khác nhau.
 
 # SAML 2.0-based Federation
 
-![3.png](@/assets/images/security/iam-role-identity-providers-and-federation/3.png)
+![3.png](@/assets/images/aws/security/iam-role-identity-providers-and-federation/3.png)
 
 - AWS hỗ trợ liên kết danh tính với SAML 2.0 (Security Assertion Markup Language 2.0), một tiêu chuẩn mở được sử dụng bởi nhiều nhà cung cấp dịch vụ danh tính (IdPs).
 - Tính năng liên kết dựa trên SAML 2.0 cho phép đăng nhập một lần (SSO), vì vậy người dùng có thể đăng nhập vào AWS Management Console hoặc gọi các API AWS mà không cần phải tạo người dùng IAM cho tất cả mọi người trong tổ chức.
@@ -73,7 +74,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # AWS SSO with SAML
 
-![4.png](@/assets/images/security/iam-role-identity-providers-and-federation/4.png)
+![4.png](@/assets/images/aws/security/iam-role-identity-providers-and-federation/4.png)
 
 - Liên kết theo chuẩn SAML 2.0 cũng có thể được sử dụng để cấp quyền truy cập cho người dùng liên kết vào AWS Management Console.
 - Điều này yêu cầu sử dụng AWS SSO endpoint thay vì gọi trực tiếp API **AssumeRoleWithSAML**.
@@ -93,7 +94,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # Custom Identity Broker Federation
 
-![5.png](@/assets/images/security/iam-role-identity-providers-and-federation/5.png)
+![5.png](@/assets/images/aws/security/iam-role-identity-providers-and-federation/5.png)
 
 - Nếu tổ chức không hỗ trợ IdP tương thích với SAML, một Custom Identity Broker có thể được sử dụng để cung cấp quyền truy cập.
 - Custom Identity Broker cần thực hiện các bước sau:

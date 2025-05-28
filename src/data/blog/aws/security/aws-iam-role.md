@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-08-30T11:20:33Z
 title: "[AWS] AWS Identity and Access Management (IAM) Roles"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -35,7 +36,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
   - **Trust Policy**
     - Xác định **ai** có thể giả định IAM Role.
     - Trust Policy thiết lập mối quan hệ tin cậy giữa tài khoản sở hữu tài nguyên (trusting account) và tài khoản sở hữu người dùng cần truy cập tài nguyên (trusted account).
-  - **Permissions policy**
+  - **Permissions policy**
     - Xác định **những gì** có thể truy cập.
     - Permissions Policy quyết định quyền hạn, cho phép người dùng của Role thực hiện các tác vụ mong muốn trên tài nguyên.
 - **Liên kết danh tính (Federation):**
@@ -65,7 +66,7 @@ Một số dịch vụ AWS cần tương tác với các dịch vụ AWS khác, 
 - AWS tự động cung cấp thông tin xác thực bảo mật tạm thời cho các dịch vụ này, ví dụ: EC2 instance sử dụng thông tin xác thực thay mặt cho ứng dụng của nó.
 - **Lưu ý** xóa một **Role** hoặc **Instance Profile** đang được liên kết với một EC2 instance đang chạy sẽ làm gián đoạn hoạt động của các ứng dụng trên instance đó.
 
-### **Complete Process Flow**
+## **Complete Process Flow**
 
 1. **Tạo một IAM Role:**
    - Chỉ định các dịch vụ sẽ sử dụng Role (ví dụ: EC2 là một thực thể tin cậy).
@@ -83,7 +84,7 @@ Một số dịch vụ AWS cần tương tác với các dịch vụ AWS khác, 
 6. **Xử lý thông tin xác thực trong ứng dụng:**
    - Nếu ứng dụng lưu trữ tạm thời thông tin xác thực, cần đảm bảo sử dụng thông tin chính xác trước khi chúng hết hạn.
 
-### **Instance Profile**
+## **Instance Profile**
 
 - **Instance Profile** là một container cho một IAM Role, được sử dụng để truyền thông tin Role đến một EC2 instance khi instance khởi động.
 - **Tạo Instance Profile tự động**: nếu một Role được tạo cho EC2 instance hoặc bất kỳ dịch vụ nào khác sử dụng EC2 thông qua **AWS Management Console**, AWS sẽ tự động tạo Instance Profile với cùng tên như Role.
@@ -111,7 +112,7 @@ Một số dịch vụ AWS cần tương tác với các dịch vụ AWS khác, 
   - Chỉ một tập hợp quyền được áp dụng tại một thời điểm. Khi người dùng đảm nhận một Role, họ tạm thời từ bỏ quyền hạn ban đầu và sử dụng quyền hạn của Role đó.
   - Khi người dùng thoát hoặc ngừng sử dụng Role, các quyền ban đầu của người dùng sẽ được khôi phục.
 - **Complete Process Flow**
-  ![1.png](@/assets/images/security/aws-iam-role/1.png)
+  ![1.png](@/assets/images/aws/security/aws-iam-role/1.png)
   1. **Tạo IAM Role trong tài khoản tin tưởng (Trusting Account):**
      - Tạo một **Trust policy** định nghĩa tài khoản tin cậy (Trusted Account) là principal có thể truy cập tài nguyên.
      - Tạo một **Permissions policy** để định nghĩa tài nguyên nào mà người dùng trong tài khoản tin cậy có thể truy cập.
@@ -133,9 +134,9 @@ Một số dịch vụ AWS cần tương tác với các dịch vụ AWS khác, 
 
 # External ID and Confused Deputy Problem
 
-### Confused Deputy Problem
+## **Confused Deputy Problem**
 
-![2.png](@/assets/images/security/aws-iam-role/2.png)
+![2.png](@/assets/images/aws/security/aws-iam-role/2.png)
 
 - **Confused Deputy Problem** xảy ra khi một hệ thống (đại diện) thực hiện hành động thay mặt cho người khác, nhưng vì thiếu kiểm soát hoặc xác thực đúng đắn, hệ thống đó lại vô tình cho phép một bên không có quyền truy cập thực sự vào tài nguyên hoặc dữ liệu của mình.
 - Trong bối cảnh trên:
@@ -144,13 +145,13 @@ Một số dịch vụ AWS cần tương tác với các dịch vụ AWS khác, 
   - **Example Corp** sau đó có thể sử dụng ARN của bạn để truy cập tài nguyên của bạn và thực hiện các tác vụ, nhưng có thể **Example Corp** lại chia sẻ dữ liệu với tài khoản AWS khác mà bạn không muốn cấp quyền truy cập.
 - Điều này tạo ra tình huống **confused deputy**: **Example Corp** (đại diện) không biết rằng họ đang trao quyền cho một bên không được phép truy cập vào tài nguyên của bạn, do sự thiếu kiểm tra và xác thực của hệ thống. Vấn đề này có thể dẫn đến việc một tổ chức hoặc người dùng không đáng tin cậy có thể truy cập vào tài nguyên hoặc dữ liệu của bạn mà không có sự cho phép rõ ràng từ bạn.
 
-### Giải pháp cho Confused Deputy Problem dùng External ID
+## **Giải pháp cho Confused Deputy Problem dùng External ID**
 
-![3.png](@/assets/images/security/aws-iam-role/3.png)
+![3.png](@/assets/images/aws/security/aws-iam-role/3.png)
 
 - Để giải quyết vấn đề này, **External ID** được sử dụng như một công cụ để xác định chính xác **ai** là người yêu cầu quyền truy cập.
 - Example Corp tạo ra một **External ID** duy nhất cho từng khách hàng, chỉ có khách hàng đó biết. Mỗi lần một tài khoản muốn yêu cầu quyền truy cập, Example Corp sẽ yêu cầu tài khoản đó cung cấp **External ID** của mình.
 - **Cách hoạt động của giải pháp:**
   - **Trust policy** trong role được thiết lập để yêu cầu **External ID** này như một điều kiện. Khi Example Corp yêu cầu quyền truy cập vào tài nguyên của bạn, họ sẽ cung cấp **ARN** của role cùng với **External ID** của khách hàng cụ thể.
   - Nếu yêu cầu đến từ tài khoản AWS khác mà không cung cấp **External ID** chính xác (mà Example Corp đã cấp cho bạn), yêu cầu đó sẽ không khớp với điều kiện trong **Trust policy** của role. Điều này khiến yêu cầu bị từ chối, ngay cả khi ARN có thể hợp lệ, ngăn chặn việc **Confused Deputy** có thể xảy ra.
-  - Chức năng chính của **External ID** là giải quyết và ngăn chặn vấn đề **“confused deputy”**.
+  - Chức năng chính của **External ID** là giải quyết và ngăn chặn vấn đề **"confused deputy"**.

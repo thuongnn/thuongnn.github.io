@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-07-13T11:45:22Z
 title: "[AWS] AWS Storage Gateway"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -29,7 +30,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # S3 File Gateway
 
-![1.png](@/assets/images/storage/aws-storage-gateway/1.png)
+![1.png](@/assets/images/aws/storage/aws-storage-gateway/1.png)
 
 - **Cung cấp giao diện file** để lưu trữ và truy xuất dữ liệu trên **AWS S3**.
 - **Hỗ trợ các giao thức tiêu chuẩn** như **NFS (v3 & v4.1)** và **SMB (v2 & v3)** để truy xuất dữ liệu.
@@ -57,7 +58,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 ### **Gateway Cached Volumes**
 
-![2.png](@/assets/images/storage/aws-storage-gateway/2.png)
+![2.png](@/assets/images/aws/storage/aws-storage-gateway/2.png)
 
 - **Dữ liệu được lưu trữ chính trên S3**, trong khi **các dữ liệu được truy cập gần đây sẽ được giữ lại** on-premises để **giảm độ trễ (low latency access)**.
 - Tiết kiệm chi phí lưu trữ chính, giảm nhu cầu mở rộng bộ nhớ on-premises.
@@ -73,7 +74,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 ### Gateway Stored Volumes
 
-![3.png](@/assets/images/storage/aws-storage-gateway/3.png)
+![3.png](@/assets/images/aws/storage/aws-storage-gateway/3.png)
 
 - Lưu trữ toàn bộ dữ liệu ở on-premises để đảm bảo truy xuất với độ trễ thấp (low latency access).
 - Sao lưu dữ liệu theo từng thời điểm (point-in-time snapshots) lên **Amazon S3** dưới dạng **EBS snapshots** để đảm bảo **bảo mật và lưu trữ bền vững**.
@@ -89,7 +90,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # Tape Gateway – Gateway-Virtual Tape Library (VTL)
 
-![4.png](@/assets/images/storage/aws-storage-gateway/4.png)
+![4.png](@/assets/images/aws/storage/aws-storage-gateway/4.png)
 
 - Cung cấp giải pháp lưu trữ bền vững và tiết kiệm chi phí cho nhu cầu lưu trữ dữ liệu dài hạn.
 - **Hỗ trợ giao diện VTL (Virtual Tape Library)**, cho phép tận dụng hạ tầng sao lưu tapes hiện có để lưu trữ dữ liệu trên **Virtual Tape Cartridges**.

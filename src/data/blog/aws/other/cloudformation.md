@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-08-02T11:45:22Z
 title: "[AWS] AWS CloudFormation"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -57,7 +58,7 @@ Trong **AWS CloudFormation**, bạn làm việc với **templates** và **stacks
 
 # Change Sets
 
-![1.png](@/assets/images/other/cloudformation/1.png)
+![1.png](@/assets/images/aws/other/cloudformation/1.png)
 
 - **Change Sets** cung cấp một **tóm tắt** hoặc **xem trước** các thay đổi được đề xuất mà CloudFormation sẽ thực hiện khi một **stack** được cập nhật.
 - **Change Sets** giúp kiểm tra cách các thay đổi có thể **ảnh hưởng** đến các tài nguyên đang chạy, đặc biệt là các tài nguyên quan trọng, trước khi thực hiện chúng.
@@ -92,7 +93,7 @@ Trong **AWS CloudFormation**, bạn làm việc với **templates** và **stacks
 
 # Cấu trúc Template CloudFormation
 
-![2.png](@/assets/images/other/cloudformation/2.png)
+![2.png](@/assets/images/aws/other/cloudformation/2.png)
 
 - **Resources** (required):
   - Chỉ định các **tài nguyên stack** và **thuộc tính** của chúng, chẳng hạn như một phiên bản **EC2** hoặc một **S3 bucket** sẽ được tạo.
@@ -186,7 +187,7 @@ Trong **AWS CloudFormation**, bạn làm việc với **templates** và **stacks
 
 # CloudFormation StackSets
 
-![3.png](@/assets/images/other/cloudformation/3.png)
+![3.png](@/assets/images/aws/other/cloudformation/3.png)
 
 - **CloudFormation StackSets** mở rộng chức năng của **stacks** bằng cách cho phép bạn **tạo**, **cập nhật** hoặc **xóa stacks** trên **nhiều tài khoản** và **Regions** với một **thao tác duy nhất**.
 - Sử dụng một **tài khoản quản trị**, một **template CloudFormation** có thể được **định nghĩa**, **quản lý** và sử dụng làm cơ sở để **cung cấp stacks** vào các **tài khoản mục tiêu** được chọn trên các **AWS Regions** được chỉ định.

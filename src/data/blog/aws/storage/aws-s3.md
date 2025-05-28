@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-07-10T13:45:28Z
 title: "[AWS] Amazon Simple Storage Service (S3)"
+folder: "aws"
 draft: false
 tags:
   - AWS

@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-01-15T09:15:22Z
 title: "[AWS] AWS CloudTrail"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -30,7 +31,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # CloudTrail Works
 
-![1.png](@/assets/images/analytics/cloudtrail/1.png)
+![1.png](@/assets/images/aws/analytics/cloudtrail/1.png)
 
 - AWS CloudTrail **ghi lại các lệnh gọi API AWS** và các sự kiện liên quan được thực hiện bởi hoặc thay mặt tài khoản AWS và gửi các tệp nhật ký đến một **S3 bucket** được chỉ định.
 - [S3 lifecycle rules](https://jayendrapatil.com/aws-s3-object-lifecycle-management/) có thể được áp dụng để **lưu trữ** hoặc **xóa** các tệp nhật ký tự động.

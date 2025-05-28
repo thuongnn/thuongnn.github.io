@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-03-28T10:20:15Z
 title: "[AWS] AWS Auto Scaling"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -43,7 +44,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # **Tích hợp với ELB**
 
-![1.png](@/assets/images/compute/aws-auto-scaling/1.png)
+![1.png](@/assets/images/aws/compute/aws-auto-scaling/1.png)
 
 **AWS Auto Scaling và Elastic Load Balancing (ELB)** là hai dịch vụ quan trọng giúp ứng dụng của bạn đạt được khả năng mở rộng linh hoạt, độ sẵn sàng cao và phân phối tải hiệu quả. Khi kết hợp, chúng đảm bảo rằng lưu lượng truy cập được phân phối đồng đều và hệ thống tự động điều chỉnh để đáp ứng nhu cầu.
 

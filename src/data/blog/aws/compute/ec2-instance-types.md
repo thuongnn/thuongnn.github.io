@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-03-22T09:15:33Z
 title: "[AWS] EC2 Instance Types"
+folder: "aws"
 draft: false
 tags:
   - AWS

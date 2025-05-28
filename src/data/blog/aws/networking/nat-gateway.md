@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-05-15T15:30:45Z
 title: "[AWS] NAT Gateway"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -24,7 +25,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # **NAT Gateway**
 
-![1.png](@/assets/images/networking/nat-gateway/1.png)
+![1.png](@/assets/images/aws/networking/nat-gateway/1.png)
 
 **NAT Gateway** là một dịch vụ NAT được AWS quản lý, cung cấp tính sẵn sàng cao hơn, băng thông lớn hơn, và yêu cầu ít nỗ lực quản trị hơn.
 
@@ -42,4 +43,4 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # NAT Gateway vs NAT Instance
 
-![2.png](@/assets/images/networking/nat-gateway/2.png)
+![2.png](@/assets/images/aws/networking/nat-gateway/2.png)

@@ -2,6 +2,7 @@
 author: thuongnn
 pubDatetime: 2023-07-16T14:30:45Z
 title: "[AWS] EC2 Instance Store"
+folder: "aws"
 draft: false
 tags:
   - AWS
@@ -15,7 +16,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 # EC2 Instance Store
 
-![1.png](@/assets/images/storage/ec2-instance-store-storage/1.png)
+![1.png](@/assets/images/aws/storage/ec2-instance-store-storage/1.png)
 
 - Cung cấp bộ nhớ tạm thời (Ephemeral) dạng block-level cho EC2 instance.
 - Được đặt trên các ổ đĩa vật lý gắn trực tiếp vào máy chủ.
