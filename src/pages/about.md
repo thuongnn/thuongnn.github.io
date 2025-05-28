@@ -8,4 +8,3 @@ title: "About"
 <div>
   <img src="/dev.svg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
 </div>
-
