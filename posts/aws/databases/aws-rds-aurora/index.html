@@ -130,16 +130,12 @@ About
 <li><a href="#c%C6%A1-ch%E1%BA%BF-sao-l%C6%B0u--kh%C3%B4i-ph%E1%BB%A5c"><strong>Cơ chế sao lưu &#x26; khôi phục</strong></a></li>
 <li><a href="#c%C3%A1c-bi%E1%BA%BFn-th%E1%BB%83-c%E1%BB%A7a-amazon-aurora"><strong>Các biến thể của Amazon Aurora</strong></a>
 <ul>
-<li>
-<ul>
 <li><a href="#aurora-serverless"><strong>Aurora Serverless</strong></a></li>
 <li><a href="#aurora-global-database"><strong>Aurora Global Database</strong></a></li>
 <li><a href="#aurora-cloning"><strong>Aurora Cloning</strong></a></li>
 <li><a href="#aurora-parallel-query"><strong>Aurora Parallel Query</strong></a></li>
 <li><a href="#aurora-scaling"><strong>Aurora Scaling</strong></a></li>
 <li><a href="#aurora-backtrack"><strong>Aurora Backtrack</strong></a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li><a href="#khi-n%C3%A0o-n%C3%AAn-s%E1%BB%AD-d%E1%BB%A5ng-amazon-aurora"><strong>Khi nào nên sử dụng Amazon Aurora?</strong></a></li>
@@ -247,7 +243,7 @@ About
 </li>
 </ul>
 <h1 id="các-biến-thể-của-amazon-aurora"><strong>Các biến thể của Amazon Aurora</strong></h1>
-<h3 id="aurora-serverless"><strong>Aurora Serverless</strong></h3>
+<h2 id="aurora-serverless"><strong>Aurora Serverless</strong></h2>
 <ul>
 <li>✔ <strong>Không cần cấu hình trước dung lượng</strong> → AWS tự động tăng/giảm tài nguyên.</li>
 <li>✔ <strong>Chỉ trả phí khi có truy vấn</strong> → Giúp tiết kiệm chi phí đáng kể.</li>
@@ -266,7 +262,7 @@ About
 </ul>
 </li>
 </ul>
-<h3 id="aurora-global-database"><strong>Aurora Global Database</strong></h3>
+<h2 id="aurora-global-database"><strong>Aurora Global Database</strong></h2>
 <ul>
 <li>✔ <strong>Đồng bộ dữ liệu giữa các khu vực (Region) chỉ trong ~1 giây</strong>.</li>
 <li>✔ <strong>Hỗ trợ tối đa 5 khu vực chỉ đọc (read-only region)</strong>.</li>
@@ -277,7 +273,7 @@ About
 <li>Cần khả năng phục hồi thảm họa nhanh chóng.</li>
 </ul>
 </li>
-<li>❌ <strong>Hạn chế</strong>:
+<li>❌ <strong>Hạn chế</strong>:
 <ul>
 <li><strong>Chi phí cao</strong> → Phải trả phí cho nhiều cụm Aurora chạy ở các region khác nhau.</li>
 <li><strong>Region chỉ đọc không thể ghi dữ liệu</strong> → Chỉ có thể đọc, mọi thay đổi phải thực hiện trên region chính.</li>
@@ -285,7 +281,7 @@ About
 </ul>
 </li>
 </ul>
-<h3 id="aurora-cloning"><strong>Aurora Cloning</strong></h3>
+<h2 id="aurora-cloning"><strong>Aurora Cloning</strong></h2>
 <ul>
 <li>✔ <strong>Tạo bản sao nhanh chóng</strong>: Nhân bản cơ sở dữ liệu chỉ trong vài phút mà không cần sao chép toàn bộ dữ liệu.</li>
 <li>✔ <strong>Tiết kiệm dung lượng lưu trữ</strong>: Bản clone <strong>chia sẻ dữ liệu gốc</strong> và chỉ tạo bản sao của dữ liệu khi có thay đổi.</li>
@@ -297,7 +293,7 @@ About
 <li><strong>Debug &#x26; Troubleshooting</strong>, thử nghiệm các thay đổi mà không ảnh hưởng đến dữ liệu gốc.</li>
 </ul>
 </li>
-<li>❌ <strong>Hạn chế</strong>:
+<li>❌ <strong>Hạn chế</strong>:
 <ul>
 <li><strong>Không thể clone giữa các tài khoản AWS khác nhau</strong>.</li>
 <li><strong>Không thể clone giữa các Region khác nhau</strong> → Clone chỉ hoạt động trong cùng một AWS Region.</li>
@@ -305,7 +301,7 @@ About
 </ul>
 </li>
 </ul>
-<h3 id="aurora-parallel-query"><strong>Aurora Parallel Query</strong></h3>
+<h2 id="aurora-parallel-query"><strong>Aurora Parallel Query</strong></h2>
 <ul>
 <li><strong>Mô tả</strong>: Tính năng <strong>Aurora Parallel Query</strong> cho phép <strong>phân tán tải tính toán của một truy vấn đơn lẻ</strong> trên hàng nghìn CPU trong tầng lưu trữ của Aurora. Thay vì thực thi toàn bộ truy vấn trên một instance duy nhất, Aurora đẩy một phần tải công việc xuống tầng lưu trữ, giúp tăng hiệu suất đáng kể.</li>
 <li><strong>Lợi ích</strong>:
@@ -322,7 +318,7 @@ About
 </ul>
 </li>
 </ul>
-<h3 id="aurora-scaling"><strong>Aurora Scaling</strong></h3>
+<h2 id="aurora-scaling"><strong>Aurora Scaling</strong></h2>
 <ul>
 <li><strong>Mô tả</strong>: Aurora cung cấp khả năng <strong>tự động mở rộng lưu trữ</strong> và <strong>mở rộng tính toán</strong> để đáp ứng nhu cầu ứng dụng mà không ảnh hưởng đến hiệu suất.</li>
 <li><strong>Các hình thức mở rộng</strong>:
@@ -338,7 +334,7 @@ About
 </ul>
 </li>
 </ul>
-<h3 id="aurora-backtrack"><strong>Aurora Backtrack</strong></h3>
+<h2 id="aurora-backtrack"><strong>Aurora Backtrack</strong></h2>
 <ul>
 <li><strong>Mô tả</strong>: <strong>Aurora Backtrack</strong> cho phép <strong>“quay ngược” cụm cơ sở dữ liệu</strong> về một thời điểm cụ thể mà không cần phải khôi phục từ bản sao lưu, giúp khắc phục nhanh chóng các lỗi không mong muốn.</li>
 <li><strong>Đặc điểm</strong>:

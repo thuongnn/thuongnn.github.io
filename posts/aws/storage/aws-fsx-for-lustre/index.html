@@ -126,21 +126,13 @@ About
 <li><a href="#t%E1%BB%95ng-quan"><strong>Tổng quan</strong></a></li>
 <li><a href="#fsx-for-lustre---c%C3%A1c-t%C3%B9y-ch%E1%BB%8Dn-tri%E1%BB%83n-khai"><strong>FSx for Lustre - Các tùy chọn triển khai</strong></a>
 <ul>
-<li>
-<ul>
 <li><a href="#scratch-file-systems"><strong>Scratch File Systems</strong></a></li>
 <li><a href="#persistent-file-systems"><strong>Persistent File Systems</strong></a></li>
 </ul>
 </li>
-</ul>
-</li>
 <li><a href="#fsx-for-lustre-v%E1%BB%9Bi-s3"><strong>FSx for Lustre với S3</strong></a>
 <ul>
-<li>
-<ul>
 <li><a href="#c%C3%A1ch-fsx-for-lustre-t%E1%BA%A3i-d%E1%BB%AF-li%E1%BB%87u-t%E1%BB%AB-s3"><strong>Cách FSx for Lustre tải dữ liệu từ S3</strong></a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li><a href="#b%E1%BA%A3o-m%E1%BA%ADt-security"><strong>Bảo mật (Security)</strong></a></li>
@@ -159,14 +151,14 @@ About
 <li><strong>Ứng dụng lý tưởng</strong>: Machine learning, HPC, xử lý video, mô phỏng tài chính, giải trình tự gen, EDA.</li>
 </ul>
 <h1 id="fsx-for-lustre---các-tùy-chọn-triển-khai"><strong>FSx for Lustre - Các tùy chọn triển khai</strong></h1>
-<h3 id="scratch-file-systems"><strong>Scratch File Systems</strong></h3>
+<h2 id="scratch-file-systems"><strong>Scratch File Systems</strong></h2>
 <ul>
 <li><strong>Dành cho lưu trữ tạm thời, xử lý dữ liệu ngắn hạn</strong>.</li>
 <li><strong>Hiệu suất cao</strong> với throughput có thể <strong>tăng gấp 6 lần mức cơ bản (200 MBps/TiB)</strong>.</li>
 <li><strong>Không nhân bản dữ liệu</strong>, dữ liệu sẽ mất nếu file server gặp lỗi.</li>
 <li><strong>Lý tưởng cho workload xử lý nặng nhưng ngắn hạn</strong> và tối ưu chi phí.</li>
 </ul>
-<h3 id="persistent-file-systems"><strong>Persistent File Systems</strong></h3>
+<h2 id="persistent-file-systems"><strong>Persistent File Systems</strong></h2>
 <p><img alt="1.png" sizes="(min-width: 1826px) 1826px, 100vw" loading="lazy" decoding="async" fetchpriority="auto" style="--w: 1826; --h: 920;" data-astro-image="responsive" width="1826" height="920" src="/_astro/1.D9-KWiYE_t25HT.webp" srcset="/_astro/1.D9-KWiYE_sWQJi.webp 640w, /_astro/1.D9-KWiYE_1dEO4S.webp 750w, /_astro/1.D9-KWiYE_EuSCu.webp 828w, /_astro/1.D9-KWiYE_ZGzpMe.webp 1080w, /_astro/1.D9-KWiYE_ERdtp.webp 1280w, /_astro/1.D9-KWiYE_ZBXRci.webp 1668w, /_astro/1.D9-KWiYE_t25HT.webp 1826w"></p>
 <ul>
 <li><strong>Dành cho lưu trữ dài hạn</strong> và workload cần <strong>tính sẵn sàng cao</strong>.</li>
@@ -182,7 +174,7 @@ About
 <li><strong>Có thể liên kết FSx for Lustre với một S3 bucket</strong>, giúp truy cập dữ liệu S3 từ hệ thống file.</li>
 <li><strong>Tên và tiền tố (prefix) của đối tượng S3 hiển thị dưới dạng file và thư mục</strong> trong hệ thống file.</li>
 </ul>
-<h3 id="cách-fsx-for-lustre-tải-dữ-liệu-từ-s3"><strong>Cách FSx for Lustre tải dữ liệu từ S3</strong></h3>
+<h2 id="cách-fsx-for-lustre-tải-dữ-liệu-từ-s3"><strong>Cách FSx for Lustre tải dữ liệu từ S3</strong></h2>
 <ul>
 <li>Mặc định, S3 objects được tải theo cơ chế “<strong>lazy-loading</strong>”.
 <ul>

@@ -126,24 +126,16 @@ About
 <li><a href="#aws-sts--temporary-credentials">AWS STS &#x26; Temporary Credentials</a></li>
 <li><a href="#aws-service-roles">AWS Service Roles</a>
 <ul>
-<li>
-<ul>
 <li><a href="#complete-process-flow"><strong>Complete Process Flow</strong></a></li>
 <li><a href="#instance-profile"><strong>Instance Profile</strong></a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li><a href="#service-linked-roles">Service-linked Roles</a></li>
 <li><a href="#cross-account-access-roles">Cross-Account access Roles</a></li>
 <li><a href="#external-id-and-confused-deputy-problem">External ID and Confused Deputy Problem</a>
 <ul>
-<li>
-<ul>
-<li><a href="#confused-deputy-problem">Confused Deputy Problem</a></li>
-<li><a href="#gi%E1%BA%A3i-ph%C3%A1p-cho-confused-deputy-problem-d%C3%B9ng-external-id">Giải pháp cho Confused Deputy Problem dùng External ID</a></li>
-</ul>
-</li>
+<li><a href="#confused-deputy-problem"><strong>Confused Deputy Problem</strong></a></li>
+<li><a href="#gi%E1%BA%A3i-ph%C3%A1p-cho-confused-deputy-problem-d%C3%B9ng-external-id"><strong>Giải pháp cho Confused Deputy Problem dùng External ID</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -175,7 +167,7 @@ About
 <li>AWS tự động cung cấp thông tin xác thực bảo mật tạm thời cho các dịch vụ này, ví dụ: EC2 instance sử dụng thông tin xác thực thay mặt cho ứng dụng của nó.</li>
 <li><strong>Lưu ý</strong> xóa một <strong>Role</strong> hoặc <strong>Instance Profile</strong> đang được liên kết với một EC2 instance đang chạy sẽ làm gián đoạn hoạt động của các ứng dụng trên instance đó.</li>
 </ul>
-<h3 id="complete-process-flow"><strong>Complete Process Flow</strong></h3>
+<h2 id="complete-process-flow"><strong>Complete Process Flow</strong></h2>
 <ol>
 <li><strong>Tạo một IAM Role:</strong>
 <ul>
@@ -214,7 +206,7 @@ About
 </ul>
 </li>
 </ol>
-<h3 id="instance-profile"><strong>Instance Profile</strong></h3>
+<h2 id="instance-profile"><strong>Instance Profile</strong></h2>
 <ul>
 <li><strong>Instance Profile</strong> là một container cho một IAM Role, được sử dụng để truyền thông tin Role đến một EC2 instance khi instance khởi động.</li>
 <li><strong>Tạo Instance Profile tự động</strong>: nếu một Role được tạo cho EC2 instance hoặc bất kỳ dịch vụ nào khác sử dụng EC2 thông qua <strong>AWS Management Console</strong>, AWS sẽ tự động tạo Instance Profile với cùng tên như Role.</li>
@@ -302,7 +294,7 @@ About
 </li>
 </ul>
 <h1 id="external-id-and-confused-deputy-problem">External ID and Confused Deputy Problem</h1>
-<h3 id="confused-deputy-problem">Confused Deputy Problem</h3>
+<h2 id="confused-deputy-problem"><strong>Confused Deputy Problem</strong></h2>
 <p><img alt="2.png" sizes="(min-width: 1024px) 1024px, 100vw" loading="lazy" decoding="async" fetchpriority="auto" style="--w: 1024; --h: 302;" data-astro-image="responsive" width="1024" height="302" src="/_astro/2.DnTnnPBl_2p0ohU.webp" srcset="/_astro/2.DnTnnPBl_Z1dxX9b.webp 640w, /_astro/2.DnTnnPBl_lhErY.webp 750w, /_astro/2.DnTnnPBl_Z1jJQfK.webp 828w, /_astro/2.DnTnnPBl_2p0ohU.webp 1024w"></p>
 <ul>
 <li><strong>Confused Deputy Problem</strong> xảy ra khi một hệ thống (đại diện) thực hiện hành động thay mặt cho người khác, nhưng vì thiếu kiểm soát hoặc xác thực đúng đắn, hệ thống đó lại vô tình cho phép một bên không có quyền truy cập thực sự vào tài nguyên hoặc dữ liệu của mình.</li>
@@ -315,7 +307,7 @@ About
 </li>
 <li>Điều này tạo ra tình huống <strong>confused deputy</strong>: <strong>Example Corp</strong> (đại diện) không biết rằng họ đang trao quyền cho một bên không được phép truy cập vào tài nguyên của bạn, do sự thiếu kiểm tra và xác thực của hệ thống. Vấn đề này có thể dẫn đến việc một tổ chức hoặc người dùng không đáng tin cậy có thể truy cập vào tài nguyên hoặc dữ liệu của bạn mà không có sự cho phép rõ ràng từ bạn.</li>
 </ul>
-<h3 id="giải-pháp-cho-confused-deputy-problem-dùng-external-id">Giải pháp cho Confused Deputy Problem dùng External ID</h3>
+<h2 id="giải-pháp-cho-confused-deputy-problem-dùng-external-id"><strong>Giải pháp cho Confused Deputy Problem dùng External ID</strong></h2>
 <p><img alt="3.png" sizes="(min-width: 1024px) 1024px, 100vw" loading="lazy" decoding="async" fetchpriority="auto" style="--w: 1024; --h: 264;" data-astro-image="responsive" width="1024" height="264" src="/_astro/3.DJeNYzze_ZCIHn0.webp" srcset="/_astro/3.DJeNYzze_Z1l5lro.webp 640w, /_astro/3.DJeNYzze_ZSs64E.webp 750w, /_astro/3.DJeNYzze_1tAWVQ.webp 828w, /_astro/3.DJeNYzze_ZCIHn0.webp 1024w"></p>
 <ul>
 <li>Để giải quyết vấn đề này, <strong>External ID</strong> được sử dụng như một công cụ để xác định chính xác <strong>ai</strong> là người yêu cầu quyền truy cập.</li>

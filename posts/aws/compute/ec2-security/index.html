@@ -125,8 +125,6 @@ About
 <ul>
 <li><a href="#b%E1%BA%A3o-m%E1%BA%ADt-tr%C3%AAn-aws-ec2"><strong>Bảo mật trên AWS EC2</strong></a>
 <ul>
-<li>
-<ul>
 <li><a href="#security-groups-nh%C3%B3m-b%E1%BA%A3o-m%E1%BA%ADt"><strong>Security Groups (Nhóm bảo mật)</strong></a></li>
 <li><a href="#network-access-control-lists-nacls"><strong>Network Access Control Lists (NACLs)</strong></a></li>
 <li><a href="#key-pairs-c%E1%BA%B7p-kh%C3%B3a"><strong>Key Pairs (Cặp khóa)</strong></a></li>
@@ -141,11 +139,9 @@ About
 </ul>
 </li>
 </ul>
-</li>
-</ul>
 <p></p></details><p></p>
 <h1 id="bảo-mật-trên-aws-ec2"><strong>Bảo mật trên AWS EC2</strong></h1>
-<h3 id="security-groups-nhóm-bảo-mật"><strong>Security Groups (Nhóm bảo mật)</strong></h3>
+<h2 id="security-groups-nhóm-bảo-mật"><strong>Security Groups (Nhóm bảo mật)</strong></h2>
 <ul>
 <li><strong>Tường lửa ảo</strong> kiểm soát lưu lượng đến và đi của các EC2 instances.</li>
 <li>Hoạt động ở <strong>cấp độ instance</strong>, áp dụng cho tất cả các giao diện mạng (ENI) liên kết với instance.</li>
@@ -158,32 +154,32 @@ About
 </ul>
 </li>
 </ul>
-<h3 id="network-access-control-lists-nacls"><strong>Network Access Control Lists (NACLs)</strong></h3>
+<h2 id="network-access-control-lists-nacls"><strong>Network Access Control Lists (NACLs)</strong></h2>
 <ul>
 <li><strong>Tường lửa cấp subnet</strong>, áp dụng cho tất cả các instances trong subnet.</li>
 <li>Hỗ trợ <strong>cả allow và deny rules</strong> để kiểm soát lưu lượng vào và ra subnet.</li>
 <li>Được áp dụng theo <strong>thứ tự ưu tiên của rules</strong> (rule number thấp được xử lý trước).</li>
 <li><strong>Tự động áp dụng</strong> cho tất cả các instances trong subnet.</li>
 </ul>
-<h3 id="key-pairs-cặp-khóa"><strong>Key Pairs (Cặp khóa)</strong></h3>
+<h2 id="key-pairs-cặp-khóa"><strong>Key Pairs (Cặp khóa)</strong></h2>
 <ul>
 <li>Dùng để xác thực truy cập SSH vào EC2 instances.</li>
 <li>AWS lưu <strong>public key</strong> trong instance, còn <strong>private key</strong> do người dùng giữ.</li>
 <li>Nếu mất private key, <strong>không thể khôi phục</strong>, chỉ có thể tạo key mới và thay thế key cũ bằng cách truy cập thông qua user khác hoặc tạo một instance mới.</li>
 </ul>
-<h3 id="iam-roles-cho-ec2"><strong>IAM Roles cho EC2</strong></h3>
+<h2 id="iam-roles-cho-ec2"><strong>IAM Roles cho EC2</strong></h2>
 <ul>
 <li>Cho phép instances <strong>tương tác với các dịch vụ AWS</strong> mà không cần lưu trữ credentials trong instance.</li>
 <li>Cung cấp <strong>quyền IAM tạm thời</strong> thông qua AWS STS (Security Token Service).</li>
 <li>Role có thể được gán cho instance <strong>bất kỳ lúc nào</strong> mà không cần khởi động lại.</li>
 </ul>
-<h3 id="instance-metadata-service-imds"><strong>Instance Metadata Service (IMDS)</strong></h3>
+<h2 id="instance-metadata-service-imds"><strong>Instance Metadata Service (IMDS)</strong></h2>
 <ul>
 <li>EC2 cung cấp metadata và user data thông qua địa chỉ <strong><a href="http://169.254.169.254">http://169.254.169.254</a></strong>.</li>
 <li><strong>IMDSv2</strong> giúp tăng cường bảo mật bằng cách yêu cầu token xác thực.</li>
 <li>Nên sử dụng IMDSv2 thay vì IMDSv1 để giảm nguy cơ tấn công SSRF (Server Side Request Forgery).</li>
 </ul>
-<h3 id="encryption-mã-hóa"><strong>Encryption (Mã hóa)</strong></h3>
+<h2 id="encryption-mã-hóa"><strong>Encryption (Mã hóa)</strong></h2>
 <ul>
 <li><strong>Dữ liệu khi lưu trữ</strong>:
 <ul>
@@ -202,29 +198,29 @@ About
 </ul>
 </li>
 </ul>
-<h3 id="aws-systems-manager-ssm"><strong>AWS Systems Manager (SSM)</strong></h3>
+<h2 id="aws-systems-manager-ssm"><strong>AWS Systems Manager (SSM)</strong></h2>
 <ul>
 <li>Quản lý và truy cập instances mà <strong>không cần mở SSH/RDP</strong>.</li>
 <li><strong>Session Manager</strong> giúp đăng nhập vào instance mà không cần key pair, giảm thiểu rủi ro bảo mật.</li>
 <li>Cho phép <strong>chạy lệnh trên nhiều instances cùng lúc</strong>.</li>
 </ul>
-<h3 id="bastion-host"><strong>Bastion Host</strong></h3>
+<h2 id="bastion-host"><strong>Bastion Host</strong></h2>
 <ul>
 <li>Là một instance chuyên dụng để truy cập EC2 instances <strong>trong private subnet</strong>.</li>
 <li>Thường triển khai trong <strong>public subnet</strong> với chỉ các <strong>IP cho phép</strong> mới được truy cập.</li>
 <li>Có thể kết hợp với <strong>AWS Systems Manager Session Manager</strong> để tăng cường bảo mật.</li>
 </ul>
-<h3 id="aws-shield--aws-waf"><strong>AWS Shield &#x26; AWS WAF</strong></h3>
+<h2 id="aws-shield--aws-waf"><strong>AWS Shield &#x26; AWS WAF</strong></h2>
 <ul>
 <li><strong>AWS Shield</strong>: Dịch vụ bảo vệ chống DDoS cho EC2, ELB, CloudFront.</li>
 <li><strong>AWS WAF</strong>: Firewall ứng dụng web bảo vệ EC2 khỏi các tấn công như SQL Injection, XSS.</li>
 </ul>
-<h3 id="aws-inspector"><strong>AWS Inspector</strong></h3>
+<h2 id="aws-inspector"><strong>AWS Inspector</strong></h2>
 <ul>
 <li>Quét lỗ hổng bảo mật trong EC2 instances.</li>
 <li>Kiểm tra <strong>cấu hình bảo mật, quyền hệ thống, phần mềm lỗi thời</strong>.</li>
 </ul>
-<h3 id="aws-trusted-advisor"><strong>AWS Trusted Advisor</strong></h3>
+<h2 id="aws-trusted-advisor"><strong>AWS Trusted Advisor</strong></h2>
 <ul>
 <li>Đưa ra khuyến nghị bảo mật cho tài nguyên EC2.</li>
 <li>Kiểm tra <strong>cấu hình bảo mật, quyền truy cập, các lỗ hổng tiềm ẩn</strong>.</li>
