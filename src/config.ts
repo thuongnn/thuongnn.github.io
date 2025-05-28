@@ -15,7 +15,7 @@ export const SITE = {
   editPost: {
     enabled: true,
     text: "Suggest Changes",
-    url: "https://github.com/satnaing/astro-paper/edit/main/",
+    url: "https://github.com/thuongnn/thuongnn.github.io/edit/master/",
   },
   dynamicOgImage: true,
   lang: "en", // html lang code. Set this empty and default will be "en"
