@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ lưu trữ file Windows được quản lý hoàn toàn bởi AWS, tương thích với Windows.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-fsx-for-windows. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-fsx-for-windows.
 
 ## Table of contents
-
 
 Amazon FSx for Windows File Server cung cấp **lưu trữ file được quản lý hoàn toàn**, **đáng tin cậy**, và **có thể mở rộng**, truy cập qua **giao thức SMB (Server Message Block)**.
 
@@ -27,8 +27,8 @@ Amazon FSx for Windows File Server cung cấp **lưu trữ file được quản 
 - Có thể truy cập từ **on-premises thông qua AWS Direct Connect hoặc AWS VPN**.
 - **Hỗ trợ kết nối từ nhiều VPC, tài khoản AWS, và khu vực AWS** thông qua **VPC Peering hoặc AWS Transit Gateway**.
 - **Độ trễ thấp**:
-    - **SSD storage**: độ trễ **dưới millisecond**.
-    - **HDD storage**: độ trễ **millisecond đơn**.
+  - **SSD storage**: độ trễ **dưới millisecond**.
+  - **HDD storage**: độ trễ **millisecond đơn**.
 - Hỗ trợ **Microsoft Distributed File System (DFS)** để tổ chức các file share thành một cấu trúc thư mục lớn lên đến **hàng trăm PB**.
 
 # **Bảo mật FSx for Windows**

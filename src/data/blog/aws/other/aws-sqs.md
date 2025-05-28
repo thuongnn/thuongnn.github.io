@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ hàng đợi tin nhắn của AWS, giúp phân tách và mở rộng các thành phần phân tán.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-sqs. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-sqs.
 
 ## Table of contents
-
 
 # **Tổng quan**
 
@@ -23,8 +23,8 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - Hỗ trợ kiến trúc không đồng bộ, linh hoạt, chịu lỗi và tách rời các thành phần phân tán của ứng dụng, cho phép gửi và nhận tin nhắn mà không yêu cầu các thành phần phải đồng thời sẵn sàng.
 - Hỗ trợ **mã hóa tại chỗ** và **mã hóa trong quá trình truyền** bằng giao thức HTTP qua SSL (HTTPS) và Transport Layer Security (TLS).
 - Cung cấp hai loại hàng đợi:
-    - [Hàng đợi Chuẩn (Standard Queue)](https://jayendrapatil.com/aws-sqs-standard-queue/)
-    - [Hàng đợi FIFO (FIFO Queue)](https://jayendrapatil.com/aws-sqs-fifo-queue/)
+  - [Hàng đợi Chuẩn (Standard Queue)](https://jayendrapatil.com/aws-sqs-standard-queue/)
+  - [Hàng đợi FIFO (FIFO Queue)](https://jayendrapatil.com/aws-sqs-fifo-queue/)
 
 ### **Hàng đợi Chuẩn (SQS Standard Queue)**
 
@@ -49,15 +49,15 @@ Xem chi tiết tại [SQS FIFO Queue](https://jayendrapatil.com/aws-sqs-fifo-que
 # **SQS Use Cases**
 
 - **Hàng đợi Công việc (Work Queues)**:
-    - Tách biệt các thành phần của ứng dụng phân tán không xử lý cùng khối lượng công việc đồng thời.
+  - Tách biệt các thành phần của ứng dụng phân tán không xử lý cùng khối lượng công việc đồng thời.
 - **Bộ đệm và Xử lý Hàng loạt (Buffer and Batch Operations)**:
-    - Thêm khả năng mở rộng và độ tin cậy cho kiến trúc, làm mượt các đợt tăng lưu lượng tạm thời mà không mất tin nhắn hoặc tăng độ trễ.
+  - Thêm khả năng mở rộng và độ tin cậy cho kiến trúc, làm mượt các đợt tăng lưu lượng tạm thời mà không mất tin nhắn hoặc tăng độ trễ.
 - **Dời Yêu cầu (Request Offloading)**:
-    - Chuyển các thao tác chậm ra khỏi các đường yêu cầu tương tác bằng cách đưa yêu cầu vào hàng đợi.
+  - Chuyển các thao tác chậm ra khỏi các đường yêu cầu tương tác bằng cách đưa yêu cầu vào hàng đợi.
 - **Phân tán (Fan-out)**:
-    - Kết hợp SQS với SNS để gửi các bản sao giống hệt của một tin nhắn đến nhiều hàng đợi song song để xử lý đồng thời.
+  - Kết hợp SQS với SNS để gửi các bản sao giống hệt của một tin nhắn đến nhiều hàng đợi song song để xử lý đồng thời.
 - **Tự động Mở rộng (Auto Scaling)**:
-    - Sử dụng hàng đợi SQS để xác định tải ứng dụng, kết hợp với Auto Scaling để mở rộng hoặc thu hẹp các phiên bản EC2 tùy thuộc vào lưu lượng.
+  - Sử dụng hàng đợi SQS để xác định tải ứng dụng, kết hợp với Auto Scaling để mở rộng hoặc thu hẹp các phiên bản EC2 tùy thuộc vào lưu lượng.
 
 # **How SQS Queues Works**
 
@@ -70,19 +70,19 @@ Xem chi tiết tại [SQS FIFO Queue](https://jayendrapatil.com/aws-sqs-fifo-que
 # SQS Features & Capabilities
 
 - **Thời gian Tạm Ẩn (Visibility Timeout)**:
-    - Xác định khoảng thời gian SQS chặn khả năng hiển thị của tin nhắn, ngăn các thành phần tiêu thụ khác nhận và xử lý tin nhắn đó.
+  - Xác định khoảng thời gian SQS chặn khả năng hiển thị của tin nhắn, ngăn các thành phần tiêu thụ khác nhận và xử lý tin nhắn đó.
 - **Hàng đợi Chết (Dead-Letter Queues - DLQ)**:
-    - Giúp các hàng đợi nguồn ([Chuẩn](https://jayendrapatil.com/aws-sqs-standard-queue/) và [FIFO](https://jayendrapatil.com/aws-sqs-fifo-queue/)) chuyển các tin nhắn không thể xử lý (tiêu thụ) thành công.
+  - Giúp các hàng đợi nguồn ([Chuẩn](https://jayendrapatil.com/aws-sqs-standard-queue/) và [FIFO](https://jayendrapatil.com/aws-sqs-fifo-queue/)) chuyển các tin nhắn không thể xử lý (tiêu thụ) thành công.
 - **Chính sách Chuyển lại DLQ (DLQ Redrive Policy)**:
-    - Xác định hàng đợi nguồn, hàng đợi chết và các điều kiện để SQS chuyển tin nhắn từ hàng đợi nguồn sang hàng đợi chết nếu người tiêu thụ của hàng đợi nguồn không xử lý được tin nhắn sau số lần cố gắng quy định.
+  - Xác định hàng đợi nguồn, hàng đợi chết và các điều kiện để SQS chuyển tin nhắn từ hàng đợi nguồn sang hàng đợi chết nếu người tiêu thụ của hàng đợi nguồn không xử lý được tin nhắn sau số lần cố gắng quy định.
 - **Polling Ngắn và Dài (Short and Long Polling)**:
-    - Kiểm soát cách hàng đợi được thăm dò; polling dài giúp giảm các phản hồi rỗng.
+  - Kiểm soát cách hàng đợi được thăm dò; polling dài giúp giảm các phản hồi rỗng.
 
 # SQS Buffered Asynchronous Client
 
 - **Amazon SQS Buffered Async Client** cho Java cung cấp triển khai của giao diện AmazonSQSAsyncClient với các tính năng quan trọng:
-    - **Gộp tự động (Automatic Batching)**: Gộp nhiều yêu cầu *SendMessage*, *DeleteMessage* hoặc *ChangeMessageVisibility* mà không cần thay đổi ứng dụng.
-    - **Tải trước (Prefetching)**: Tải trước tin nhắn vào bộ đệm cục bộ, cho phép ứng dụng xử lý tin nhắn ngay lập tức mà không cần đợi lấy tin nhắn từ SQS.
+  - **Gộp tự động (Automatic Batching)**: Gộp nhiều yêu cầu _SendMessage_, _DeleteMessage_ hoặc _ChangeMessageVisibility_ mà không cần thay đổi ứng dụng.
+  - **Tải trước (Prefetching)**: Tải trước tin nhắn vào bộ đệm cục bộ, cho phép ứng dụng xử lý tin nhắn ngay lập tức mà không cần đợi lấy tin nhắn từ SQS.
 - Gộp tự động và tải trước tăng thông lượng, giảm độ trễ của ứng dụng, đồng thời giảm chi phí bằng cách thực hiện ít yêu cầu SQS hơn.
 
 # SQS Security and reliability

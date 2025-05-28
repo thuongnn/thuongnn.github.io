@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ CDN của AWS, giúp phân phối nội dung với hiệu suất cao và độ trễ thấp.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-cloudfront. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-cloudfront.
 
 ## Table of contents
-
 
 - CloudFront là fully managed, fast content delivery network (CDN), giúp tăng tốc phân phối nội dung tĩnh, động trên web hoặc nội dung phát trực tuyến đến người dùng cuối.
 - CloudFront phân phối nội dung thông qua mạng lưới trung tâm dữ liệu toàn cầu được gọi là **edge locations** hoặc **Point of Presence (POP)**.
@@ -91,105 +91,103 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 ### **Path Patterns**
 
 - **Path Patterns** giúp xác định đường dẫn nào sẽ áp dụng cho **Cache behavior**
-- Một pattern mặc định (*) được tạo ra và có thể thêm nhiều **cache distributions** với các patterns khác nhau, các pattern này sẽ có ưu tiên cao hơn so với đường dẫn mặc định.
+- Một pattern mặc định (\*) được tạo ra và có thể thêm nhiều **cache distributions** với các patterns khác nhau, các pattern này sẽ có ưu tiên cao hơn so với đường dẫn mặc định.
 
 ### **Viewer Protocol Policy (Viewer -> CloudFront)**
 
 - **Viewer Protocol Policy** có thể được cấu hình để xác định giao thức truy cập được phép.
 - Giữa CloudFront và người dùng, phân phối cache có thể được cấu hình để hỗ trợ:
-    - **HTTPS only** – chỉ hỗ trợ HTTPS.
-    - **HTTP and HTTPS** – hỗ trợ cả HTTP và HTTPS.
-    - **HTTP redirected to HTTPS** – HTTP sẽ tự động chuyển hướng sang HTTPS.
+  - **HTTPS only** – chỉ hỗ trợ HTTPS.
+  - **HTTP and HTTPS** – hỗ trợ cả HTTP và HTTPS.
+  - **HTTP redirected to HTTPS** – HTTP sẽ tự động chuyển hướng sang HTTPS.
 
 ### Origin Protocol Policy (CloudFront -> Origin)
 
 - Giữa CloudFront và Origin, phân phối cache có thể được cấu hình với các tùy chọn sau:
-    - **HTTP only** (dành cho S3 static website) – chỉ sử dụng HTTP.
-    - **HTTPS only** – CloudFront lấy các đối tượng từ origin bằng cách sử dụng HTTPS.
-    - **Match Viewer** – CloudFront sử dụng giao thức mà người dùng đã sử dụng để yêu cầu các đối tượng.
+  - **HTTP only** (dành cho S3 static website) – chỉ sử dụng HTTP.
+  - **HTTPS only** – CloudFront lấy các đối tượng từ origin bằng cách sử dụng HTTPS.
+  - **Match Viewer** – CloudFront sử dụng giao thức mà người dùng đã sử dụng để yêu cầu các đối tượng.
 - Đối với S3 làm origin:
-    - **Đối với website**, giao thức phải là HTTP vì HTTPS không được hỗ trợ.
-    - **Đối với S3 bucket**, chính sách giao thức mặc định giữa CloudFront và Origin là **Match Viewer** và không thể thay đổi. Do đó, khi CloudFront được cấu hình yêu cầu HTTPS giữa viewer và CloudFront, nó tự động sử dụng HTTPS để giao tiếp với S3
+  - **Đối với website**, giao thức phải là HTTP vì HTTPS không được hỗ trợ.
+  - **Đối với S3 bucket**, chính sách giao thức mặc định giữa CloudFront và Origin là **Match Viewer** và không thể thay đổi. Do đó, khi CloudFront được cấu hình yêu cầu HTTPS giữa viewer và CloudFront, nó tự động sử dụng HTTPS để giao tiếp với S3
 
 ### **HTTPS Connection**
 
 CloudFront có thể được cấu hình để làm việc với HTTPS cho các tên miền thay thế bằng hai phương pháp sau:
 
 - **Sử dụng Địa Chỉ IP Riêng Biệt**
-    - CloudFront liên kết một **tên miền thay thế** với một **địa chỉ IP riêng biệt**.
-    - **Chứng chỉ SSL/TLS** được liên kết với địa chỉ IP khi có yêu cầu từ máy chủ DNS cho địa chỉ IP đó.
-    - Địa chỉ IP được CloudFront sử dụng để xác định phân phối, và chứng chỉ SSL/TLS sẽ được trả về cho người dùng.
-    - Phương pháp này hoạt động cho mọi yêu cầu HTTPS, bất kể trình duyệt hay người dùng sử dụng. Việc sử dụng địa chỉ IP riêng biệt sẽ phát sinh chi phí khoảng **600 USD/tháng**.
-    - Địa chỉ IP riêng biệt cho phép CloudFront phục vụ nhiều tên miền trên cùng một IP mà không bị nhầm lẫn.
+  - CloudFront liên kết một **tên miền thay thế** với một **địa chỉ IP riêng biệt**.
+  - **Chứng chỉ SSL/TLS** được liên kết với địa chỉ IP khi có yêu cầu từ máy chủ DNS cho địa chỉ IP đó.
+  - Địa chỉ IP được CloudFront sử dụng để xác định phân phối, và chứng chỉ SSL/TLS sẽ được trả về cho người dùng.
+  - Phương pháp này hoạt động cho mọi yêu cầu HTTPS, bất kể trình duyệt hay người dùng sử dụng. Việc sử dụng địa chỉ IP riêng biệt sẽ phát sinh chi phí khoảng **600 USD/tháng**.
+  - Địa chỉ IP riêng biệt cho phép CloudFront phục vụ nhiều tên miền trên cùng một IP mà không bị nhầm lẫn.
 - **Sử dụng Server Name Indication (SNI)**
-    - **SNI (Server Name Indication)** là một phần mở rộng của giao thức TLS cho phép nhiều tên miền được phục vụ từ cùng một địa chỉ IP.
-    - CloudFront sử dụng **SNI Custom SSL** để ánh xạ tên miền thay thế tới một địa chỉ IP mà không yêu cầu địa chỉ IP riêng biệt.
-    - **SNI** gửi tên miền trong **TLS handshake** tới CloudFront, sau đó CloudFront sẽ sử dụng tên miền để chọn chứng chỉ SSL/TLS phù hợp.
-    - **SNI** cho phép CloudFront phục vụ HTTPS cho nhiều tên miền sử dụng cùng một địa chỉ IP.
-    - **SNI Custom SSL** có sẵn mà không phải trả thêm chi phí ngoài các khoản phí chuyển dữ liệu và yêu cầu của CloudFront.
-    - SNI được hỗ trợ bởi hầu hết các trình duyệt hiện tại, nhưng các trình duyệt cũ hơn có thể không hỗ trợ, điều này có thể gây vấn đề cho người dùng sử dụng trình duyệt cũ.
+  - **SNI (Server Name Indication)** là một phần mở rộng của giao thức TLS cho phép nhiều tên miền được phục vụ từ cùng một địa chỉ IP.
+  - CloudFront sử dụng **SNI Custom SSL** để ánh xạ tên miền thay thế tới một địa chỉ IP mà không yêu cầu địa chỉ IP riêng biệt.
+  - **SNI** gửi tên miền trong **TLS handshake** tới CloudFront, sau đó CloudFront sẽ sử dụng tên miền để chọn chứng chỉ SSL/TLS phù hợp.
+  - **SNI** cho phép CloudFront phục vụ HTTPS cho nhiều tên miền sử dụng cùng một địa chỉ IP.
+  - **SNI Custom SSL** có sẵn mà không phải trả thêm chi phí ngoài các khoản phí chuyển dữ liệu và yêu cầu của CloudFront.
+  - SNI được hỗ trợ bởi hầu hết các trình duyệt hiện tại, nhưng các trình duyệt cũ hơn có thể không hỗ trợ, điều này có thể gây vấn đề cho người dùng sử dụng trình duyệt cũ.
 - **End-to-End HTTPS connections** - để đảm bảo mã hóa toàn bộ (HTTPS) cho việc phân phối nội dung, chứng chỉ SSL/TLS cần được áp dụng cả giữa:
-    - **HTTPS giữa viewers và CloudFront**
-        - Chứng chỉ được cấp bởi trusted certificate authority (CA) ví dụ như Comodo, DigiCert, or Symantec.
-        - Chứng chỉ được cấp bởi [AWS Certificate Manager](https://jayendrapatil.com/aws-certificate-manager-acm/) (ACM).
-    - **HTTPS giữa CloudFront và the Custom Origin**
-        - Nếu origin không phải là **Elastic Load Balancer (ELB)**, chứng chỉ phải được cấp bởi trusted CA như Comodo, DigiCert, or Symantec.
-        - Nếu origin là **ELB**, chứng chỉ có thể được cấp bởi **ACM**.
-        - **Self-signed certificates** **không thể** được sử dụng cho kết nối HTTPS giữa CloudFront và origin.
+  - **HTTPS giữa viewers và CloudFront**
+    - Chứng chỉ được cấp bởi trusted certificate authority (CA) ví dụ như Comodo, DigiCert, or Symantec.
+    - Chứng chỉ được cấp bởi [AWS Certificate Manager](https://jayendrapatil.com/aws-certificate-manager-acm/) (ACM).
+  - **HTTPS giữa CloudFront và the Custom Origin**
+    - Nếu origin không phải là **Elastic Load Balancer (ELB)**, chứng chỉ phải được cấp bởi trusted CA như Comodo, DigiCert, or Symantec.
+    - Nếu origin là **ELB**, chứng chỉ có thể được cấp bởi **ACM**.
+    - **Self-signed certificates** **không thể** được sử dụng cho kết nối HTTPS giữa CloudFront và origin.
 - **ACM certificate**
-    - Nếu sử dụng **ACM** cho CloudFront, chứng chỉ **phải được requested hoặc imported** ở region **US East (N. Virginia)**.
-    - Các ACM certificate ở region **US East (N. Virginia)** sẽ được **phân phối** tới tất cả các vị trí địa lý liên kết với phân phối CloudFront.
+  - Nếu sử dụng **ACM** cho CloudFront, chứng chỉ **phải được requested hoặc imported** ở region **US East (N. Virginia)**.
+  - Các ACM certificate ở region **US East (N. Virginia)** sẽ được **phân phối** tới tất cả các vị trí địa lý liên kết với phân phối CloudFront.
 
 ### **Allowed HTTP methods**
 
 - CloudFront hỗ trợ các phương thức HTTP để thực hiện các tác vụ khác nhau với các đối tượng, bao gồm GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE.
-    - GET, HEAD
-    - GET, HEAD, OPTIONS
-    - GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE
+  - GET, HEAD
+  - GET, HEAD, OPTIONS
+  - GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE
 - CloudFront chỉ **cache** các phản hồi từ các yêu cầu **GET** và **HEAD** và, nếu cần, có thể cache các phản hồi từ yêu cầu **OPTIONS**. Các phương thức **PUT, POST, PATCH, DELETE** không được cache bởi CloudFront và luôn được chuyển tiếp đến **Origin**.
 - **PUT, POST, HTTP method** có thể giúp **tăng tốc quá trình tải nội dung**. Khi sử dụng các phương thức này, yêu cầu sẽ được chuyển đến **Origin** (ví dụ như S3) qua **vị trí edge của CloudFront**, giúp cải thiện hiệu suất và giảm độ trễ. Quá trình này cũng giúp ứng dụng tận dụng các kết nối **kiểm soát liên tục và giám sát** mà CloudFront duy trì giữa các vị trí edge và các máy chủ origin.
 
 # CloudFront Edge Caches
 
 - Kiểm soát `max-age` của bộ nhớ đệm
-    - Để tăng tỷ lệx2 **cache hit** (tỷ lệ truy cập thành công từ bộ nhớ đệm), máy chủ gốc (origin) có thể được cấu hình để thêm chỉ thị `Cache-Control: max-age` vào các object.
-    - Khoảng thời gian càng dài, object sẽ càng ít được truy xuất từ máy chủ gốc.
+  - Để tăng tỷ lệx2 **cache hit** (tỷ lệ truy cập thành công từ bộ nhớ đệm), máy chủ gốc (origin) có thể được cấu hình để thêm chỉ thị `Cache-Control: max-age` vào các object.
+  - Khoảng thời gian càng dài, object sẽ càng ít được truy xuất từ máy chủ gốc.
 - Bộ nhớ đệm dựa trên **Query String Parameters**
-    - **CloudFront** có thể được cấu hình để caching dựa trên query parameters:
-        - **None (Improves Caching)**
-            - Sử dụng khi máy chủ gốc (origin) trả về cùng một phiên bản của object **bất kể** giá trị của các tham số query string.
-            - Điều này cải thiện hiệu suất bộ nhớ đệm vì CloudFront chỉ lưu trữ một phiên bản duy nhất.
-        - **Forward all, cache based on whitelist**
-            - Sử dụng khi máy chủ gốc trả về **các phiên bản khác nhau** của object dựa trên một hoặc nhiều tham số query string.
-            - Bạn cần chỉ định các tham số muốn CloudFront sử dụng làm cơ sở để caching trong trường **Query String Whitelist**.
-        - **Forward all, cache based on all**
-            - Sử dụng khi máy chủ gốc trả về **các phiên bản khác nhau** của object cho **tất cả các tham số query string**.
-    - Cải thiện hiệu suất bộ nhớ đệm bằng cách:
-        - Đảm bảo rằng **chỉ các tham số thực sự ảnh hưởng đến kết quả trả về từ máy chủ gốc** mới được chuyển tiếp.
-        - Sử dụng **cùng một kiểu chữ** cho giá trị của các tham số. Ví dụ: Nếu giá trị tham số là `A` hoặc `a`, CloudFront sẽ caching hai yêu cầu khác nhau, ngay cả khi phản hồi hoặc object trả về giống hệt nhau.
-        - Sử dụng **cùng một thứ tự tham số**. Ví dụ: Với yêu cầu `a=x&b=y` và `b=y&a=x`, CloudFront sẽ caching hai yêu cầu khác nhau, mặc dù phản hồi hoặc object trả về giống hệt nhau.
+  - **CloudFront** có thể được cấu hình để caching dựa trên query parameters:
+    - **None (Improves Caching)**
+      - Sử dụng khi máy chủ gốc (origin) trả về cùng một phiên bản của object **bất kể** giá trị của các tham số query string.
+      - Điều này cải thiện hiệu suất bộ nhớ đệm vì CloudFront chỉ lưu trữ một phiên bản duy nhất.
+    - **Forward all, cache based on whitelist**
+      - Sử dụng khi máy chủ gốc trả về **các phiên bản khác nhau** của object dựa trên một hoặc nhiều tham số query string.
+      - Bạn cần chỉ định các tham số muốn CloudFront sử dụng làm cơ sở để caching trong trường **Query String Whitelist**.
+    - **Forward all, cache based on all**
+      - Sử dụng khi máy chủ gốc trả về **các phiên bản khác nhau** của object cho **tất cả các tham số query string**.
+  - Cải thiện hiệu suất bộ nhớ đệm bằng cách:
+    - Đảm bảo rằng **chỉ các tham số thực sự ảnh hưởng đến kết quả trả về từ máy chủ gốc** mới được chuyển tiếp.
+    - Sử dụng **cùng một kiểu chữ** cho giá trị của các tham số. Ví dụ: Nếu giá trị tham số là `A` hoặc `a`, CloudFront sẽ caching hai yêu cầu khác nhau, ngay cả khi phản hồi hoặc object trả về giống hệt nhau.
+    - Sử dụng **cùng một thứ tự tham số**. Ví dụ: Với yêu cầu `a=x&b=y` và `b=y&a=x`, CloudFront sẽ caching hai yêu cầu khác nhau, mặc dù phản hồi hoặc object trả về giống hệt nhau.
 - Bộ nhớ đệm dựa trên **Cookie Values**
-    - CloudFront có thể được cấu hình để caching dựa trên giá trị cookie.
-    - Theo mặc định, CloudFront không xem xét cookie khi lưu trữ bộ nhớ đệm trên các edge location.
-    - Cải thiện hiệu suất bộ nhớ đệm bằng cách:
-        - **Cấu hình CloudFront chỉ chuyển tiếp các cookie cụ thể thay vì chuyển tiếp tất cả cookie:**
-        *Ví dụ: nếu yêu cầu có 2 cookie với 3 giá trị có thể, CloudFront sẽ lưu trữ tất cả các tổ hợp có thể xảy ra ngay cả khi phản hồi chỉ phụ thuộc vào một cookie.*
-        - **Tên và giá trị của cookie có phân biệt chữ hoa và chữ thường:** Do đó, nên sử dụng một quy tắc thống nhất về kiểu chữ để tránh tạo ra các bản sao không cần thiết.
-        - **Tạo các cache behavior riêng biệt cho nội dung tĩnh và động, và chỉ cấu hình CloudFront chuyển tiếp cookie đến origin cho nội dung động:**
-            
-            *Ví dụ: đối với các tệp CSS, cookie không có ý nghĩa vì nội dung không thay đổi dựa trên giá trị cookie.*
-            
-        - **Nếu có thể, tạo các cache behavior riêng biệt cho nội dung động mà cookie có giá trị duy nhất cho mỗi người dùng (như ID người dùng) và nội dung động thay đổi dựa trên số lượng giá trị duy nhất nhỏ hơn.**
-        *Ví dụ như một ID người dùng duy nhất. Trong trường hợp này, mỗi yêu cầu sẽ có một giá trị cookie khác nhau, dẫn đến việc CloudFront phải lưu trữ một phiên bản riêng cho từng người dùng. Điều này làm tăng số lượng bản sao trong bộ nhớ đệm và giảm hiệu suất.*
+  - CloudFront có thể được cấu hình để caching dựa trên giá trị cookie.
+  - Theo mặc định, CloudFront không xem xét cookie khi lưu trữ bộ nhớ đệm trên các edge location.
+  - Cải thiện hiệu suất bộ nhớ đệm bằng cách:
+    - **Cấu hình CloudFront chỉ chuyển tiếp các cookie cụ thể thay vì chuyển tiếp tất cả cookie:**
+      _Ví dụ: nếu yêu cầu có 2 cookie với 3 giá trị có thể, CloudFront sẽ lưu trữ tất cả các tổ hợp có thể xảy ra ngay cả khi phản hồi chỉ phụ thuộc vào một cookie._
+    - **Tên và giá trị của cookie có phân biệt chữ hoa và chữ thường:** Do đó, nên sử dụng một quy tắc thống nhất về kiểu chữ để tránh tạo ra các bản sao không cần thiết.
+    - **Tạo các cache behavior riêng biệt cho nội dung tĩnh và động, và chỉ cấu hình CloudFront chuyển tiếp cookie đến origin cho nội dung động:**
+      _Ví dụ: đối với các tệp CSS, cookie không có ý nghĩa vì nội dung không thay đổi dựa trên giá trị cookie._
+    - **Nếu có thể, tạo các cache behavior riêng biệt cho nội dung động mà cookie có giá trị duy nhất cho mỗi người dùng (như ID người dùng) và nội dung động thay đổi dựa trên số lượng giá trị duy nhất nhỏ hơn.**
+      _Ví dụ như một ID người dùng duy nhất. Trong trường hợp này, mỗi yêu cầu sẽ có một giá trị cookie khác nhau, dẫn đến việc CloudFront phải lưu trữ một phiên bản riêng cho từng người dùng. Điều này làm tăng số lượng bản sao trong bộ nhớ đệm và giảm hiệu suất._
 - Bộ nhớ đệm dựa trên **Request Headers**
-    - CloudFront có thể được cấu hình để caching dựa trên các giá trị của request headers.
-    - Theo mặc định, CloudFront không xem xét các header khi lưu trữ object trong các edge location.
-    - Khi cấu hình CloudFront để caching dựa trên request headers, điều này không thay đổi các header mà CloudFront chuyển tiếp, mà chỉ xác định xem CloudFront có caching các đối tượng dựa trên giá trị của header hay không.
-    - Cải thiện hiệu suất bộ nhớ đệm bằng cách:
-        - Cấu hình CloudFront để chuyển tiếp và caching dựa trên các header cụ thể thay vì dựa trên tất cả các header.
-        - Tránh caching dựa trên các request header có quá nhiều giá trị duy nhất.
-        - Khi CloudFront được cấu hình để chuyển tiếp tất cả header đến origin, CloudFront sẽ không caching các object liên kết với cache behavior này. Thay vào đó, mọi yêu cầu sẽ được gửi đến origin.
-        - Khi CloudFront caching dựa trên giá trị của header, nó không phân biệt chữ hoa và chữ thường của **tên header** nhưng có xét đến **chữ hoa và chữ thường** của **giá trị header**.
+  - CloudFront có thể được cấu hình để caching dựa trên các giá trị của request headers.
+  - Theo mặc định, CloudFront không xem xét các header khi lưu trữ object trong các edge location.
+  - Khi cấu hình CloudFront để caching dựa trên request headers, điều này không thay đổi các header mà CloudFront chuyển tiếp, mà chỉ xác định xem CloudFront có caching các đối tượng dựa trên giá trị của header hay không.
+  - Cải thiện hiệu suất bộ nhớ đệm bằng cách:
+    - Cấu hình CloudFront để chuyển tiếp và caching dựa trên các header cụ thể thay vì dựa trên tất cả các header.
+    - Tránh caching dựa trên các request header có quá nhiều giá trị duy nhất.
+    - Khi CloudFront được cấu hình để chuyển tiếp tất cả header đến origin, CloudFront sẽ không caching các object liên kết với cache behavior này. Thay vào đó, mọi yêu cầu sẽ được gửi đến origin.
+    - Khi CloudFront caching dựa trên giá trị của header, nó không phân biệt chữ hoa và chữ thường của **tên header** nhưng có xét đến **chữ hoa và chữ thường** của **giá trị header**.
 
 # Object Caching & Expiration
 
@@ -197,16 +195,16 @@ CloudFront có thể được cấu hình để làm việc với HTTPS cho các
 - Thời gian hết hạn ngắn giúp phục vụ nội dung thay đổi thường xuyên, trong khi thời gian hết hạn dài giúp cải thiện hiệu suất và giảm tải cho origin.
 - Theo mặc định, mỗi object sẽ tự động hết hạn sau 24 giờ.
 - Sau khi hết hạn, CloudFront sẽ kiểm tra xem phiên bản mới nhất có sẵn không:
-    - Nếu bộ nhớ đệm đã có phiên bản mới nhất, origin sẽ trả về mã trạng thái **304** (Not Modified).
-    - Nếu bộ nhớ đệm của CloudFront không có phiên bản mới nhất, origin sẽ trả về mã trạng thái **200** (OK) kèm theo phiên bản mới nhất của object.
+  - Nếu bộ nhớ đệm đã có phiên bản mới nhất, origin sẽ trả về mã trạng thái **304** (Not Modified).
+  - Nếu bộ nhớ đệm của CloudFront không có phiên bản mới nhất, origin sẽ trả về mã trạng thái **200** (OK) kèm theo phiên bản mới nhất của object.
 - Nếu một object trong edge location không được yêu cầu thường xuyên, CloudFront có thể loại bỏ object đó trước thời gian hết hạn để dành không gian cho các object được yêu cầu gần đây hơn.
 - Đối với Web distributions, hành vi mặc định có thể thay đổi như sau:
-    - **Cho toàn bộ đường dẫn**: Cache behavior có thể được cấu hình bằng cách thiết lập các giá trị **Minimum TTL**, **Maximum TTL**, và **Default TTL**.
-    - **Cho từng object riêng lẻ**: Origin có thể được cấu hình để thêm `Cache-Control max-age`, `Cache-Control s-maxage`, hoặc trường header `Expires` cho object.
-    - AWS khuyến nghị sử dụng `Cache-Control max-age` thay vì trường header `Expires` để kiểm soát hành vi lưu đệm của object.
-    - CloudFront chỉ sử dụng giá trị của `Cache-Control max-age` nếu cả `Cache-Control max-age` và `Expires` đều được chỉ định.
-    - Các trường header `HTTP Cache-Control` hoặc `Pragma` trong yêu cầu **GET** từ viewer không thể ép buộc CloudFront truy xuất lại object từ origin server.
-    - Theo mặc định, khi origin trả về mã trạng thái HTTP **4xx** hoặc **5xx**, CloudFront sẽ lưu đệm các phản hồi lỗi này trong vòng **5 phút**, sau đó gửi yêu cầu tiếp theo đến origin để kiểm tra xem object đã sẵn có hay sự cố đã được khắc phục hay chưa.
+  - **Cho toàn bộ đường dẫn**: Cache behavior có thể được cấu hình bằng cách thiết lập các giá trị **Minimum TTL**, **Maximum TTL**, và **Default TTL**.
+  - **Cho từng object riêng lẻ**: Origin có thể được cấu hình để thêm `Cache-Control max-age`, `Cache-Control s-maxage`, hoặc trường header `Expires` cho object.
+  - AWS khuyến nghị sử dụng `Cache-Control max-age` thay vì trường header `Expires` để kiểm soát hành vi lưu đệm của object.
+  - CloudFront chỉ sử dụng giá trị của `Cache-Control max-age` nếu cả `Cache-Control max-age` và `Expires` đều được chỉ định.
+  - Các trường header `HTTP Cache-Control` hoặc `Pragma` trong yêu cầu **GET** từ viewer không thể ép buộc CloudFront truy xuất lại object từ origin server.
+  - Theo mặc định, khi origin trả về mã trạng thái HTTP **4xx** hoặc **5xx**, CloudFront sẽ lưu đệm các phản hồi lỗi này trong vòng **5 phút**, sau đó gửi yêu cầu tiếp theo đến origin để kiểm tra xem object đã sẵn có hay sự cố đã được khắc phục hay chưa.
 
 # CloudFront Origin Shield
 
@@ -215,10 +213,10 @@ CloudFront có thể được cấu hình để làm việc với HTTPS cho các
 - **Origin Shield** giảm chi phí vận hành của origin bằng cách hợp nhất các yêu cầu qua các khu vực, sao cho chỉ có một yêu cầu duy nhất được gửi đến origin cho mỗi object.
 - **Origin Shield** có thể được cấu hình bằng cách chọn **Regional Edge Cache** gần nhất với origin để trở thành **Origin Shield Region**.
 - **CloudFront Origin Shield** có lợi cho nhiều trường hợp sử dụng như:
-    - Các viewer phân bố ở các vùng địa lý khác nhau.
-    - Các origin cung cấp đóng gói theo yêu cầu cho phát trực tiếp hoặc xử lý ảnh động.
-    - Các origin on-premises có giới hạn về công suất hoặc băng thông.
-    - Các workloads sử dụng nhiều content delivery networks (CDNs).
+  - Các viewer phân bố ở các vùng địa lý khác nhau.
+  - Các origin cung cấp đóng gói theo yêu cầu cho phát trực tiếp hoặc xử lý ảnh động.
+  - Các origin on-premises có giới hạn về công suất hoặc băng thông.
+  - Các workloads sử dụng nhiều content delivery networks (CDNs).
 
 # Serving Compressed Files
 
@@ -226,26 +224,26 @@ CloudFront có thể được cấu hình để làm việc với HTTPS cho các
 - Việc nén nội dung giúp tải xuống nhanh hơn vì các tệp nhỏ hơn, đồng thời cũng giúp giảm chi phí vì chi phí chuyển dữ liệu của **CloudFront** dựa trên tổng lượng dữ liệu được phục vụ.
 - **CloudFront** có thể nén các đối tượng bằng các định dạng nén **Gzip** và **Brotli**.
 - Nếu phục vụ từ một custom origin, nó có thể được cấu hình để:
-    - Có thể chọn liệu tệp có được nén bởi **CloudFront** hay không. Nếu muốn, chúng ta có thể để origin tự nén tệp trước khi gửi về **CloudFront**, hoặc để **CloudFront** tự nén tệp khi nó nhận được yêu cầu từ viewer.
-    - Mặc dù **CloudFront** hỗ trợ nén nhiều loại tệp (như HTML, CSS, JS...), nhưng một số loại tệp không được **CloudFront** tự động nén.
+  - Có thể chọn liệu tệp có được nén bởi **CloudFront** hay không. Nếu muốn, chúng ta có thể để origin tự nén tệp trước khi gửi về **CloudFront**, hoặc để **CloudFront** tự nén tệp khi nó nhận được yêu cầu từ viewer.
+  - Mặc dù **CloudFront** hỗ trợ nén nhiều loại tệp (như HTML, CSS, JS...), nhưng một số loại tệp không được **CloudFront** tự động nén.
 - Nếu origin trả về một tệp đã nén, **CloudFront** sẽ phát hiện sự nén qua giá trị tiêu đề `Content-Encoding` và không nén lại tệp đó.
 - **CloudFront** phục vụ nội dung bằng cách nén như sau:
-    1. Một phân phối **CloudFront** được tạo ra và cấu hình để nén nội dung.
-    2. Một viewer yêu cầu một tệp đã nén bằng cách thêm tiêu đề `Accept-Encoding` bao gồm `gzip`, `br` hoặc cả hai vào yêu cầu.
-    3. Tại edge location, **CloudFront** kiểm tra cache để tìm phiên bản nén của tệp được tham chiếu trong yêu cầu.
-    4. Nếu tệp đã nén có sẵn trong bộ nhớ đệm, **CloudFront** trả lại tệp cho viewer và bỏ qua các bước còn lại.
-    5. Nếu tệp nén không có trong bộ nhớ đệm, **CloudFront** chuyển yêu cầu đến máy chủ origin (S3 bucket hoặc custom origin).
-    6. Ngay cả khi **CloudFront** có phiên bản chưa nén của tệp trong bộ nhớ đệm, nó vẫn chuyển yêu cầu đến origin.
-    7. Máy chủ origin trả về phiên bản chưa nén của tệp yêu cầu.
-    8. **CloudFront** xác định xem tệp có thể nén được hay không:
-        - Tệp phải thuộc loại mà **CloudFront** có thể nén.
-        - Kích thước tệp phải nằm trong khoảng từ 1,000 đến 10,000,000 byte.
-        - Phản hồi phải bao gồm tiêu đề `Content-Length` để xác định kích thước trong giới hạn nén hợp lệ. Nếu thiếu tiêu đề `Content-Length`, **CloudFront** sẽ không nén tệp.
-        - Giá trị của tiêu đề `Content-Encoding` trên tệp phải không phải là `gzip`, tức là origin đã nén tệp.
-        - Phản hồi phải có nội dung (body).
-        - Mã trạng thái HTTP của phản hồi phải là 200, 403 hoặc 404.
-    9. Nếu tệp có thể nén, **CloudFront** sẽ nén tệp, trả lại tệp nén cho viewer và caching.
-    10. Viewer giải nén tệp.
+  1. Một phân phối **CloudFront** được tạo ra và cấu hình để nén nội dung.
+  2. Một viewer yêu cầu một tệp đã nén bằng cách thêm tiêu đề `Accept-Encoding` bao gồm `gzip`, `br` hoặc cả hai vào yêu cầu.
+  3. Tại edge location, **CloudFront** kiểm tra cache để tìm phiên bản nén của tệp được tham chiếu trong yêu cầu.
+  4. Nếu tệp đã nén có sẵn trong bộ nhớ đệm, **CloudFront** trả lại tệp cho viewer và bỏ qua các bước còn lại.
+  5. Nếu tệp nén không có trong bộ nhớ đệm, **CloudFront** chuyển yêu cầu đến máy chủ origin (S3 bucket hoặc custom origin).
+  6. Ngay cả khi **CloudFront** có phiên bản chưa nén của tệp trong bộ nhớ đệm, nó vẫn chuyển yêu cầu đến origin.
+  7. Máy chủ origin trả về phiên bản chưa nén của tệp yêu cầu.
+  8. **CloudFront** xác định xem tệp có thể nén được hay không:
+     - Tệp phải thuộc loại mà **CloudFront** có thể nén.
+     - Kích thước tệp phải nằm trong khoảng từ 1,000 đến 10,000,000 byte.
+     - Phản hồi phải bao gồm tiêu đề `Content-Length` để xác định kích thước trong giới hạn nén hợp lệ. Nếu thiếu tiêu đề `Content-Length`, **CloudFront** sẽ không nén tệp.
+     - Giá trị của tiêu đề `Content-Encoding` trên tệp phải không phải là `gzip`, tức là origin đã nén tệp.
+     - Phản hồi phải có nội dung (body).
+     - Mã trạng thái HTTP của phản hồi phải là 200, 403 hoặc 404.
+  9. Nếu tệp có thể nén, **CloudFront** sẽ nén tệp, trả lại tệp nén cho viewer và caching.
+  10. Viewer giải nén tệp.
 
 # Distribution Details
 
@@ -253,9 +251,9 @@ CloudFront có thể được cấu hình để làm việc với HTTPS cho các
 
 - CloudFront có các edge locations trên toàn thế giới và chi phí cho mỗi edge locations khác nhau, đồng thời mức giá tính cho việc phục vụ các yêu cầu cũng khác nhau.
 - Các edge locations của CloudFront được nhóm thành các khu vực địa lý, và các khu vực này đã được nhóm thành các lớp giá:
-    - **Price Class** – Bao gồm tất cả các khu vực.
-    - **Price Class 200** – Bao gồm tất cả các khu vực ngoại trừ Nam Mỹ và Australia & New Zealand.
-    - **Price Class 100** – Bao gồm các khu vực có giá rẻ nhất (Khu vực Bắc Mỹ và Châu Âu).
+  - **Price Class** – Bao gồm tất cả các khu vực.
+  - **Price Class 200** – Bao gồm tất cả các khu vực ngoại trừ Nam Mỹ và Australia & New Zealand.
+  - **Price Class 100** – Bao gồm các khu vực có giá rẻ nhất (Khu vực Bắc Mỹ và Châu Âu).
 - Price class có thể được chọn để giảm chi phí, nhưng điều này sẽ đi kèm với việc giảm hiệu suất (độ trễ cao hơn), vì CloudFront sẽ chỉ phục vụ yêu cầu từ các edge locations trong lớp giá đã chọn.
 - Đôi khi, CloudFront có thể phục vụ yêu cầu từ một khu vực không nằm trong lớp giá, tuy nhiên, bạn sẽ bị tính phí theo mức giá của khu vực có chi phí thấp nhất trong lớp giá đã chọn.
 
@@ -267,7 +265,7 @@ CloudFront có thể được cấu hình để làm việc với HTTPS cho các
 
 - Mặc định, CloudFront gán một tên miền cho phân phối, ví dụ: `d111111abcdef8.cloudfront.net`
 - Một tên miền thay thế, còn được gọi là CNAME, có thể được sử dụng để sử dụng tên miền tùy chỉnh của riêng bạn cho các liên kết đến các object.
-- CloudFront hỗ trợ * wildcard ở đầu domain thay vì chỉ định các subdomain riêng lẻ.
+- CloudFront hỗ trợ \* wildcard ở đầu domain thay vì chỉ định các subdomain riêng lẻ.
 - Tuy nhiên, wildcard không thể thay thế một phần của subdomain, ví dụ: `*domain.example.com`, hoặc không thể thay thế một subdomain ở giữa tên miền, ví dụ: `subdomain.**.example.com`.
 
 # **CloudFront Security**
@@ -287,12 +285,12 @@ CloudFront có thể được cấu hình để làm việc với HTTPS cho các
 Phí CloudFront được tính dựa trên việc sử dụng thực tế của dịch vụ trong 4 yếu tố sau:
 
 - Chi phí truyền dữ liệu ra ngoài Internet (Data Transfer Out to Internet)
-    - Phí được áp dụng cho khối lượng dữ liệu chuyển ra từ các CloudFront edge locations, tính theo GB.
-    - Việc truyền dữ liệu từ nguồn AWS (ví dụ: S3, EC2, v.v.) đến CloudFront không còn bị tính phí nữa. Điều này áp dụng cho việc truyền dữ liệu từ tất cả các vùng AWS đến tất cả các global CloudFront edge locations.
+  - Phí được áp dụng cho khối lượng dữ liệu chuyển ra từ các CloudFront edge locations, tính theo GB.
+  - Việc truyền dữ liệu từ nguồn AWS (ví dụ: S3, EC2, v.v.) đến CloudFront không còn bị tính phí nữa. Điều này áp dụng cho việc truyền dữ liệu từ tất cả các vùng AWS đến tất cả các global CloudFront edge locations.
 - HTTP/HTTPS Requests
-    - Số lượng yêu cầu HTTP/HTTPS được thực hiện cho nội dung.
+  - Số lượng yêu cầu HTTP/HTTPS được thực hiện cho nội dung.
 - Invalidation Requests
-    - Tính phí theo từng đường dẫn trong invalidation request.
-    - Một đường dẫn trong invalidation request đại diện cho URL (hoặc nhiều URL nếu đường dẫn chứa ký tự wildcard) của đối tượng mà bạn muốn invalidation request khỏi bộ nhớ đệm CloudFront.
+  - Tính phí theo từng đường dẫn trong invalidation request.
+  - Một đường dẫn trong invalidation request đại diện cho URL (hoặc nhiều URL nếu đường dẫn chứa ký tự wildcard) của đối tượng mà bạn muốn invalidation request khỏi bộ nhớ đệm CloudFront.
 - Dedicated IP Custom SSL certificates
-    - $600 mỗi tháng cho mỗi custom SSL certificate liên kết với một hoặc nhiều CloudFront distributions sử dụng Dedicated IP version của custom SSL certificate, tính theo tỷ lệ theo giờ.
+  - $600 mỗi tháng cho mỗi custom SSL certificate liên kết với một hoặc nhiều CloudFront distributions sử dụng Dedicated IP version của custom SSL certificate, tính theo tỷ lệ theo giờ.

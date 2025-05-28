@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về NAT Gateway, dịch vụ cho phép các instance trong private subnet kết nối với internet.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-nat-gateway. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-nat-gateway.
 
 ## Table of contents
-
 
 - **AWS NAT (Network Address Translation)** là các thiết bị được triển khai trong public subnet, cho phép các instance trong private subnet kết nối với Internet nhưng ngăn chặn Internet khởi tạo kết nối với các instance.
 - Các instance trong private subnet cần kết nối Internet để thực hiện cập nhật phần mềm hoặc truy cập các dịch vụ bên ngoài.
@@ -19,8 +19,8 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - NAT instance giúp ngăn chặn các instance bị phơi bày trực tiếp ra Internet, tránh việc phải triển khai trong public subnet và gán Elastic IP cho tất cả các instance (Elastic IP là tài nguyên có giới hạn).
 - Thiết bị NAT định tuyến lưu lượng từ private subnet tới Internet bằng cách thay thế địa chỉ IP nguồn bằng địa chỉ của nó và sau đó dịch ngược địa chỉ về địa chỉ IP private của các instance cho lưu lượng phản hồi.
 - AWS cung cấp hai cách cấu hình NAT:
-    - **NAT Gateway**: Dịch vụ do AWS quản lý.
-    - **NAT Instance**: Tự cấu hình và quản lý.
+  - **NAT Gateway**: Dịch vụ do AWS quản lý.
+  - **NAT Instance**: Tự cấu hình và quản lý.
 
 # **NAT Gateway**
 

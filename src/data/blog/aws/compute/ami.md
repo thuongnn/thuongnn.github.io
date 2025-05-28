@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về AMI - template chứa thông tin cấu hình phần mềm cần thiết để khởi tạo EC2 instance.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ami. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ami.
 
 ## Table of contents
-
 
 **Amazon Machine Image (AMI)** là một mẫu chứa tất cả thông tin cần thiết để khởi chạy một **EC2 instance** (máy chủ ảo trên AWS).
 
@@ -28,17 +28,17 @@ Mỗi AMI bao gồm:
 AWS cung cấp ba loại AMI chính:
 
 - **AMI do AWS quản lý (AWS Managed AMI)**
-    - AWS duy trì và cập nhật thường xuyên.
-    - Hỗ trợ các hệ điều hành phổ biến như **Amazon Linux, Ubuntu, Windows Server...**
-    - Cung cấp các bản cập nhật bảo mật tự động, giúp người dùng tiết kiệm công sức quản lý.
+  - AWS duy trì và cập nhật thường xuyên.
+  - Hỗ trợ các hệ điều hành phổ biến như **Amazon Linux, Ubuntu, Windows Server...**
+  - Cung cấp các bản cập nhật bảo mật tự động, giúp người dùng tiết kiệm công sức quản lý.
 - **AMI từ bên thứ ba (Third-Party AMI)**
-    - Được cung cấp bởi các nhà cung cấp phần mềm trên **AWS Marketplace**.
-    - Có thể chứa các ứng dụng được cấu hình sẵn như **SQL Server, SAP, Jenkins...**
-    - Người dùng có thể sử dụng nhưng phải trả phí tùy theo nhà cung cấp.
+  - Được cung cấp bởi các nhà cung cấp phần mềm trên **AWS Marketplace**.
+  - Có thể chứa các ứng dụng được cấu hình sẵn như **SQL Server, SAP, Jenkins...**
+  - Người dùng có thể sử dụng nhưng phải trả phí tùy theo nhà cung cấp.
 - **AMI do người dùng tự tạo (Custom AMI)**
-    - Người dùng tự tạo AMI dựa trên nhu cầu riêng.
-    - Có thể **tùy chỉnh phần mềm, cấu hình bảo mật và dịch vụ hệ thống**.
-    - Thích hợp để chuẩn hóa môi trường triển khai trên nhiều EC2 instances.
+  - Người dùng tự tạo AMI dựa trên nhu cầu riêng.
+  - Có thể **tùy chỉnh phần mềm, cấu hình bảo mật và dịch vụ hệ thống**.
+  - Thích hợp để chuẩn hóa môi trường triển khai trên nhiều EC2 instances.
 
 📌 **Người dùng có thể sao chép AMI giữa các AWS Regions để triển khai hệ thống trên nhiều khu vực khác nhau.**
 
@@ -50,18 +50,18 @@ AWS cung cấp ba loại AMI chính:
 ## **Loại lưu trữ gốc của AMI**
 
 - **AMI dựa trên EBS (EBS-backed AMI)**
-    - Root volume là **Amazon EBS volume**.
-    - **Lợi ích chính:**
-        - ✅ **Dữ liệu không bị mất khi EC2 instance bị dừng hoặc reboot.**
-        - ✅ Hỗ trợ **stop/start instance**, giúp quản lý dễ dàng hơn.
-        - ✅ **Sao lưu dễ dàng** bằng cách tạo snapshot từ EBS.
+  - Root volume là **Amazon EBS volume**.
+  - **Lợi ích chính:**
+    - ✅ **Dữ liệu không bị mất khi EC2 instance bị dừng hoặc reboot.**
+    - ✅ Hỗ trợ **stop/start instance**, giúp quản lý dễ dàng hơn.
+    - ✅ **Sao lưu dễ dàng** bằng cách tạo snapshot từ EBS.
 - **AMI dựa trên Instance Store (Instance Store-backed AMI)**
-    - Root volume là **Instance Store**, chỉ cung cấp **lưu trữ tạm thời**.
-    - **Hạn chế chính:**
-        - ❌ **Dữ liệu sẽ bị mất khi instance bị dừng hoặc terminated.**
-        - ❌ Không hỗ trợ snapshot như EBS.
-    - **Ưu điểm:**
-        - ✅ Hiệu suất đọc/ghi cao, phù hợp với ứng dụng **cần tốc độ nhanh nhưng không yêu cầu lưu trữ dữ liệu lâu dài**.
+  - Root volume là **Instance Store**, chỉ cung cấp **lưu trữ tạm thời**.
+  - **Hạn chế chính:**
+    - ❌ **Dữ liệu sẽ bị mất khi instance bị dừng hoặc terminated.**
+    - ❌ Không hỗ trợ snapshot như EBS.
+  - **Ưu điểm:**
+    - ✅ Hiệu suất đọc/ghi cao, phù hợp với ứng dụng **cần tốc độ nhanh nhưng không yêu cầu lưu trữ dữ liệu lâu dài**.
 
 📌 **AWS khuyến nghị sử dụng AMI dựa trên EBS vì nó linh hoạt và an toàn hơn so với Instance Store.**
 
@@ -70,13 +70,13 @@ AWS cung cấp ba loại AMI chính:
 Có hai loại ảo hóa chính trên AMI chạy Linux:
 
 - **Paravirtual (PV)**
-    - Sử dụng mô hình ảo hóa **không đầy đủ**, hoạt động trực tiếp trên phần cứng.
-    - Hiệu suất thấp hơn HVM, không hỗ trợ GPU hoặc các tính năng phần cứng mới.
-    - Chủ yếu được dùng cho các instance cũ.
+  - Sử dụng mô hình ảo hóa **không đầy đủ**, hoạt động trực tiếp trên phần cứng.
+  - Hiệu suất thấp hơn HVM, không hỗ trợ GPU hoặc các tính năng phần cứng mới.
+  - Chủ yếu được dùng cho các instance cũ.
 - **Hardware Virtual Machine (HVM)**
-    - Hỗ trợ chạy trên **phần cứng ảo hóa đầy đủ**, bao gồm CPU, GPU...
-    - **Cung cấp hiệu suất tốt hơn** và hỗ trợ các instance mới nhất.
-    - AWS **khuyến nghị sử dụng HVM** vì nó tận dụng tối đa phần cứng hiện đại.
+  - Hỗ trợ chạy trên **phần cứng ảo hóa đầy đủ**, bao gồm CPU, GPU...
+  - **Cung cấp hiệu suất tốt hơn** và hỗ trợ các instance mới nhất.
+  - AWS **khuyến nghị sử dụng HVM** vì nó tận dụng tối đa phần cứng hiện đại.
 
 📌 **Hầu hết các AMI hiện nay đều sử dụng HVM để tối ưu hóa hiệu suất.**
 

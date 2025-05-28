@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về các nhóm placement trong EC2, giúp kiểm soát vị trí vật lý của các instance.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-placement-groups. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-placement-groups.
 
 ## Table of contents
-
 
 AWS EC2 **Placement Groups** giúp kiểm soát vị trí của các phiên bản EC2 trong cùng một khu vực, tối ưu hóa hiệu suất, độ trễ, hoặc khả năng chịu lỗi tùy theo nhu cầu của ứng dụng. Có 3 loại Placement Groups chính:
 
@@ -57,11 +57,11 @@ AWS EC2 **Placement Groups** giúp kiểm soát vị trí của các phiên bả
 
 ### **So sánh các loại Placement Groups**
 
-| Placement Group | Độ trễ thấp | Băng thông cao | Độ chịu lỗi cao | Sử dụng phổ biến |
-| --- | --- | --- | --- | --- |
-| **Cluster** | ✅ | ✅ | ❌ | HPC, AI/ML, phân tích dữ liệu |
-| **Spread** | ❌ | ❌ | ✅ | Ứng dụng quan trọng, database |
-| **Partition** | ❌ | ✅ | ✅ | Big Data, HDFS, Cassandra |
+| Placement Group | Độ trễ thấp | Băng thông cao | Độ chịu lỗi cao | Sử dụng phổ biến              |
+| --------------- | ----------- | -------------- | --------------- | ----------------------------- |
+| **Cluster**     | ✅          | ✅             | ❌              | HPC, AI/ML, phân tích dữ liệu |
+| **Spread**      | ❌          | ❌             | ✅              | Ứng dụng quan trọng, database |
+| **Partition**   | ❌          | ✅             | ✅              | Big Data, HDFS, Cassandra     |
 
 ### **Tóm tắt**
 

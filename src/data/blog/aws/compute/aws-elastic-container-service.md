@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ quản lý container của AWS, cho phép chạy và quản lý các ứng dụng containerized.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ecs. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ecs.
 
 ## Table of contents
-
 
 AWS **Elastic Container Service (ECS)** là dịch vụ **quản lý container** giúp chạy, dừng và quản lý các container trên cụm **EC2** hoặc **AWS Fargate**. ECS hỗ trợ **Docker** và tích hợp sâu với hệ sinh thái AWS.
 
@@ -51,16 +51,20 @@ AWS **Elastic Container Service (ECS)** là dịch vụ **quản lý container**
 ```json
 {
   "family": "my-task",
-  "containerDefinitions": [{
-    "name": "my-container",
-    "image": "nginx",
-    "memory": 512,
-    "cpu": 256,
-    "portMappings": [{
-      "containerPort": 80,
-      "hostPort": 80
-    }]
-  }]
+  "containerDefinitions": [
+    {
+      "name": "my-container",
+      "image": "nginx",
+      "memory": 512,
+      "cpu": 256,
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -112,13 +116,13 @@ AWS **Elastic Container Service (ECS)** là dịch vụ **quản lý container**
 
 ## **So sánh ECS vs EKS vs Fargate**
 
-| **Feature** | **ECS (EC2 Launch Type)** | **ECS (Fargate)** | **EKS (Kubernetes)** |
-| --- | --- | --- | --- |
-| **Quản lý Server** | Tự quản lý EC2 | AWS quản lý | Tự quản lý EC2 |
-| **Scaling** | Auto Scaling | Auto Scaling | Kubernetes Scaling |
-| **Tích hợp AWS** | Rất tốt | Rất tốt | Hạn chế hơn |
-| **Chi phí** | Cao hơn (phải quản lý EC2) | Chỉ trả tiền cho container | Tốn phí quản lý EKS |
-| **Quản lý phức tạp** | Dễ | Rất dễ | Phức tạp hơn |
+| **Feature**          | **ECS (EC2 Launch Type)**  | **ECS (Fargate)**          | **EKS (Kubernetes)** |
+| -------------------- | -------------------------- | -------------------------- | -------------------- |
+| **Quản lý Server**   | Tự quản lý EC2             | AWS quản lý                | Tự quản lý EC2       |
+| **Scaling**          | Auto Scaling               | Auto Scaling               | Kubernetes Scaling   |
+| **Tích hợp AWS**     | Rất tốt                    | Rất tốt                    | Hạn chế hơn          |
+| **Chi phí**          | Cao hơn (phải quản lý EC2) | Chỉ trả tiền cho container | Tốn phí quản lý EKS  |
+| **Quản lý phức tạp** | Dễ                         | Rất dễ                     | Phức tạp hơn         |
 
 ## **🔹 Tổng Kết**
 

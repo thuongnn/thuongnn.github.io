@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu dịch vụ ETL (trích xuất, chuyển đổi và tải dữ liệu) được quản lý hoàn toàn bởi AWS
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-glue. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-glue.
 
 ## Table of contents
-
 
 ![1.png](@/assets/images/analytics/aws-glue/1.png)
 
@@ -25,12 +25,12 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - Hỗ trợ mã hóa phía máy chủ cho dữ liệu tại chỗ và SSL cho dữ liệu trong quá trình truyền tải.
 - Cung cấp các điểm cuối phát triển để chỉnh sửa, gỡ lỗi và kiểm tra mã do nó tạo ra.
 - AWS Glue hỗ trợ dữ liệu được lưu trữ trong:
-    - RDS (Aurora, MySQL, Oracle, PostgreSQL, SQL Server)
-    - Redshift
-    - DynamoDB
-    - S3
-    - Các cơ sở dữ liệu MySQL, Oracle, Microsoft SQL Server và PostgreSQL trong VPC chạy trên EC2.
-    - Luồng dữ liệu từ [MSK](https://jayendrapatil.com/amazon-managed-streaming-for-apache-kafka-msk/), [Kinesis Data Streams](https://jayendrapatil.com/aws-kinesis/), và Apache Kafka.
+  - RDS (Aurora, MySQL, Oracle, PostgreSQL, SQL Server)
+  - Redshift
+  - DynamoDB
+  - S3
+  - Các cơ sở dữ liệu MySQL, Oracle, Microsoft SQL Server và PostgreSQL trong VPC chạy trên EC2.
+  - Luồng dữ liệu từ [MSK](https://jayendrapatil.com/amazon-managed-streaming-for-apache-kafka-msk/), [Kinesis Data Streams](https://jayendrapatil.com/aws-kinesis/), và Apache Kafka.
 - Công cụ ETL của Glue để trích xuất, chuyển đổi và tải dữ liệu, có thể tự động tạo mã Scala hoặc Python.
 - [Glue Data Catalog](https://jayendrapatil.com/aws-glue/#AWS_Glue_Data_Catalog) là kho lưu trữ trung tâm và kho siêu dữ liệu lâu dài để lưu trữ siêu dữ liệu cấu trúc và vận hành cho tất cả tài sản dữ liệu.
 - [Glue Crawlers](https://jayendrapatil.com/aws-glue/#AWS_Glue_Crawlers) quét các kho dữ liệu khác nhau để tự động suy ra lược đồ và cấu trúc phân vùng, điền vào Data Catalog với định nghĩa bảng và thống kê tương ứng.
@@ -80,7 +80,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - **Glue Job Bookmark** theo dõi dữ liệu đã được xử lý trong lần chạy trước của công việc ETL bằng cách lưu trữ thông tin trạng thái từ lần chạy công việc.
 - Job bookmarks giúp Glue duy trì thông tin trạng thái và ngăn chặn việc xử lý lại dữ liệu cũ.
 - Job bookmarks hỗ trợ xử lý dữ liệu mới khi chạy lại theo lịch trình.
-- Job bookmark bao gồm trạng thái của các thành phần công việc như nguồn, chuyển đổi và đích. *Ví dụ: Một công việc ETL có thể đọc các phân vùng mới trong tệp S3. Glue theo dõi phân vùng nào đã được xử lý thành công để tránh xử lý trùng lặp và dữ liệu trùng trong kho dữ liệu đích của công việc.*
+- Job bookmark bao gồm trạng thái của các thành phần công việc như nguồn, chuyển đổi và đích. _Ví dụ: Một công việc ETL có thể đọc các phân vùng mới trong tệp S3. Glue theo dõi phân vùng nào đã được xử lý thành công để tránh xử lý trùng lặp và dữ liệu trùng trong kho dữ liệu đích của công việc._
 
 # Glue DataBrew
 

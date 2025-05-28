@@ -8,59 +8,59 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ lưu trữ block của AWS, cung cấp lưu trữ bền vững cho EC2 instance.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ebs. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ebs.
 
 ## Table of contents
-
 
 # **EC2 Elastic Block Storage – EBS**
 
 - **Elastic Block Storage (EBS)** cung cấp các volume lưu trữ cấp khối có độ khả dụng cao, đáng tin cậy và bền vững, có thể gắn vào một instance EC2.
 - EBS được khuyến nghị sử dụng làm thiết bị lưu trữ chính cho dữ liệu yêu cầu cập nhật thường xuyên và chi tiết, chẳng hạn như cơ sở dữ liệu hoặc hệ thống tệp.
 - Một EBS volume có các đặc điểm sau:
-    - Hoạt động như một thiết bị khối bên ngoài, chưa được định dạng, có thể gắn vào một instance EC2 tại một thời điểm.
-    - Tồn tại độc lập với vòng đời của instance.
-    - Là tài nguyên cấp vùng (Zonal), có thể gắn vào bất kỳ instance nào trong cùng **Availability Zone** và được sử dụng như một ổ cứng vật lý thông thường.
-    - Đặc biệt phù hợp để làm **lưu trữ chính** cho hệ thống tệp, cơ sở dữ liệu hoặc các ứng dụng yêu cầu cập nhật dữ liệu chi tiết và truy cập vào lưu trữ cấp khối chưa định dạng.
+  - Hoạt động như một thiết bị khối bên ngoài, chưa được định dạng, có thể gắn vào một instance EC2 tại một thời điểm.
+  - Tồn tại độc lập với vòng đời của instance.
+  - Là tài nguyên cấp vùng (Zonal), có thể gắn vào bất kỳ instance nào trong cùng **Availability Zone** và được sử dụng như một ổ cứng vật lý thông thường.
+  - Đặc biệt phù hợp để làm **lưu trữ chính** cho hệ thống tệp, cơ sở dữ liệu hoặc các ứng dụng yêu cầu cập nhật dữ liệu chi tiết và truy cập vào lưu trữ cấp khối chưa định dạng.
 
 # **Tính năng của Elastic Block Storage (EBS)**
 
 - **Khả dụng trong Availability Zone (AZ):** EBS volumes được tạo trong một AZ cụ thể và có thể gắn vào bất kỳ instance nào trong cùng AZ đó.
 - **Sao lưu bằng Snapshot:**
-    - Volumes có thể được sao lưu bằng cách tạo **snapshot**, được lưu trữ trong **Amazon S3**.
-    - Snapshot có thể được sử dụng để tạo volume mới và gắn vào một instance khác trong cùng khu vực (**Region**).
-    - Để sử dụng volume ngoài AZ ban đầu, có thể tạo snapshot và khôi phục nó thành volume mới ở bất kỳ đâu trong khu vực đó.
-    - Snapshots có thể được sao chép sang các **Region** khác và khôi phục thành volume mới, hỗ trợ **mở rộng địa lý, di chuyển trung tâm dữ liệu và khôi phục thảm họa**.
+  - Volumes có thể được sao lưu bằng cách tạo **snapshot**, được lưu trữ trong **Amazon S3**.
+  - Snapshot có thể được sử dụng để tạo volume mới và gắn vào một instance khác trong cùng khu vực (**Region**).
+  - Để sử dụng volume ngoài AZ ban đầu, có thể tạo snapshot và khôi phục nó thành volume mới ở bất kỳ đâu trong khu vực đó.
+  - Snapshots có thể được sao chép sang các **Region** khác và khôi phục thành volume mới, hỗ trợ **mở rộng địa lý, di chuyển trung tâm dữ liệu và khôi phục thảm họa**.
 - **Mã hóa dữ liệu:**
-    - Hỗ trợ **mã hóa EBS**, bảo vệ **dữ liệu khi lưu trữ (at rest), dữ liệu khi truyền tải (disk I/O), và các snapshots**.
-    - **Mã hóa xảy ra trên instance EC2**, đảm bảo dữ liệu được bảo mật trong quá trình truyền từ EC2 sang EBS.
+  - Hỗ trợ **mã hóa EBS**, bảo vệ **dữ liệu khi lưu trữ (at rest), dữ liệu khi truyền tải (disk I/O), và các snapshots**.
+  - **Mã hóa xảy ra trên instance EC2**, đảm bảo dữ liệu được bảo mật trong quá trình truyền từ EC2 sang EBS.
 - **Elastic Volumes:**
-    - Cho phép **tăng dung lượng, điều chỉnh hiệu suất, và thay đổi loại volume** một cách **động** mà không gây gián đoạn hoặc ảnh hưởng đến hiệu suất.
-    - Có thể thay đổi kích thước, điều chỉnh **Provisioned IOPS**, và đổi loại volume ngay trên hệ thống đang chạy.
+  - Cho phép **tăng dung lượng, điều chỉnh hiệu suất, và thay đổi loại volume** một cách **động** mà không gây gián đoạn hoặc ảnh hưởng đến hiệu suất.
+  - Có thể thay đổi kích thước, điều chỉnh **Provisioned IOPS**, và đổi loại volume ngay trên hệ thống đang chạy.
 - **Hiệu suất của EBS Volumes:**
-    - **General Purpose (SSD)** hỗ trợ tới **16,000 IOPS** và băng thông **250 MB/s**.
-    - **Provisioned IOPS (SSD)** hỗ trợ tới **64,000 IOPS** và băng thông **1,000 MB/s**.
+  - **General Purpose (SSD)** hỗ trợ tới **16,000 IOPS** và băng thông **250 MB/s**.
+  - **Provisioned IOPS (SSD)** hỗ trợ tới **64,000 IOPS** và băng thông **1,000 MB/s**.
 
 # **Lợi ích của EBS**
 
 - Khả dụng dữ liệu (Data Availability)
-    - Dữ liệu trong EBS được **tự động sao chép trong cùng một Availability Zone** để ngăn chặn mất dữ liệu do lỗi phần cứng.
+  - Dữ liệu trong EBS được **tự động sao chép trong cùng một Availability Zone** để ngăn chặn mất dữ liệu do lỗi phần cứng.
 - Tính bền vững của dữ liệu (Data Persistence)
-    - **Tồn tại độc lập** với vòng đời của một EC2 instance.
-    - **Dữ liệu vẫn được giữ nguyên** khi instance bị **dừng, khởi động lại hoặc reboot**.
-    - **Root volume** mặc định sẽ bị xóa khi **instance bị terminate**, nhưng có thể thay đổi hành vi này bằng cách sử dụng **DeleteOnTermination flag**.
-    - **Các volumes gắn kèm (attached volumes)** sẽ vẫn tồn tại ngay cả khi instance bị terminate.
+  - **Tồn tại độc lập** với vòng đời của một EC2 instance.
+  - **Dữ liệu vẫn được giữ nguyên** khi instance bị **dừng, khởi động lại hoặc reboot**.
+  - **Root volume** mặc định sẽ bị xóa khi **instance bị terminate**, nhưng có thể thay đổi hành vi này bằng cách sử dụng **DeleteOnTermination flag**.
+  - **Các volumes gắn kèm (attached volumes)** sẽ vẫn tồn tại ngay cả khi instance bị terminate.
 - Mã hóa dữ liệu (Data Encryption)
-    - EBS có thể được mã hóa bằng **EBS encryption feature**.
-    - Sử dụng **mã hóa 256-bit AES-256** với **hạ tầng quản lý khóa (KMS) của Amazon**.
-    - **Mã hóa xảy ra trên server EC2**, đảm bảo dữ liệu được mã hóa khi truyền từ EC2 sang EBS.
-    - **Snapshots của các volumes được mã hóa cũng sẽ tự động được mã hóa**.
+  - EBS có thể được mã hóa bằng **EBS encryption feature**.
+  - Sử dụng **mã hóa 256-bit AES-256** với **hạ tầng quản lý khóa (KMS) của Amazon**.
+  - **Mã hóa xảy ra trên server EC2**, đảm bảo dữ liệu được mã hóa khi truyền từ EC2 sang EBS.
+  - **Snapshots của các volumes được mã hóa cũng sẽ tự động được mã hóa**.
 - Snapshots (Sao lưu dữ liệu)
-    - Hỗ trợ **tạo snapshot (bản sao lưu)** cho bất kỳ EBS volume nào, lưu trữ trên **S3** với khả năng sao lưu dự phòng trên nhiều **Availability Zones**.
-    - **Snapshots có thể dùng để tạo volume mới, mở rộng dung lượng hoặc nhân bản dữ liệu giữa các AZ hoặc Region**.
-    - Là **bản sao lưu gia tăng (incremental backup)**, chỉ lưu lại dữ liệu đã thay đổi kể từ snapshot trước đó.
-    - **Dung lượng snapshot có thể nhỏ hơn dung lượng volume** do dữ liệu được nén trước khi lưu trên S3.
-    - **Chỉ cần giữ lại snapshot gần nhất** để có thể khôi phục volume đầy đủ.
+  - Hỗ trợ **tạo snapshot (bản sao lưu)** cho bất kỳ EBS volume nào, lưu trữ trên **S3** với khả năng sao lưu dự phòng trên nhiều **Availability Zones**.
+  - **Snapshots có thể dùng để tạo volume mới, mở rộng dung lượng hoặc nhân bản dữ liệu giữa các AZ hoặc Region**.
+  - Là **bản sao lưu gia tăng (incremental backup)**, chỉ lưu lại dữ liệu đã thay đổi kể từ snapshot trước đó.
+  - **Dung lượng snapshot có thể nhỏ hơn dung lượng volume** do dữ liệu được nén trước khi lưu trên S3.
+  - **Chỉ cần giữ lại snapshot gần nhất** để có thể khôi phục volume đầy đủ.
 
 # **EBS Volume Types**
 
@@ -69,25 +69,25 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 # **EBS Volume**
 
 - **Tạo mới EBS Volume (EBS Volume Creation)**
-    - Có thể tạo mới hoàn toàn **từ AWS Console hoặc qua dòng lệnh (CLI)** và gắn vào một EC2 instance trong cùng **Availability Zone**.
+  - Có thể tạo mới hoàn toàn **từ AWS Console hoặc qua dòng lệnh (CLI)** và gắn vào một EC2 instance trong cùng **Availability Zone**.
 - **Khôi phục volume từ Snapshot (Restore Volume from Snapshots)**
-    - Có thể tạo volume mới từ các **snapshots đã có**.
-    - Volume được tải dữ liệu **một cách tự động và từ từ (lazy loading)**, không cần chờ tải toàn bộ dữ liệu từ **S3** trước khi sử dụng.
-    - Nếu instance truy cập phần dữ liệu chưa tải về, EBS sẽ **tải ngay phần dữ liệu đó từ S3** và tiếp tục tải dữ liệu còn lại trong nền.
-    - **Volumes từ snapshot được mã hóa sẽ luôn được mã hóa theo mặc định**.
-    - Volumes có thể được tạo và gắn vào một **EC2 instance đang chạy** bằng cách **chỉ định block device mapping**.
+  - Có thể tạo volume mới từ các **snapshots đã có**.
+  - Volume được tải dữ liệu **một cách tự động và từ từ (lazy loading)**, không cần chờ tải toàn bộ dữ liệu từ **S3** trước khi sử dụng.
+  - Nếu instance truy cập phần dữ liệu chưa tải về, EBS sẽ **tải ngay phần dữ liệu đó từ S3** và tiếp tục tải dữ liệu còn lại trong nền.
+  - **Volumes từ snapshot được mã hóa sẽ luôn được mã hóa theo mặc định**.
+  - Volumes có thể được tạo và gắn vào một **EC2 instance đang chạy** bằng cách **chỉ định block device mapping**.
 - **Gỡ bỏ EBS Volume (EBS Volume Detachment)**
-    - Volumes có thể bị gỡ khỏi instance **thủ công** hoặc khi **instance bị terminate**.
-    - **Root volume** có thể được tháo bằng cách **dừng (stop) instance**.
-    - **Data volumes** gắn vào một **instance đang chạy** phải được **gỡ bỏ (unmount) trước khi tháo**.
-    - Nếu tháo volume mà không unmount, volume có thể bị **kẹt ở trạng thái bận (busy state)**, có nguy cơ làm hỏng hệ thống tệp hoặc mất dữ liệu.
-    - Có thể **Force Detach**, nhưng có nguy cơ **mất dữ liệu hoặc làm hỏng hệ thống tệp**, do instance không có cơ hội **xóa cache hoặc metadata của hệ thống tệp**.
-    - **Vẫn phải trả phí** cho volume ngay cả khi đã tháo khỏi instance.
+  - Volumes có thể bị gỡ khỏi instance **thủ công** hoặc khi **instance bị terminate**.
+  - **Root volume** có thể được tháo bằng cách **dừng (stop) instance**.
+  - **Data volumes** gắn vào một **instance đang chạy** phải được **gỡ bỏ (unmount) trước khi tháo**.
+  - Nếu tháo volume mà không unmount, volume có thể bị **kẹt ở trạng thái bận (busy state)**, có nguy cơ làm hỏng hệ thống tệp hoặc mất dữ liệu.
+  - Có thể **Force Detach**, nhưng có nguy cơ **mất dữ liệu hoặc làm hỏng hệ thống tệp**, do instance không có cơ hội **xóa cache hoặc metadata của hệ thống tệp**.
+  - **Vẫn phải trả phí** cho volume ngay cả khi đã tháo khỏi instance.
 - **Xóa EBS Volume (EBS Volume Deletion)**
-    - **Xóa EBS Volume sẽ xóa hoàn toàn dữ liệu** và volume đó **không thể gắn vào bất kỳ instance nào khác**.
-    - Có thể **sao lưu dữ liệu bằng snapshot** trước khi xóa để tránh mất dữ liệu.
+  - **Xóa EBS Volume sẽ xóa hoàn toàn dữ liệu** và volume đó **không thể gắn vào bất kỳ instance nào khác**.
+  - Có thể **sao lưu dữ liệu bằng snapshot** trước khi xóa để tránh mất dữ liệu.
 - **Thay đổi kích thước và cấu hình EBS (EBS Volume Resize)**
-    - **Elastic Volumes** cho phép **tăng dung lượng, thay đổi loại volume hoặc điều chỉnh hiệu suất** mà **không cần tháo volume hoặc khởi động lại instance** (nếu instance hỗ trợ Elastic Volumes).
+  - **Elastic Volumes** cho phép **tăng dung lượng, thay đổi loại volume hoặc điều chỉnh hiệu suất** mà **không cần tháo volume hoặc khởi động lại instance** (nếu instance hỗ trợ Elastic Volumes).
 
 # **EBS Volume Snapshots**
 
@@ -121,8 +121,8 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - AWS sử dụng **mã hóa AES-256 để bảo vệ snapshot** khi sao chép.
 - **Lần đầu sao chép snapshot sang Region khác sẽ là bản sao đầy đủ**, các lần sau chỉ sao chép gia tăng.
 - Khi sao chép snapshot, có thể:
-    - **Mã hóa snapshot không được mã hóa**.
-    - **Sử dụng key mã hóa khác với bản gốc** (tạo snapshot mã hóa mới).
+  - **Mã hóa snapshot không được mã hóa**.
+  - **Sử dụng key mã hóa khác với bản gốc** (tạo snapshot mã hóa mới).
 
 ### **Chia sẻ EBS Snapshot (Snapshot Sharing)**
 

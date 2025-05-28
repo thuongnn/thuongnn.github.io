@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ quản lý khóa mã hóa của AWS, giúp tạo và kiểm soát các khóa mã hóa.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-kms. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-kms.
 
 ## Table of contents
-
 
 **AWS Key Management Service – KMS** là một dịch vụ mã hóa được quản lý, cho phép tạo và kiểm soát các khóa mã hóa nhằm hỗ trợ mã hóa dữ liệu.
 
@@ -60,10 +60,10 @@ Với **envelope encryption**:
 ### Lợi ích của e**nvelope encryption**:
 
 1. **Hiệu suất vượt trội:**
-    - Khi mã hóa dữ liệu trực tiếp với KMS, dữ liệu phải được truyền qua mạng.
-    - Với **envelope encryption**, KMS chỉ hỗ trợ mã hóa dữ liệu có kích thước dưới 4 KB, giúp giảm tải xử lý dữ liệu lớn.
+   - Khi mã hóa dữ liệu trực tiếp với KMS, dữ liệu phải được truyền qua mạng.
+   - Với **envelope encryption**, KMS chỉ hỗ trợ mã hóa dữ liệu có kích thước dưới 4 KB, giúp giảm tải xử lý dữ liệu lớn.
 2. **Giảm tải mạng:**
-    - Ứng dụng hoặc dịch vụ đám mây AWS chỉ cần truyền yêu cầu và nhận lại **Data Key**, thay vì truyền toàn bộ dữ liệu qua mạng, giúp giảm tải mạng đáng kể
+   - Ứng dụng hoặc dịch vụ đám mây AWS chỉ cần truyền yêu cầu và nhận lại **Data Key**, thay vì truyền toàn bộ dữ liệu qua mạng, giúp giảm tải mạng đáng kể
 
 # **KMS Service Concepts**
 
@@ -73,9 +73,9 @@ Với **envelope encryption**:
 
 - Đây là một biểu diễn logic (không phải là một tệp hoặc giá trị trực tiếp) của một khóa mã hóa được quản lý trong **AWS Key Management Service (KMS)**.
 - **Loại khóa được hỗ trợ:**
-    - **Khóa đối xứng (symmetric key):** Dùng để mã hóa/giải mã dữ liệu bằng một khóa duy nhất (AES 256-bit).
-    - **Khóa bất đối xứng (asymmetric key):** Gồm một cặp khóa **khóa công khai (public key)** và **khóa riêng (private key)**, dùng để mã hóa hoặc ký số.
-    - **HMAC keys:** Dùng để tạo và xác minh mã HMAC, thường dùng trong bảo mật dữ liệu và xác thực.
+  - **Khóa đối xứng (symmetric key):** Dùng để mã hóa/giải mã dữ liệu bằng một khóa duy nhất (AES 256-bit).
+  - **Khóa bất đối xứng (asymmetric key):** Gồm một cặp khóa **khóa công khai (public key)** và **khóa riêng (private key)**, dùng để mã hóa hoặc ký số.
+  - **HMAC keys:** Dùng để tạo và xác minh mã HMAC, thường dùng trong bảo mật dữ liệu và xác thực.
 - **Symmetric keys và private keys (của asymmetric key)** không bao giờ rời khỏi AWS KMS ở trạng thái **plaintext**. Điều này đảm bảo khóa luôn được bảo vệ, tránh rủi ro bị lộ ra ngoài.
 - Một **KMS key** bao gồm metadata, như **Key ID**, **Key Spec**, **Key Usage**, ngày tạo, mô tả, trạng thái khóa, và tham chiếu đến **Key Material** được sử dụng để thực hiện các hoạt động mã hóa với **KMS key**.
 
@@ -88,24 +88,24 @@ Với **envelope encryption**:
 - Là các khóa được **AWS tạo, quản lý và sử dụng thay mặt bạn** trong tài khoản AWS của bạn.
 - **Tự động xoay vòng mỗi năm (~365 ngày)** và không thể thay đổi lịch xoay vòng này.
 - Có thể:
-    - Xem các khóa được quản lý bởi AWS trong tài khoản của mình.
-    - Xem các chính sách khóa (key policies).
-    - Theo dõi việc sử dụng khóa trong **CloudTrail logs**.
+  - Xem các khóa được quản lý bởi AWS trong tài khoản của mình.
+  - Xem các chính sách khóa (key policies).
+  - Theo dõi việc sử dụng khóa trong **CloudTrail logs**.
 - Không thể:
-    - Quản lý hoặc xoay vòng khóa.
-    - Thay đổi chính sách khóa (key policies).
-    - Sử dụng trực tiếp trong các hoạt động mã hóa; thay vào đó, dịch vụ AWS sẽ sử dụng chúng thay bạn.
+  - Quản lý hoặc xoay vòng khóa.
+  - Thay đổi chính sách khóa (key policies).
+  - Sử dụng trực tiếp trong các hoạt động mã hóa; thay vào đó, dịch vụ AWS sẽ sử dụng chúng thay bạn.
 
 ### **Customer Managed Keys**
 
 - Là các khóa **do bạn tạo và quản lý** để mã hóa tài nguyên trong tài khoản của mình.
 - **Xoay vòng tự động là tùy chọn**: Nếu bật, khóa sẽ được xoay vòng tự động mỗi năm.
 - Bạn có toàn quyền kiểm soát, bao gồm:
-    - Xây dựng và duy trì **key policies, IAM policies** và **grants**.
-    - Bật và tắt các khóa.
-    - Xoay vòng vật liệu mã hóa (cryptographic material).
-    - Gắn thẻ (tags) hoặc tạo bí danh (aliases) tham chiếu đến KMS keys.
-    - Lên lịch xóa các khóa.
+  - Xây dựng và duy trì **key policies, IAM policies** và **grants**.
+  - Bật và tắt các khóa.
+  - Xoay vòng vật liệu mã hóa (cryptographic material).
+  - Gắn thẻ (tags) hoặc tạo bí danh (aliases) tham chiếu đến KMS keys.
+  - Lên lịch xóa các khóa.
 
 ### **AWS Owned Keys**
 
@@ -119,8 +119,8 @@ Với **envelope encryption**:
 - Các KMS key chứa một tham chiếu đến **key material**, được sử dụng để mã hóa và giải mã dữ liệu.
 - Mặc định, AWS KMS sẽ tự động tạo **key material** khi một KMS key mới được tạo.
 - KMS key có thể được tạo mà không có key material. Sau đó, bạn có thể:
-    - **Nhập key material của riêng bạn**.
-    - Hoặc **tạo key material** trong cụm AWS CloudHSM được liên kết với AWS KMS Custom Key Store.
+  - **Nhập key material của riêng bạn**.
+  - Hoặc **tạo key material** trong cụm AWS CloudHSM được liên kết với AWS KMS Custom Key Store.
 - Không thể trích xuất, xuất, xem hoặc quản lý key material.
 - Key material không thể xóa riêng lẻ; để xóa key material, bạn phải xóa toàn bộ KMS key.
 
@@ -129,30 +129,30 @@ Với **envelope encryption**:
 **Key Material Origin** là thuộc tính của KMS key xác định origin của key material được sử dụng trong KMS key. Các giá trị key material origin bao gồm:
 
 1. **`AWS_KMS`:**
-    - AWS KMS tạo và quản lý key material cho KMS key trong AWS KMS.
+   - AWS KMS tạo và quản lý key material cho KMS key trong AWS KMS.
 2. **`EXTERNAL`:**
-    - Key được sử dụng có key material nhập từ bên ngoài.
-    - Khách hàng chịu trách nhiệm quản lý và bảo mật key.
-    - **Chỉ hỗ trợ symmetric keys**.
-    - Không hỗ trợ tự động xoay vòng và cần xoay vòng thủ công.
+   - Key được sử dụng có key material nhập từ bên ngoài.
+   - Khách hàng chịu trách nhiệm quản lý và bảo mật key.
+   - **Chỉ hỗ trợ symmetric keys**.
+   - Không hỗ trợ tự động xoay vòng và cần xoay vòng thủ công.
 3. **`AWS_CLOUDHSM`:**
-    - AWS KMS tạo key material trong cụm AWS CloudHSM liên kết với custom key store.
+   - AWS KMS tạo key material trong cụm AWS CloudHSM liên kết với custom key store.
 4. **`EXTERNAL_KEY_STORE`:**
-    - Key material là khóa mật mã trong một trình quản lý khóa bên ngoài (external key manager) nằm ngoài AWS.
-    - Giá trị này **chỉ hỗ trợ cho KMS keys** trong một external key store.
+   - Key material là khóa mật mã trong một trình quản lý khóa bên ngoài (external key manager) nằm ngoài AWS.
+   - Giá trị này **chỉ hỗ trợ cho KMS keys** trong một external key store.
 
 # Data Keys
 
 - **Data keys** là các khóa mã hóa được sử dụng để mã hóa dữ liệu, bao gồm:
-    - Lượng dữ liệu lớn.
-    - Các khóa mã hóa dữ liệu khác.
+  - Lượng dữ liệu lớn.
+  - Các khóa mã hóa dữ liệu khác.
 - Không giống **KMS keys**, AWS KMS **không lưu trữ**, **quản lý**, hay **theo dõi** các **data keys**.
 - Data keys chủ yếu được sử dụng bởi các dịch vụ bên ngoài AWS KMS.
 - **Data keys** được tạo thông qua AWS KMS nhưng không được lưu lại trong hệ thống KMS.
 - Các ứng dụng hoặc dịch vụ bên ngoài AWS KMS chịu trách nhiệm sử dụng **data keys** để mã hóa và giải mã dữ liệu.
 - Thường được sử dụng trong **Envelope Encryption** để mã hóa dữ liệu khối lượng lớn:
-    - Dữ liệu được mã hóa bằng **data keys**.
-    - **Data keys** lại được mã hóa bởi **KMS keys** để tăng cường bảo mật.
+  - Dữ liệu được mã hóa bằng **data keys**.
+  - **Data keys** lại được mã hóa bởi **KMS keys** để tăng cường bảo mật.
 
 # **Encryption Context**
 
@@ -162,24 +162,24 @@ Với **envelope encryption**:
 - Không nên thêm các thông tin nhạy cảm trong encryption context.
 - Dùng để **phân loại** và **xác định** các hoạt động mã hóa/giải mã trong CloudTrail Logs.
 - Ứng dụng:
-    - Giúp xác minh thêm rằng dữ liệu được mã hóa và giải mã trong đúng ngữ cảnh.
-    - Cải thiện bảo mật bằng cách sử dụng thêm một lớp xác thực không bí mật.
+  - Giúp xác minh thêm rằng dữ liệu được mã hóa và giải mã trong đúng ngữ cảnh.
+  - Cải thiện bảo mật bằng cách sử dụng thêm một lớp xác thực không bí mật.
 
 # KMS Access Control
 
 - Cách chính để quản lý quyền truy cập vào các KMS keys trong AWS là sử dụng các policy.
 - Quyền truy cập vào KMS keys có thể được kiểm soát thông qua:
-    - **Key Policies**
-        - **Là các policy dựa trên tài nguyên (resource-based policies).**
-        - **Mỗi KMS key đều có một key policy.**
-        - Là cơ chế chính để kiểm soát quyền truy cập vào một key.
-        - Có thể được sử dụng độc lập để kiểm soát quyền truy cập vào các keys.
-    - **IAM Policies**
-        - Sử dụng các **IAM policies** kết hợp với **Key Policies** để kiểm soát quyền truy cập vào các keys.
-        - Hữu ích để quản lý tất cả các quyền cho các danh tính IAM (IAM identities) trong IAM.
-    - Grants
-        - Sử dụng **grants** kết hợp với **Key Policies** và **IAM Policies** để cho phép truy cập vào các keys.
-        - Hữu ích để cấp quyền truy cập vào các keys đã được cấp quyền trong key policy và cho phép người dùng ủy quyền quyền truy cập của họ cho những người khác.
+  - **Key Policies**
+    - **Là các policy dựa trên tài nguyên (resource-based policies).**
+    - **Mỗi KMS key đều có một key policy.**
+    - Là cơ chế chính để kiểm soát quyền truy cập vào một key.
+    - Có thể được sử dụng độc lập để kiểm soát quyền truy cập vào các keys.
+  - **IAM Policies**
+    - Sử dụng các **IAM policies** kết hợp với **Key Policies** để kiểm soát quyền truy cập vào các keys.
+    - Hữu ích để quản lý tất cả các quyền cho các danh tính IAM (IAM identities) trong IAM.
+  - Grants
+    - Sử dụng **grants** kết hợp với **Key Policies** và **IAM Policies** để cho phép truy cập vào các keys.
+    - Hữu ích để cấp quyền truy cập vào các keys đã được cấp quyền trong key policy và cho phép người dùng ủy quyền quyền truy cập của họ cho những người khác.
 - Để cho phép truy cập vào một KMS CMK, **Key Policy** **PHẢI** được sử dụng, dù là sử dụng độc lập hoặc kết hợp với **IAM Policies** hoặc **Grants**.
 - **IAM Policies** không đủ để cho phép truy cập vào các keys, mặc dù chúng có thể được sử dụng kết hợp với **Key Policies**.
 - IAM user tạo một KMS key không được coi là chủ sở hữu key và họ không tự động có quyền sử dụng hoặc quản lý KMS key mà họ tạo ra.
@@ -207,72 +207,72 @@ Với **envelope encryption**:
 - Alias là tài nguyên độc lập, không phải thuộc tính của KMS key.
 - Alias có thể thêm, thay đổi, hoặc xóa mà không ảnh hưởng đến KMS key liên quan.
 - **Ứng dụng:**
-    - Alias có thể tham chiếu đến các KMS keys khác nhau trong từng **AWS Region**.
-    - Có thể chuyển alias sang KMS key khác mà không cần thay đổi mã nguồn.
-    - Alias giúp cho phép hoặc từ chối quyền truy cập dựa trên alias mà không cần chỉnh sửa policy hoặc quản lý grants.
+  - Alias có thể tham chiếu đến các KMS keys khác nhau trong từng **AWS Region**.
+  - Có thể chuyển alias sang KMS key khác mà không cần thay đổi mã nguồn.
+  - Alias giúp cho phép hoặc từ chối quyền truy cập dựa trên alias mà không cần chỉnh sửa policy hoặc quản lý grants.
 
 # Key Rotation trong AWS KMS
 
 - **Key rotation** là quá trình thay đổi **key material** để tăng cường bảo mật trong các hoạt động mã hóa. Key material mới được sử dụng cho các yêu cầu mã hóa tiếp theo, trong khi key material cũ vẫn được lưu trữ để giải mã dữ liệu đã mã hóa trước đó.
 - Các Loại Key Rotation:
-    - Automatic Key Rotation
-        - Hỗ trợ cho **symmetric encryption KMS keys** với key material do AWS KMS tạo.
-        - **AWS Managed Keys t**ự động xoay vòng mỗi năm và Không thể tùy chỉnh.
-        - **Customer Managed Keys m**ặc định tắt, cần kích hoạt thủ công. Xoay vòng mỗi năm.
-        - **Không hỗ trợ** Asymmetric keys, HMAC keys, keys trong custom key stores, keys với key material được nhập.
-        - Lợi ích:
-            - Không thay đổi các thuộc tính của key như ID, ARN, và policy.
-            - Các ứng dụng hoặc alias liên kết không cần cập nhật.
-            - Không ảnh hưởng đến việc sử dụng key trong các dịch vụ AWS.
-    - Manual Key Rotation
-        - Người dùng tạo key mới và cập nhật ứng dụng hoặc alias để sử dụng key này.
-        - Không giữ lại ID, ARN, hoặc policy của key cũ.
-        - Thích hợp với các keys không hỗ trợ xoay vòng tự động (Asymmetric, HMAC, custom key store, imported material).
-        - Ưu điểm là linh hoạt kiểm soát tần suất xoay vòng, phù hợp khi cần tần suất xoay vòng dưới 1 năm.
-        - Nhược điểm là có thể cần mã hóa lại dữ liệu tùy thuộc vào cấu hình ứng dụng.
+  - Automatic Key Rotation
+    - Hỗ trợ cho **symmetric encryption KMS keys** với key material do AWS KMS tạo.
+    - **AWS Managed Keys t**ự động xoay vòng mỗi năm và Không thể tùy chỉnh.
+    - **Customer Managed Keys m**ặc định tắt, cần kích hoạt thủ công. Xoay vòng mỗi năm.
+    - **Không hỗ trợ** Asymmetric keys, HMAC keys, keys trong custom key stores, keys với key material được nhập.
+    - Lợi ích:
+      - Không thay đổi các thuộc tính của key như ID, ARN, và policy.
+      - Các ứng dụng hoặc alias liên kết không cần cập nhật.
+      - Không ảnh hưởng đến việc sử dụng key trong các dịch vụ AWS.
+  - Manual Key Rotation
+    - Người dùng tạo key mới và cập nhật ứng dụng hoặc alias để sử dụng key này.
+    - Không giữ lại ID, ARN, hoặc policy của key cũ.
+    - Thích hợp với các keys không hỗ trợ xoay vòng tự động (Asymmetric, HMAC, custom key store, imported material).
+    - Ưu điểm là linh hoạt kiểm soát tần suất xoay vòng, phù hợp khi cần tần suất xoay vòng dưới 1 năm.
+    - Nhược điểm là có thể cần mã hóa lại dữ liệu tùy thuộc vào cấu hình ứng dụng.
 
 # KMS Key Deletion
 
 - **KMS key deletion** là quá trình xóa key material và tất cả metadata liên quan đến key. Đây là một hành động **không thể hoàn tác**.
 - Các đặc điểm chính:
-    - **Không thể phục hồi dữ liệu:**
-        - Dữ liệu được mã hóa bởi key đã bị xóa **không thể khôi phục**.
-        - Vì lý do này, **AWS khuyến nghị vô hiệu hóa key** trước khi thực hiện xóa.
-    - **Loại Key có thể xóa:**
-        - **Customer Managed Keys**: Có thể được lên lịch để xóa.
-        - **AWS Managed và Owned Keys**: **Không thể xóa.**
-    - **Thời gian chờ bắt buộc:**
-        - Người dùng phải đặt thời gian chờ từ **7 đến 30 ngày** trước khi key bị xóa.
-        - Trong thời gian này, trạng thái của key là **Pending deletion**.
-    - **Trạng thái và hoạt động trong thời gian chờ:**
-        - Key với trạng thái **Pending deletion**:
-            - **Không thể sử dụng** cho các hoạt động mã hóa hay giải mã.
-            - Key material không được xoay vòng.
-    - **Chỉ xóa khi được lên lịch:**
-        - AWS **không bao giờ tự động xóa key**. Việc xóa chỉ được thực hiện khi bạn **chủ động lên lịch** và thời gian chờ đã kết thúc.
+  - **Không thể phục hồi dữ liệu:**
+    - Dữ liệu được mã hóa bởi key đã bị xóa **không thể khôi phục**.
+    - Vì lý do này, **AWS khuyến nghị vô hiệu hóa key** trước khi thực hiện xóa.
+  - **Loại Key có thể xóa:**
+    - **Customer Managed Keys**: Có thể được lên lịch để xóa.
+    - **AWS Managed và Owned Keys**: **Không thể xóa.**
+  - **Thời gian chờ bắt buộc:**
+    - Người dùng phải đặt thời gian chờ từ **7 đến 30 ngày** trước khi key bị xóa.
+    - Trong thời gian này, trạng thái của key là **Pending deletion**.
+  - **Trạng thái và hoạt động trong thời gian chờ:**
+    - Key với trạng thái **Pending deletion**:
+      - **Không thể sử dụng** cho các hoạt động mã hóa hay giải mã.
+      - Key material không được xoay vòng.
+  - **Chỉ xóa khi được lên lịch:**
+    - AWS **không bao giờ tự động xóa key**. Việc xóa chỉ được thực hiện khi bạn **chủ động lên lịch** và thời gian chờ đã kết thúc.
 
 # **KMS Multi-Region Keys**
 
 - **KMS Multi-Region Keys** là một tính năng trong AWS KMS hỗ trợ tạo các key có thể sử dụng **(multi-region)**, cho phép mã hóa và giải mã dữ liệu ở các AWS Region khác nhau mà không cần gọi KMS qua các vùng hoặc mã hóa lại dữ liệu.
 - Các đặc điểm chính:
-    - **Tương tác linh hoạt giữa các Region:**
-        - **Cùng key material và key ID:**
-            - Các multi-region key trong các vùng khác nhau có cùng **key material** và **key ID**.
-        - **Khả năng mã hóa/giải mã multi-region:**
-            - Dữ liệu được mã hóa ở một AWS Region có thể giải mã ở một AWS Region khác mà **không cần mã hóa lại**.
-    - **Bảo mật cao:**
-        - Multi-Region keys **không bao giờ rời khỏi AWS KMS ở trạng thái không được mã hóa**.
-        - Bảo mật dữ liệu được duy trì chặt chẽ trong mọi giao dịch.
-    - **Không phải là global key:**
-        - Mỗi multi-region key phải được **tạo bản sao (replicated)** và quản lý độc lập ở từng Region.
-        - Chúng không phải là **global key**, tức là không tự động áp dụng trên toàn bộ hệ thống AWS.
+  - **Tương tác linh hoạt giữa các Region:**
+    - **Cùng key material và key ID:**
+      - Các multi-region key trong các vùng khác nhau có cùng **key material** và **key ID**.
+    - **Khả năng mã hóa/giải mã multi-region:**
+      - Dữ liệu được mã hóa ở một AWS Region có thể giải mã ở một AWS Region khác mà **không cần mã hóa lại**.
+  - **Bảo mật cao:**
+    - Multi-Region keys **không bao giờ rời khỏi AWS KMS ở trạng thái không được mã hóa**.
+    - Bảo mật dữ liệu được duy trì chặt chẽ trong mọi giao dịch.
+  - **Không phải là global key:**
+    - Mỗi multi-region key phải được **tạo bản sao (replicated)** và quản lý độc lập ở từng Region.
+    - Chúng không phải là **global key**, tức là không tự động áp dụng trên toàn bộ hệ thống AWS.
 - Lợi ích
-    - **Hiệu suất: g**iảm độ trễ khi sử dụng KMS trong các ứng dụng yêu cầu mã hóa/giải mã trên nhiều Region.
-    - **Tiện lợi: k**hông cần thực hiện mã hóa lại khi dữ liệu di chuyển giữa các Region.
-    - **Tăng cường bảo mật và tuân thủ: d**ữ liệu luôn được mã hóa khi truyền và lưu trữ, phù hợp với các yêu cầu bảo mật.
+  - **Hiệu suất: g**iảm độ trễ khi sử dụng KMS trong các ứng dụng yêu cầu mã hóa/giải mã trên nhiều Region.
+  - **Tiện lợi: k**hông cần thực hiện mã hóa lại khi dữ liệu di chuyển giữa các Region.
+  - **Tăng cường bảo mật và tuân thủ: d**ữ liệu luôn được mã hóa khi truyền và lưu trữ, phù hợp với các yêu cầu bảo mật.
 - Lưu ý quan trọng
-    - Việc quản lý và sao chép multi-region key cần thực hiện **thủ công**, đòi hỏi sự cẩn thận trong việc đồng bộ giữa các Region.
-    - Chỉ nên sử dụng multi-region key khi thực sự cần thiết, ví dụ trong các hệ thống phân tán toàn cầu.
+  - Việc quản lý và sao chép multi-region key cần thực hiện **thủ công**, đòi hỏi sự cẩn thận trong việc đồng bộ giữa các Region.
+  - Chỉ nên sử dụng multi-region key khi thực sự cần thiết, ví dụ trong các hệ thống phân tán toàn cầu.
 
 # KMS vs CloudHSM
 

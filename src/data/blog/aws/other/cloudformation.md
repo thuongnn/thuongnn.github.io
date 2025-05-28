@@ -8,33 +8,33 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ Infrastructure as Code của AWS, giúp tạo và quản lý tài nguyên AWS một cách tự động.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-cloudformation. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-cloudformation.
 
 ## Table of contents
 
-
 - AWS CloudFormation cung cấp cho các nhà phát triển và quản trị viên hệ thống một cách dễ dàng để **tạo** và **quản lý** một tập hợp các tài nguyên AWS liên quan, cung cấp và cập nhật chúng một cách **có thứ tự** và **dễ đoán**.
 - CloudFormation bao gồm:
-    - **Template**:
-        - Là một **biểu đồ kiến trúc** và cung cấp các **tài nguyên logic**.
-        - Là một tệp văn bản định dạng **JSON** hoặc **YAML**, mô tả tất cả các **tài nguyên AWS** cần thiết để triển khai và chạy ứng dụng.
-    - **Stack**:
-        - Là **kết quả cuối cùng** của biểu đồ đó và cung cấp các **tài nguyên vật lý** được ánh xạ tới các tài nguyên logic.
-        - Là tập hợp các **tài nguyên AWS** được **tạo** và **quản lý** như một **đơn vị duy nhất** khi CloudFormation khởi tạo một **template**.
+  - **Template**:
+    - Là một **biểu đồ kiến trúc** và cung cấp các **tài nguyên logic**.
+    - Là một tệp văn bản định dạng **JSON** hoặc **YAML**, mô tả tất cả các **tài nguyên AWS** cần thiết để triển khai và chạy ứng dụng.
+  - **Stack**:
+    - Là **kết quả cuối cùng** của biểu đồ đó và cung cấp các **tài nguyên vật lý** được ánh xạ tới các tài nguyên logic.
+    - Là tập hợp các **tài nguyên AWS** được **tạo** và **quản lý** như một **đơn vị duy nhất** khi CloudFormation khởi tạo một **template**.
 - **Template CloudFormation** có thể được sử dụng để thiết lập các tài nguyên một cách **nhất quán** và **lặp lại** nhiều lần trên nhiều **regions**.
 - Các tài nguyên có thể được **cập nhật**, **xóa** và **sửa đổi** một cách **kiểm soát** và **dễ đoán**, thực chất là áp dụng **kiểm soát phiên bản** cho cơ sở hạ tầng giống như đối với mã phần mềm.
 - **Template CloudFormation** bao gồm các yếu tố:
-    - **Danh sách các tài nguyên AWS** và các giá trị cấu hình của chúng.
-    - Một **số phiên bản định dạng tệp template** tùy chọn.
-    - Một **danh sách các tham số template** tùy chọn (các giá trị đầu vào được cung cấp khi tạo stack).
-    - Một **danh sách các giá trị đầu ra** tùy chọn như địa chỉ IP công khai sử dụng hàm **`Fn:GetAtt`**.
-    - Một **danh sách các bảng dữ liệu** tùy chọn dùng để tra cứu các giá trị cấu hình tĩnh *ví dụ: tên AMI theo AZ*.
+  - **Danh sách các tài nguyên AWS** và các giá trị cấu hình của chúng.
+  - Một **số phiên bản định dạng tệp template** tùy chọn.
+  - Một **danh sách các tham số template** tùy chọn (các giá trị đầu vào được cung cấp khi tạo stack).
+  - Một **danh sách các giá trị đầu ra** tùy chọn như địa chỉ IP công khai sử dụng hàm **`Fn:GetAtt`**.
+  - Một **danh sách các bảng dữ liệu** tùy chọn dùng để tra cứu các giá trị cấu hình tĩnh _ví dụ: tên AMI theo AZ_.
 - CloudFormation hỗ trợ tích hợp **Chef** & **Puppet** để triển khai và cấu hình xuống tận tầng ứng dụng.
 - CloudFormation cung cấp một tập hợp các **tập lệnh khởi động ứng dụng** cho phép bạn cài đặt **gói**, **tệp** và **dịch vụ** trên các phiên bản **EC2** bằng cách đơn giản mô tả chúng trong **template CloudFormation**.
 - Theo mặc định, tính năng **automatic rollback on error** được bật, sẽ khiến tất cả các **tài nguyên AWS** mà CloudFormation đã tạo thành công cho một **stack** cho đến thời điểm xảy ra lỗi sẽ bị **xóa**.
 - Trong trường hợp **automatic rollback**, **phí** vẫn sẽ được áp dụng cho các tài nguyên trong khoảng thời gian chúng hoạt động.
-- CloudFormation cung cấp tài nguyên **WaitCondition** hoạt động như một **rào cản**, ngăn chặn việc tạo các tài nguyên khác cho đến khi nhận được **tín hiệu hoàn thành** từ một nguồn bên ngoài *ví dụ: ứng dụng hoặc hệ thống quản lý*.
-- CloudFormation cho phép định nghĩa **deletion policies** cho các tài nguyên trong **template** *ví dụ: tài nguyên được giữ lại hoặc snapshot có thể được tạo trước khi xóa, hữu ích để bảo vệ S3 buckets khi stack bị xóa*.
+- CloudFormation cung cấp tài nguyên **WaitCondition** hoạt động như một **rào cản**, ngăn chặn việc tạo các tài nguyên khác cho đến khi nhận được **tín hiệu hoàn thành** từ một nguồn bên ngoài _ví dụ: ứng dụng hoặc hệ thống quản lý_.
+- CloudFormation cho phép định nghĩa **deletion policies** cho các tài nguyên trong **template** _ví dụ: tài nguyên được giữ lại hoặc snapshot có thể được tạo trước khi xóa, hữu ích để bảo vệ S3 buckets khi stack bị xóa_.
 
 # Các khái niệm CloudFormation
 
@@ -44,8 +44,8 @@ Trong **AWS CloudFormation**, bạn làm việc với **templates** và **stacks
 
 - Hoạt động như **bản thiết kế** để xây dựng các **tài nguyên AWS**.
 - Là một tệp văn bản định dạng **JSON** hoặc **YAML**, được lưu với bất kỳ phần mở rộng nào, chẳng hạn như **.json**, **.yaml**, **.template**, hoặc **.txt**.
-- Có khả năng bổ sung để xây dựng các tập hợp tài nguyên phức tạp và tái sử dụng các **templates** trong nhiều ngữ cảnh 
-*Ví dụ: sử dụng input parameters để tạo các templates chung và có thể tái sử dụng*.
+- Có khả năng bổ sung để xây dựng các tập hợp tài nguyên phức tạp và tái sử dụng các **templates** trong nhiều ngữ cảnh
+  _Ví dụ: sử dụng input parameters để tạo các templates chung và có thể tái sử dụng_.
 - Tên được sử dụng cho một tài nguyên trong **template** là **tên logic**, nhưng khi CloudFormation tạo tài nguyên, nó tạo ra một **tên vật lý** dựa trên sự kết hợp của **tên logic**, **tên stack** và một **ID duy nhất**.
 
 # Stacks
@@ -62,7 +62,7 @@ Trong **AWS CloudFormation**, bạn làm việc với **templates** và **stacks
 - **Change Sets** cung cấp một **tóm tắt** hoặc **xem trước** các thay đổi được đề xuất mà CloudFormation sẽ thực hiện khi một **stack** được cập nhật.
 - **Change Sets** giúp kiểm tra cách các thay đổi có thể **ảnh hưởng** đến các tài nguyên đang chạy, đặc biệt là các tài nguyên quan trọng, trước khi thực hiện chúng.
 - CloudFormation chỉ thực hiện các thay đổi cho **stack** khi **change set** được thực thi, cho phép bạn quyết định **tiếp tục** với các thay đổi được đề xuất hoặc **khám phá** các thay đổi khác bằng cách tạo một **change set** khác.
-- **Change Sets** không cho biết liệu CloudFormation sẽ **cập nhật stack thành công** *ví dụ: nếu vượt giới hạn tài khoản hoặc người dùng không có quyền*.
+- **Change Sets** không cho biết liệu CloudFormation sẽ **cập nhật stack thành công** _ví dụ: nếu vượt giới hạn tài khoản hoặc người dùng không có quyền_.
 
 # Custom Resources
 
@@ -95,72 +95,72 @@ Trong **AWS CloudFormation**, bạn làm việc với **templates** và **stacks
 ![2.png](@/assets/images/other/cloudformation/2.png)
 
 - **Resources** (required):
-    - Chỉ định các **tài nguyên stack** và **thuộc tính** của chúng, chẳng hạn như một phiên bản **EC2** hoặc một **S3 bucket** sẽ được tạo.
-    - Các **tài nguyên** có thể được tham chiếu trong các phần **Resources** và **Outputs**.
+  - Chỉ định các **tài nguyên stack** và **thuộc tính** của chúng, chẳng hạn như một phiên bản **EC2** hoặc một **S3 bucket** sẽ được tạo.
+  - Các **tài nguyên** có thể được tham chiếu trong các phần **Resources** và **Outputs**.
 - **Parameters** (optional):
-    - Truyền các **giá trị** vào **template** tại thời điểm chạy (trong quá trình **tạo** hoặc **cập nhật stack**).
-    - Các **Parameters** có thể được tham chiếu từ các phần **Resources** và **Outputs**.
-    - Có thể được tham chiếu bằng **Fn::Ref** hoặc **!Ref**.
+  - Truyền các **giá trị** vào **template** tại thời điểm chạy (trong quá trình **tạo** hoặc **cập nhật stack**).
+  - Các **Parameters** có thể được tham chiếu từ các phần **Resources** và **Outputs**.
+  - Có thể được tham chiếu bằng **Fn::Ref** hoặc **!Ref**.
 - **Mappings** (optional):
-    - Một ánh xạ của các **khóa** và **giá trị liên quan** được sử dụng để chỉ định các giá trị tham số có điều kiện, tương tự như một **bảng tra cứu**.
-    - Có thể được tham chiếu bằng **Fn::FindInMap** hoặc **!FindInMap**.
+  - Một ánh xạ của các **khóa** và **giá trị liên quan** được sử dụng để chỉ định các giá trị tham số có điều kiện, tương tự như một **bảng tra cứu**.
+  - Có thể được tham chiếu bằng **Fn::FindInMap** hoặc **!FindInMap**.
 - **Outputs** (optional):
-    - Mô tả các **giá trị** được trả về bất cứ khi nào bạn xem **thuộc tính stack**.
+  - Mô tả các **giá trị** được trả về bất cứ khi nào bạn xem **thuộc tính stack**.
 - **Format Version** (optional):
-    - Phiên bản **template CloudFormation** mà **template** tuân thủ.
+  - Phiên bản **template CloudFormation** mà **template** tuân thủ.
 - **Description** (optional):
-    - Một chuỗi văn bản mô tả **template**. Phần này phải luôn theo sau phần **phiên bản định dạng template**.
+  - Một chuỗi văn bản mô tả **template**. Phần này phải luôn theo sau phần **phiên bản định dạng template**.
 - **Metadata** (optional):
-    - Các đối tượng cung cấp **thông tin bổ sung** về **template**.
+  - Các đối tượng cung cấp **thông tin bổ sung** về **template**.
 - **Rules** (optional):
-    - Xác thực một **tham số** hoặc **kết hợp các tham số** được truyền vào **template** trong quá trình **tạo** hoặc **cập nhật stack**.
+  - Xác thực một **tham số** hoặc **kết hợp các tham số** được truyền vào **template** trong quá trình **tạo** hoặc **cập nhật stack**.
 - **Conditions** (optional):
-    - Các **điều kiện** kiểm soát liệu một số **tài nguyên** có được **tạo** hay không hoặc liệu một số **thuộc tính tài nguyên** có được gán giá trị trong quá trình **tạo** hoặc **cập nhật stack**.
+  - Các **điều kiện** kiểm soát liệu một số **tài nguyên** có được **tạo** hay không hoặc liệu một số **thuộc tính tài nguyên** có được gán giá trị trong quá trình **tạo** hoặc **cập nhật stack**.
 - **Transform** (optional):
-    - Đối với các **ứng dụng serverless** (còn gọi là ứng dụng dựa trên Lambda), chỉ định **phiên bản** của **AWS Serverless Application Model (AWS SAM)** để sử dụng.
-    - Khi bạn chỉ định một **transform**, bạn có thể sử dụng **cú pháp AWS SAM** để khai báo các tài nguyên trong **template**. Mô hình này định nghĩa **cú pháp** mà bạn có thể sử dụng và cách nó được **xử lý**.
+  - Đối với các **ứng dụng serverless** (còn gọi là ứng dụng dựa trên Lambda), chỉ định **phiên bản** của **AWS Serverless Application Model (AWS SAM)** để sử dụng.
+  - Khi bạn chỉ định một **transform**, bạn có thể sử dụng **cú pháp AWS SAM** để khai báo các tài nguyên trong **template**. Mô hình này định nghĩa **cú pháp** mà bạn có thể sử dụng và cách nó được **xử lý**.
 
 # **CloudFormation Access Control**
 
 - **IAM**:
-    - **IAM** có thể được áp dụng với CloudFormation để kiểm soát truy cập cho người dùng, liệu họ có thể **xem template stack**, **tạo stack**, hoặc **xóa stack**.
-    - **Quyền IAM** cần được cung cấp cho **người dùng** đối với các **dịch vụ AWS** và **tài nguyên** được cung cấp khi **stack** được tạo.
-    - Trước khi một **stack** được tạo, **AWS CloudFormation** xác thực **template** để kiểm tra các **tài nguyên IAM** mà nó có thể tạo.
+  - **IAM** có thể được áp dụng với CloudFormation để kiểm soát truy cập cho người dùng, liệu họ có thể **xem template stack**, **tạo stack**, hoặc **xóa stack**.
+  - **Quyền IAM** cần được cung cấp cho **người dùng** đối với các **dịch vụ AWS** và **tài nguyên** được cung cấp khi **stack** được tạo.
+  - Trước khi một **stack** được tạo, **AWS CloudFormation** xác thực **template** để kiểm tra các **tài nguyên IAM** mà nó có thể tạo.
 - **Service Role**:
-    - Một **service role** là một **vai trò AWS IAM** cho phép **AWS CloudFormation** thực hiện các lệnh gọi tới các tài nguyên trong một **stack** thay mặt cho **người dùng**.
-    - Theo mặc định, **AWS CloudFormation** sử dụng một **phiên tạm thời** được tạo từ **thông tin xác thực của người dùng** cho các thao tác **stack**.
-    - Đối với một **service role**, **AWS CloudFormation** sử dụng **thông tin xác thực của vai trò**.
-    - Khi một **service role** được chỉ định, **AWS CloudFormation** luôn sử dụng vai trò đó cho tất cả các thao tác được thực hiện trên **stack** đó.
+  - Một **service role** là một **vai trò AWS IAM** cho phép **AWS CloudFormation** thực hiện các lệnh gọi tới các tài nguyên trong một **stack** thay mặt cho **người dùng**.
+  - Theo mặc định, **AWS CloudFormation** sử dụng một **phiên tạm thời** được tạo từ **thông tin xác thực của người dùng** cho các thao tác **stack**.
+  - Đối với một **service role**, **AWS CloudFormation** sử dụng **thông tin xác thực của vai trò**.
+  - Khi một **service role** được chỉ định, **AWS CloudFormation** luôn sử dụng vai trò đó cho tất cả các thao tác được thực hiện trên **stack** đó.
 
 # **Template Resource Attributes**
 
 - **CreationPolicy Attribute**:
-    - Được gọi trong quá trình **tạo tài nguyên** liên quan.
-    - Có thể được liên kết với một **tài nguyên** để ngăn trạng thái của nó đạt **create complete** cho đến khi CloudFormation nhận được một số lượng **tín hiệu thành công** được chỉ định hoặc **thời gian chờ** bị vượt quá.
-    - Giúp **đợi** các hành động cấu hình tài nguyên trước khi **tạo stack** tiếp tục 
-    *Ví dụ: cài đặt phần mềm trên một phiên bản EC2*.
+  - Được gọi trong quá trình **tạo tài nguyên** liên quan.
+  - Có thể được liên kết với một **tài nguyên** để ngăn trạng thái của nó đạt **create complete** cho đến khi CloudFormation nhận được một số lượng **tín hiệu thành công** được chỉ định hoặc **thời gian chờ** bị vượt quá.
+  - Giúp **đợi** các hành động cấu hình tài nguyên trước khi **tạo stack** tiếp tục
+    _Ví dụ: cài đặt phần mềm trên một phiên bản EC2_.
 - **DeletionPolicy Attribute**:
-    - **Bảo vệ** hoặc (trong một số trường hợp) **sao lưu** một tài nguyên khi **stack** của nó bị xóa.
-    - CloudFormation **xóa tài nguyên** nếu một tài nguyên không có **DeletionPolicy attribute**, theo mặc định.
-    - Để giữ một tài nguyên khi **stack** của nó bị xóa:
-        - Mặc định, **Delete** sẽ khiến các tài nguyên bị xóa.
-        - Chỉ định **Retain** cho tài nguyên đó, để ngăn việc xóa.
-        - Chỉ định **Snapshot** để tạo một **snapshot** trước khi xóa tài nguyên, nếu khả năng **snapshot** được hỗ trợ *ví dụ: RDS, EC2 volume, v.v.*.
+  - **Bảo vệ** hoặc (trong một số trường hợp) **sao lưu** một tài nguyên khi **stack** của nó bị xóa.
+  - CloudFormation **xóa tài nguyên** nếu một tài nguyên không có **DeletionPolicy attribute**, theo mặc định.
+  - Để giữ một tài nguyên khi **stack** của nó bị xóa:
+    - Mặc định, **Delete** sẽ khiến các tài nguyên bị xóa.
+    - Chỉ định **Retain** cho tài nguyên đó, để ngăn việc xóa.
+    - Chỉ định **Snapshot** để tạo một **snapshot** trước khi xóa tài nguyên, nếu khả năng **snapshot** được hỗ trợ _ví dụ: RDS, EC2 volume, v.v._.
 - **DependsOn Attribute**:
-    - Giúp xác định **thứ tự phụ thuộc** và chỉ định rằng việc **tạo** một tài nguyên cụ thể phải theo sau một tài nguyên khác.
-    - Tài nguyên được **tạo** chỉ sau khi **tạo** tài nguyên được chỉ định trong **DependsOn attribute**.
+  - Giúp xác định **thứ tự phụ thuộc** và chỉ định rằng việc **tạo** một tài nguyên cụ thể phải theo sau một tài nguyên khác.
+  - Tài nguyên được **tạo** chỉ sau khi **tạo** tài nguyên được chỉ định trong **DependsOn attribute**.
 - **Metadata Attribute**:
-    - Cho phép **liên kết dữ liệu có cấu trúc** với một tài nguyên.
+  - Cho phép **liên kết dữ liệu có cấu trúc** với một tài nguyên.
 - **UpdatePolicy Attribute**:
-    - Xác định cách **AWS CloudFormation** xử lý các **cập nhật** cho các tài nguyên.
-    - Đối với các tài nguyên **`AWS::AutoScaling::AutoScalingGroup`**, CloudFormation gọi một trong ba **chính sách cập nhật** tùy thuộc vào **loại thay đổi** hoặc liệu một **scheduled action** có được liên kết với **Auto Scaling group** hay không:
-        - Các chính sách **AutoScalingReplacingUpdate** và **AutoScalingRollingUpdate** áp dụng chỉ khi bạn thực hiện một hoặc nhiều thao tác sau:
-            - Thay đổi **`AWS::AutoScaling::LaunchConfiguration`** của **Auto Scaling group**.
-            - Thay đổi **VPCZoneIdentifier property** của **Auto Scaling group**.
-            - Thay đổi **LaunchTemplate property** của **Auto Scaling group**.
-            - Cập nhật một **Auto Scaling group** chứa các phiên bản không khớp với **LaunchConfiguration** hiện tại.
-        - Chính sách **AutoScalingScheduledAction** áp dụng khi bạn cập nhật một **stack** bao gồm một **Auto Scaling group** với một **scheduled action** liên quan.
-    - Đối với các tài nguyên **`AWS::Lambda::Alias`**, CloudFormation thực hiện triển khai **CodeDeploy** khi **version** thay đổi trên **alias**.
+  - Xác định cách **AWS CloudFormation** xử lý các **cập nhật** cho các tài nguyên.
+  - Đối với các tài nguyên **`AWS::AutoScaling::AutoScalingGroup`**, CloudFormation gọi một trong ba **chính sách cập nhật** tùy thuộc vào **loại thay đổi** hoặc liệu một **scheduled action** có được liên kết với **Auto Scaling group** hay không:
+    - Các chính sách **AutoScalingReplacingUpdate** và **AutoScalingRollingUpdate** áp dụng chỉ khi bạn thực hiện một hoặc nhiều thao tác sau:
+      - Thay đổi **`AWS::AutoScaling::LaunchConfiguration`** của **Auto Scaling group**.
+      - Thay đổi **VPCZoneIdentifier property** của **Auto Scaling group**.
+      - Thay đổi **LaunchTemplate property** của **Auto Scaling group**.
+      - Cập nhật một **Auto Scaling group** chứa các phiên bản không khớp với **LaunchConfiguration** hiện tại.
+    - Chính sách **AutoScalingScheduledAction** áp dụng khi bạn cập nhật một **stack** bao gồm một **Auto Scaling group** với một **scheduled action** liên quan.
+  - Đối với các tài nguyên **`AWS::Lambda::Alias`**, CloudFormation thực hiện triển khai **CodeDeploy** khi **version** thay đổi trên **alias**.
 
 # CloudFormation Termination Protection
 
@@ -195,9 +195,9 @@ Trong **AWS CloudFormation**, bạn làm việc với **templates** và **stacks
 
 - **CloudFormation Registry** giúp quản lý các **extensions**, cả **public** và **private**, chẳng hạn như **tài nguyên**, **modules** và **hooks** có sẵn để sử dụng trong **tài khoản AWS** của bạn.
 - **CloudFormation Registry** cung cấp một số **lợi thế** so với **custom resources**:
-    - Hỗ trợ **mô hình hóa**, **cung cấp** và **quản lý** các **tài nguyên ứng dụng bên thứ ba**.
-    - Hỗ trợ các thao tác **Create**, **Read**, **Update**, **Delete** và **List** (**CRUDL**).
-    - Hỗ trợ **drift detection** trên các **loại tài nguyên private** và **bên thứ ba**.
+  - Hỗ trợ **mô hình hóa**, **cung cấp** và **quản lý** các **tài nguyên ứng dụng bên thứ ba**.
+  - Hỗ trợ các thao tác **Create**, **Read**, **Update**, **Delete** và **List** (**CRUDL**).
+  - Hỗ trợ **drift detection** trên các **loại tài nguyên private** và **bên thứ ba**.
 
 # CloudFormation Helper Scripts
 

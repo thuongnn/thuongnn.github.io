@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ lưu trữ file hiệu suất cao của AWS, tối ưu cho các workload tính toán song song.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-fsx-for-lustre. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-fsx-for-lustre.
 
 ## Table of contents
-
 
 # **Tổng quan**
 
@@ -52,8 +52,8 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 ### **Cách FSx for Lustre tải dữ liệu từ S3**
 
 - Mặc định, S3 objects được tải theo cơ chế "**lazy-loading**".
-    - Dữ liệu chỉ được tải từ S3 khi lần đầu tiên được ứng dụng truy cập.
-    - Các lần truy cập sau sẽ đọc trực tiếp từ hệ thống file với độ trễ thấp, ổn định.
+  - Dữ liệu chỉ được tải từ S3 khi lần đầu tiên được ứng dụng truy cập.
+  - Các lần truy cập sau sẽ đọc trực tiếp từ hệ thống file với độ trễ thấp, ổn định.
 - **Hỗ trợ batch hydration** để tải dữ liệu từ S3 theo lô trước khi sử dụng.
 - **Sử dụng kỹ thuật truyền dữ liệu song song**, giúp chuyển dữ liệu từ S3 với tốc độ lên đến **hàng trăm GB/s**.
 - **File trong FSx for Lustre có thể được xuất ngược lại về S3 bucket** khi cần.
@@ -72,9 +72,9 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 # **Khả dụng & Độ bền (Availability & Durability)**
 
 - **Scratch file system**:
-    - Không thay thế file server nếu bị lỗi và không sao lưu dữ liệu.
+  - Không thay thế file server nếu bị lỗi và không sao lưu dữ liệu.
 - **Persistent file system**:
-    - Tự động thay thế file server trong vài phút nếu gặp sự cố.
+  - Tự động thay thế file server trong vài phút nếu gặp sự cố.
 - **Dữ liệu được lưu trữ trên nhiều network file servers**, giúp **tối ưu hiệu suất và giảm nghẽn cổ chai**.
 - **Mỗi file server có nhiều đĩa lưu trữ**, tăng cường độ bền.
 - **Tự động sao lưu hàng ngày** và hỗ trợ **backup thủ công** bất cứ lúc nào.

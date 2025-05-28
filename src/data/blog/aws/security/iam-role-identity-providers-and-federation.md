@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về vai trò IAM, nhà cung cấp danh tính và liên kết trong AWS, giúp quản lý quyền truy cập hiệu quả.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-iam-role-identity-providers-and-federation. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-iam-role-identity-providers-and-federation.
 
 ## Table of contents
-
 
 - Nhà cung cấp nhận dạng (Identity Provider - IdP) có thể được sử dụng để cấp quyền truy cập tài nguyên AWS cho người dùng bên ngoài mà không cần phải tạo tài khoản người dùng trong AWS của bạn.
 - Nhận dạng người dùng bên ngoài có thể được xác thực thông qua hệ thống xác thực của tổ chức hoặc thông qua các nhà cung cấp nhận dạng phổ biến như Amazon, Google, v.v.
@@ -26,8 +26,8 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 1. Mobile hoặc Web Application cần được cấu hình với IdP, nơi mỗi ứng dụng sẽ có một ID hoặc client ID duy nhất (còn gọi là audience)
 2. Tạo một thực thể Nhà cung cấp nhận dạng (IdP) cho IdP tương thích với OIDC trong IAM.
 3. Tạo một IAM role và xác định:
-    - **Trust policy** – chỉ định IdP (như Amazon) là Principal (thực thể tin cậy), và bao gồm điều kiện khớp với ID ứng dụng được gán cho IdP.
-    - **Permission policy**– chỉ định quyền mà ứng dụng có thể giả định.
+   - **Trust policy** – chỉ định IdP (như Amazon) là Principal (thực thể tin cậy), và bao gồm điều kiện khớp với ID ứng dụng được gán cho IdP.
+   - **Permission policy**– chỉ định quyền mà ứng dụng có thể giả định.
 4. Ứng dụng gọi giao diện đăng nhập của IdP để đăng nhập.
 5. IdP xác thực người dùng và trả về một mã thông báo xác thực (OAuth access token hoặc OIDC ID token) chứa thông tin về người dùng cho ứng dụng.
 6. Ứng dụng sau đó thực hiện một cuộc gọi chưa ký đến dịch vụ STS với hành động `AssumeRoleWithWebIdentity` để yêu cầu các thông tin xác thực tạm thời.
@@ -59,8 +59,8 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - Tạo SAML provider entity trong AWS sử dụng SAML metadata document do IdP của Tổ chức cung cấp để thiết lập "mối quan hệ tin cậy" giữa tài khoản AWS của bạn và IdP
 - SAML metadata document bao gồm tên người phát hành, ngày tạo, ngày hết hạn và các khóa mà AWS có thể sử dụng để xác minh các phản hồi xác thực (assertions) từ tổ chức của bạn.
 - Tạo các vai trò IAM định nghĩa:
-    - **Trust policy** thiết lập mối quan hệ tin cậy giữa tổ chức và AWS.
-    - **Permission policy** xác định những gì người dùng từ tổ chức có thể làm trong AWS.
+  - **Trust policy** thiết lập mối quan hệ tin cậy giữa tổ chức và AWS.
+  - **Permission policy** xác định những gì người dùng từ tổ chức có thể làm trong AWS.
 - Tin cậy SAML được hoàn thành bằng cách cấu hình IdP của tổ chức với thông tin về AWS và các vai trò mà bạn muốn người dùng liên kết sử dụng. Điều này được gọi là cấu hình tin cậy bên thứ ba giữa IdP của bạn và AWS.
 - Ứng dụng gọi giao diện đăng nhập của IdP của Tổ chức để đăng nhập.
 - IdP xác thực người dùng và tạo phản hồi xác thực SAML bao gồm các assertions xác định người dùng và bao gồm các thuộc tính về người dùng.
@@ -97,10 +97,10 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 
 - Nếu tổ chức không hỗ trợ IdP tương thích với SAML, một Custom Identity Broker có thể được sử dụng để cung cấp quyền truy cập.
 - Custom Identity Broker cần thực hiện các bước sau:
-    - Xác minh rằng người dùng đã được xác thực bởi hệ thống danh tính cục bộ.
-    - Gọi API **AWS STS AssumeRole** (khuyến nghị) hoặc **GetFederationToken** (mặc định có thời gian hết hạn là 36 giờ) để lấy chứng chỉ bảo mật tạm thời cho người dùng.
-    - Chứng chỉ tạm thời giới hạn quyền truy cập của người dùng vào tài nguyên AWS.
-    - Gọi điểm cuối AWS federation và cung cấp chứng chỉ bảo mật tạm thời để nhận mã thông báo đăng nhập.
-    - Xây dựng URL cho console bao gồm mã thông báo.
-    - URL mà federation endpoint cung cấp sẽ hợp lệ trong vòng 15 phút sau khi được tạo.
-    - Cung cấp URL cho người dùng hoặc gọi URL thay mặt người dùng.
+  - Xác minh rằng người dùng đã được xác thực bởi hệ thống danh tính cục bộ.
+  - Gọi API **AWS STS AssumeRole** (khuyến nghị) hoặc **GetFederationToken** (mặc định có thời gian hết hạn là 36 giờ) để lấy chứng chỉ bảo mật tạm thời cho người dùng.
+  - Chứng chỉ tạm thời giới hạn quyền truy cập của người dùng vào tài nguyên AWS.
+  - Gọi điểm cuối AWS federation và cung cấp chứng chỉ bảo mật tạm thời để nhận mã thông báo đăng nhập.
+  - Xây dựng URL cho console bao gồm mã thông báo.
+  - URL mà federation endpoint cung cấp sẽ hợp lệ trong vòng 15 phút sau khi được tạo.
+  - Cung cấp URL cho người dùng hoặc gọi URL thay mặt người dùng.

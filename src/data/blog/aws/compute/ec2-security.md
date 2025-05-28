@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về các tính năng bảo mật của EC2, bao gồm security groups, IAM roles và encryption.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-security. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-security.
 
 ## Table of contents
-
 
 # **Bảo mật trên AWS EC2**
 
@@ -22,8 +22,8 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - **Chỉ hỗ trợ quy tắc cho phép (allow)**, không có quy tắc chặn (deny).
 - Mỗi instance có thể liên kết với **nhiều security groups**.
 - Mỗi security group có thể chứa **nhiều quy tắc inbound và outbound**:
-    - **Inbound rules**: Quy định lưu lượng có thể đến instance.
-    - **Outbound rules**: Quy định lưu lượng có thể đi từ instance.
+  - **Inbound rules**: Quy định lưu lượng có thể đến instance.
+  - **Outbound rules**: Quy định lưu lượng có thể đi từ instance.
 
 ### **Network Access Control Lists (NACLs)**
 
@@ -53,12 +53,12 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 ### **Encryption (Mã hóa)**
 
 - **Dữ liệu khi lưu trữ**:
-    - EBS hỗ trợ mã hóa với **AWS KMS**.
-    - Snapshot EBS có thể được mã hóa hoặc sao chép thành snapshot mã hóa.
+  - EBS hỗ trợ mã hóa với **AWS KMS**.
+  - Snapshot EBS có thể được mã hóa hoặc sao chép thành snapshot mã hóa.
 - **Dữ liệu khi truyền**:
-    - Hỗ trợ mã hóa bằng **TLS (Transport Layer Security)**.
+  - Hỗ trợ mã hóa bằng **TLS (Transport Layer Security)**.
 - **Dữ liệu trong S3**:
-    - EC2 có thể đọc/ghi dữ liệu từ S3 bằng cách sử dụng **S3 Server-side encryption (SSE)**.
+  - EC2 có thể đọc/ghi dữ liệu từ S3 bằng cách sử dụng **S3 Server-side encryption (SSE)**.
 
 ### **AWS Systems Manager (SSM)**
 

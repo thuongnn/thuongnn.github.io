@@ -8,53 +8,53 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về Web Application Firewall của AWS, giúp bảo vệ ứng dụng web khỏi các cuộc tấn công phổ biến.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-waf. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-waf.
 
 ## Table of contents
-
 
 # **AWS Web Application Firewall (WAF)**
 
 - **AWS WAF** là dịch vụ bảo vệ ứng dụng web khỏi các cuộc tấn công bằng cách cho phép cấu hình các quy tắc để cho phép, chặn hoặc giám sát (đếm) các yêu cầu web dựa trên các điều kiện đã định nghĩa.
 - **Các tính năng chính của AWS WAF:**
-    - **Bảo vệ khỏi các kỹ thuật tấn công phổ biến:**
-        - **SQL Injection**
-        - **Cross-Site Scripting (XSS)**
-    - **Cấu hình điều kiện bảo vệ (Conditions):**
-        - **Địa chỉ IP**: Có thể cấu hình để cho phép hoặc chặn yêu cầu từ các địa chỉ IP cụ thể.
-        - **HTTP Headers**: Kiểm tra các header trong yêu cầu HTTP.
-        - **HTTP Body**: Kiểm tra nội dung trong phần thân của yêu cầu HTTP.
-        - **URI Strings**: Kiểm tra chuỗi URI trong yêu cầu.
-    - **Tích hợp với các dịch vụ của AWS:**
-        - **AWS WAF với Amazon CloudFront**:
-            - **Chạy tại các Edge Locations của AWS trên toàn cầu**, giúp bảo vệ các yêu cầu web từ người dùng gần nhất.
-            - **Chặn yêu cầu độc hại trước khi đến máy chủ web**.
-            - **Hỗ trợ các nguồn tùy chỉnh ngoài AWS**, cho phép bảo vệ các tài nguyên không phải của AWS.
-        - **AWS WAF với Application Load Balancer (ALB):**
-            - **Chạy trong region**, có thể bảo vệ cả public và internal **Load Balancer**.
-            - **Chặn yêu cầu độc hại** trước khi chúng tiếp cận các ứng dụng web.
-        - **AWS WAF với API Gateway:**
-            - **Bảo vệ các REST API**, giúp bảo vệ các ứng dụng và kiểm tra các yêu cầu HTTP hoặc HTTPS.
-            - Cung cấp các **Managed Rules** để bảo vệ khỏi các mối đe dọa như các lỗ hổng ứng dụng (ví dụ như OWASP), bot, hoặc các lỗ hổng bảo mật và triển khai thông qua các quy tắc như Common Vulnerabilities and Exposures (CVE).
-            - **Lưu trữ log**: Các log có thể được gửi đến **CloudWatch Logs**, **S3 bucket**, hoặc **Kinesis Data Firehose**.
+  - **Bảo vệ khỏi các kỹ thuật tấn công phổ biến:**
+    - **SQL Injection**
+    - **Cross-Site Scripting (XSS)**
+  - **Cấu hình điều kiện bảo vệ (Conditions):**
+    - **Địa chỉ IP**: Có thể cấu hình để cho phép hoặc chặn yêu cầu từ các địa chỉ IP cụ thể.
+    - **HTTP Headers**: Kiểm tra các header trong yêu cầu HTTP.
+    - **HTTP Body**: Kiểm tra nội dung trong phần thân của yêu cầu HTTP.
+    - **URI Strings**: Kiểm tra chuỗi URI trong yêu cầu.
+  - **Tích hợp với các dịch vụ của AWS:**
+    - **AWS WAF với Amazon CloudFront**:
+      - **Chạy tại các Edge Locations của AWS trên toàn cầu**, giúp bảo vệ các yêu cầu web từ người dùng gần nhất.
+      - **Chặn yêu cầu độc hại trước khi đến máy chủ web**.
+      - **Hỗ trợ các nguồn tùy chỉnh ngoài AWS**, cho phép bảo vệ các tài nguyên không phải của AWS.
+    - **AWS WAF với Application Load Balancer (ALB):**
+      - **Chạy trong region**, có thể bảo vệ cả public và internal **Load Balancer**.
+      - **Chặn yêu cầu độc hại** trước khi chúng tiếp cận các ứng dụng web.
+    - **AWS WAF với API Gateway:**
+      - **Bảo vệ các REST API**, giúp bảo vệ các ứng dụng và kiểm tra các yêu cầu HTTP hoặc HTTPS.
+      - Cung cấp các **Managed Rules** để bảo vệ khỏi các mối đe dọa như các lỗ hổng ứng dụng (ví dụ như OWASP), bot, hoặc các lỗ hổng bảo mật và triển khai thông qua các quy tắc như Common Vulnerabilities and Exposures (CVE).
+      - **Lưu trữ log**: Các log có thể được gửi đến **CloudWatch Logs**, **S3 bucket**, hoặc **Kinesis Data Firehose**.
 
 # WAF Benefits
 
 - **Bảo vệ bổ sung chống lại các cuộc tấn công web**:
-    - Bằng cách định nghĩa các điều kiện như **địa chỉ IP**, **header yêu cầu**, **chuỗi trong yêu cầu**, và **dữ liệu độc hại** (SQL injection, XSS).
+  - Bằng cách định nghĩa các điều kiện như **địa chỉ IP**, **header yêu cầu**, **chuỗi trong yêu cầu**, và **dữ liệu độc hại** (SQL injection, XSS).
 - **Quy tắc được quản lý sẵn (Managed Rules)**:
-    - Giúp bạn bắt đầu dễ dàng và nhanh chóng với các quy tắc đã được cấu hình sẵn để bảo vệ ứng dụng khỏi các mối đe dọa phổ biến.
+  - Giúp bạn bắt đầu dễ dàng và nhanh chóng với các quy tắc đã được cấu hình sẵn để bảo vệ ứng dụng khỏi các mối đe dọa phổ biến.
 - **Quản lý dễ dàng**:
-    - **API WAF** cho phép tự động hóa các tác vụ quản lý WAF.
-    - **Quy tắc có thể tái sử dụng** cho nhiều ứng dụng web khác nhau.
+  - **API WAF** cho phép tự động hóa các tác vụ quản lý WAF.
+  - **Quy tắc có thể tái sử dụng** cho nhiều ứng dụng web khác nhau.
 - **Theo dõi thời gian thực**:
-    - Cung cấp **thống kê theo thời gian thực** và **yêu cầu web mẫu** để giám sát hiệu quả bảo vệ và phát hiện các vấn đề bảo mật.
+  - Cung cấp **thống kê theo thời gian thực** và **yêu cầu web mẫu** để giám sát hiệu quả bảo vệ và phát hiện các vấn đề bảo mật.
 - **Linh hoạt trong việc xử lý các yêu cầu**:
-    - **Chặn**, **cho phép**, hoặc **giám sát** các yêu cầu theo các quy tắc đã cấu hình, giúp bảo vệ ứng dụng khỏi các tấn công trên môi trường web.
+  - **Chặn**, **cho phép**, hoặc **giám sát** các yêu cầu theo các quy tắc đã cấu hình, giúp bảo vệ ứng dụng khỏi các tấn công trên môi trường web.
 
 # How WAF Works
 
-AWS WAF (Web Application Firewall) cho phép kiểm soát hành vi của các yêu cầu web thông qua sự kết hợp của **conditions**, **rules** và **web access control lists (Web ACLs)**. 
+AWS WAF (Web Application Firewall) cho phép kiểm soát hành vi của các yêu cầu web thông qua sự kết hợp của **conditions**, **rules** và **web access control lists (Web ACLs)**.
 
 ![1.png](@/assets/images/security/aws-web-application-firewall/1.png)
 
@@ -86,10 +86,10 @@ Các quy tắc AWS WAF xác định cách kiểm tra các yêu cầu HTTP(S) và
 
 - Mỗi quy tắc có một hoặc nhiều top-level rule statement. Các statement này có thể bao gồm các statement lồng nhau để có logic phức tạp hơn.
 - AWS WAF hỗ trợ các toán tử logic như **AND**, **OR**, và **NOT** để kết hợp nhiều điều kiện trong một quy tắc. Ví dụ, một quy tắc có thể yêu cầu:
-    - Yêu cầu đến từ IP `192.0.2.44`
-    - Chứa "BadBot" trong tiêu đề **User-Agent**
-    - Bao gồm mã SQL độc hại trong chuỗi truy vấn.
-    - Tất cả ba điều kiện phải được thỏa mãn (AND) để quy tắc được kích hoạt và hành động tương ứng được thực hiện.
+  - Yêu cầu đến từ IP `192.0.2.44`
+  - Chứa "BadBot" trong tiêu đề **User-Agent**
+  - Bao gồm mã SQL độc hại trong chuỗi truy vấn.
+  - Tất cả ba điều kiện phải được thỏa mãn (AND) để quy tắc được kích hoạt và hành động tương ứng được thực hiện.
 
 ### Rule Groups
 
@@ -107,12 +107,12 @@ Các quy tắc AWS WAF xác định cách kiểm tra các yêu cầu HTTP(S) và
 - Xác định hành động (cho phép, chặn hoặc đếm) cho mỗi rule.
 - AWS WAF so sánh mỗi yêu cầu với các rule trong Web ACL, theo thứ tự đã được chỉ định. Nếu yêu cầu khớp với rule, hành động định sẵn cho rule đó được thực hiện, và việc đánh giá sẽ dừng lại.
 - Nếu không có rule nào khớp với yêu cầu, hành động mặc định của Web ACL sẽ quyết định liệu yêu cầu có bị chặn hay cho phép. Điều này có thể dựa trên các tiêu chí như:
-    - **Địa chỉ IP** nguồn
-    - **Quốc gia xuất phát**
-    - **Khớp Chuỗi hoặc Regex** trong các phần của yêu cầu
-    - **Kích thước của một phần yêu cầu**
-    - **Phát hiện SQL hay mã độc**
-    - **Rule dựa trên tần suất yêu cầu** để phát hiện các cuộc tấn công DDoS.
+  - **Địa chỉ IP** nguồn
+  - **Quốc gia xuất phát**
+  - **Khớp Chuỗi hoặc Regex** trong các phần của yêu cầu
+  - **Kích thước của một phần yêu cầu**
+  - **Phát hiện SQL hay mã độc**
+  - **Rule dựa trên tần suất yêu cầu** để phát hiện các cuộc tấn công DDoS.
 - AWS WAF cũng hỗ trợ **rule dựa trên tần suất**, có thể tự động chặn các yêu cầu từ địa chỉ IP vượt quá ngưỡng yêu cầu trong một khoảng thời gian xác định. Điều này giúp bảo vệ chống lại các cuộc tấn công DDoS (Distributed Denial of Service)
 
 # AWS WAF based Architecture
@@ -136,10 +136,10 @@ Kiến trúc này mô tả cách AWS WAF tích hợp với AWS CloudFront, Lambd
 
 - **Phân tích Nhật Ký**: Lambda function được kích hoạt mỗi khi có nhật ký mới được thêm vào S3 bucket. Nó phân tích các tệp nhật ký để kiểm tra các mẫu yêu cầu và mã lỗi.
 - **Xác định Các Yêu Cầu Xấu**: Lambda function tìm các yêu cầu gây ra mã lỗi HTTP như:
-    - **400** (Yêu cầu không hợp lệ)
-    - **403** (Cấm)
-    - **404** (Không tìm thấy)
-    - **405** (Phương thức không được phép)
+  - **400** (Yêu cầu không hợp lệ)
+  - **403** (Cấm)
+  - **404** (Không tìm thấy)
+  - **405** (Phương thức không được phép)
 - **Đếm Các Yêu Cầu Xấu**: Hàm Lambda đếm số lượng yêu cầu gây ra các lỗi này, xác định các địa chỉ IP có thể là yêu cầu xâm phạm hoặc sai sót.
 
 ### **4. Lưu Trữ Tạm Thời trong S3**
@@ -155,17 +155,17 @@ Kiến trúc này mô tả cách AWS WAF tích hợp với AWS CloudFront, Lambd
 ### **6. Giám Sát và Thống Kê qua CloudWatch**
 
 - **Thông Số Thực Thi**: Lambda function xuất bản các thông số thực thi vào **CloudWatch**, bao gồm:
-    - Số lượng **yêu cầu** đã phân tích.
-    - Số lượng **địa chỉ IP** đã bị chặn.
-    - **Dữ liệu liên quan khác** (ví dụ: số lượng mã lỗi phát hiện được).
+  - Số lượng **yêu cầu** đã phân tích.
+  - Số lượng **địa chỉ IP** đã bị chặn.
+  - **Dữ liệu liên quan khác** (ví dụ: số lượng mã lỗi phát hiện được).
 - Những thông số này giúp giám sát hiệu quả của Lambda function và các cập nhật của WAF.
 
 ### **7. Tích Hợp Thông Báo SNS**
 
 - **Tích Hợp CloudWatch với SNS**: Các thông số từ CloudWatch có thể được tích hợp với **Simple Notification Service (SNS)** để gửi thông báo. Điều này giúp các quản trị viên nhận được cảnh báo khi các ngưỡng nhất định được đạt tới, chẳng hạn như:
-    - Một số lượng yêu cầu nhất định gây ra mã lỗi.
-    - Một số lượng địa chỉ IP nhất định bị chặn.
-    - Các thông số hiệu suất hoặc bảo mật khác.
+  - Một số lượng yêu cầu nhất định gây ra mã lỗi.
+  - Một số lượng địa chỉ IP nhất định bị chặn.
+  - Các thông số hiệu suất hoặc bảo mật khác.
 
 # Web Application Firewall Sandwich Architecture
 

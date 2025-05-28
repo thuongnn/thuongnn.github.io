@@ -8,24 +8,24 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ kết nối môi trường on-premises với lưu trữ đám mây AWS một cách liền mạch.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-storage-gateway. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-storage-gateway.
 
 ## Table of contents
-
 
 - **AWS Storage Gateway** kết nối **các thiết bị lưu trữ tại chỗ (on-premises storage appliances)** với **AWS cloud storage**, giúp tích hợp liền mạch với các tính năng bảo mật dữ liệu.
 - Đây là **dịch vụ lưu trữ hybrid cloud**, cho phép truy cập dữ liệu tại chỗ với **khả năng mở rộng gần như vô hạn** trên AWS.
 - Lưu trữ dữ liệu trên **AWS cloud** giúp **giảm chi phí, mở rộng linh hoạt**, đồng thời **duy trì tính bảo mật**.
 - Có thể triển khai dưới hai dạng:
-    - **Tại chỗ (on-premises)**: Chạy như **máy ảo (VM appliance)**.
-    - **Trên AWS**: Chạy như **EC2 instance** để **phục hồi sau thảm họa (disaster recovery)**, **sao chép dữ liệu (data mirroring)**, hoặc cung cấp **bộ lưu trữ cho ứng dụng EC2**.
+  - **Tại chỗ (on-premises)**: Chạy như **máy ảo (VM appliance)**.
+  - **Trên AWS**: Chạy như **EC2 instance** để **phục hồi sau thảm họa (disaster recovery)**, **sao chép dữ liệu (data mirroring)**, hoặc cung cấp **bộ lưu trữ cho ứng dụng EC2**.
 - Bảo mật dữ liệu:
-    - **Mã hóa dữ liệu trong quá trình truyền (data-in-transit encryption)** bằng **SSL**.
-    - **Mã hóa dữ liệu lưu trữ (data-at-rest encryption)** trong **S3 hoặc Glacier** bằng **AES-256**.
+  - **Mã hóa dữ liệu trong quá trình truyền (data-in-transit encryption)** bằng **SSL**.
+  - **Mã hóa dữ liệu lưu trữ (data-at-rest encryption)** trong **S3 hoặc Glacier** bằng **AES-256**.
 - Các loại Storage Gateway
-    - **File Gateway** 🗂️: Cung cấp lưu trữ file trên AWS S3 với giao diện NFS/SMB.
-    - **Volume Gateway** 📦: Cung cấp **iSCSI block storage**, có thể chạy ở chế độ cached hoặc stored.
-    - **Tape Gateway** 📼: Cung cấp **virtual tape library - VTL** để sao lưu và lưu trữ dữ liệu trên S3 Glacier.
+  - **File Gateway** 🗂️: Cung cấp lưu trữ file trên AWS S3 với giao diện NFS/SMB.
+  - **Volume Gateway** 📦: Cung cấp **iSCSI block storage**, có thể chạy ở chế độ cached hoặc stored.
+  - **Tape Gateway** 📼: Cung cấp **virtual tape library - VTL** để sao lưu và lưu trữ dữ liệu trên S3 Glacier.
 
 # S3 File Gateway
 
@@ -39,9 +39,9 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - **Cung cấp giải pháp thay thế tiết kiệm chi phí** so với lưu trữ tại chỗ (on-premises storage).
 - **Hỗ trợ caching cục bộ (local caching) để giảm độ trễ truy cập dữ liệu**.
 - **Quản lý truyền dữ liệu thông minh**:
-    - Giảm tắc nghẽn mạng
-    - Tối ưu hóa băng thông
-    - Truyền dữ liệu song song
+  - Giảm tắc nghẽn mạng
+  - Tối ưu hóa băng thông
+  - Truyền dữ liệu song song
 - **Tích hợp dễ dàng với các dịch vụ AWS khác** như **IAM, KMS, CloudWatch, CloudTrail**.
 
 # **Volume Gateway (AWS Storage Gateway)**
@@ -52,8 +52,8 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - **Đóng vai trò như một ổ đĩa khác** trên hệ thống on-premises.
 - **Sao lưu dữ liệu theo từng phần (incremental backup)** bằng **EBS snapshots trong S3**.
 - Snapshot có thể được:
-    - Khôi phục thành volume lưu trữ trên gateway
-    - Tạo EBS volume mới để gắn vào EC2 instance.
+  - Khôi phục thành volume lưu trữ trên gateway
+  - Tạo EBS volume mới để gắn vào EC2 instance.
 
 ### **Gateway Cached Volumes**
 
@@ -64,12 +64,12 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - Dữ liệu được mã hóa trên S3 bằng Server-Side Encryption (SSE), không thể truy cập bằng S3 API hoặc các công cụ khác.
 - **Hỗ trợ tối đa 32 volumes/gateway**, mỗi volume **từ 1 GiB đến 32 TiB**, tổng tối đa **1 PiB (1,024 TiB)**.
 - Gateway VM có thể gán hai loại ổ đĩa chính:
-    - **Cache Storage**
-        - Lưu trữ dữ liệu tạm thời trước khi tải lên S3.
-        - Lưu trữ dữ liệu được truy cập gần đây để tăng tốc truy xuất.
-    - **Upload Buffer**
-        - Hoạt động như vùng đệm trước khi dữ liệu được tải lên S3.
-        - Dữ liệu được tải lên S3 qua kết nối SSL mã hóa an toàn.
+  - **Cache Storage**
+    - Lưu trữ dữ liệu tạm thời trước khi tải lên S3.
+    - Lưu trữ dữ liệu được truy cập gần đây để tăng tốc truy xuất.
+  - **Upload Buffer**
+    - Hoạt động như vùng đệm trước khi dữ liệu được tải lên S3.
+    - Dữ liệu được tải lên S3 qua kết nối SSL mã hóa an toàn.
 
 ### Gateway Stored Volumes
 
@@ -80,12 +80,12 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - **Hỗ trợ khôi phục dữ liệu về trung tâm dữ liệu on-premises hoặc EC2**, giúp **đáp ứng nhanh trong trường hợp thảm họa (disaster recovery)**.
 - **Hỗ trợ tối đa 32 volumes/gateway**, mỗi volume **từ 1 GiB đến 16 TiB**, tổng dung lượng **tối đa 512 TiB**.
 - Gateway VM có thể gán hai loại ổ đĩa chính:
-    - **Volume Storage**
-        - Lưu trữ dữ liệu thực tế.
-        - Có thể ánh xạ với bộ nhớ DAS (Direct-Attached Storage) hoặc SAN (Storage Area Network) on-premises.
-    - **Upload Buffer**
-        - Hoạt động như vùng đệm trước khi dữ liệu được tải lên S3.
-        - Dữ liệu được tải lên S3 qua kết nối SSL mã hóa an toàn.
+  - **Volume Storage**
+    - Lưu trữ dữ liệu thực tế.
+    - Có thể ánh xạ với bộ nhớ DAS (Direct-Attached Storage) hoặc SAN (Storage Area Network) on-premises.
+  - **Upload Buffer**
+    - Hoạt động như vùng đệm trước khi dữ liệu được tải lên S3.
+    - Dữ liệu được tải lên S3 qua kết nối SSL mã hóa an toàn.
 
 # Tape Gateway – Gateway-Virtual Tape Library (VTL)
 
@@ -100,15 +100,15 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 ### **Thành phần chính của Tape Gateway**
 
 - **Virtual Tape**
-    - Giống như băng từ vật lý nhưng dữ liệu được lưu trên AWS.
-    - Hỗ trợ băng từ có dung lượng từ 100 GiB đến 2.5 TiB.
+  - Giống như băng từ vật lý nhưng dữ liệu được lưu trên AWS.
+  - Hỗ trợ băng từ có dung lượng từ 100 GiB đến 2.5 TiB.
 - **Virtual Tape Library (VTL)**
-    - Tương tự như thư viện băng từ vật lý, nhưng thay thế Tape Drives bằng VTL Tape Drive và Robot Arms bằng Media Changer.
-    - Dữ liệu sao lưu sẽ được ghi vào Gateway, lưu trữ cục bộ (on-premises), rồi tải lên băng từ ảo trong S3.
+  - Tương tự như thư viện băng từ vật lý, nhưng thay thế Tape Drives bằng VTL Tape Drive và Robot Arms bằng Media Changer.
+  - Dữ liệu sao lưu sẽ được ghi vào Gateway, lưu trữ cục bộ (on-premises), rồi tải lên băng từ ảo trong S3.
 - **Virtual Tape Shelf (VTS)**
-    - Giống như kho lưu trữ băng từ ngoài site (offsite tape storage).
-    - Các băng từ trong VTL sẽ được sao lưu lên Glacier để tiết kiệm chi phí.
-    - VTS nằm trong cùng Region với Gateway và mỗi Region chỉ có một VTS duy nhất.
+  - Giống như kho lưu trữ băng từ ngoài site (offsite tape storage).
+  - Các băng từ trong VTL sẽ được sao lưu lên Glacier để tiết kiệm chi phí.
+  - VTS nằm trong cùng Region với Gateway và mỗi Region chỉ có một VTS duy nhất.
 
 ### **Quy trình lưu trữ và khôi phục băng từ**
 
@@ -118,8 +118,8 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 ### **Gateway VM có thể gán hai loại ổ đĩa chính**
 
 - **Cache Storage**
-    - Lưu trữ cục bộ dữ liệu trước khi tải lên S3.
-    - Lưu dữ liệu đã truy xuất gần đây để giảm độ trễ khi truy cập lại.
+  - Lưu trữ cục bộ dữ liệu trước khi tải lên S3.
+  - Lưu dữ liệu đã truy xuất gần đây để giảm độ trễ khi truy cập lại.
 - **Upload Buffer**
-    - Làm vùng đệm trước khi tải dữ liệu lên băng từ ảo (Virtual Tape).
-    - Dữ liệu được tải lên AWS qua kết nối SSL mã hóa an toàn và lưu trữ trên S3.
+  - Làm vùng đệm trước khi tải dữ liệu lên băng từ ảo (Virtual Tape).
+  - Dữ liệu được tải lên AWS qua kết nối SSL mã hóa an toàn và lưu trữ trên S3.

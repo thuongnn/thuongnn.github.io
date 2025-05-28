@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về các chiến lược và dịch vụ phục hồi sau thảm họa của AWS, đảm bảo tính liên tục của doanh nghiệp.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-disaster-recovery. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-disaster-recovery.
 
 ## Table of contents
-
 
 AWS cung cấp các chiến lược và công cụ giúp tổ chức xây dựng kế hoạch phục hồi sau thảm họa (Disaster Recovery) để đảm bảo tính liên tục của hệ thống và giảm thiểu thời gian ngừng hoạt động. AWS Disaster Recovery giúp tổ chức xây dựng hệ thống sẵn sàng với chi phí hợp lý, hỗ trợ linh hoạt từ chiến lược đơn giản đến phức tạp, tùy thuộc vào nhu cầu cụ thể của doanh nghiệp.
 
@@ -24,21 +24,21 @@ AWS cung cấp các chiến lược và công cụ giúp tổ chức xây dựng
 ### **Các chiến lược DR trên AWS**
 
 - **Backup and Restore**
-    - Phương pháp đơn giản nhất, dựa vào việc sao lưu dữ liệu định kỳ.
-    - Phù hợp với ứng dụng không yêu cầu thời gian khôi phục nhanh.
-    - Sử dụng các dịch vụ như Amazon S3, S3 Glacier, và AWS Backup.
+  - Phương pháp đơn giản nhất, dựa vào việc sao lưu dữ liệu định kỳ.
+  - Phù hợp với ứng dụng không yêu cầu thời gian khôi phục nhanh.
+  - Sử dụng các dịch vụ như Amazon S3, S3 Glacier, và AWS Backup.
 - **Pilot Light**
-    - Hệ thống tối thiểu luôn hoạt động để khởi động nhanh khi xảy ra thảm họa.
-    - Dữ liệu và cấu hình quan trọng được đồng bộ hóa với môi trường DR.
-    - Sử dụng dịch vụ như EC2, Auto Scaling và RDS để khởi động các tài nguyên cần thiết.
+  - Hệ thống tối thiểu luôn hoạt động để khởi động nhanh khi xảy ra thảm họa.
+  - Dữ liệu và cấu hình quan trọng được đồng bộ hóa với môi trường DR.
+  - Sử dụng dịch vụ như EC2, Auto Scaling và RDS để khởi động các tài nguyên cần thiết.
 - **Warm Standby**
-    - Một phiên bản nhỏ hơn của hệ thống chính luôn chạy ở trạng thái tối thiểu.
-    - Khi có sự cố, hệ thống mở rộng tài nguyên để xử lý toàn bộ khối lượng công việc.
-    - Sử dụng Elastic Load Balancer, Auto Scaling và RDS Multi-AZ.
+  - Một phiên bản nhỏ hơn của hệ thống chính luôn chạy ở trạng thái tối thiểu.
+  - Khi có sự cố, hệ thống mở rộng tài nguyên để xử lý toàn bộ khối lượng công việc.
+  - Sử dụng Elastic Load Balancer, Auto Scaling và RDS Multi-AZ.
 - **Multi-Site Active-Active**
-    - Nhiều vùng hoạt động đồng thời để chia sẻ tải và giảm thiểu rủi ro ngừng hoạt động.
-    - Hệ thống có khả năng chuyển đổi nhanh chóng nếu một vùng bị lỗi.
-    - Sử dụng Amazon Route 53, Elastic Load Balancing, và DynamoDB Global Tables.
+  - Nhiều vùng hoạt động đồng thời để chia sẻ tải và giảm thiểu rủi ro ngừng hoạt động.
+  - Hệ thống có khả năng chuyển đổi nhanh chóng nếu một vùng bị lỗi.
+  - Sử dụng Amazon Route 53, Elastic Load Balancing, và DynamoDB Global Tables.
 
 ### **Dịch vụ AWS hỗ trợ Disaster Recovery**
 

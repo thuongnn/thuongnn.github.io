@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về VPC Endpoints, cách kết nối an toàn đến các dịch vụ AWS mà không cần Internet Gateway.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-vpc-endpoints. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-vpc-endpoints.
 
 ## Table of contents
-
 
 ![1.png](@/assets/images/networking/vpc-endpoints/1.png)
 
@@ -21,8 +21,8 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 - Endpoints là các thiết bị ảo, được mở rộng theo chiều ngang, có tính dự phòng và sẵn sàng cao. Chúng cho phép giao tiếp giữa các phiên bản trong VPC và các dịch vụ AWS mà không gây rủi ro về tính sẵn sàng hoặc giới hạn băng thông cho lưu lượng mạng của bạn.
 - Endpoints hiện tại không hỗ trợ các yêu cầu giữa các khu vực (cross-region), cần đảm bảo rằng endpoint được tạo trong cùng một khu vực với bucket S3.
 - AWS hiện hỗ trợ các loại Endpoint sau:
-    - **VPC Gateway Endpoints**
-    - **VPC Interface Endpoints**
+  - **VPC Gateway Endpoints**
+  - **VPC Interface Endpoints**
 
 # AWS VPC Gateway Endpoints
 
@@ -61,34 +61,34 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 **S3 Bucket Policies**
 
 - **Không thể sử dụng IAM policy hoặc bucket policy để cho phép truy cập từ dải CIDR IPv4 của VPC**:
-    - Dải CIDR của một VPC có thể bị **chồng lắp** hoặc **giống nhau** với dải CIDR của các VPC khác, đặc biệt khi có nhiều VPC trong cùng một tài khoản AWS hoặc khi bạn đang sử dụng VPC Peering hoặc Transit Gateway. Điều này có thể dẫn đến các vấn đề về xác định chính xác từ đâu các yêu cầu đến và có thể gây ra kết quả không mong muốn (ví dụ: cho phép truy cập không hợp lệ từ các VPC khác). Vì vậy, không thể sử dụng chính dải CIDR của VPC trong IAM policy hay bucket policy để cho phép truy cập.
+  - Dải CIDR của một VPC có thể bị **chồng lắp** hoặc **giống nhau** với dải CIDR của các VPC khác, đặc biệt khi có nhiều VPC trong cùng một tài khoản AWS hoặc khi bạn đang sử dụng VPC Peering hoặc Transit Gateway. Điều này có thể dẫn đến các vấn đề về xác định chính xác từ đâu các yêu cầu đến và có thể gây ra kết quả không mong muốn (ví dụ: cho phép truy cập không hợp lệ từ các VPC khác). Vì vậy, không thể sử dụng chính dải CIDR của VPC trong IAM policy hay bucket policy để cho phép truy cập.
 - **Không thể sử dụng điều kiện `aws:SourceIp` trong IAM policy cho các yêu cầu đến S3 qua VPC endpoint**:
-    - Khi sử dụng `aws:SourceIp` trong IAM policies để xác định các địa chỉ IP hợp lệ cho yêu cầu, nó thường được sử dụng để kiểm soát truy cập từ các địa chỉ IP cụ thể. Tuy nhiên, với VPC endpoint, các yêu cầu truy cập đến S3 được gửi từ một **endpoint riêng tư** trong VPC, không phải trực tiếp từ một địa chỉ IP công cộng hoặc một nguồn IP mà bạn có thể xác định rõ ràng. Vì vậy, **`aws:SourceIp` không thể áp dụng** khi truy cập S3 qua VPC endpoint.
+  - Khi sử dụng `aws:SourceIp` trong IAM policies để xác định các địa chỉ IP hợp lệ cho yêu cầu, nó thường được sử dụng để kiểm soát truy cập từ các địa chỉ IP cụ thể. Tuy nhiên, với VPC endpoint, các yêu cầu truy cập đến S3 được gửi từ một **endpoint riêng tư** trong VPC, không phải trực tiếp từ một địa chỉ IP công cộng hoặc một nguồn IP mà bạn có thể xác định rõ ràng. Vì vậy, **`aws:SourceIp` không thể áp dụng** khi truy cập S3 qua VPC endpoint.
 - **S3 Bucket Policies có thể giới hạn quyền truy cập qua VPC Endpoint**:
-    - Trong trường hợp này, bạn có thể sử dụng **bucket policy của S3** để kiểm soát và **giới hạn quyền truy cập vào S3** chỉ từ các yêu cầu đi qua một **VPC endpoint cụ thể**. Điều này có thể được thực hiện bằng cách sử dụng các điều kiện trong bucket policy để yêu cầu các yêu cầu đến S3 chỉ được phép thực hiện từ một VPC endpoint mà bạn chỉ định, giúp tăng cường bảo mật và kiểm soát truy cập.
-        
-        ```json
+  - Trong trường hợp này, bạn có thể sử dụng **bucket policy của S3** để kiểm soát và **giới hạn quyền truy cập vào S3** chỉ từ các yêu cầu đi qua một **VPC endpoint cụ thể**. Điều này có thể được thực hiện bằng cách sử dụng các điều kiện trong bucket policy để yêu cầu các yêu cầu đến S3 chỉ được phép thực hiện từ một VPC endpoint mà bạn chỉ định, giúp tăng cường bảo mật và kiểm soát truy cập.
+    ```json
+    {
+      "Version": "2012-10-17",
+      "Id": "Access-to-bucket-using-specific-endpoint",
+      "Statement": [
         {
-          "Version": "2012-10-17",
-          "Id": "Access-to-bucket-using-specific-endpoint",
-          "Statement": [
-            {
-              "Sid": "Access-to-specific-VPCE-only",
-              "Effect": "Deny",
-              "Principal": "*",
-              "Action": "s3:*",
-              "Resource": ["arn:aws:s3:::example_bucket",
-                           "arn:aws:s3:::example_bucket/*"],
-              "Condition": {
-                "StringNotEquals": {
-                  "aws:sourceVpce": "vpce-1a2b3c4d"
-                }
-              }
+          "Sid": "Access-to-specific-VPCE-only",
+          "Effect": "Deny",
+          "Principal": "*",
+          "Action": "s3:*",
+          "Resource": [
+            "arn:aws:s3:::example_bucket",
+            "arn:aws:s3:::example_bucket/*"
+          ],
+          "Condition": {
+            "StringNotEquals": {
+              "aws:sourceVpce": "vpce-1a2b3c4d"
             }
-          ]
+          }
         }
-        ```
-        
+      ]
+    }
+    ```
 
 ### VPC Gateway Endpoint Troubleshooting
 

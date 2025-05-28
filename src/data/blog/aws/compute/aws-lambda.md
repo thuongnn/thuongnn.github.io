@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ serverless của AWS, cho phép chạy code mà không cần quản lý server.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-lambda. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-lambda.
 
 ## Table of contents
-
 
 ### **AWS Lambda – Dịch vụ Serverless của AWS**
 
@@ -135,13 +135,13 @@ def lambda_handler(event, context):
 
 ## **Ưu điểm và Nhược điểm của AWS Lambda**
 
-| **Ưu điểm** 🟢 | **Nhược điểm** 🔴 |
-| --- | --- |
-| Không cần quản lý server | Giới hạn **timeout 15 phút** |
-| Tự động scale | Không thể chạy các ứng dụng **stateful** |
-| Trả phí theo số request | Cold Start có thể gây độ trễ |
-| Hỗ trợ nhiều ngôn ngữ | Không phù hợp với workload lớn cần GPU |
-| Tích hợp với nhiều dịch vụ AWS | Dung lượng package bị giới hạn |
+| **Ưu điểm** 🟢                 | **Nhược điểm** 🔴                        |
+| ------------------------------ | ---------------------------------------- |
+| Không cần quản lý server       | Giới hạn **timeout 15 phút**             |
+| Tự động scale                  | Không thể chạy các ứng dụng **stateful** |
+| Trả phí theo số request        | Cold Start có thể gây độ trễ             |
+| Hỗ trợ nhiều ngôn ngữ          | Không phù hợp với workload lớn cần GPU   |
+| Tích hợp với nhiều dịch vụ AWS | Dung lượng package bị giới hạn           |
 
 ## **Tổng kết**
 
@@ -150,12 +150,12 @@ def lambda_handler(event, context):
 - **Có nhiều cách kích hoạt Lambda**, từ API Gateway, S3, SNS, SQS, DynamoDB, v.v.
 - **Có giới hạn về thời gian chạy (15 phút)** và yêu cầu **quản lý Cold Start** nếu không sử dụng **Provisioned Concurrency**.
 - 📌 **Khi nào nên dùng AWS Lambda?**
-    - ✅ Khi bạn muốn **xây dựng ứng dụng không cần quản lý server**.
-    - ✅ Khi workload có **biến động cao** và cần tự động scale.
-    - ✅ Khi cần xử lý **sự kiện từ S3, DynamoDB, API Gateway**.
-    - ✅ Khi chỉ cần chạy **hàm nhỏ, thời gian chạy ngắn**.
+  - ✅ Khi bạn muốn **xây dựng ứng dụng không cần quản lý server**.
+  - ✅ Khi workload có **biến động cao** và cần tự động scale.
+  - ✅ Khi cần xử lý **sự kiện từ S3, DynamoDB, API Gateway**.
+  - ✅ Khi chỉ cần chạy **hàm nhỏ, thời gian chạy ngắn**.
 - 📌 **Khi nào không nên dùng AWS Lambda?**
-    - ❌ Khi cần **chạy ứng dụng liên tục** (nên dùng EC2, ECS, EKS).
-    - ❌ Khi workload cần **thời gian chạy dài hơn 15 phút**.
-    - ❌ Khi cần **cấu hình mạng phức tạp** hoặc **yêu cầu GPU**.
+  - ❌ Khi cần **chạy ứng dụng liên tục** (nên dùng EC2, ECS, EKS).
+  - ❌ Khi workload cần **thời gian chạy dài hơn 15 phút**.
+  - ❌ Khi cần **cấu hình mạng phức tạp** hoặc **yêu cầu GPU**.
 - 🔥 **Tóm lại, AWS Lambda là một giải pháp mạnh mẽ cho ứng dụng Serverless, giúp tối ưu chi phí, dễ dàng mở rộng và tích hợp tốt với hệ sinh thái AWS!** 🚀

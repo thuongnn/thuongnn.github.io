@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về Spot Instances trong EC2, cách tận dụng công suất tính toán chưa sử dụng với chi phí thấp.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-spot-instances. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-spot-instances.
 
 ## Table of contents
-
 
 **Spot Instances** là một trong những tùy chọn mua **EC2 instance với giá rẻ hơn tới 90%** so với **On-Demand**, giúp tiết kiệm chi phí đáng kể cho các workload có tính linh hoạt. Tuy nhiên, **Spot Instances có thể bị AWS thu hồi bất cứ lúc nào** nếu nhu cầu tài nguyên tăng lên.
 
@@ -44,18 +44,16 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 # **Cách mua Spot Instances**
 
 - **Spot Request (Yêu cầu Spot đơn lẻ)**
-    
-    ![1.png](@/assets/images/compute/ec2-spot-instances/1.png)
-    
-    - Tạo **một Spot Instance** và AWS sẽ cấp phát nếu giá đấu thầu >= giá Spot hiện tại.
-    - Nếu instance bị thu hồi, phải tạo yêu cầu mới để khởi động lại.
+  ![1.png](@/assets/images/compute/ec2-spot-instances/1.png)
+  - Tạo **một Spot Instance** và AWS sẽ cấp phát nếu giá đấu thầu >= giá Spot hiện tại.
+  - Nếu instance bị thu hồi, phải tạo yêu cầu mới để khởi động lại.
 - **Spot Fleet (Nhóm Spot Instances)**
-    - **Tự động quản lý một nhóm Spot Instances**, có thể kết hợp với On-Demand.
-    - **Tự động thay thế các instance bị thu hồi** để đảm bảo workload luôn chạy.
-    - **Hỗ trợ mix nhiều loại instance và AZ khác nhau** để tối ưu tài nguyên.
+  - **Tự động quản lý một nhóm Spot Instances**, có thể kết hợp với On-Demand.
+  - **Tự động thay thế các instance bị thu hồi** để đảm bảo workload luôn chạy.
+  - **Hỗ trợ mix nhiều loại instance và AZ khác nhau** để tối ưu tài nguyên.
 - **Spot Block (Spot với thời gian cố định)**
-    - Giữ Spot Instance trong khoảng 1 - 6 giờ mà không bị thu hồi.
-    - Phù hợp với workload cần chạy ngắn hạn nhưng không muốn bị gián đoạn.
+  - Giữ Spot Instance trong khoảng 1 - 6 giờ mà không bị thu hồi.
+  - Phù hợp với workload cần chạy ngắn hạn nhưng không muốn bị gián đoạn.
 
 # **Cách tránh gián đoạn khi dùng Spot Instances**
 
@@ -67,22 +65,22 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
 # **Khi nào nên dùng Spot Instances?**
 
 - 📌 **Tốt nhất cho workload không yêu cầu chạy liên tục hoặc có thể tự động khôi phục**:
-    - ✅ **Big Data, AI/ML, video rendering, genomic sequencing, batch processing**.
-    - ✅ **CI/CD pipeline, distributed computing, web crawling, testing environments**.
-    - ✅ **Ứng dụng serverless kết hợp với AWS Lambda hoặc Fargate để tối ưu chi phí**.
+  - ✅ **Big Data, AI/ML, video rendering, genomic sequencing, batch processing**.
+  - ✅ **CI/CD pipeline, distributed computing, web crawling, testing environments**.
+  - ✅ **Ứng dụng serverless kết hợp với AWS Lambda hoặc Fargate để tối ưu chi phí**.
 - 📌 **Không nên dùng nếu workload yêu cầu chạy liên tục hoặc có trạng thái (stateful applications)** như:
-    - ❌ **Cơ sở dữ liệu quan trọng, web server chính, ứng dụng tài chính**.
-    - ❌ **Ứng dụng đòi hỏi low-latency hoặc không thể bị gián đoạn**.
+  - ❌ **Cơ sở dữ liệu quan trọng, web server chính, ứng dụng tài chính**.
+  - ❌ **Ứng dụng đòi hỏi low-latency hoặc không thể bị gián đoạn**.
 
 # **Kết luận**
 
-| **Tính năng** | **On-Demand** | **Reserved Instances** | **Spot Instances** |
-| --- | --- | --- | --- |
-| **Chi phí** | Cao nhất | Giảm tới 72% | Rẻ hơn 90% |
-| **Cam kết** | Không cần | 1 hoặc 3 năm | Không cam kết |
-| **Nguy cơ gián đoạn** | Không | Không | Có thể bị thu hồi |
-| **Tính linh hoạt** | Cao | Thấp | Cao |
-| **Workload phù hợp** | Workload linh hoạt | Workload dài hạn | Workload có thể gián đoạn |
+| **Tính năng**         | **On-Demand**      | **Reserved Instances** | **Spot Instances**        |
+| --------------------- | ------------------ | ---------------------- | ------------------------- |
+| **Chi phí**           | Cao nhất           | Giảm tới 72%           | Rẻ hơn 90%                |
+| **Cam kết**           | Không cần          | 1 hoặc 3 năm           | Không cam kết             |
+| **Nguy cơ gián đoạn** | Không              | Không                  | Có thể bị thu hồi         |
+| **Tính linh hoạt**    | Cao                | Thấp                   | Cao                       |
+| **Workload phù hợp**  | Workload linh hoạt | Workload dài hạn       | Workload có thể gián đoạn |
 
 👉 **Dùng Spot Instances nếu bạn cần tối ưu chi phí và có thể xử lý gián đoạn.**
 

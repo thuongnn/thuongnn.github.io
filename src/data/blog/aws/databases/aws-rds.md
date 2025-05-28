@@ -8,85 +8,85 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ cơ sở dữ liệu quan hệ được quản lý hoàn toàn bởi AWS, hỗ trợ nhiều loại database engine phổ biến.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-rds. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-rds.
 
 ## Table of contents
-
 
 Amazon RDS là một dịch vụ được quản lý giúp dễ dàng thiết lập, vận hành và mở rộng cơ sở dữ liệu quan hệ trên AWS. Dịch vụ này giúp tự động hóa các tác vụ quản trị như cung cấp cơ sở dữ liệu, vá lỗi phần mềm, sao lưu và phục hồi, cũng như hỗ trợ mở rộng linh hoạt.
 
 # Lợi ích chính của Amazon RDS
 
 - **Quản lý tự động** - RDS giúp giảm gánh nặng vận hành bằng cách tự động quản lý:
-    - Cấu hình cơ sở dữ liệu
-    - Áp dụng bản vá và cập nhật phần mềm
-    - Tự động sao lưu và khôi phục
-    - Phát hiện lỗi và tự động chuyển đổi dự phòng
+  - Cấu hình cơ sở dữ liệu
+  - Áp dụng bản vá và cập nhật phần mềm
+  - Tự động sao lưu và khôi phục
+  - Phát hiện lỗi và tự động chuyển đổi dự phòng
 - **Hiệu suất cao**
-    - **Chọn cấu hình phần cứng linh hoạt**: RDS hỗ trợ nhiều loại phiên bản EC2 khác nhau.
-    - **Hỗ trợ SSD hiệu suất cao**: Chế độ lưu trữ **General Purpose SSD (gp3, gp2)** hoặc **Provisioned IOPS (io1, io2)** giúp tăng tốc độ đọc/ghi dữ liệu.
-    - **Sao chép dữ liệu read-replica**: Giúp cải thiện hiệu suất đọc bằng cách phân bổ tải đọc qua nhiều bản sao.
+  - **Chọn cấu hình phần cứng linh hoạt**: RDS hỗ trợ nhiều loại phiên bản EC2 khác nhau.
+  - **Hỗ trợ SSD hiệu suất cao**: Chế độ lưu trữ **General Purpose SSD (gp3, gp2)** hoặc **Provisioned IOPS (io1, io2)** giúp tăng tốc độ đọc/ghi dữ liệu.
+  - **Sao chép dữ liệu read-replica**: Giúp cải thiện hiệu suất đọc bằng cách phân bổ tải đọc qua nhiều bản sao.
 - **Khả năng mở rộng linh hoạt**
-    - Có thể thay đổi kích thước **CPU, RAM, dung lượng lưu trữ và IOPS** mà không cần gián đoạn hoạt động.
-    - **Chế độ tự động mở rộng lưu trữ (Storage Auto Scaling)** giúp tăng dung lượng lưu trữ khi cần thiết.
+  - Có thể thay đổi kích thước **CPU, RAM, dung lượng lưu trữ và IOPS** mà không cần gián đoạn hoạt động.
+  - **Chế độ tự động mở rộng lưu trữ (Storage Auto Scaling)** giúp tăng dung lượng lưu trữ khi cần thiết.
 - **Độ sẵn sàng cao và chuyển đổi dự phòng**
-    - **Triển khai Multi-AZ**: Khi bật chế độ này, một bản sao dữ liệu sẽ được duy trì ở một vùng sẵn sàng (AZ) khác, giúp tăng tính sẵn sàng.
-    - **Read Replicas**: Hỗ trợ sao chép dữ liệu sang nhiều vùng khác nhau để giảm tải đọc.
+  - **Triển khai Multi-AZ**: Khi bật chế độ này, một bản sao dữ liệu sẽ được duy trì ở một vùng sẵn sàng (AZ) khác, giúp tăng tính sẵn sàng.
+  - **Read Replicas**: Hỗ trợ sao chép dữ liệu sang nhiều vùng khác nhau để giảm tải đọc.
 - **Bảo mật nâng cao**
-    - **Mã hóa dữ liệu**: RDS hỗ trợ mã hóa dữ liệu khi lưu trữ (encryption at rest) và khi truyền tải (encryption in transit).
-    - **Tích hợp với IAM**: Kiểm soát quyền truy cập dựa trên vai trò IAM.
-    - **Định cấu hình bảo mật mạng**: Sử dụng **Amazon VPC**, **Security Groups** để giới hạn quyền truy cập.
+  - **Mã hóa dữ liệu**: RDS hỗ trợ mã hóa dữ liệu khi lưu trữ (encryption at rest) và khi truyền tải (encryption in transit).
+  - **Tích hợp với IAM**: Kiểm soát quyền truy cập dựa trên vai trò IAM.
+  - **Định cấu hình bảo mật mạng**: Sử dụng **Amazon VPC**, **Security Groups** để giới hạn quyền truy cập.
 - Các cơ sở dữ liệu được hỗ trợ - Amazon RDS hỗ trợ nhiều hệ quản trị cơ sở dữ liệu (DBMS), bao gồm:
-    - **Amazon Aurora**: Dịch vụ DB tối ưu hóa cho AWS, có hiệu suất cao hơn MySQL/PostgreSQL tiêu chuẩn.
-    - **MySQL**: Một trong những hệ quản trị phổ biến, hỗ trợ từ phiên bản 5.6 trở lên.
-    - **PostgreSQL**: Cơ sở dữ liệu mã nguồn mở mạnh mẽ, hỗ trợ nhiều tính năng nâng cao.
-    - **MariaDB**: Một nhánh của MySQL với hiệu suất và tính năng tối ưu hơn.
-    - **Microsoft SQL Server**: Hỗ trợ từ phiên bản 2012 trở lên.
-    - **Oracle Database**: Cơ sở dữ liệu thương mại mạnh mẽ, hỗ trợ nhiều tính năng doanh nghiệp.
+  - **Amazon Aurora**: Dịch vụ DB tối ưu hóa cho AWS, có hiệu suất cao hơn MySQL/PostgreSQL tiêu chuẩn.
+  - **MySQL**: Một trong những hệ quản trị phổ biến, hỗ trợ từ phiên bản 5.6 trở lên.
+  - **PostgreSQL**: Cơ sở dữ liệu mã nguồn mở mạnh mẽ, hỗ trợ nhiều tính năng nâng cao.
+  - **MariaDB**: Một nhánh của MySQL với hiệu suất và tính năng tối ưu hơn.
+  - **Microsoft SQL Server**: Hỗ trợ từ phiên bản 2012 trở lên.
+  - **Oracle Database**: Cơ sở dữ liệu thương mại mạnh mẽ, hỗ trợ nhiều tính năng doanh nghiệp.
 
 # Cách hoạt động của Amazon RDS
 
 - **Kiến trúc AWS RDS -** Một **RDS DB Instance** bao gồm các thành phần chính sau:
-    - **Database Engine**: MySQL, PostgreSQL, SQL Server,...
-    - **Compute (EC2 Instance)**: Máy chủ xử lý dữ liệu.
-    - **Storage (EBS Volume)**: Dùng để lưu trữ cơ sở dữ liệu.
-    - **Security Group**: Cấu hình tường lửa để kiểm soát quyền truy cập.
-    - **VPC (Virtual Private Cloud)**: Mạng ảo để cô lập RDS trong hệ thống AWS.
+  - **Database Engine**: MySQL, PostgreSQL, SQL Server,...
+  - **Compute (EC2 Instance)**: Máy chủ xử lý dữ liệu.
+  - **Storage (EBS Volume)**: Dùng để lưu trữ cơ sở dữ liệu.
+  - **Security Group**: Cấu hình tường lửa để kiểm soát quyền truy cập.
+  - **VPC (Virtual Private Cloud)**: Mạng ảo để cô lập RDS trong hệ thống AWS.
 - Cấu trúc triển khai RDS
-    - **Single-AZ Deployment**:
-        - Dữ liệu và ứng dụng nằm trong một vùng sẵn sàng duy nhất.
-        - Phù hợp với môi trường phát triển và thử nghiệm.
-    - **Multi-AZ Deployment**:
-        - Tạo một bản sao dữ liệu ở một vùng sẵn sàng khác để dự phòng.
-        - AWS tự động chuyển đổi nếu bản chính gặp sự cố.
-        - Tăng cường độ tin cậy và khả năng chịu lỗi.
+  - **Single-AZ Deployment**:
+    - Dữ liệu và ứng dụng nằm trong một vùng sẵn sàng duy nhất.
+    - Phù hợp với môi trường phát triển và thử nghiệm.
+  - **Multi-AZ Deployment**:
+    - Tạo một bản sao dữ liệu ở một vùng sẵn sàng khác để dự phòng.
+    - AWS tự động chuyển đổi nếu bản chính gặp sự cố.
+    - Tăng cường độ tin cậy và khả năng chịu lỗi.
 - Read Replicas (Bản sao chỉ đọc)
-    - Hỗ trợ sao chép dữ liệu cho các phiên bản **MySQL, PostgreSQL, MariaDB và Aurora**.
-    - Tăng cường khả năng mở rộng bằng cách phân tán tải đọc giữa nhiều bản sao.
-    - Có thể đặt bản sao trong cùng một **vùng (Region)** hoặc trên các **vùng khác nhau (Cross-Region)**.
+  - Hỗ trợ sao chép dữ liệu cho các phiên bản **MySQL, PostgreSQL, MariaDB và Aurora**.
+  - Tăng cường khả năng mở rộng bằng cách phân tán tải đọc giữa nhiều bản sao.
+  - Có thể đặt bản sao trong cùng một **vùng (Region)** hoặc trên các **vùng khác nhau (Cross-Region)**.
 
 # Các thành phần quan trọng của Amazon RDS
 
 - **DB Instances**
-    - Là một môi trường cơ sở dữ liệu độc lập, chạy trên AWS.
-    - Có thể được cấu hình với kích thước CPU, RAM, lưu trữ theo nhu cầu.
+  - Là một môi trường cơ sở dữ liệu độc lập, chạy trên AWS.
+  - Có thể được cấu hình với kích thước CPU, RAM, lưu trữ theo nhu cầu.
 - **DB Parameter Groups**
-    - Cho phép người dùng tùy chỉnh cấu hình cơ sở dữ liệu như bộ nhớ đệm, thời gian chờ, v.v.
+  - Cho phép người dùng tùy chỉnh cấu hình cơ sở dữ liệu như bộ nhớ đệm, thời gian chờ, v.v.
 - **DB Security Groups**
-    - Kiểm soát quyền truy cập vào cơ sở dữ liệu dựa trên địa chỉ IP hoặc các nhóm bảo mật AWS khác.
+  - Kiểm soát quyền truy cập vào cơ sở dữ liệu dựa trên địa chỉ IP hoặc các nhóm bảo mật AWS khác.
 - **Automated Backups & Snapshots**
-    - **Automated Backups**: AWS tự động sao lưu dữ liệu hàng ngày.
-    - **Manual Snapshots**: Người dùng có thể tạo ảnh chụp nhanh (snapshot) của dữ liệu để khôi phục khi cần.
+  - **Automated Backups**: AWS tự động sao lưu dữ liệu hàng ngày.
+  - **Manual Snapshots**: Người dùng có thể tạo ảnh chụp nhanh (snapshot) của dữ liệu để khôi phục khi cần.
 
 # So sánh Amazon RDS và Amazon Aurora
 
-| **Đặc điểm** | **Amazon RDS** | **Amazon Aurora** |
-| --- | --- | --- |
-| **Hiệu suất** | Tốt | Cao hơn MySQL 5 lần, PostgreSQL 3 lần |
-| **Độ sẵn sàng** | Multi-AZ, Read Replica | Multi-AZ, tự động sao chép 6 bản |
-| **Chi phí** | Rẻ hơn Aurora | Cao hơn RDS 20%–30% |
-| **Khả năng mở rộng** | Scale CPU/RAM | Scale theo cluster |
-| **Sao lưu** | Tự động mỗi ngày | Liên tục, khôi phục theo thời gian |
+| **Đặc điểm**         | **Amazon RDS**         | **Amazon Aurora**                     |
+| -------------------- | ---------------------- | ------------------------------------- |
+| **Hiệu suất**        | Tốt                    | Cao hơn MySQL 5 lần, PostgreSQL 3 lần |
+| **Độ sẵn sàng**      | Multi-AZ, Read Replica | Multi-AZ, tự động sao chép 6 bản      |
+| **Chi phí**          | Rẻ hơn Aurora          | Cao hơn RDS 20%–30%                   |
+| **Khả năng mở rộng** | Scale CPU/RAM          | Scale theo cluster                    |
+| **Sao lưu**          | Tự động mỗi ngày       | Liên tục, khôi phục theo thời gian    |
 
 # Khi nào nên sử dụng Amazon RDS?
 

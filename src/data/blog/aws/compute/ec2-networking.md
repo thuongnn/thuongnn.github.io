@@ -8,28 +8,28 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về các tính năng mạng cơ bản của EC2, bao gồm VPC, subnets và network interfaces.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-networking. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-networking.
 
 ## Table of contents
-
 
 EC2 networking cung cấp các tùy chọn kết nối linh hoạt và bảo mật giữa các instance, dịch vụ AWS và các hệ thống bên ngoài. AWS sử dụng **Amazon Virtual Private Cloud (VPC)** làm nền tảng để quản lý mạng, cho phép bạn kiểm soát toàn bộ kiến trúc mạng của mình.
 
 ## **Các thành phần chính trong EC2 Networking**
 
-| **Thành phần** | **Mô tả** |
-| --- | --- |
-| **Amazon VPC (Virtual Private Cloud)** | Mạng ảo riêng biệt, nơi các EC2 instance được khởi chạy. |
-| **Subnet** | Phân đoạn nhỏ trong VPC, có thể là public (internet accessible) hoặc private (nội bộ). |
-| **Internet Gateway (IGW)** | Cho phép các instance trong VPC truy cập internet. |
-| **Elastic IP (EIP)** | Địa chỉ IP tĩnh, có thể gán cho một EC2 instance. |
-| **Security Groups (SGs)** | Firewall ở cấp độ instance, kiểm soát inbound và outbound traffic. |
-| **Network ACLs (NACLs)** | Firewall ở cấp độ subnet, quy định lưu lượng giữa các subnet và internet. |
-| **Elastic Load Balancer (ELB)** | Cân bằng tải lưu lượng giữa nhiều EC2 instances. |
-| **Amazon Route 53** | Dịch vụ DNS giúp quản lý tên miền và định tuyến lưu lượng. |
-| **NAT Gateway / NAT Instance** | Cho phép instance trong private subnet truy cập internet mà không cần địa chỉ IP công khai. |
-| **AWS PrivateLink** | Cho phép kết nối private với các dịch vụ AWS mà không qua internet. |
-| **AWS Direct Connect** | Kết nối trực tiếp từ mạng on-premises đến AWS, giúp giảm độ trễ. |
+| **Thành phần**                         | **Mô tả**                                                                                   |
+| -------------------------------------- | ------------------------------------------------------------------------------------------- |
+| **Amazon VPC (Virtual Private Cloud)** | Mạng ảo riêng biệt, nơi các EC2 instance được khởi chạy.                                    |
+| **Subnet**                             | Phân đoạn nhỏ trong VPC, có thể là public (internet accessible) hoặc private (nội bộ).      |
+| **Internet Gateway (IGW)**             | Cho phép các instance trong VPC truy cập internet.                                          |
+| **Elastic IP (EIP)**                   | Địa chỉ IP tĩnh, có thể gán cho một EC2 instance.                                           |
+| **Security Groups (SGs)**              | Firewall ở cấp độ instance, kiểm soát inbound và outbound traffic.                          |
+| **Network ACLs (NACLs)**               | Firewall ở cấp độ subnet, quy định lưu lượng giữa các subnet và internet.                   |
+| **Elastic Load Balancer (ELB)**        | Cân bằng tải lưu lượng giữa nhiều EC2 instances.                                            |
+| **Amazon Route 53**                    | Dịch vụ DNS giúp quản lý tên miền và định tuyến lưu lượng.                                  |
+| **NAT Gateway / NAT Instance**         | Cho phép instance trong private subnet truy cập internet mà không cần địa chỉ IP công khai. |
+| **AWS PrivateLink**                    | Cho phép kết nối private với các dịch vụ AWS mà không qua internet.                         |
+| **AWS Direct Connect**                 | Kết nối trực tiếp từ mạng on-premises đến AWS, giúp giảm độ trễ.                            |
 
 ## **Cấu trúc mạng của EC2 trong VPC**
 
@@ -45,9 +45,9 @@ Mỗi EC2 instance phải thuộc về một **VPC** và được đặt trong m
 
 ### **Public IP vs Elastic IP**
 
-| **Loại IP** | **Mô tả** | **Khi nào dùng?** |
-| --- | --- | --- |
-| **Public IP** | Được gán tự động cho instance, thay đổi khi restart. | Khi không cần địa chỉ IP cố định. |
+| **Loại IP**    | **Mô tả**                                               | **Khi nào dùng?**                        |
+| -------------- | ------------------------------------------------------- | ---------------------------------------- |
+| **Public IP**  | Được gán tự động cho instance, thay đổi khi restart.    | Khi không cần địa chỉ IP cố định.        |
 | **Elastic IP** | IP tĩnh do AWS cung cấp, có thể gán cho nhiều instance. | Khi cần IP cố định để truy cập từ ngoài. |
 
 ### **Kết nối Internet với Internet Gateway (IGW)**
@@ -76,12 +76,12 @@ Mỗi EC2 instance phải thuộc về một **VPC** và được đặt trong m
 - Có thể cho phép hoặc chặn cả inbound và outbound traffic.
 - Hữu ích khi cần chặn traffic từ một dải IP cụ thể.
 
-| **Security Groups** | **Network ACLs** |
-| --- | --- |
-| Áp dụng ở mức instance | Áp dụng ở mức subnet |
-| Chỉ có **Allow rules** | Có cả **Allow** và **Deny rules** |
-| Kiểm soát lưu lượng vào và ra từng instance | Kiểm soát lưu lượng giữa các subnet |
-| Dễ cấu hình, phù hợp với hầu hết use case | Cần cấu hình thủ công, mạnh hơn trong kiểm soát bảo mật |
+| **Security Groups**                         | **Network ACLs**                                        |
+| ------------------------------------------- | ------------------------------------------------------- |
+| Áp dụng ở mức instance                      | Áp dụng ở mức subnet                                    |
+| Chỉ có **Allow rules**                      | Có cả **Allow** và **Deny rules**                       |
+| Kiểm soát lưu lượng vào và ra từng instance | Kiểm soát lưu lượng giữa các subnet                     |
+| Dễ cấu hình, phù hợp với hầu hết use case   | Cần cấu hình thủ công, mạnh hơn trong kiểm soát bảo mật |
 
 ---
 
@@ -122,11 +122,11 @@ Mỗi EC2 instance phải thuộc về một **VPC** và được đặt trong m
 
 **Elastic Load Balancer (ELB)** giúp phân phối lưu lượng đến nhiều EC2 instances để đảm bảo **tính sẵn sàng và hiệu suất cao**. Có 3 loại chính:
 
-| **Loại Load Balancer** | **Mô tả** |
-| --- | --- |
-| **Application Load Balancer (ALB)** | Hoạt động ở lớp **7 (HTTP/HTTPS)**, hỗ trợ routing dựa trên URL, host, header. |
-| **Network Load Balancer (NLB)** | Hoạt động ở lớp **4 (TCP/UDP)**, phù hợp với ứng dụng cần độ trễ thấp, hiệu suất cao. |
-| **Classic Load Balancer (CLB)** | Hỗ trợ cả **HTTP/HTTPS và TCP**, thích hợp với ứng dụng legacy. |
+| **Loại Load Balancer**              | **Mô tả**                                                                             |
+| ----------------------------------- | ------------------------------------------------------------------------------------- |
+| **Application Load Balancer (ALB)** | Hoạt động ở lớp **7 (HTTP/HTTPS)**, hỗ trợ routing dựa trên URL, host, header.        |
+| **Network Load Balancer (NLB)**     | Hoạt động ở lớp **4 (TCP/UDP)**, phù hợp với ứng dụng cần độ trễ thấp, hiệu suất cao. |
+| **Classic Load Balancer (CLB)**     | Hỗ trợ cả **HTTP/HTTPS và TCP**, thích hợp với ứng dụng legacy.                       |
 
 ## **Tóm tắt kiến trúc mạng của AWS EC2**
 
@@ -139,14 +139,14 @@ Mỗi EC2 instance phải thuộc về một **VPC** và được đặt trong m
 
 ## **Khi nào dùng các giải pháp mạng AWS?**
 
-| **Trường hợp** | **Giải pháp AWS** |
-| --- | --- |
-| Kết nối giữa các EC2 instances trong cùng VPC | **Private IP, Security Groups** |
-| Kết nối private giữa các VPC khác nhau | **VPC Peering, Transit Gateway** |
-| Cân bằng tải giữa nhiều EC2 instances | **Elastic Load Balancer (ALB/NLB/CLB)** |
-| Kết nối từ on-premises đến AWS | **AWS Direct Connect, VPN** |
-| Truy cập internet từ EC2 instance trong public subnet | **Internet Gateway** |
-| Truy cập internet từ EC2 instance trong private subnet | **NAT Gateway, NAT Instance** |
-| Truy cập private đến AWS services (S3, DynamoDB...) | **AWS PrivateLink** |
+| **Trường hợp**                                         | **Giải pháp AWS**                       |
+| ------------------------------------------------------ | --------------------------------------- |
+| Kết nối giữa các EC2 instances trong cùng VPC          | **Private IP, Security Groups**         |
+| Kết nối private giữa các VPC khác nhau                 | **VPC Peering, Transit Gateway**        |
+| Cân bằng tải giữa nhiều EC2 instances                  | **Elastic Load Balancer (ALB/NLB/CLB)** |
+| Kết nối từ on-premises đến AWS                         | **AWS Direct Connect, VPN**             |
+| Truy cập internet từ EC2 instance trong public subnet  | **Internet Gateway**                    |
+| Truy cập internet từ EC2 instance trong private subnet | **NAT Gateway, NAT Instance**           |
+| Truy cập private đến AWS services (S3, DynamoDB...)    | **AWS PrivateLink**                     |
 
 Với các giải pháp trên, bạn có thể thiết kế hệ thống **bảo mật, linh hoạt và tối ưu hiệu suất** trên AWS. 🚀

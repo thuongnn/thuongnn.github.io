@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ PaaS của AWS, giúp triển khai và quản lý ứng dụng web một cách dễ dàng.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-elastic-beanstalk. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-elastic-beanstalk.
 
 ## Table of contents
-
 
 ### **AWS Elastic Beanstalk – Dịch vụ Triển Khai Ứng Dụng Tự Động**
 
@@ -36,9 +36,9 @@ AWS **Elastic Beanstalk** là dịch vụ **Platform as a Service (PaaS)** giúp
 
 - **Web Server** (xử lý HTTP requests, chạy trên ALB hoặc NLB).
 - **Worker** (xử lý background jobs, kết nối SQS).
-    - 📌 **Instance & Load Balancer** – Elastic Beanstalk sử dụng EC2, ALB/NLB để phân phối tải.
-    - 📌 **Database (RDS, DynamoDB)** – Cấu hình database trong ứng dụng.
-    - 📌 **Monitoring & Logging** – CloudWatch, X-Ray, Beanstalk Logs.
+  - 📌 **Instance & Load Balancer** – Elastic Beanstalk sử dụng EC2, ALB/NLB để phân phối tải.
+  - 📌 **Database (RDS, DynamoDB)** – Cấu hình database trong ứng dụng.
+  - 📌 **Monitoring & Logging** – CloudWatch, X-Ray, Beanstalk Logs.
 
 ## **Elastic Beanstalk Deployment Options**
 
@@ -80,12 +80,12 @@ AWS **Elastic Beanstalk** là dịch vụ **Platform as a Service (PaaS)** giúp
 
 ## **Elastic Beanstalk So sánh với EC2, ECS, Lambda**
 
-| Feature | **Elastic Beanstalk** | **EC2** | **ECS/Fargate** | **Lambda** |
-| --- | --- | --- | --- | --- |
-| **Quản lý Server** | Tự động | Tự quản lý | Tự động (ECS/Fargate) | Serverless |
-| **Scaling** | Auto Scaling | Phải tự cấu hình | Auto Scaling | Auto |
-| **Chi phí** | Trung bình | Cao hơn | Tối ưu | Rẻ nhất |
-| **Use Case** | Web App, API | Mọi loại workload | Microservices | Event-driven |
+| Feature            | **Elastic Beanstalk** | **EC2**           | **ECS/Fargate**       | **Lambda**   |
+| ------------------ | --------------------- | ----------------- | --------------------- | ------------ |
+| **Quản lý Server** | Tự động               | Tự quản lý        | Tự động (ECS/Fargate) | Serverless   |
+| **Scaling**        | Auto Scaling          | Phải tự cấu hình  | Auto Scaling          | Auto         |
+| **Chi phí**        | Trung bình            | Cao hơn           | Tối ưu                | Rẻ nhất      |
+| **Use Case**       | Web App, API          | Mọi loại workload | Microservices         | Event-driven |
 
 ## **Tổng kết**
 

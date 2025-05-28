@@ -8,10 +8,10 @@ tags:
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ mạng riêng ảo của AWS, cho phép tạo và quản lý mạng riêng biệt trong đám mây AWS.
 ---
-Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-vpc. 
+
+Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-vpc.
 
 ## Table of contents
-
 
 Reference link: https://jayendrapatil.com/aws-virtual-private-cloud-vpc/#VPC_VPN_Connections
 
@@ -25,7 +25,7 @@ Reference link: https://jayendrapatil.com/aws-virtual-private-cloud-vpc/#VPC_VPN
 
 [**IP Addresses**](Virtual%20Private%20Network%20%E2%80%93%20VPC%201593fa6ae483806eaa13c20dcc38aafb/IP%20Addresses%201593fa6ae4838079ab75c730b0f660e4.md)
 
-[Elastic Network Interface (ENI)](Virtual%20Private%20Network%20%E2%80%93%20VPC%201593fa6ae483806eaa13c20dcc38aafb/Elastic%20Network%20Interface%20(ENI)%201593fa6ae48380bb819ccb640a31ee04.md)
+[Elastic Network Interface (ENI)](<Virtual%20Private%20Network%20%E2%80%93%20VPC%201593fa6ae483806eaa13c20dcc38aafb/Elastic%20Network%20Interface%20(ENI)%201593fa6ae48380bb819ccb640a31ee04.md>)
 
 [**Route Tables**](Virtual%20Private%20Network%20%E2%80%93%20VPC%201593fa6ae483806eaa13c20dcc38aafb/Route%20Tables%201593fa6ae48380ecb1abdb6a552c3a79.md)
 
