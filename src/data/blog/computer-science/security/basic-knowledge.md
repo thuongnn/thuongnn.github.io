@@ -2,7 +2,6 @@
 author: thuongnn
 pubDatetime: 2020-10-12T23:11:35Z
 title: "[Computer Science] Kiến thức về Security cơ bản"
-featured: false
 draft: false
 tags:
   - Security

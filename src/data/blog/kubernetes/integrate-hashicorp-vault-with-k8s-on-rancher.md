@@ -2,7 +2,6 @@
 author: thuongnn
 pubDatetime: 2024-04-13T22:29:35Z
 title: Tích hợp Hashicorp Vault với K8S trên Rancher
-featured: false
 draft: false
 tags:
   - Kubernetes

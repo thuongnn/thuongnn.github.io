@@ -2,7 +2,6 @@
 author: thuongnn
 pubDatetime: 2021-07-10T14:29:35Z
 title: Kubernetes Overview Diagrams
-featured: false
 draft: false
 tags:
   - Kubernetes

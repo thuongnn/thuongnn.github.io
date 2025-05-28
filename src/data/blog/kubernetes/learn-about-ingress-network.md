@@ -2,7 +2,6 @@
 author: thuongnn
 pubDatetime: 2021-11-28T15:29:35Z
 title: Tìm hiểu về Ingress network
-featured: false
 draft: false
 tags:
   - Kubernetes

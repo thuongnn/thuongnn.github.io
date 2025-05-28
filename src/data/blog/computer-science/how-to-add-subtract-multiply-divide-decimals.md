@@ -2,7 +2,6 @@
 author: thuongnn
 pubDatetime: 2019-11-22T23:22:35Z
 title: "Máy tính cộng trừ nhân chia số thập phân như thế nào?"
-featured: false
 draft: false
 tags:
   - Algorithms

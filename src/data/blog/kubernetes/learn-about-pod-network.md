@@ -2,7 +2,6 @@
 author: thuongnn
 pubDatetime: 2021-11-26T23:29:35Z
 title: Tìm hiểu về Pod network
-featured: false
 draft: false
 tags:
   - Kubernetes

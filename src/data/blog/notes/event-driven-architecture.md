@@ -2,7 +2,6 @@
 author: thuongnn
 pubDatetime: 2021-03-15T21:22:35Z
 title: "[Series tự học] EVENT-DRIVEN Architecture"
-featured: false
 draft: false
 tags:
   - Event Driven Architecture

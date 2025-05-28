@@ -2,7 +2,6 @@
 author: thuongnn
 pubDatetime: 2021-04-08T22:29:35Z
 title: Hệ thống mã hoá sử dụng Public Key như thế nào?
-featured: false
 draft: false
 tags:
   - Security

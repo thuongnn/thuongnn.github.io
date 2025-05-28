@@ -53,6 +53,7 @@ const gcpPosts = posts.filter(({ data }) => data.folder == "gcp");
       <!--</p>-->
       {
         // only display if at least one social link is enabled
+
         SOCIALS.length > 0 && (
           <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
             <div class="mr-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
@@ -68,7 +69,12 @@ const gcpPosts = posts.filter(({ data }) => data.folder == "gcp");
       gcpPosts.length > 0 && (
         <section id="google-cloud" class="pt-12 pb-6">
           <h2 class="text-2xl font-semibold tracking-wide">
-            Google Cloud (GCP)
+            <a
+              href="/tags/google-cloud"
+              class="inline-block decoration-dashed underline-offset-4"
+            >
+              Google Cloud (GCP)
+            </a>
           </h2>
           <ul>
             {gcpPosts.map(

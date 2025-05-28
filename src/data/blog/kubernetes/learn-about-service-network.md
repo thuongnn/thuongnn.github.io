@@ -2,7 +2,6 @@
 author: thuongnn
 pubDatetime: 2021-11-28T01:29:35Z
 title: Tìm hiểu về Service network
-featured: false
 draft: false
 tags:
   - Kubernetes

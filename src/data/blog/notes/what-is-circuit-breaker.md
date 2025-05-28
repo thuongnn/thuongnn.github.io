@@ -2,7 +2,6 @@
 author: thuongnn
 pubDatetime: 2021-03-15T22:20:35Z
 title: "[Series tự học] CIRCUIT BREAKER là gì?"
-featured: false
 draft: false
 tags:
   - Circuit Breaker

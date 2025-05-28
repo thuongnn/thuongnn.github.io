@@ -2,7 +2,6 @@
 author: thuongnn
 pubDatetime: 2020-06-24T20:29:35Z
 title: "[Computer Science] Kiến thức về networking cơ bản"
-featured: false
 draft: false
 tags:
   - Networking
