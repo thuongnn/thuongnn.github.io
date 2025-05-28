@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-09-20T20:11:55Z
 title: "[Google Cloud] GCP Cloud Run"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

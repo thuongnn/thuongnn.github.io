@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-10-15T18:44:35Z
 title: "[Google Cloud] Persistent Disk"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

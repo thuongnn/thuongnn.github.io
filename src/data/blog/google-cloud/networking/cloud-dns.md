@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-10-06T12:31:52Z
 title: "[Google Cloud] Tìm hiểu về Cloud DNS"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

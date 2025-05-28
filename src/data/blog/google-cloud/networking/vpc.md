@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-10-05T20:11:22Z
 title: "[Google Cloud] Tìm hiểu về VPC trong Networking"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

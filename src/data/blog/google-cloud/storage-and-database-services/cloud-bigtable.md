@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-10-15T20:13:45Z
 title: "[Google Cloud] Cloud Bigtable"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-10-15T19:33:15Z
 title: "[Google Cloud] Cloud Spanner"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

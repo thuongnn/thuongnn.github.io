@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-10-05T21:11:22Z
 title: "[Google Cloud] Tìm hiểu về VPC Service Controls"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

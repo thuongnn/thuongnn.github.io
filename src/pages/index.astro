@@ -13,7 +13,10 @@ import { SITE } from "@/config";
 import { SOCIALS } from "@/constants";
 
 const posts = await getCollection("blog");
-const recentPosts = getSortedPosts(posts);
+const sortedPosts = getSortedPosts(posts);
+
+const recentPosts = sortedPosts;
+const gcpPosts = posts.filter(({ data }) => data.folder == "gcp");
 ---
 
 <Layout>
@@ -60,6 +63,22 @@ const recentPosts = getSortedPosts(posts);
     </section>
 
     <Hr />
+
+    {
+      gcpPosts.length > 0 && (
+        <section id="google-cloud" class="pt-12 pb-6">
+          <h2 class="text-2xl font-semibold tracking-wide">
+            Google Cloud (GCP)
+          </h2>
+          <ul>
+            {gcpPosts.map(
+              (data, index) =>
+                index < SITE.postPerIndex && <Card variant="h3" {...data} />
+            )}
+          </ul>
+        </section>
+      )
+    }
 
     {
       recentPosts.length > 0 && (

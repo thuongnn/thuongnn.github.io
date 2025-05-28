@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-10-16T20:31:35Z
 title: "[Google Cloud] Load Balancing & Auto Scaling"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

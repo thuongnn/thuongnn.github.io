@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-10-15T19:11:55Z
 title: "[Google Cloud] Cloud SQL"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

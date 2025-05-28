@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-10-02T23:01:32Z
 title: "[Google Cloud] GCP Pub/Sub"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-10-15T19:01:55Z
 title: "[Google Cloud] Firestore"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

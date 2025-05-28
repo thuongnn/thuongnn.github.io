@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-10-06T13:21:12Z
 title: "[Google Cloud] Tìm hiểu về Cloud NAT"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

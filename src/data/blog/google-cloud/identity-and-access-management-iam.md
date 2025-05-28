@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-09-12T02:32:35Z
 title: "[Google Cloud] Identity and Access Management (IAM)"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

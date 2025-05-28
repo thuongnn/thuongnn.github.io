@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-10-16T23:19:35Z
 title: "[Google Cloud] Google Kubernetes Engine"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-09-14T22:36:35Z
 title: "[Google Cloud] GCP Compute Engine"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

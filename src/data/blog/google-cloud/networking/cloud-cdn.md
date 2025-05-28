@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-10-06T20:01:22Z
 title: "[Google Cloud] Tìm hiểu về Cloud CDN"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

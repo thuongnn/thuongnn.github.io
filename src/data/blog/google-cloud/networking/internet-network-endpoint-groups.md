@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-10-06T23:40:22Z
 title: "[Google Cloud] Tìm hiểu về Internet Network Endpoint Groups (NEG)"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud

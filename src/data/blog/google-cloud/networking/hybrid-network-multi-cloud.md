@@ -2,7 +2,7 @@
 author: thuongnn
 pubDatetime: 2022-10-12T22:11:22Z
 title: "[Google Cloud] Hybrid Network & Multi-Cloud"
-featured: false
+folder: "gcp"
 draft: false
 tags:
   - Google Cloud
