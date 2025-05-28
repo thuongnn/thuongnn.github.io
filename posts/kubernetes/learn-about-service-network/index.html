@@ -1,0 +1,536 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://thuongnn.dev/posts/kubernetes/learn-about-service-network/"><meta name="generator" content="Astro v5.5.2"><!-- General Meta Tags --><title>Tìm hiểu về Service network | thuongnn.dev</title><meta name="title" content="Tìm hiểu về Service network | thuongnn.dev"><meta name="description" content="Tìm hiểu về network trong Kubernetes Service."><meta name="author" content="thuongnn"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="Tìm hiểu về Service network | thuongnn.dev"><meta property="og:description" content="Tìm hiểu về network trong Kubernetes Service."><meta property="og:url" content="https://thuongnn.dev/posts/kubernetes/learn-about-service-network/"><meta property="og:image" content="https://thuongnn.dev/posts/kubernetes/learn-about-service-network/index.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2021-11-28T01:29:35.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://thuongnn.dev/posts/kubernetes/learn-about-service-network/"><meta property="twitter:title" content="Tìm hiểu về Service network | thuongnn.dev"><meta property="twitter:description" content="Tìm hiểu về network trong Kubernetes Service."><meta property="twitter:image" content="https://thuongnn.dev/posts/kubernetes/learn-about-service-network/index.png"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Tìm hiểu về Service network | thuongnn.dev","image":"https://thuongnn.dev/posts/kubernetes/learn-about-service-network/index.png","datePublished":"2021-11-28T01:29:35.000Z","author":[{"@type":"Person","name":"thuongnn","url":"https://thuongnn.dev/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="thuongnn.dev" href="https://thuongnn.dev/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CMTcOisY.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/about.BH1RUIRV.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+[data-astro-image]{width:100%;height:auto;object-fit:var(--fit);object-position:var(--pos);aspect-ratio:var(--w) / var(--h)}[data-astro-image=responsive]{max-width:calc(var(--w) * 1px);max-height:calc(var(--h) * 1px)}[data-astro-image=fixed]{width:calc(var(--w) * 1px);height:calc(var(--h) * 1px)}
+</style><style>[data-astro-transition-scope="astro-fam6wyqg-1"] { view-transition-name: tim-hi\1EC3u-v\1EC1-service-network; }@layer astro { ::view-transition-old(tim-hi\1EC3u-v\1EC1-service-network) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(tim-hi\1EC3u-v\1EC1-service-network) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(tim-hi\1EC3u-v\1EC1-service-network) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(tim-hi\1EC3u-v\1EC1-service-network) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: kubernetes; }@layer astro { ::view-transition-old(kubernetes) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(kubernetes) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(kubernetes) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(kubernetes) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: networking; }@layer astro { ::view-transition-old(networking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(networking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(networking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(networking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="absolute -top-full left-16 z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"> <a href="/" class="absolute py-1 text-2xl leading-7 font-semibold whitespace-nowrap sm:static"> thuongnn.dev </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:ml-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="max-w-3xl mx-auto px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-3xl items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="mx-auto w-full max-w-3xl px-4 pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-fam6wyqg-1"> Tìm hiểu về Service network </h1> <div class="flex items-center gap-4"> <div class="flex items-end space-x-2 opacity-80 my-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg> <span class="sr-only">Published:</span> <span class="text-sm italic sm:text-base"> <time datetime="2021-11-28T01:29:35.000Z">28 Nov, 2021</time> <span aria-hidden="true"> | </span> <span class="sr-only">&nbsp;at&nbsp;</span> <span class="text-nowrap">01:29 AM</span> </span> </div> <div class="opacity-80 max-sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/satnaing/astro-paper/edit/main/src/data/blog/kubernetes/learn-about-service-network.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> </div> <article id="article" class="mx-auto prose mt-8 max-w-3xl"> <p>Trong phần Pod network chúng ta đều biết rằng Pod resource là đơn vị nhỏ nhất sẽ có chứa ứng dụng bên trong nó khi triển khai và loại resource này khá là linh hoạt (có thể scale up, scale down, stop, re-created, re-allocated,…)</p>
+<p>Bởi sự linh hoạt này nên không có gì là chắc chắn đối với IP address của một Pod, IP address có thể liên tục bị thay đổi trong nhiều trường hợp → <strong>Vậy làm sao để connect giữa 02 Pod với nhau?</strong></p>
+<p>Lại quay về vấn đề cũ (khi có nhiều replicas của một service trong Docker Swarm), chúng ta lại nghĩ đến cần phải có một proxy như reverse-proxy/load balancer:</p>
+<ul>
+<li>Client sẽ kết nối đến proxy và proxy đó đảm nhiệm nhiệm vụ maintain danh sách các healthy servers mà client muốn kết nối tới.</li>
+<li>Proxy nhận biết các IP address của Pod còn sống hay đã chết, bổ sung thêm hay loại bỏ bớt Pod (replicas) → Từ đây client chỉ cần kết nối đến IP address của proxy thôi.</li>
+</ul>
+<p><img src="https://github.com/user-attachments/assets/3670a594-98f9-4e60-bd6d-5d9559ad2759" alt=""></p>
+<p>Kubernetes đã thiết kế một resource tương tự như thành phần proxy đã nói ở trên gọi là Service, Service resource có đặc điểm như sau:</p>
+<ul>
+<li>it must itself be durable and resistant to failure.</li>
+<li>it must have a list of servers it can forward to.</li>
+<li>it must have some way of knowing if a particular server is healthy and able to respond to requests.</li>
+</ul>
+<h2 id="table-of-contents">Table of contents</h2>
+<p></p><details><summary>Open Table of contents</summary><p></p>
+<ul>
+<li><a href="#v%E1%BA%ADy-kubernetes-service-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-nh%C6%B0-th%E1%BA%BF-n%C3%A0o">Vậy Kubernetes Service hoạt động như thế nào?</a></li>
+<li><a href="#service-network">Service Network</a></li>
+<li><a href="#c%C3%B3-m%E1%BB%99t-v%E1%BA%A5n-%C4%91%E1%BB%81-l%C3%A0-l%C3%A0m-sao-%C4%91%E1%BB%83-nat-%C4%91%C6%B0%E1%BB%A3c-g%C3%B3i-tin-t%E1%BB%9Bi-%C4%91%C3%BAng-%C4%91%E1%BB%8Ba-ch%E1%BB%89-ip-c%E1%BB%A7a-server-pod-v%C3%A0-c%C3%A1c-g%C3%B3i-tin-n%C3%A0y-%C4%91%C6%B0%E1%BB%A3c-c%C3%A2n-b%E1%BA%B1ng-t%E1%BA%A3i-%C4%91%E1%BB%81u-gi%E1%BB%AFa-02-pod-nh%C6%B0-th%E1%BA%BF-n%C3%A0o">Có một vấn đề là làm sao để NAT được gói tin tới đúng địa chỉ IP của server Pod, và các gói tin này được cân bằng tải đều giữa 02 Pod như thế nào?</a></li>
+<li><a href="#ph%C3%A2n-lo%E1%BA%A1i-service-resource">Phân loại Service resource</a>
+<ul>
+<li><a href="#service-c%C3%B3-proxy">Service CÓ proxy</a></li>
+<li><a href="#service-kh%C3%B4ng-proxy-headless-service">Service KHÔNG proxy (Headless Service)</a></li>
+</ul>
+</li>
+<li><a href="#reference-link">Reference Link</a></li>
+</ul>
+<p></p></details><p></p>
+<h2 id="vậy-kubernetes-service-hoạt-động-như-thế-nào">Vậy Kubernetes Service hoạt động như thế nào?</h2>
+<p>Để tìm hiểu cách mà Service hoạt động, chúng ta sẽ tạo một Deployment resource như sau:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">kind</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> Deployment</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">apiVersion</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> apps/v1</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">metadata</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  name</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> service-test</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">spec</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  replicas</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 2</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  selector</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    matchLabels</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      app</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> service_test_pod</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  template</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    metadata</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      labels</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        app</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> service_test_pod</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    spec</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      containers</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        - </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">name</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> simple-http</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          image</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> python:2.7</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          imagePullPolicy</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> IfNotPresent</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          command</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">/bin/bash</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">]</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          args</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">            [</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">              "</span><span style="color:#22863A;--shiki-dark:#ECC48D">-c</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">              '</span><span style="color:#22863A;--shiki-dark:#ECC48D">echo "&#x3C;p>Hello from $(hostname)&#x3C;/p>" > index.html; python -m SimpleHTTPServer 8080</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">            ]</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          ports</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">            - </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">name</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> http</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">              containerPort</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 8080</span></span></code></pre>
+<p>Deployment sẽ triển khai 02 simple http server Pods và listen ở port 8080, kiểm tra địa chỉ IP của 02 Pods:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">kubectl</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> get</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> pods</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> --selector=app=service_test_pod</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -o</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> jsonpath=</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">{.items[*].status.podIP}</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span></span></code></pre>
+<p>Kiểm tra kết nối tới một trong 02 Pods trên bằng cách chạy một client Pod như sau:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">apiVersion</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> v1</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">kind</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> Pod</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">metadata</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  name</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> service-test-client1</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">spec</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  restartPolicy</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> Never</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  containers</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    - </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">name</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> test-client1</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      image</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> alpine</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      command</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">/bin/sh</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">]</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      args</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">-c</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">echo 'GET / HTTP/1.1</span><span style="color:#22863A;--shiki-dark:#F78C6C">\\</span><span style="color:#22863A;--shiki-dark:#ECC48D">r</span><span style="color:#22863A;--shiki-dark:#F78C6C">\\</span><span style="color:#22863A;--shiki-dark:#ECC48D">n</span><span style="color:#22863A;--shiki-dark:#F78C6C">\\</span><span style="color:#22863A;--shiki-dark:#ECC48D">r</span><span style="color:#22863A;--shiki-dark:#F78C6C">\\</span><span style="color:#22863A;--shiki-dark:#ECC48D">n' | nc 10.0.2.2 8080</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">]</span></span></code></pre>
+<p>Client Pod ở trên sẽ tạo một kết nối tới địa chỉ IP <code>10.0.2.2</code> (có thể thay thế IP address này bằng địa chỉ IP của một trong 02 Pod ở trên). Xem kết quả chạy của client Pod đã triển khai bằng command kubectl logs <code>service-test-client1</code>.</p>
+<p>Chúng ta thấy rằng việc kết nối thông qua IP address của Pod khá là khó khăn:</p>
+<ul>
+<li>Cần phải lấy thủ công IP address của các Pod trong Deployment resource.</li>
+<li>IP address sẽ bị thay đổi và lấy thủ công lại lần nữa trong các trường hợp Pod (stop, scale up, scale down,…)</li>
+<li>Không tận dụng được hết hiệu năng khi các kết nối từ client Pod không được chia đều ra các Pod trong Deployment resource.</li>
+</ul>
+<p>Từ vấn đề trên k8s có hỗ trợ chúng ta một loại resource là Service có thể giải quyết được vấn đề này, triển khai Service như sau:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">kind</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> Service</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">apiVersion</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> v1</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">metadata</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  name</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> service-test</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">spec</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  selector</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    app</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> service_test_pod</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  ports</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    - </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">port</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 80</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      targetPort</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 8080</span></span></code></pre>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">kubectl</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> get</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> service</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> service-test</span></span></code></pre>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="text"><code><span class="line"><span>NAME           CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE</span></span>
+<span class="line"><span>service-test   10.3.241.152   &#x3C;none>        80/TCP    11s</span></span></code></pre>
+<p>Service resource sẽ cấu hình một proxy để forward các request của client tới danh sách Pod thông qua labels đã được assign khi khởi tạo (labels trong Deployment resource).</p>
+<p>Như khai báo Service ở trên, k8s sẽ tạo một Service có tên <code>service-test</code> gán với một địa chỉ IP và listen port 80. Điều này có nghĩa rằng client có thể kết nối tới các http server Pods thông qua IP address <code>10.3.241.152</code> và port 80:</p>
+<p>Có lẽ chúng ta sẽ không cần phải dùng đến IP address của Service, k8s đã cung cấp một internal cluster DNS hỗ trợ resolves IP address của Service thông qua Service name. Thử kiếm tra bằng cách kết nối tới <code>service-test</code> như sau:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">apiVersion</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> v1</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">kind</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> Pod</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">metadata</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  name</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> service-test-client2</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">spec</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  restartPolicy</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> Never</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  containers</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    - </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">name</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> test-client2</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      image</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> alpine</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      command</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">/bin/sh</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">]</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      args</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">-c</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">echo 'GET / HTTP/1.1</span><span style="color:#22863A;--shiki-dark:#F78C6C">\\</span><span style="color:#22863A;--shiki-dark:#ECC48D">r</span><span style="color:#22863A;--shiki-dark:#F78C6C">\\</span><span style="color:#22863A;--shiki-dark:#ECC48D">n</span><span style="color:#22863A;--shiki-dark:#F78C6C">\\</span><span style="color:#22863A;--shiki-dark:#ECC48D">r</span><span style="color:#22863A;--shiki-dark:#F78C6C">\\</span><span style="color:#22863A;--shiki-dark:#ECC48D">n' | nc service-test 80</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">]</span></span></code></pre>
+<p>Kiểm tra logs của client Pod nhận thấy kết quả trả về không khác gì với cách truy cập bằng IP address. Nếu chạy lại nhiều lần client Pod ở trên chúng ta sẽ thấy kết quả trả về sẽ được LB round robin tới 02 http server Pods. Great 😉</p>
+<h2 id="service-network">Service Network</h2>
+<p>Kiến trúc kết nối giữa client Pod và server Pod (triển khai ở trên) được phác hoạ lại như sau:</p>
+<p><img src="https://github.com/user-attachments/assets/2877df2d-e429-40f7-8f1b-1d29d29f4d09" alt=""></p>
+<p>Chúng ta có dải mạng <code>10.100.0.0/24</code> chính là network chứa IP address của các server node trong cụm k8s, các server node sẽ giao tiếp với nhau thông qua dải mạng này.</p>
+<ul>
+<li>Đối với cụm k8s được triển khai trên các dịch vụ public cloud (AWS, Azure, Google Cloud) thì các server node sẽ giao tiếp với nhau thông qua private network (được tạo bởi VPC network). Các client request sẽ kết nối với cụm thông qua public IP address.</li>
+<li>Đối với cụm k8s triển khai trên các virtual machine, cloud server thông thường thì sẽ kết nối với nhau thông qua đường internet (đường ra vào trên chính public IP address của các server node).</li>
+</ul>
+<p>Dải mạng <code>10.0.0.0/14</code> là network do k8s tạo và quản lý riêng trên từng server node (mỗi server node sẽ có lớp mạng riêng):</p>
+<ul>
+<li>Dải mạng <code>cbr0</code> (custom bridge network) tương tự như <code>docker0</code> (bridge network) vậy. Chỉ khác là nó đặc biệt hơn, do k8s quản lý trên tất cả các server node.</li>
+<li>Mỗi Pod resource sẽ được assign một IP address trên dải mạng của <code>cbr0</code>.</li>
+</ul>
+<p>Bảng Routing table thực chất sẽ được đặt trên tất cả các host (node) và được quản lý bởi kube-proxy, khi có bất cứ thông tin thay đổi nào thì k8s master sẽ thực hiện gửi đồng bộ xuống cho kube-proxy và nó sẽ update rules vào Routing table.</p>
+<p>Khi chúng ta tạo Service resource, thực chất nó sẽ hoạt động như sau:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">kubectl</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> describe</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> services</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> service-test</span></span></code></pre>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="text"><code><span class="line"><span>Name:                   service-test</span></span>
+<span class="line"><span>Namespace:              default</span></span>
+<span class="line"><span>Labels:                 &#x3C;none></span></span>
+<span class="line"><span>Selector:               app=service_test_pod</span></span>
+<span class="line"><span>Type:                   ClusterIP</span></span>
+<span class="line"><span>IP:                     10.3.241.152</span></span>
+<span class="line"><span>Port:                   http    80/TCP</span></span>
+<span class="line"><span>Endpoints:              10.0.1.2:8080,10.0.2.2:8080</span></span>
+<span class="line"><span>Session Affinity:       None</span></span>
+<span class="line"><span>Events:                 &#x3C;none></span></span></code></pre>
+<p><img src="https://github.com/user-attachments/assets/d5ffe94d-24de-4e6f-a3cd-fc66e270485b" alt=""></p>
+<ul>
+<li>Bản chất khi tạo Service resource, nó sẽ tự sinh ra Endpoint resource được dùng để mapping với Pod resource như hình ở trên (mapping với IP address và port của Pod resource). Địa chỉ IP của Service resource mà client Pod kết nối tới là một địa chỉ IP ảo được tạo và quản lý bởi <code>kube-proxy</code>.</li>
+<li>DNS server của k8s (chính là <code>core-dns</code> container) sẽ lưu trữ các A record và thực hiện resolve địa chỉ IP cho client Pod. Như ở hình trên thì có thể thấy được DNS server sẽ resolve domain <code>service-test</code> và trả về cho client Pod địa chỉ IP là <code>10.3.241.152</code>, các gói tin đi ra từ client Pod sẽ được set Destination IP là <code>10.3.241.152</code> trong header.</li>
+</ul>
+<p>Bây giờ chúng ta sẽ bắt đầu quá trình từ client Pod khi kết nối tới server Pod thông qua Service resource với diagram sau đây:
+<img src="https://github.com/user-attachments/assets/901f1427-bd81-495f-899b-1125d2432917" alt=""></p>
+<ul>
+<li>Các gói tin được gửi từ client Pod sẽ có destination IP là <code>10.3.241.152</code> (chính là địa chỉ IP ảo của Service resource, nó được resolve khi gọi đến <code>service-test</code>), những gói tin này sẽ được forward tới gateway của card mạng <code>cbr0</code> (gateway ip là <code>10.0.1.1</code>) bởi vì mạng này không biết destination IP của gói tin.</li>
+<li>Các gói tin đó sẽ đi ra ngoài tới card mạng <code>eth0</code> của máy host, <code>eth0</code> network cũng không biết gửi gói tin đi đâu và nó sẽ tiếp tục forward gói tin tới gateway IP là <code>10.100.0.1</code>. Điểm mấu chốt chính là ở bảng Routing table, các gói tin tới gateway <code>10.100.0.1</code> sẽ được NAT lại packet header và routing tới node phù hợp.</li>
+<li>Cụ thể trong diagram phía trên, các header của gói tin có thông tin Destination IP và Destination Port là <code>10.3.241.152:80</code> (virtual IP của Service resource tự sinh và port do người dùng thiết lập), routing table sẽ NAT lại các thông tin Destination IP và Destination Port là <code>10.0.2.2:8080</code> (địa chỉ IP của thằng server Pod 2 và port ứng dụng trong Pod đó).</li>
+</ul>
+<h2 id="có-một-vấn-đề-là-làm-sao-để-nat-được-gói-tin-tới-đúng-địa-chỉ-ip-của-server-pod-và-các-gói-tin-này-được-cân-bằng-tải-đều-giữa-02-pod-như-thế-nào">Có một vấn đề là làm sao để NAT được gói tin tới đúng địa chỉ IP của server Pod, và các gói tin này được cân bằng tải đều giữa 02 Pod như thế nào?</h2>
+<p>Câu trả lời đó chính là kube-proxy và network provider, xem diagram chi tiết dưới đây:</p>
+<p><img src="https://github.com/user-attachments/assets/882c6c49-1632-44e1-80c2-8e32b822a59b" alt=""></p>
+<p><strong>Netfilter</strong> là một công cụ trong kernel space cho phép cập nhật rules liên quan tới định tuyến gói tin trong linux, chắc hẳn chúng ta đều biết đến thằng iptables — nó chính là interface tương tác với netfilter để cấu hình firewall (khác nhau giữa netfilter và iptables xem <a href="https://www.zdnet.com/article/netfilter-and-iptables-stateful-firewalling-for-linux/#:~:text=There%20may%20be%20some%20confusion,classify%20and%20act%20on%20packets.">ở đây</a>).</p>
+<p>Trong kiến trúc của k8s thì thằng kube-proxy sẽ tương tác với <strong>interface network provider</strong> và thằng <strong>network provider</strong> này có nhiệm vụ tương tác với netfilter trong kernel space để cập nhật rules được gửi từ apiserver:</p>
+<ul>
+<li>Khi chúng ta tạo hay cập nhật Pod, Service, Endpoint resource,… → các routing rules liên quan sẽ được tự động gửi vào kube-proxy, kube-proxy sẽ có nhiệm vụ update chúng vào network provider.</li>
+<li>Cơ chế Pod healcheck cũng vậy, thông tin (trạng thái) của server Pod sẽ được kubelet thu thập và gửi về apiserver. Nếu trạng thái của Pod bị thay đổi, apiserver sẽ tự động gửi về kube-proxy của các host(node) để update lại netfilter thông qua network provider.</li>
+<li>Network provider chính là thành phần khi chúng ta cài đặt kubernetes (CNI plugins), mọi thông tin routing rules trên node sẽ do thằng này quản lý (thêm, sửa, xoá)</li>
+</ul>
+<p><em>Tất cả các routing rules sẽ được liên tục cập nhật vào Routing table của netfilter</em>, việc forward gói tin hay cân bằng tải các gói tin đều do thằng netfilter này làm hết. Cân bằng tải thì được thực hiện bằng cơ chế IPVS, iptables,… sẽ tuỳ thuộc theo thằng network provider được sử dụng là gì.</p>
+<p><img src="https://github.com/user-attachments/assets/7ae96fa0-6d4d-41e6-8833-976de1f2b755" alt="Diagram chi tiết hơn về việc gói tin được xử lý với netfilter, chi tiết có thể xem thêm ở đây"><em>Diagram chi tiết hơn về việc gói tin được xử lý với netfilter, chi tiết có thể xem thêm <a href="https://www.stackrox.com/post/2020/01/kubernetes-networking-demystified/">ở đây</a></em></p>
+<p><strong>Network provider (CNI plugins)</strong></p>
+<ul>
+<li>Như đã nói ở trên, tất cả các routing rules của cụm k8s sẽ được thêm vào Routing table → việc Routing table sẽ ngày càng bị phình rất là to bởi vì một cụm k8s có thể chạy đến hàng nghìn tài nguyên (Pod, Service, Endpoint resource,…)</li>
+<li>Bởi vậy chúng ta cần phải có những cơ chế, thuật toán sử dụng để quản lý các routing rules trong netfilter một cách hiệu quả nhất. Đây chính là thằng network provider (CNI plugins) chúng ta nói ở trên, đã có rất nhiều các CNI plugins được sử dụng trong cộng đồng k8s.</li>
+<li>Những thằng CNI plugins phổ biến như fannel, calico, cilium, weave-net,… sẽ được lựa chọn cài đặt khi dựng cụm k8s, mỗi thằng plugin này có ưu nhược điểm khác nhau → tuỳ theo nhu cầu sử dụng, chúng ta sẽ chọn plugin phù hợp nhất.</li>
+</ul>
+<p><img src="https://github.com/user-attachments/assets/4de5ac6c-1595-46f3-bc4d-eb1ef66473ae" alt="Xem chi tiết so sánh giữa các CNI plugins ở đây"><em>Xem chi tiết so sánh giữa các CNI plugins <a href="https://platform9.com/blog/the-ultimate-guide-to-using-calico-flannel-weave-and-cilium/">ở đây</a></em></p>
+<h2 id="phân-loại-service-resource">Phân loại Service resource</h2>
+<h3 id="service-có-proxy">Service CÓ proxy</h3>
+<p><img src="https://github.com/user-attachments/assets/6fbcfa15-5dcb-4aa4-974a-76075312a766" alt=""></p>
+<ul>
+<li>Đặc điểm chung của loại Service kèm proxy (có type là <strong>ClusterIP</strong>, <strong>NodePort</strong>, <strong>LoadBalancer</strong>) là gom toàn bộ các Pod với cơ chế selector label qua một Virtual IP chung (như đã giải thích ở trên).</li>
+<li>Các request gọi đến Service kèm proxy sẽ được tự động load balacing (round-robin) tới các Pod phía sau nó, tự động discovery khi các Pod (có label đã đăng ký với Service) được khởi chạy hoặc dừng.</li>
+<li>Proxy ở đây là cơ chế đã giải thích ở phân Service resource hoạt động như nào? cách mà chúng được cân bằng tải, hay cách chúng kết nối với nhau.</li>
+</ul>
+<p><strong>ClusterIP</strong></p>
+<p><img src="https://github.com/user-attachments/assets/c4701fef-447c-4c69-92f4-a2e626755166" alt=""></p>
+<p>Ở ví dụ trước chúng ta sử dụng Service với type mặc định là ClusterIP, loại Service này được sử dụng để giao tiếp nội bộ trong cụm k8s. Ví dụ như client Pod kết nối tới 02 server Pod thông qua Service resource, <strong>ClusterIP</strong> chỉ là một IP ảo <code>10.3.241.152</code> - chỉ có những Pod resource chạy bên trong cụm mới có thể kết nối đến ClusterIP này.</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">apiVersion</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> v1</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">kind</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> Service</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">metadata</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  name</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> service-test</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">spec</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  type</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> ClusterIP</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Chỉ tạo Virtual IP</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  selector</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    app</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> service_test_pod</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Label selector</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  ports</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    - </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">protocol</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> TCP</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Protocol</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      port</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 80</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Port của Service</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      targetPort</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 8080</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Port của Pod</span></span></code></pre>
+<p><strong>NodePort</strong></p>
+<p><img src="https://github.com/user-attachments/assets/35564293-4230-4083-9604-21ca5800b7fd" alt=""></p>
+<p><em>Vấn đề ở đây là làm sao cho client có thể kết nối tới các service Pod trong cụm k8s?</em> từ đây k8s mới cung cấp loại Service type là <strong>NodePort</strong>. Các client ở bên ngoài cụm k8s lúc này có thể truy cập vào cụm thông qua IP address <code>10.100.0.2</code></p>
+<p>Khi tạo Service resource có type là NodePort, k8s sẽ tự động tạo thành phần ClusterIP (tự tạo Virtual IP) rồi mapping tới một port ngẫu nhiên (30000~32767) trên tất cả các worker node (port này có thể được cấu hình fix cứng thông qua yaml file).</p>
+<p>Ví dụ ở hình bên trên, client có thể truy cập vào địa chỉ IP <code>10.100.0.2:30080</code> hoặc <code>10.100.0.3:30080</code> (miễn sao client cùng dải mạng với cụm k8s). Port <strong>30080</strong> sẽ được listen trên card eth0 của tất cả các worker node, đây chính là lý do tại sao không thể tạo nhiều Servicce (NodePort) fix cứng nodePort giống nhau.</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">---</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">apiVersion</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> v1</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">kind</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> Service</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">metadata</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  name</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> service-test</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">spec</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  type</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> NodePort</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Virtual IP + map host port</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  selector</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    app</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> service_test_pod</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Label selector</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  ports</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    - </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">protocol</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> TCP</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Protocol</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      port</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 80</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Port của Service</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      targetPort</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 8080</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Port của Pod</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      nodePort</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 30080</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Port của Host (optional)</span></span></code></pre>
+<p><strong>LoadBalancer</strong></p>
+<p><img src="https://github.com/user-attachments/assets/6716038c-6119-48cf-80f9-af10d28237f6" alt=""></p>
+<p>Lúc này, tất cả các worker node đều listen chung một port duy nhất, client có thể truy cập vào bất kỳ node nào trong cụm với port duy nhất trên để kết nối tới Pod bên trong. <strong><em>Vấn đề ở đây là chúng ta cung cấp địa chỉ IP của worker node nào cho client? nhỡ worker node đó chết thì sao?</em></strong></p>
+<p>Ví dụ đơn giản nhất là trên dịch vụ Cloud, các worker node nằm trên dải VPC network mà client từ bên ngoài internet không thể truy cập vào được. Chúng ta phải cần một con Load Balancer (có 1 chân public IP phơi ra cho client truy cập) làm nhiệm vụ cân bằng tải tới các worker node bên trong dải VPC network kia. Đây chính là Service resource có type là <strong>LoadBalancer</strong>.</p>
+<p>Tuy nhiên loại này không được sử dụng phổ biến trong thực tế, nó cũng chả khác gì con cân bằng tải thông thường cả (nginx, haproxy, envoy,…) Vì vậy để giải quyết vấn đề trên, đa số thường chọn giải pháp tự dựng Load Balancer cho cụm k8s (có thể cấu hình được nhiều thứ hơn so với Service type LoadBalancer của k8s).</p>
+<p>Khi sử dụng resource này trên cloud (ví dụ như Google Cloud, AWS, Azure,…) bọn nó sẽ tự động gán một public IP cho Service → tất nhiên là nó sẽ tính phí trên mỗi public IP tạo ra.</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">---</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">apiVersion</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> v1</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">kind</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> Service</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">metadata</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  name</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> service-test</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  annotations</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    service.beta.kubernetes.io/aws-load-balancer-backend-protocol</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> http</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    service.beta.kubernetes.io/aws-load-balancer-ssl-ports</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">443,8443</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">spec</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  type</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> LoadBalancer</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Virtual IP + map host port + create LB</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  selector</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    app</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> service_test_pod</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Label selector</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  ports</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    - </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">protocol</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> TCP</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Protocol</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      port</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 80</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Port của Service</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      targetPort</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 8080</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Port của Pod</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      nodePort</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 30080</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Port của Host (optional)</span></span></code></pre>
+<h3 id="service-không-proxy-headless-service">Service KHÔNG proxy (Headless Service)</h3>
+<p><img src="https://github.com/user-attachments/assets/d34c7ba8-fa75-4447-80ef-3d1e31956b51" alt=""></p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">---</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">apiVersion</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> v1</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">kind</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> Service</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">metadata</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  name</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> service-test</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">spec</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  clusterIP</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> None</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Không tạo Virtual IP</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  selector</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    app</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> service_test_pod</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Label selector</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  ports</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    - </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">protocol</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> TCP</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Protocol</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      targetPort</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 8080</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> # Port của Pod</span></span></code></pre>
+<ul>
+<li>
+<p>Đây là loại Service không sử dụng proxy - đồng nghĩa với việc nó sẽ không tạo bất kỳ Virtual IP nào và client sẽ kết nối thông qua cơ chế <strong>DNS Load Balancing</strong>.</p>
+</li>
+<li>
+<p>Thay vì trả về Virtual IP, khi truy cập vào domain service-test sẽ được resolve ra danh sách các địa chỉ IP của server Pod. Phía client cần phải chọn ra địa chỉ IP của Pod mà nó muốn kết nối đến, DNS server của k8s cũng hỗ trợ LB sử dụng thuật toán round robin để trả về danh sách địa chỉ IP của các server Pod.</p>
+</li>
+<li>
+<p>Lúc này client Pod sẽ không kết nối tới server Pod thông qua Virtual IP của Service resource nữa, thay vào đó nó sẽ thực hiện kết nối trực tiếp tới 1 Pod server. Cách này chúng ta không thể mapping port của container Pod với một port bất kỳ nào khác, nên các kết nối cần phải sử dụng chính xác port của container trong Pod.</p>
+</li>
+<li>
+<p>Như ví dụ ở diagram phía trên, chúng ta có thể truy cập vào server Pod thông qua DNS name <code>service-test:8080</code> hoặc <code>10.0.1.2:8080</code>, <code>10.0.2.2:8080</code>. Nó vẫn đảm bảo cơ chế healthcheck các server Pod phía sau và trả về danh sách các địa chỉ IP của healthy Pod.</p>
+</li>
+</ul>
+<p><img src="https://github.com/user-attachments/assets/fbdf3334-5a5a-4fac-9369-b51ef0dbd3d5" alt=""></p>
+<p>Một trường hợp sử dụng nữa đối với <strong>Service NO proxy</strong> là cấu hình kết nối tới Database server bên ngoài cụm (như diagram ở trên), chúng ta sẽ thiết kế Service resource với clusterIP là None và một Manual Endpoint để cấu hình địa chỉ IP và port (của PostgreSQL server).</p>
+<p>Khi tạo Service resource, thông tin của Service sẽ được k8s apiserver cập nhật vào DNS server (chính là <code>core-dns</code> container trong kube-system namspace). Vì vậy trong golang API container có thể resolve được địa chỉ IP của database service là <code>192.0.2.42</code>.</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">---</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">apiVersion</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> v1</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">kind</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> Service</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">metadata</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  name</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> database</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">spec</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  clusterIP</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> None</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  ports</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    - </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">protocol</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> TCP</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      targetPort</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 5432</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">---</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">apiVersion</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> v1</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">kind</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> Endpoints</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">metadata</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  name</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#ECC48D"> database</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">subsets</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  - </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">addresses</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">      - </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">ip</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 192.0.2.42</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    ports</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">      - </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">port</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 5432</span></span></code></pre>
+<h2 id="reference-link">Reference Link</h2>
+<ul>
+<li>Giải thích chi tiết về Service network trong k8s: <a href="https://medium.com/google-cloud/understanding-kubernetes-networking-services-f0cb48e4cc82">https://medium.com/google-cloud/understanding-kubernetes-networking-services-f0cb48e4cc82</a></li>
+<li>So sánh sự khác nhau giữa Service (có proxy) và Headless Service (không proxy): <a href="https://dev.to/kaoskater08/building-a-headless-service-in-kubernetes-3bk8">https://dev.to/kaoskater08/building-a-headless-service-in-kubernetes-3bk8</a></li>
+<li>So sánh chi tiết giữa các CNI plugins: <a href="https://rancher.com/blog/2019/2019-03-21-comparing-kubernetes-cni-providers-flannel-calico-canal-and-weave">https://rancher.com/blog/2019/2019-03-21-comparing-kubernetes-cni-providers-flannel-calico-canal-and-weave</a></li>
+<li>Xem chi tiết cách kube-proxy với netfilter hoạt động như nào: <a href="https://www.stackrox.com/post/2020/01/kubernetes-networking-demystified">https://www.stackrox.com/post/2020/01/kubernetes-networking-demystified</a></li>
+<li>Xem chi tiết tài liệu về netfilter và iptables: <a href="https://news.cloud365.vn/chuyen-sau-ve-iptables-command-va-netfilter">https://news.cloud365.vn/chuyen-sau-ve-iptables-command-va-netfilter</a></li>
+<li>Xem chi tiết tài liệu về calico plugin <a href="https://object-storage-ca-ymq-1.vexxhost.net/swift/v1/6e4619c416ff4bd19e1c087f27a43eea/www-assets-prod/presentation-media/k8s-calico-v1.0.pdf">ở đây</a></li>
+<li>Phân biệt Port, TargetPort và NodePort trong Kubernetes ở đây: <a href="https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-ports-targetport-nodeport-service.html">https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-ports-targetport-nodeport-service.html</a></li>
+</ul> </article> <hr class="my-8 border-dashed"> <div class="opacity-80 sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/satnaing/astro-paper/edit/main/src/data/blog/kubernetes/learn-about-service-network.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/kubernetes/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Kubernetes</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/networking/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Networking</span> </a> </li> </ul> <div class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"> <div class="flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start"> <span class="italic">Share this post on:</span> <div class="text-center"> <a href="https://wa.me/?text=https://thuongnn.dev/posts/kubernetes/learn-about-service-network/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> <span class="sr-only">Share this post via WhatsApp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://thuongnn.dev/posts/kubernetes/learn-about-service-network/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://thuongnn.dev/posts/kubernetes/learn-about-service-network/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://thuongnn.dev/posts/kubernetes/learn-about-service-network/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg> <span class="sr-only">Share this post via Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://thuongnn.dev/posts/kubernetes/learn-about-service-network/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg> <span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&#38;body=https://thuongnn.dev/posts/kubernetes/learn-about-service-network/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Share this post via email</span> </a> </div> </div> <button id="back-to-top" class="focus-outline py-1 whitespace-nowrap hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span>Back to Top</span> </button> </div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/kubernetes/learn-about-ingress-network" class="flex w-full gap-1 hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">Tìm hiểu về Ingress network</div> </div> </a> <a href="/posts/kubernetes/learn-about-pod-network" class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">Tìm hiểu về Pod network</div> </div> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="w-full mt-auto"> <div class="max-w-3xl mx-auto px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://github.com/thuongnn" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title=" thuongnn.dev on Github"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only"> thuongnn.dev on Github</span> </a><a href="https://www.facebook.com/thuongnn97" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">thuongnn.dev on Facebook</span> </a><a href="https://www.linkedin.com/in/thuongnn/" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on LinkedIn"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">thuongnn.dev on LinkedIn</span> </a><a href="mailto:thuongnn1997@gmail.com" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to thuongnn.dev"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to thuongnn.dev</span> </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2025</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ml-2 opacity-0 group-hover:opacity-100 focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "copy-code absolute right-3 -top-3 rounded bg-muted px-2 py-1 text-xs leading-4 text-foreground font-medium";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    document.querySelector("#back-to-top")?.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+  }
+  backToTop();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>

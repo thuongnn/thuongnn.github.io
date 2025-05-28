@@ -1,0 +1,713 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://thuongnn.dev/posts/kubernetes/learn-about-networking-in-docker-swarm/"><meta name="generator" content="Astro v5.5.2"><!-- General Meta Tags --><title>Tìm hiểu về Network trong Docker Swarm | thuongnn.dev</title><meta name="title" content="Tìm hiểu về Network trong Docker Swarm | thuongnn.dev"><meta name="description" content="Tìm hiểu chi tiết các loại network trong Docker Swarm và cách hoạt động của nó."><meta name="author" content="thuongnn"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="Tìm hiểu về Network trong Docker Swarm | thuongnn.dev"><meta property="og:description" content="Tìm hiểu chi tiết các loại network trong Docker Swarm và cách hoạt động của nó."><meta property="og:url" content="https://thuongnn.dev/posts/kubernetes/learn-about-networking-in-docker-swarm/"><meta property="og:image" content="https://thuongnn.dev/posts/kubernetes/learn-about-networking-in-docker-swarm/index.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2021-07-30T19:29:35.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://thuongnn.dev/posts/kubernetes/learn-about-networking-in-docker-swarm/"><meta property="twitter:title" content="Tìm hiểu về Network trong Docker Swarm | thuongnn.dev"><meta property="twitter:description" content="Tìm hiểu chi tiết các loại network trong Docker Swarm và cách hoạt động của nó."><meta property="twitter:image" content="https://thuongnn.dev/posts/kubernetes/learn-about-networking-in-docker-swarm/index.png"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Tìm hiểu về Network trong Docker Swarm | thuongnn.dev","image":"https://thuongnn.dev/posts/kubernetes/learn-about-networking-in-docker-swarm/index.png","datePublished":"2021-07-30T19:29:35.000Z","author":[{"@type":"Person","name":"thuongnn","url":"https://thuongnn.dev/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="thuongnn.dev" href="https://thuongnn.dev/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CMTcOisY.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/about.BH1RUIRV.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+[data-astro-image]{width:100%;height:auto;object-fit:var(--fit);object-position:var(--pos);aspect-ratio:var(--w) / var(--h)}[data-astro-image=responsive]{max-width:calc(var(--w) * 1px);max-height:calc(var(--h) * 1px)}[data-astro-image=fixed]{width:calc(var(--w) * 1px);height:calc(var(--h) * 1px)}
+</style><style>[data-astro-transition-scope="astro-fam6wyqg-1"] { view-transition-name: tim-hi\1EC3u-v\1EC1-network-trong-docker-swarm; }@layer astro { ::view-transition-old(tim-hi\1EC3u-v\1EC1-network-trong-docker-swarm) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(tim-hi\1EC3u-v\1EC1-network-trong-docker-swarm) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(tim-hi\1EC3u-v\1EC1-network-trong-docker-swarm) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(tim-hi\1EC3u-v\1EC1-network-trong-docker-swarm) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: docker; }@layer astro { ::view-transition-old(docker) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(docker) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(docker) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(docker) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: docker-swarm; }@layer astro { ::view-transition-old(docker-swarm) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(docker-swarm) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(docker-swarm) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(docker-swarm) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-4"] { view-transition-name: networking; }@layer astro { ::view-transition-old(networking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(networking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(networking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(networking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="absolute -top-full left-16 z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"> <a href="/" class="absolute py-1 text-2xl leading-7 font-semibold whitespace-nowrap sm:static"> thuongnn.dev </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:ml-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="max-w-3xl mx-auto px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-3xl items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="mx-auto w-full max-w-3xl px-4 pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-fam6wyqg-1"> Tìm hiểu về Network trong Docker Swarm </h1> <div class="flex items-center gap-4"> <div class="flex items-end space-x-2 opacity-80 my-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg> <span class="sr-only">Published:</span> <span class="text-sm italic sm:text-base"> <time datetime="2021-07-30T19:29:35.000Z">30 Jul, 2021</time> <span aria-hidden="true"> | </span> <span class="sr-only">&nbsp;at&nbsp;</span> <span class="text-nowrap">07:29 PM</span> </span> </div> <div class="opacity-80 max-sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/satnaing/astro-paper/edit/main/src/data/blog/kubernetes/learn-about-networking-in-docker-swarm.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> </div> <article id="article" class="mx-auto prose mt-8 max-w-3xl"> <h2 id="table-of-contents">Table of contents</h2>
+<p></p><details><summary>Open Table of contents</summary><p></p>
+<ul>
+<li><a href="#chu%E1%BA%A9n-b%E1%BB%8B">Chuẩn bị</a></li>
+<li><a href="#thi%E1%BA%BFt-l%E1%BA%ADp-c%E1%BB%A5m-docker-swarm">Thiết lập cụm Docker Swarm</a></li>
+<li><a href="#t%C3%ACm-hi%E1%BB%83u-v%E1%BB%81-docker-swarm-network">Tìm hiểu về Docker Swarm Network</a>
+<ul>
+<li><a href="#tri%E1%BB%83n-khai-nginx-service-v%E1%BB%9Bi-docker-swarm">Triển khai Nginx service với Docker Swarm</a></li>
+</ul>
+</li>
+<li><a href="#ki%E1%BB%83m-tra">Kiểm tra</a>
+<ul>
+<li><a href="#ingress-network-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-nh%C6%B0-th%E1%BA%BF-n%C3%A0o">Ingress Network hoạt động như thế nào?</a></li>
+<li><a href="#v%E1%BA%ADy-l%C3%A0m-sao-t%E1%BB%AB-ingress-sbox-c%C3%B3-th%E1%BB%83-l%E1%BB%B1a-ch%E1%BB%8Dn-%C4%91%C6%B0%E1%BB%A3c-service-%C4%91%C3%ADch-nginx-1-ho%E1%BA%B7c-nginx-2-v%C3%A0-th%E1%BB%B1c-hi%E1%BB%87n-lb-t%E1%BB%9Bi-ch%C3%BAng-nh%C6%B0-th%E1%BA%BF-n%C3%A0o">Vậy làm sao từ <code>ingress-sbox</code> có thể lựa chọn được service đích (<code>nginx-1</code> hoặc <code>nginx-2</code>) và thực hiện LB tới chúng như thế nào?</a></li>
+</ul>
+</li>
+<li><a href="#internal-overlay-network-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-nh%C6%B0-th%E1%BA%BF-n%C3%A0o">Internal Overlay Network hoạt động như thế nào?</a>
+<ul>
+<li><a href="#bypass-the-routing-mesh-ivps">Bypass the routing mesh (IVPS)</a></li>
+<li><a href="#dns-round-robin-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-nh%C6%B0-th%E1%BA%BF-n%C3%A0o">DNS Round Robin hoạt động như thế nào?</a></li>
+<li><a href="#v%E1%BA%ADy-khi-n%C3%A0o-th%C3%AC-s%E1%BB%AD-d%E1%BB%A5ng-dns-round-robin">Vậy khi nào thì sử dụng DNS Round Robin?</a></li>
+</ul>
+</li>
+<li><a href="#t%C3%A0i-li%E1%BB%87u-tham-kh%E1%BA%A3o">Tài liệu tham khảo</a></li>
+</ul>
+<p></p></details><p></p>
+<h2 id="chuẩn-bị">Chuẩn bị</h2>
+<p>Chuẩn bị ít nhất 03 server cài đặt sẵn Docker. Có thể sử dụng <a href="https://github.com/thuongnn/example-ansible-project.git">Ansible playbook</a> để cài đặt Docker đồng thời cho các server hoặc cài đặt Docker trên từng server với command sau:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">curl</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -sSL</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> &#x3C;</span><span style="color:#2B5581;--shiki-dark:#ECC48D">https://get.docker.i</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">o</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">></span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> |</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> bash</span></span></code></pre>
+<p><strong>Chú ý</strong>: Docker Swarm cần mở một số protocols và ports dưới đây để giao tiếp giữa các server:</p>
+<ul>
+<li><strong>TCP port 2377</strong> for cluster management communications</li>
+<li><strong>TCP</strong> and <strong>UDP port 7946</strong> for communication among nodes</li>
+<li><strong>UDP port 4789</strong> for overlay network traffic</li>
+</ul>
+<p>Kiểm tra tường lửa của server xem có bị chặn các protocols và ports trên hay không bằng command:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">iptables-save</span></span></code></pre>
+<p>Nếu bị chặn, hãy mở protocols và ports trên bằng command:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">iptables</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -I</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> INPUT</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -p</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> tcp</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -m</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> tcp</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> --dport</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 2377</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -j</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> ACCEPT</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">iptables</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -I</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> INPUT</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -p</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> tcp</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -m</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> tcp</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> --dport</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 7946</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -j</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> ACCEPT</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">iptables</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -I</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> INPUT</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -p</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> udp</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -m</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> udp</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> --dport</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 7946</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -j</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> ACCEPT</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">iptables</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -I</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> INPUT</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -p</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> udp</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -m</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> udp</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> --dport</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 4789</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -j</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> ACCEPT</span></span></code></pre>
+<h2 id="thiết-lập-cụm-docker-swarm">Thiết lập cụm Docker Swarm</h2>
+<p>Kiến trúc triển khai sẽ bao gồm 01 manager node và 02 worker node:</p>
+<p><img src="https://github.com/user-attachments/assets/6f75a3e7-0c40-4d8a-8b22-531d2aff70d5" alt=""></p>
+<ol>
+<li>SSH vào manager node và chạy command dưới đây để khởi tạo swarm cluster:</li>
+</ol>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> swarm</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> init</span></span></code></pre>
+<ol start="2">
+<li>Sau khi init sẽ có một ghi chú được in ra màn hình bao gồm token dùng để join các work node vào cụm. SSH lần lượt vào worker-1 và worker-2 thực hiện command như hướng dẫn ở ghi chú trên để join vào cụm:</li>
+</ol>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> swarm</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> join</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> --token</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> &#x3C;</span><span style="color:#2B5581;--shiki-dark:#ECC48D">TOKE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">N</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">></span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#82AAFF">  --advertise-addr</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> &#x3C;</span><span style="color:#2B5581;--shiki-dark:#ECC48D">IP-ADDRESS-OF-WORKER-</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">1></span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  &#x3C;</span><span style="color:#2B5581;--shiki-dark:#ECC48D">IP-ADDRESS-OF-MANAGE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">R</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">></span><span style="color:#2B5581;--shiki-dark:#ECC48D">:2377</span></span></code></pre>
+<ol start="3">
+<li>Sau khi join lần lượt worker-1 và worker-2, có thể kiểm tra danh sách các node khả dụng trên manager node bằng command:</li>
+</ol>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> node</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> ls</span></span></code></pre>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="text"><code><span class="line"><span>ID                            HOSTNAME   STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION</span></span>
+<span class="line"><span>3ahbvxay68yn43lojz7j8uqdg *   server-1   Ready     Active         Leader           20.10.7</span></span>
+<span class="line"><span>xjlbrbhzfr2b2do6eosod7rt2     server-2   Ready     Active                          20.10.7</span></span>
+<span class="line"><span>1860sgfoof3ujljs8f1zfk7h3     server-3   Ready     Active                          20.10.7</span></span></code></pre>
+<h2 id="tìm-hiểu-về-docker-swarm-network">Tìm hiểu về Docker Swarm Network</h2>
+<h3 id="triển-khai-nginx-service-với-docker-swarm">Triển khai Nginx service với Docker Swarm</h3>
+<p>Trên manager node, tạo overlay network <code>nginx-net</code> và triển khai Nginx service kết nối tới <code>nginx-net</code>. Nginx service sẽ publish port 8080 ra bên ngoài map với port 80 bên trong Nginx container:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> network</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> create</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -d</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> overlay</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> nginx-net</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> service</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> create</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#82AAFF">  --name</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> my-nginx</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#82AAFF">  --publish</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> target=80,published=</span><span style="color:#1976D2;--shiki-dark:#F78C6C">8080</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#82AAFF">  --replicas=2</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#82AAFF">  --network</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> nginx-net</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">  thuongnn1997/nginx:debug</span></span></code></pre>
+<p>Kiểm tra Nginx service đang chạy trên server nào bằng command:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> service</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> ps</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> my-nginx</span></span></code></pre>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="text"><code><span class="line"><span>ID             NAME         IMAGE                      NODE       DESIRED STATE   CURRENT STATE            ERROR     PORTS</span></span>
+<span class="line"><span>opdskafvlrcl   my-nginx.1   thuongnn1997/nginx:debug   server-1   Running         Running 15 minutes ago</span></span>
+<span class="line"><span>6gtue1osr897   my-nginx.2   thuongnn1997/nginx:debug   server-2   Running         Running 15 minutes ago</span></span></code></pre>
+<p>Để phân biệt nội dung trả về từ Nginx service, sử dụng <code>docker exec</code> vào từng Nginx container và sửa nội dung index.html như sau:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> exec</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -it</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> my-nginx.1.opdskafvlrclhc38t0tcw5uup</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> /bin/bash</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C5E478;--shiki-dark-font-style:italic">echo</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">Welcome to nginx-1 from server-1</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> ></span><span style="color:#2B5581;--shiki-dark:#ECC48D"> /usr/share/nginx/html/index.html</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> exec</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -it</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> my-nginx.2.6gtue1osr897u5i8fafdtoc3u</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> /bin/bash</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C5E478;--shiki-dark-font-style:italic">echo</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">Welcome to nginx-2 from server-2</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> ></span><span style="color:#2B5581;--shiki-dark:#ECC48D"> /usr/share/nginx/html/index.html</span></span></code></pre>
+<h2 id="kiểm-tra">Kiểm tra</h2>
+<p>Thực hiện curl command nhiều lần vào một địa chỉ IP bất kỳ trong 03 server với port 8080 như ví dụ dưới đây:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">curl</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> 171.244.143.222:8080</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># Welcome to nginx-2 from server-2</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">curl</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> 171.244.143.222:8080</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># Welcome to nginx-1 from server-1</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">curl</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> 171.244.143.222:8080</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># Welcome to nginx-2 from server-2</span></span></code></pre>
+<ul>
+<li>
+<p>Nhận thấy rằng truy cập vào một địa chỉ IP nhiều lần thì lại nhận được các kết quả khác nhau cho mỗi lần truy cập (kết quả phản hồi từ Nginx service lần lượt của container <code>nginx-1</code> và <code>nginx-2</code>)</p>
+</li>
+<li>
+<p>Dù có truy cập vào bất cứ server nào với port 8080 (kể cả Nginx service không chạy trên server đó) thì đều nhận được phản hồi từ Nginx service.</p>
+</li>
+</ul>
+<p>Liệt kê tất cả các loại Docker network trên server bằng command dưới đây:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> network</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> ls</span></span></code></pre>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="text"><code><span class="line"><span>NETWORK ID     NAME              DRIVER    SCOPE</span></span>
+<span class="line"><span>10864fa65d57   bridge            bridge    local</span></span>
+<span class="line"><span>404e32f8d992   docker_gwbridge   bridge    local</span></span>
+<span class="line"><span>4efb973544ed   host              host      local</span></span>
+<span class="line"><span>rasrehzw9jfe   ingress           overlay   swarm</span></span>
+<span class="line"><span>jtlbkwkmjz9w   nginx-net         overlay   swarm</span></span>
+<span class="line"><span>fe2c98e1bb90   none              null      local</span></span></code></pre>
+<p>Theo lý thuyết, đối với Docker Swarm Network sẽ có các loại network có vai trò khác nhau dưới đây:</p>
+<ul>
+<li><strong>nginx-net</strong> (overlay network) là private network do người dùng tạo ra để cho các service trên mạng này có thể giao tiếp nội bộ với nhau, đảm bảo chỉ những service join cùng private network mới có thể giao tiếp với nhau.</li>
+<li><strong>ingress</strong> (overlay network) là overlay network mặc định được quản lý bởi Docker, khi một service published port ra bên ngoài thì sẽ được join vào network này.</li>
+<li><strong>docker_gwbridge</strong> (bridge network) cũng là network mặc định được quản lý bởi Docker, nó hoạt động tương tự như <code>docker0</code>. Network này giúp các service bên trong container có thể giao tiếp với máy host bên ngoài.</li>
+</ul>
+<h3 id="ingress-network-hoạt-động-như-thế-nào">Ingress Network hoạt động như thế nào?</h3>
+<p>Như chúng ta đã biết thì ingress là một loại network đặc biệt đóng vai trò như Load Balancer giúp cho các request từ client được forward đến replica container nằm bất cứ đâu trên các node. Khi triển khai dịch vụ với tham số <code>--publish target=80,published=8080</code>, các replica container sẽ được tự động join vào ingress network. Vậy chúng hoạt động như thế nào?</p>
+<p>Chúng ta đã biết 02 replica container của Nginx service đang chạy trên server 1 và 2, thử kiểm tra docker inspect Nginx container trên server-1:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">//root@server-1: docker inspect my-nginx.1.opdskafvlrclhc38t0tcw5uup</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">...</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">NetworkSettings</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">: {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    "Networks"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      "ingress"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "IPAMConfig"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">              "IPv4Address"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">10.0.0.6</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">          }</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "Links"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#FF5874"> null</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "Aliases"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">              "</span><span style="color:#22863A;--shiki-dark:#C789D6">b5af8738eb30</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">          ]</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "NetworkID"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">rasrehzw9jfeuj97ivx65nj5h</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "EndpointID"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">3cf548a835fb3829d9fcb7f71259bad7554483a12d829a53880e5126974b1e36</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "Gateway"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> ""</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "IPAddress"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">10.0.0.6</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "IPPrefixLen"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 24</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "IPv6Gateway"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> ""</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "GlobalIPv6Address"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> ""</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "GlobalIPv6PrefixLen"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 0</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "MacAddress"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">02:42:0a:00:00:06</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "DriverOpts"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#FF5874"> null</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">      }</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">      "nginx-net"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "IPAMConfig"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">              "IPv4Address"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">10.0.1.3</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">          }</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "Links"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#FF5874"> null</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "Aliases"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">              "</span><span style="color:#22863A;--shiki-dark:#C789D6">b5af8738eb30</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">          ]</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "NetworkID"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">jtlbkwkmjz9wzrhcym45ivrxh</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "EndpointID"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">513595f853f714fb62c90093272c8ec66ac55fcaa904ccb9143bee15ec194a71</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "Gateway"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> ""</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "IPAddress"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">10.0.1.3</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "IPPrefixLen"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 24</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "IPv6Gateway"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> ""</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "GlobalIPv6Address"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> ""</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "GlobalIPv6PrefixLen"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 0</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "MacAddress"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">02:42:0a:00:01:03</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">          "DriverOpts"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#FF5874"> null</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">      }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">...</span></span></code></pre>
+<p>Bỏ qua <code>nginx-net</code> network, chúng ta sẽ tìm hiểu về <strong>internal overlay network</strong> ở phần sau. Thấy được container <code>my-nginx.1.opdskafvlrclhc38t0tcw5uup</code> chạy trên server-1 đang được gắn với ingress network có địa chỉ IP là <code>10.0.0.6</code>. Chúng ta tiếp tục kiểm tra docker network inspect ingress:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">//root@server-1: docker network inspect ingress</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">...</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">IPAM</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">: {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    "Driver"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">default</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    "Options"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#FF5874"> null</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    "Config"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">            "Subnet"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">10.0.0.0/24</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">            "Gateway"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">10.0.0.1</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    ]</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">},</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">...</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">Containers</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">: {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    "b5af8738eb30228c00423e6917d121e25c69222378c22839ea0fcc420a136f8f"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "Name"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">my-nginx.1.opdskafvlrclhc38t0tcw5uup</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "EndpointID"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">3cf548a835fb3829d9fcb7f71259bad7554483a12d829a53880e5126974b1e36</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "MacAddress"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">02:42:0a:00:00:06</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "IPv4Address"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">10.0.0.6/24</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "IPv6Address"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> ""</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    "ingress-sbox"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "Name"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">ingress-endpoint</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "EndpointID"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">8e376885ef5c9be0bc56dae845dec3e5c55e1cc34df8964eec5a5db925acc71a</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "MacAddress"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">02:42:0a:00:00:02</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "IPv4Address"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">10.0.0.2/24</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "IPv6Address"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> ""</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">},</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">...</span></span></code></pre>
+<p>Có thể thấy ingress network thuộc dải IP <code>10.0.0.0/24</code> và hiện tại có 2 docker container đang được gắn với network này. <code>my-nginx.1.opdskafvlrclhc38t0tcw5uup</code> container hiển nhiên được gắn với ingress network vì chúng ta đã publish port với <code>my-nginx</code> service, vậy <code>ingress-sbox</code> container kia từ đâu ra?</p>
+<p><code>ingress-sbox</code> là một hidden container được tạo ra mặc định (check trên cả 03 server đều thấy container này mặc dù docker ps không thấy chúng đâu cả), kiểm tra tiếp ta sẽ thấy <code>ingress-sbox</code> cũng được gắn với <code>docker_gwbridge</code> network:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">//root@server-1: docker network inspect docker_gwbridge</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">...</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">IPAM</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">: {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    "Driver"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">default</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    "Options"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#FF5874"> null</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    "Config"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">            "Subnet"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">172.19.0.0/16</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">            "Gateway"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">172.19.0.1</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    ]</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">},</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">...</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">Containers</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">: {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    "b5af8738eb30228c00423e6917d121e25c69222378c22839ea0fcc420a136f8f"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "Name"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">gateway_c3db260d3ae0</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "EndpointID"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">11333a766b84c9a85e032d62c75895c23216c8a1115445118af593e8a50d24fa</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "MacAddress"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">02:42:ac:13:00:03</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "IPv4Address"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">172.19.0.3/16</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "IPv6Address"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> ""</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    "ingress-sbox"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "Name"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">gateway_ingress-sbox</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "EndpointID"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">6a9a17ae6df0ae39eac203b257fed6db70a4708e76f810d48fcbaa5cd766f662</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "MacAddress"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">02:42:ac:13:00:02</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "IPv4Address"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">172.19.0.2/16</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "IPv6Address"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> ""</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">},</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">...</span></span></code></pre>
+<p>Tổng hợp lại các thông tin về ingress network, <code>docker_gwbridge</code> network và nginx container trên cả 03 server ta sẽ có diagram như sau:</p>
+<p><img src="https://github.com/user-attachments/assets/dedd9e9f-1c0b-40d2-a898-60dc102cb9e7" alt=""></p>
+<p>Dựa vào diagram thấy được request từ client vào bất kỳ server nào trong 03 server trên đều được iptables forward vào IP (thuộc dải <code>docker_gwbridge</code> network) của <code>ingress-sbox</code> container:</p>
+<ul>
+<li><code>docker_gwbridge</code> là network được tạo tự động mặc định riêng trên mỗi server, nhiệm vụ của network này giống như với <code>docker0</code> (bridge network) vậy. Giúp cho máy host (server-3) có thể giao tiếp với các container, thử curl <code>172.18.0.2:8080</code> ngay trên server-3 ta cũng nhận được kết quả tương tự như client nhận được.</li>
+<li>Vậy nên bản chất khi chúng ta truy cập vào địa chỉ của server-3 với port 8080, yêu cầu truy cập sẽ được NAT tới địa chỉ IP <code>172.18.0.2:8080</code>. Kiểm tra bảng NAT trong iptables bằng command <code>iptables -vL -t nat</code> sẽ thấy!</li>
+<li>Vì có <code>docker_gwbridge</code> network mà request từ người dùng có thể đi vào hidden container là <code>ingress-sbox</code> rồi mới đi tới được service đích trong cụm Docker Swarm thông qua ingress network (như hình).</li>
+</ul>
+<h3 id="vậy-làm-sao-từ-ingress-sbox-có-thể-lựa-chọn-được-service-đích-nginx-1-hoặc-nginx-2-và-thực-hiện-lb-tới-chúng-như-thế-nào">Vậy làm sao từ <code>ingress-sbox</code> có thể lựa chọn được service đích (<code>nginx-1</code> hoặc <code>nginx-2</code>) và thực hiện LB tới chúng như thế nào?</h3>
+<p><strong><code>ingress-sbox</code> container được dùng để làm gì?</strong></p>
+<ul>
+<li><code>ingress-sbox</code> đóng vai trò trung gian giữa máy host và ingress network, các yêu cầu từ trong container này sẽ được tiếp tục chuyển tiếp tới địa chỉ <strong>VIP (10.0.0.5)</strong> trên ingress network (Docker Swarm sử dụng IPVS để cân bằng tải, đọc thêm về IPVS <a href="https://cloudcraft.info/loadbalance-gioi-thieu-lvs-ipvs/">ở đây</a>).</li>
+<li>Địa chỉ <strong>VIP</strong> sẽ được tạo ra tương ứng với một dịch vụ triển khai có publish port ra ngoài, nghĩa là mỗi dịch vụ triển khai sẽ có địa chỉ <strong>VIP</strong> tương ứng để <strong>IPVS</strong> cân bằng tải các replica container trong dịch vụ đó (ví dụ trong bài này chính là dịch vụ <code>my-nginx</code> đã triển khai ở trên)</li>
+<li>Để kiểm tra địa chỉ <strong>VIP</strong> của một dịch vụ, sử dụng command docker service inspect <code>my-nginx</code> (chạy trên manager node):</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">...</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">Endpoint</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">: {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    "Spec"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "Mode"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">vip</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        "Ports"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">            {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">                "Protocol"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">tcp</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">                "TargetPort"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 80</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">                "PublishedPort"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 8080</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">                "PublishMode"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">ingress</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">            }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        ]</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    "Ports"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">            "Protocol"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">tcp</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">            "TargetPort"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 80</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">            "PublishedPort"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 8080</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">            "PublishMode"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">ingress</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    ]</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    "VirtualIPs"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">            "NetworkID"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">rasrehzw9jfeuj97ivx65nj5h</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">            "Addr"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">10.0.0.5/24</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        }</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">            "NetworkID"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">jtlbkwkmjz9wzrhcym45ivrxh</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">            "Addr"</span><span style="color:#212121;--shiki-dark:#D6DEEB">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#C789D6">10.0.1.2/24</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    ]</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">...</span></span></code></pre>
+<p><strong>IPVS hoạt động ra sao trong Docker Swarm?</strong></p>
+<p>Bởi vì <code>ingress-sbox</code> là hidden container nên chúng ta không thể exec vào trong để kiểm tra nó được, sử dụng nsenter để switch namespace ra ngoài máy host như sau:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">sudo</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> nsenter</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> --net=/run/docker/netns/ingress_sbox</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">### Có thể back trở lại namespace như ban đầu bằng command:</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">sudo</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> nsenter</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> --net=/run/docker/netns/default</span></span></code></pre>
+<p>Tiếp tục chạy command dưới đây để xem thông tin iptables rules trong <code>ingress-sbox</code> namespace (Chú ý đến POSTROUTING Chain):</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">iptables-save</span></span></code></pre>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="text"><code><span class="line"><span># Generated by iptables-save v1.6.1 on Wed Jul 21 21:09:34 2021</span></span>
+<span class="line"><span>*mangle</span></span>
+<span class="line"><span>:PREROUTING ACCEPT [1153:100216]</span></span>
+<span class="line"><span>:INPUT ACCEPT [637:48400]</span></span>
+<span class="line"><span>:FORWARD ACCEPT [516:51816]</span></span>
+<span class="line"><span>:OUTPUT ACCEPT [637:48400]</span></span>
+<span class="line"><span>:POSTROUTING ACCEPT [1153:100216]</span></span>
+<span class="line"><span>-A PREROUTING -p tcp -m tcp --dport 8080 -j MARK --set-xmark 0x100/0xffffffff</span></span>
+<span class="line"><span>**-A INPUT -d 10.0.0.5/32 -j MARK --set-xmark 0x100/0xffffffff**</span></span>
+<span class="line"><span>COMMIT</span></span>
+<span class="line"><span># Completed on Wed Jul 21 21:09:34 2021</span></span>
+<span class="line"><span># Generated by iptables-save v1.6.1 on Wed Jul 21 21:09:34 2021</span></span>
+<span class="line"><span>*filter</span></span>
+<span class="line"><span>:INPUT ACCEPT [1432:115850]</span></span>
+<span class="line"><span>:FORWARD ACCEPT [938:91965]</span></span>
+<span class="line"><span>:OUTPUT ACCEPT [1432:115850]</span></span>
+<span class="line"><span>COMMIT</span></span>
+<span class="line"><span># Completed on Wed Jul 21 21:09:34 2021</span></span>
+<span class="line"><span># Generated by iptables-save v1.6.1 on Wed Jul 21 21:09:34 2021</span></span>
+<span class="line"><span>*nat</span></span>
+<span class="line"><span>:PREROUTING ACCEPT [145:7276]</span></span>
+<span class="line"><span>:INPUT ACCEPT [0:0]</span></span>
+<span class="line"><span>:OUTPUT ACCEPT [0:0]</span></span>
+<span class="line"><span>:POSTROUTING ACCEPT [0:0]</span></span>
+<span class="line"><span>:DOCKER_OUTPUT - [0:0]</span></span>
+<span class="line"><span>:DOCKER_POSTROUTING - [0:0]</span></span>
+<span class="line"><span>-A OUTPUT -d 127.0.0.11/32 -j DOCKER_OUTPUT</span></span>
+<span class="line"><span>-A POSTROUTING -d 127.0.0.11/32 -j DOCKER_POSTROUTING</span></span>
+<span class="line"><span>**-A POSTROUTING -d 10.0.0.0/24 -m ipvs --ipvs -j SNAT --to-source 10.0.0.4**</span></span>
+<span class="line"><span>-A DOCKER_OUTPUT -d 127.0.0.11/32 -p tcp -m tcp --dport 53 -j DNAT --to-destination 127.0.0.11:33731</span></span>
+<span class="line"><span>-A DOCKER_OUTPUT -d 127.0.0.11/32 -p udp -m udp --dport 53 -j DNAT --to-destination 127.0.0.11:39025</span></span>
+<span class="line"><span>-A DOCKER_POSTROUTING -s 127.0.0.11/32 -p tcp -m tcp --sport 33731 -j SNAT --to-source :53</span></span>
+<span class="line"><span>-A DOCKER_POSTROUTING -s 127.0.0.11/32 -p udp -m udp --sport 39025 -j SNAT --to-source :53</span></span>
+<span class="line"><span>COMMIT</span></span>
+<span class="line"><span># Completed on Wed Jul 21 21:09:34 2021</span></span></code></pre>
+<p>Trong mangle table của iptables sẽ đánh dấu (MARK) các gói tin có Destination IP là <code>10.0.0.5</code> với <code>0x100</code>, mà <code>10.0.0.5</code> chính là địa chỉ <strong>VIP</strong> đã đề cập ở mục trên. Vậy các gói tin được đánh dấu với <code>0x100</code> sẽ đi đâu về đâu? Thực hiện kiểm tra tiếp sử dụng <code>ipvsadm</code> (tool được dùng để cấu hình IPVS) với command <code>ipvsadm -L -n --stats</code> để xem thông tin cấu hình hiện tại:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">ipvsadm</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -L</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -n</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> --stats</span></span></code></pre>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="text"><code><span class="line"><span>IP Virtual Server version 1.2.1 (size=4096)</span></span>
+<span class="line"><span>Prot LocalAddress:Port               Conns   InPkts  OutPkts  InBytes OutBytes</span></span>
+<span class="line"><span>  -> RemoteAddress:Port</span></span>
+<span class="line"><span>FWM  256                               266     1175      945    90915    92590</span></span>
+<span class="line"><span>  -> 10.0.0.6:0                        133      552      447    43073    43507</span></span>
+<span class="line"><span>  -> 10.0.0.7:0                        133      623      498    47842    49083</span></span></code></pre>
+<p>Đến đây thì quá rõ luôn rồi 😀 những gói tin được đánh dấu với MARK (<code>0x100</code> convert to decimal is 256) sẽ được cân bằng tải tới 02 địa chỉ IP là <code>10.0.0.6</code> và <code>10.0.0.7</code> Xem lại diagram phía trên thì thấy rằng 02 địa chỉ này chính là địa chỉ của Nginx container chạy trên server-1 và server-2.</p>
+<p><img src="https://github.com/user-attachments/assets/232ad505-7435-4a1f-b9cc-e396bd448bd9" alt=""></p>
+<blockquote>
+<p><em>Để ý thêm trong rule NAT của iptables (POSTROUTING Chain) sẽ có thêm đoạn các gói packets sẽ được NAT lại Source IP là <code>10.0.0.4</code>, mà <code>10.0.0.4</code> lại chính là địa chỉ IP của <code>ingress-sbox</code> trên ingress network. Việc này đảm bảo sau khi packets khi gửi đến dịch vụ đích thì sẽ phản hồi lại cho <code>ingress-sbox</code> (đại diện cho server-2)rồi từ đó phản hồi lại cho client (<a href="https://www.haproxy.com/blog/layer-4-load-balancing-nat-mode/">đọc thêm</a> về Load Balancing Layer 4 sử dụng cơ chế NAT)</em></p>
+</blockquote>
+<h2 id="internal-overlay-network-hoạt-động-như-thế-nào">Internal Overlay Network hoạt động như thế nào?</h2>
+<p>Đối với Internal Overlay Network thì cơ chế routing mesh (load balancer) không khác gì so với phần Ingress Network đã giải thích phía trên. Để hình dung rõ hơn về giao tiếp nội bộ giữa các service chúng ta triển khai thêm backend service như sau:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> service</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> create</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#82AAFF">  --name</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> backend</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#82AAFF">  --replicas=1</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#82AAFF">  --network</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> nginx-net</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">  thuongnn1997/nginx:debug</span></span></code></pre>
+<p>Triển khai thêm backend service cũng được join với <code>nginx-net</code> network đã tạo ở ví dụ trước. Thực hiện docker inspect xem các thông tin, ta cũng có diagram của các service giao tiếp với <code>nginx-net</code> network như sau:</p>
+<p><img src="https://github.com/user-attachments/assets/377c2c4c-548f-467d-9a6a-c5c074ce58a5" alt=""></p>
+<ul>
+<li>Khác biệt với Ingress Network, Internal Overlay Network (<code>nginx-net</code>) sẽ không có chân nào cho phép từ bên ngoài có thể kết nối vào được bên trong network này.</li>
+<li>Docker Swarm cho phép chúng ta tạo overlay network bất kỳ và chúng hoàn toàn private, chỉ có những service bên trong network này mới có thể giao tiếp được với nhau.</li>
+<li>Không có cách nào có thể truy cập vào được mạng này từ bên ngoài như máy host, việc publish một dịch vụ ra ngoài thì cần phải sử dụng Ingress Network (trong command chỉ cần thêm publish port khi khởi tạo service)</li>
+</ul>
+<p>Thực hiện docker exec vào container của backend service trên server-3, vì backend service và my-nginx service đều dùng chung <code>nginx-net</code> network nên đứng từ backend container ta có thể kết nối được tới các container của <code>my-nginx</code> service như sau:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> exec</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -it</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> backend.1.zchpr6x6hvr6tofqlpl2vob3z</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> /bin/bash</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">curl</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> my-nginx</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># Welcome to nginx-2 from server-2</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">curl</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> my-nginx</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># Welcome to nginx-1 from server-1</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">curl</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> my-nginx</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># Welcome to nginx-2 from server-2</span></span></code></pre>
+<p>Request từ backend container sẽ được LB tới các container của <code>my-nginx</code> service (nội dung trả về từ cả <code>nginx-1</code> và <code>nginx-2</code> sau mỗi lần request). Bản chất mỗi request từ backend container đều được đẩy tới địa chỉ <strong>VIP</strong> của my-nginx service (<code>10.0.1.2</code>), kiểm tra lại địa chỉ IP được resolve từ domain <code>my-nginx</code> sẽ thấy:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">nslookup</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> my-nginx</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Server:</span><span style="color:#1976D2;--shiki-dark:#F78C6C">         127.0.0.11</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Address:</span><span style="color:#2B5581;--shiki-dark:#ECC48D">        127.0.0.11#53</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Non-authoritative</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> answer:</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Name:</span><span style="color:#2B5581;--shiki-dark:#ECC48D">   my-nginx</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Address:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 10.0.1.2</span></span></code></pre>
+<p>Địa chỉ IP được resolve từ <code>my-nginx</code> không phải là của container <code>nginx-1</code> (<code>10.0.1.3</code>) hay <code>nginx-2</code> (<code>10.0.1.4</code>) mà chính là địa chỉ <strong>VIP</strong>, tương tự như cách hoạt động của <strong>IPVS</strong> như đã tìm hiểu ở phần Ingress Network. Chúng ta lại tiếp sử dụng nsenter tool để switch sang namespace của <code>lb-nginx-net</code> trên server-3 thấy được như sau:</p>
+<p><img src="https://github.com/user-attachments/assets/d42f4671-794b-44ac-98d7-aa544bd18a69" alt=""></p>
+<h3 id="bypass-the-routing-mesh-ivps">Bypass the routing mesh (IVPS)</h3>
+<ul>
+<li>Qua tìm hiểu về Ingress và Internal Overlay Network ở trên, chúng ta thấy được cả 02 loại network này áp dụng cơ chế routing mesh sử dụng <strong>IPVS</strong> để cân bằng tải các yêu cầu tới các replica container.</li>
+<li>Đặc điểm của <strong>IPVS</strong> (NAT mode) là sẽ thay đổi thông tin (Source, Destination IP) của gói tin qua lại con Load Balancer (trên 02 ví dụ trên lần lượt là <code>ingress-sbox</code> và <code>lb-nginx-net</code>).</li>
+<li>Ngoài Virtual IP (VIP) mode, Docker Swarm còn hỗ trợ DNS Round Robin (DNSRR) mode bằng cách cấu hình <code>-endpoint-mode=dnsrr</code>.</li>
+</ul>
+<h3 id="dns-round-robin-hoạt-động-như-thế-nào">DNS Round Robin hoạt động như thế nào?</h3>
+<p>Triển khai một dịch vụ khác sử dụng DNSRR mode bằng command dưới đây:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> network</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> create</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -d</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> overlay</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> demo-net</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> service</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> create</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#82AAFF">  --name</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> user-api</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#82AAFF">  --publish</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> target=80,published=8081,mode=host</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#82AAFF">  --replicas=3</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#82AAFF">  --endpoint-mode=dnsrr</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#82AAFF">  --network</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> demo-net</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \\</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">  thuongnn1997/nginx:debug</span></span></code></pre>
+<p>Triển khai <code>user-api</code> service trên overlay network là <code>demo-net</code>, tham số <code>--endpoint-mode</code> để là <code>dnsrr</code> và <code>mode=host</code> trong tham số publish (bắt buộc khi triển khai với DNSRR mode).</p>
+<p>Sau khi triển khai xong, hãy thử docker exec vào một container bất kỳ đã được triển khai trong cụm Swarm. Truy cập vào dịch vụ thông qua domain <code>user-api</code> ta vẫn nhận được kết quả giống với <strong>VIP</strong> mode (không có gì khác biệt ở đây):</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> exec</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -it</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> user-api.1.o6cu6rp3jqje8ay0drvgqnchi</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> /bin/bash</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">curl</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> user-api</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C5E478;--shiki-dark-font-style:italic">...</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">p>&#x3C;em</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">></span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">Thank you </span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">for</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> using nginx.</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">/em>&#x3C;/p</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">></span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">/body</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">></span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">/html</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">></span></span></code></pre>
+<p>Tuy nhiên hãy thử kiểm tra địa chỉ IP được resolve từ domain <code>user-api</code> như sau:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">nslookup</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> user-api</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Server:</span><span style="color:#1976D2;--shiki-dark:#F78C6C">         127.0.0.11</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Address:</span><span style="color:#2B5581;--shiki-dark:#ECC48D">        127.0.0.11#53</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Non-authoritative</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> answer:</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Name:</span><span style="color:#2B5581;--shiki-dark:#ECC48D">   user-api</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Address:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 10.0.3.4</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Name:</span><span style="color:#2B5581;--shiki-dark:#ECC48D">   user-api</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Address:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 10.0.3.3</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Name:</span><span style="color:#2B5581;--shiki-dark:#ECC48D">   user-api</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Address:</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 10.0.3.2</span></span></code></pre>
+<p>Điểm khác biệt chính là ở đây! nếu như với VIP mode sẽ chỉ resolve ra một địa chỉ duy nhất là địa chỉ <strong>VIP</strong> thì với DNSRR mode sẽ trả về luôn danh sách các địa chỉ IP của replica container.</p>
+<ul>
+<li>Load Balancing đối với VIP mode sẽ đóng vai trò forwarder chuyển tiếp các packets đến container đích hợp lý. Mọi packets qua lại đều phải đi qua LB.</li>
+<li>Load Balancing đối với DNSRR mode thay vì chuyển tiếp packets thì nó sẽ trả về luôn danh sách địa chỉ IP của container đích. Đặc biệt là danh sách này được đảo đều (Round Robin) sau mỗi lần request.</li>
+<li>DNSRR mode chỉ trả về danh sách IP, việc kết nối và trao đổi packets sẽ diễn ra trực tiếp với container đích mà không cần phải đi qua LB nữa.</li>
+</ul>
+<h3 id="vậy-khi-nào-thì-sử-dụng-dns-round-robin">Vậy khi nào thì sử dụng DNS Round Robin?</h3>
+<p><img src="https://github.com/user-attachments/assets/3351e39b-f0dc-45ce-a256-f3ff5b0f8b39" alt=""></p>
+<p>Trong thực tế khi chạy hệ thống trên production, chúng ta vẫn cần một External IP cấu hình domain để client có thể kết nối vào hệ thống.</p>
+<ul>
+<li>Bởi vì nếu setup kết nối thẳng vào một trong 03 node trên sẽ có khả năng một node bị down (đúng ngay node cấu hình domain name) khiến cho client không thể gửi request được nữa.</li>
+<li>Vậy nên đằng trước Swarm Cluster thường sẽ thiết kế một External Load Balancer để nhận request từ client rồi cân bằng tải tới một trong các node trong cụm (như hình trên).</li>
+<li>Tuy nhiên trên Swarm node mặc định sử dụng routing mesh (sử dụng IPVS để cân bằng tải) như đã giải thích ở phần <strong>Ingress network hoạt động như thế nào?</strong></li>
+<li>Mặc định routing mesh đẩy các request tới swarm load balancer để cân bằng tải (sử dụng NAT packets) tới service đích phù hợp (có thể service đích không tồn tại trên node đó), điều này có thể làm tăng thời gian request từ client tới dịch vụ.</li>
+</ul>
+<p>Từ vấn đề trên trong một số hệ thống có thể cân nhắc bỏ swarm load balancer đi để đạt được thời gian truy vấn tối ưu hơn, lúc này cấu hình <strong>DNSRR</strong> cho LB sẽ được sử dụng. Tuy nhiên sử dụng mode này chúng ta sẽ có những đánh đổi dưới đây:</p>
+<ul>
+<li>Các replica container sẽ chạy dưới publish mode là host, tương tự như chúng ta chạy một container thông thường với network là host.</li>
+<li>Việc này đồng nghĩa rằng chúng ta không thể chạy nhiều service task trên mỗi Swarm node (ví dụ như chúng ta có 3 server nodes nhưng chạy tận 6 replicas), ta cũng không thể chỉ định target port cho từng service task được.</li>
+<li>Nếu triển khai số lượng service task nhỏ hơn số lượng server nodes, sẽ xảy ra một vấn đề là nếu client truy cập vào 1 server node mà trên đó không có service task nào đang chạy. Vì không có routing mesh nào được sử dụng ở đây nên client sẽ không nhận được phản hồi như VIP mode.</li>
+</ul>
+<p>Có 02 cách để chạy nhiều service task hơn số lượng nodes là:</p>
+<ul>
+<li>Để Docker tự động listen random port cho service task trên server node (bỏ tham số <code>published</code> khi triển khai), lúc này mỗi service task sẽ có listen một port khác nhau nên các server nodes không còn bị trùng port nữa.</li>
+<li>Tất cả service task vẫn listen chung một port, tuy nhiên đảm bảo số lượng replica tương ứng với số server nodes. Sử dụng tham số <code>—mode</code> với giá trị là <code>global</code> khi triển khai sẽ tự động triển khai 1 service task tương ứng mỗi server node.</li>
+</ul>
+<h2 id="tài-liệu-tham-khảo">Tài liệu tham khảo</h2>
+<ul>
+<li><a href="https://docs.docker.com/network/overlay">https://docs.docker.com/network/overlay</a></li>
+<li><a href="https://docs.docker.com/engine/swarm/ingress">https://docs.docker.com/engine/swarm/ingress</a></li>
+<li><a href="https://github.com/sbrattla/docs/blob/master/DockerInternalLoadBalancing.md">https://github.com/sbrattla/docs/blob/master/DockerInternalLoadBalancing.md</a></li>
+</ul> </article> <hr class="my-8 border-dashed"> <div class="opacity-80 sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/satnaing/astro-paper/edit/main/src/data/blog/kubernetes/learn-about-networking-in-docker-swarm.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/docker/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Docker</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/docker-swarm/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Docker Swarm</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/networking/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-4"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Networking</span> </a> </li> </ul> <div class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"> <div class="flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start"> <span class="italic">Share this post on:</span> <div class="text-center"> <a href="https://wa.me/?text=https://thuongnn.dev/posts/kubernetes/learn-about-networking-in-docker-swarm/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> <span class="sr-only">Share this post via WhatsApp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://thuongnn.dev/posts/kubernetes/learn-about-networking-in-docker-swarm/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://thuongnn.dev/posts/kubernetes/learn-about-networking-in-docker-swarm/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://thuongnn.dev/posts/kubernetes/learn-about-networking-in-docker-swarm/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg> <span class="sr-only">Share this post via Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://thuongnn.dev/posts/kubernetes/learn-about-networking-in-docker-swarm/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg> <span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&#38;body=https://thuongnn.dev/posts/kubernetes/learn-about-networking-in-docker-swarm/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Share this post via email</span> </a> </div> </div> <button id="back-to-top" class="focus-outline py-1 whitespace-nowrap hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span>Back to Top</span> </button> </div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/kubernetes/learn-about-pod-network" class="flex w-full gap-1 hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">Tìm hiểu về Pod network</div> </div> </a> <a href="/posts/kubernetes/kubernetes-overview-diagrams" class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">Kubernetes Overview Diagrams</div> </div> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="w-full mt-auto"> <div class="max-w-3xl mx-auto px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://github.com/thuongnn" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title=" thuongnn.dev on Github"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only"> thuongnn.dev on Github</span> </a><a href="https://www.facebook.com/thuongnn97" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">thuongnn.dev on Facebook</span> </a><a href="https://www.linkedin.com/in/thuongnn/" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on LinkedIn"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">thuongnn.dev on LinkedIn</span> </a><a href="mailto:thuongnn1997@gmail.com" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to thuongnn.dev"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to thuongnn.dev</span> </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2025</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ml-2 opacity-0 group-hover:opacity-100 focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "copy-code absolute right-3 -top-3 rounded bg-muted px-2 py-1 text-xs leading-4 text-foreground font-medium";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    document.querySelector("#back-to-top")?.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+  }
+  backToTop();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>

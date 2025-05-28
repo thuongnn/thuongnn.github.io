@@ -1,0 +1,370 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://thuongnn.dev/posts/kubernetes/integrate-hashicorp-vault-with-k8s-on-rancher/"><meta name="generator" content="Astro v5.5.2"><!-- General Meta Tags --><title>Tích hợp Hashicorp Vault với K8S trên Rancher | thuongnn.dev</title><meta name="title" content="Tích hợp Hashicorp Vault với K8S trên Rancher | thuongnn.dev"><meta name="description" content="Hướng dẫn chi tiết cách tích hợp Hashicorp Vault với Kubernetes (triển khai qua Rancher) để lấy giá trị bí mật."><meta name="author" content="thuongnn"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="Tích hợp Hashicorp Vault với K8S trên Rancher | thuongnn.dev"><meta property="og:description" content="Hướng dẫn chi tiết cách tích hợp Hashicorp Vault với Kubernetes (triển khai qua Rancher) để lấy giá trị bí mật."><meta property="og:url" content="https://thuongnn.dev/posts/kubernetes/integrate-hashicorp-vault-with-k8s-on-rancher/"><meta property="og:image" content="https://thuongnn.dev/posts/kubernetes/integrate-hashicorp-vault-with-k8s-on-rancher/index.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2024-04-13T22:29:35.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://thuongnn.dev/posts/kubernetes/integrate-hashicorp-vault-with-k8s-on-rancher/"><meta property="twitter:title" content="Tích hợp Hashicorp Vault với K8S trên Rancher | thuongnn.dev"><meta property="twitter:description" content="Hướng dẫn chi tiết cách tích hợp Hashicorp Vault với Kubernetes (triển khai qua Rancher) để lấy giá trị bí mật."><meta property="twitter:image" content="https://thuongnn.dev/posts/kubernetes/integrate-hashicorp-vault-with-k8s-on-rancher/index.png"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Tích hợp Hashicorp Vault với K8S trên Rancher | thuongnn.dev","image":"https://thuongnn.dev/posts/kubernetes/integrate-hashicorp-vault-with-k8s-on-rancher/index.png","datePublished":"2024-04-13T22:29:35.000Z","author":[{"@type":"Person","name":"thuongnn","url":"https://thuongnn.dev/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="thuongnn.dev" href="https://thuongnn.dev/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CMTcOisY.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/about.BH1RUIRV.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+[data-astro-image]{width:100%;height:auto;object-fit:var(--fit);object-position:var(--pos);aspect-ratio:var(--w) / var(--h)}[data-astro-image=responsive]{max-width:calc(var(--w) * 1px);max-height:calc(var(--h) * 1px)}[data-astro-image=fixed]{width:calc(var(--w) * 1px);height:calc(var(--h) * 1px)}
+</style><style>[data-astro-transition-scope="astro-fam6wyqg-1"] { view-transition-name: tich-h\1EE3p-hashicorp-vault-v\1EDBi-k-8-s-tren-rancher; }@layer astro { ::view-transition-old(tich-h\1EE3p-hashicorp-vault-v\1EDBi-k-8-s-tren-rancher) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(tich-h\1EE3p-hashicorp-vault-v\1EDBi-k-8-s-tren-rancher) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(tich-h\1EE3p-hashicorp-vault-v\1EDBi-k-8-s-tren-rancher) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(tich-h\1EE3p-hashicorp-vault-v\1EDBi-k-8-s-tren-rancher) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: kubernetes; }@layer astro { ::view-transition-old(kubernetes) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(kubernetes) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(kubernetes) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(kubernetes) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: hashicorp-vault; }@layer astro { ::view-transition-old(hashicorp-vault) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(hashicorp-vault) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(hashicorp-vault) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(hashicorp-vault) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="absolute -top-full left-16 z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"> <a href="/" class="absolute py-1 text-2xl leading-7 font-semibold whitespace-nowrap sm:static"> thuongnn.dev </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:ml-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="max-w-3xl mx-auto px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-3xl items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="mx-auto w-full max-w-3xl px-4 pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-fam6wyqg-1"> Tích hợp Hashicorp Vault với K8S trên Rancher </h1> <div class="flex items-center gap-4"> <div class="flex items-end space-x-2 opacity-80 my-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg> <span class="sr-only">Published:</span> <span class="text-sm italic sm:text-base"> <time datetime="2024-04-13T22:29:35.000Z">13 Apr, 2024</time> <span aria-hidden="true"> | </span> <span class="sr-only">&nbsp;at&nbsp;</span> <span class="text-nowrap">10:29 PM</span> </span> </div> <div class="opacity-80 max-sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/satnaing/astro-paper/edit/main/src/data/blog/kubernetes/integrate-hashicorp-vault-with-k8s-on-rancher.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> </div> <article id="article" class="mx-auto prose mt-8 max-w-3xl"> <h2 id="table-of-contents">Table of contents</h2>
+<p></p><details><summary>Open Table of contents</summary><p></p>
+<ul>
+<li><a href="#service-account-sa-l%C3%A0-g%C3%AC">Service Account (SA) là gì?</a></li>
+<li><a href="#kubernetes-api-server-kube-api-l%C3%A0-g%C3%AC">Kubernetes API Server (Kube API) là gì?</a></li>
+<li><a href="#t%C3%ADch-h%E1%BB%A3p-nh%C6%B0-th%E1%BA%BF-n%C3%A0o">Tích hợp như thế nào?</a>
+<ul>
+<li><a href="#v%E1%BB%81-ph%C3%ADa-%E1%BB%A9ng-d%E1%BB%A5ng-%C4%91%C6%B0%E1%BB%A3c-tri%E1%BB%83n-khai-tr%C3%AAn-k8s">Về phía ứng dụng được triển khai trên K8S</a></li>
+<li><a href="#v%E1%BB%81-ph%C3%ADa-h%E1%BB%87-th%E1%BB%91ng-hashicorp-vault">Về phía hệ thống Hashicorp Vault</a></li>
+</ul>
+</li>
+<li><a href="#h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-t%C3%ADch-h%E1%BB%A3p">Hướng dẫn tích hợp</a>
+<ul>
+<li><a href="#c%E1%BA%A5u-h%C3%ACnh-tr%C3%AAn-c%E1%BB%A5m-k8s">Cấu hình trên cụm K8S</a></li>
+<li><a href="#c%E1%BA%A5u-h%C3%ACnh-h%E1%BB%87-th%E1%BB%91ng-vault-v%E1%BB%9Bi-k8s">Cấu hình hệ thống Vault với K8S</a></li>
+<li><a href="#h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-chi-ti%E1%BA%BFt-c%E1%BA%A5u-h%C3%ACnh">Hướng dẫn chi tiết cấu hình</a></li>
+</ul>
+</li>
+</ul>
+<p></p></details><p></p>
+<h2 id="service-account-sa-là-gì">Service Account (SA) là gì?</h2>
+<p>Đối với Kubernetes có một loại resource gọi là <code>ServiceAccount</code> - bất kỳ Pod (đơn vị nhỏ nhất để triển khai ứng dụng trên K8S) sẽ luôn có một SA đính kèm theo.</p>
+<p>Có thể định nghĩa SA cho một đơn vị triển khai trên K8S hoặc là chúng sẽ sử dụng default service account (do K8S tự tạo mặc định). SA gắn với mỗi Pod sẽ có token tương ứng của SA đó mà chúng ta có thể tìm thấy trong Pod với đường dẫn thư mục sau: <code>/var/run/secrets/kubernetes.io/serviceaccount</code></p>
+<p>SA đóng vai trò xác thực và phân quyền trên K8S, đồng thời mỗi default SA gán cho mỗi Pod sẽ có quyền hạn nhất định (ví dụ app bên trong Pod sử dụng SA token để gọi KubeAPI lấy một số thông tin của cụm). Chúng ta có thể gán RBAC với scope là trong một namespace như sau:</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*0BU3W4JmVGqIxdqlQx7uRQ.png" alt=""></p>
+<p>Hoặc là gán RBAC với scope là cho cả cụm K8S:</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*yQ6c8mM4wTF3bkKDdT_WSw.png" alt=""></p>
+<p>Đọc thêm về ServiceAccount của K8S ở đây: <a href="https://faun.pub/service-account-kubernetes-ec0f112c5bc5">https://faun.pub/service-account-kubernetes-ec0f112c5bc5</a></p>
+<h2 id="kubernetes-api-server-kube-api-là-gì">Kubernetes API Server (Kube API) là gì?</h2>
+<p>Tiếp theo là Kubernetes API Server — REST API dùng để quản lý tất cả các object trong cụm K8S và chúng ta có thể sử dụng SA token để có thể xác thực với Kube API.</p>
+<p>Vì là REST API nên chúng ta có thể dễ dàng tương tác thông qua cURL, CLI, UI,… Ví dụ như Rancher là một trong những platform được dùng để xây dựng cụm K8S, đồng thời nó cũng cung cấp một UI dùng để tương tác với các Kube API cho phép quản trị các cụm K8S dễ dàng hơn.</p>
+<p>Tuy nhiên khi sử dụng Rancher thì lớp xác thực và phân quyền trên cụm K8S sẽ được quản lý bởi thằng Rancher và cơ chế của nó như sau:</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*WJxbmrSweqQHOKDJBxgwFQ.png" alt=""></p>
+<p>Thay vì tương tác trực tiếp với Kube API như user Alice thì khi sử dụng Rancher — user sẽ phải đi qua một lớp gọi là Authentication Proxy (ví dụ như user Bob).</p>
+<p>Đến đây thì việc tích hợp với Hashicorp Vault sẽ có 02 cách</p>
+<ul>
+<li>Tích hợp với Rancher API</li>
+<li>Tích hợp trực tiếp với Kube API của mỗi cụm</li>
+</ul>
+<h2 id="tích-hợp-như-thế-nào">Tích hợp như thế nào?</h2>
+<h3 id="về-phía-ứng-dụng-được-triển-khai-trên-k8s">Về phía ứng dụng được triển khai trên K8S</h3>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*h8sYPsU-5L2s-ctnT9BDZw.png" alt="Ví dụ sử dụng Vault sidecar injector"><em>Ví dụ sử dụng Vault sidecar injector</em></p>
+<p>Sẽ nhận được các giá trị bí mật (secrets) từ hệ thống Vault trong môi trường Runtime — nghĩa là khi Pod ứng dụng khởi tạo, nó sẽ kéo các giá trị này từ Vault về để sử dụng.</p>
+<p>Khi truy vấn vào hệ thống Vault nó cần phải gửi kèm theo SA token mà chúng ta đã nói ở trên, Vault sẽ dựa vào SA token để thực hiện xác thực và phân quyền cho ứng dụng đó.</p>
+<p>Cơ chế xác thực với Vault sẽ giống như các cơ chế bình thường mà chúng ta dùng với Vault, có thể sử dụng với cURL, CLI, Agent,… Và đối với K8S thì chúng ta cũng có khá nhiều lựa chọn như sau:</p>
+<ul>
+<li>Viết sẵn một script lấy các giá trị secret từ Vault và nhúng nó vào docker image của ứng dụng, khi start lên thì chạy script này rồi mới chạy ứng dụng. Tuy nhiên cách này hơi thô và chưa Cloud Native App lắm.</li>
+<li>(multi-container Pod) Viết một <code>init-container</code> cho Pod ứng dụng, <code>init-container</code> sẽ thực hiện kéo secret về trước khi main container (ứng dụng) được chạy. 02 container này có thể sử dụng shared volume.</li>
+<li>Sử dụng một số giải pháp gắn <a href="https://developer.hashicorp.com/vault/docs/platform/k8s/injector">Vault sidecar injector</a>, nó cũng tương đương với cách thứ 02 cơ mà chính thống của Vault hơn và được package hết rồi chỉ việc cấu hình.</li>
+</ul>
+<h3 id="về-phía-hệ-thống-hashicorp-vault">Về phía hệ thống Hashicorp Vault</h3>
+<ul>
+<li>Cần phải kiểm tra SA token của các ứng dụng gửi lên và chỉ có một cách để kiểm tra đó là gọi tới Kube API, Kube API sẽ thực hiện kiểm tra và đảm bảo cho thằng Vault là SA token đó hợp lệ — có thể tin tưởng được rồi.</li>
+<li>Cũng giống như bất kỳ client nào truy vấn vào Kube API, hệ thống Vault cũng phải có một token khi truy vấn tới Kube API — và phải có một quyền đặc biệt đó là quyền kiểm tra tính hợp lệ của các SA token khác (<code>system:auth-delegator</code>).</li>
+<li>Nếu như SA token mà ứng dụng gửi lên đã được xác nhận là hợp lệ rồi thì nó sẽ trả về phía ứng dụng <strong>Vault token</strong> — cái này sẽ dùng để gửi kèm cho những truy vấn get secret về sau.</li>
+</ul>
+<h2 id="hướng-dẫn-tích-hợp">Hướng dẫn tích hợp</h2>
+<h3 id="cấu-hình-trên-cụm-k8s">Cấu hình trên cụm K8S</h3>
+<p>Tạo SA token cho hệ thống Vault, bởi Vault cần có quyền đặc biệt là review SA token khác trong cụm K8S nên chúng ta cần phải tạo mỗi cụm một SA token kèm theo quyền này như sau:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">kubectl</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> apply</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -f</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> -</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> &#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">EOF</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">---</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">apiVersion: v1</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">kind: ServiceAccount</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">metadata:</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">  name: rv-token</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">---</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">apiVersion: v1</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">kind: Secret</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">metadata:</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">  name: rv-token</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">  annotations:</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">    kubernetes.io/service-account.name: rv-token</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">type: kubernetes.io/service-account-token</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">---</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">  apiVersion: rbac.authorization.k8s.io/v1</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">  kind: ClusterRoleBinding</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">  metadata:</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">    name: role-tokenreview-binding</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">    namespace: default</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">  roleRef:</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">    apiGroup: rbac.authorization.k8s.io</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">    kind: ClusterRole</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">    name: system:auth-delegator</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">  subjects:</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">  - kind: ServiceAccount</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">    name: rv-token</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">    namespace: default</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D9F5DD">EOF</span></span></code></pre>
+<p>Sau đó lấy token của SA rv-token đã tạo ở trên như sau:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">kubectl</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> get</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> secret</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> devwebapp</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> -o</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> jsonpath=</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">{.data.token}</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> |</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> base64</span><span style="color:#2B5581;--shiki-dark:#82AAFF"> --decode</span></span></code></pre>
+<h3 id="cấu-hình-hệ-thống-vault-với-k8s">Cấu hình hệ thống Vault với K8S</h3>
+<p>Trước tiên là việc tích hợp giữa hệ thống Vault và hệ thống Rancher, bởi hệ thống Rancher quản lý toàn bộ các cụm K8S nên nếu tích hợp với Rancher Endpoint thì sẽ không mất công đi cấu hình với từng cụm K8S nữa.</p>
+<p>Tuy nhiên việc tích hợp với Rancher lại gặp phải một issue mà cho đến giờ vẫn chưa được giải quyết, nên cách này không thể sử dụng được.
+Xem chi tiết issue ở đây: <a href="https://github.com/rancher/rancher/issues/30420">https://github.com/rancher/rancher/issues/30420</a></p>
+<p><img src="https://cdn-images-1.medium.com/max/7266/1*VEm4qYjJO9R1LjkZ18zt5w.png" alt=""></p>
+<p>Vậy nên phía hệ thống Vault bây giờ cần phải tích hợp trực tiếp tới Kube API trên mỗi cụm K8S như sau:</p>
+<p><img src="https://cdn-images-1.medium.com/max/5900/1*tAzLH4RkAXsV8HBJNLFylg.png" alt=""></p>
+<p>Có một rủi ro tiềm tàng đó là Kube API chỉ chạy trên các K8S Master node, đối các hệ thống K8S hiện nay đang triển khai thì luôn triển khai ít nhất 03 master node để đảm bảo tính HA. Tuy nhiên thằng Hashicorp Vault lại chỉ đang cấu hình được với duy nhất 1 endpoint mỗi cụm, vậy nên giải pháp thay thế như sau:</p>
+<p><img src="https://cdn-images-1.medium.com/max/7648/1*rY5C8Szb6w9T7p_i8wyOxg.png" alt=""></p>
+<h3 id="hướng-dẫn-chi-tiết-cấu-hình">Hướng dẫn chi tiết cấu hình</h3>
+<p>Enable và khởi tạo Kubernetes module path trên Vault bằng command sau:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">vault</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> auth</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> enable</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> hn-ssi-cluster</span></span></code></pre>
+<p>Cấu hình với hệ thống K8S cho module đã tạo ở trên:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">vault</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> write</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> auth/hn-ssi-cluster/config</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">    token_reviewer_jwt=</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">&#x3C;token có quyền validate token # trong cụm hn-ssi-cluster></span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">    kubernetes_host=</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">https://hn-ssi-cluster:443</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">    kubernetes_ca_cert=@ca.crt</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">    disable_local_ca_jwt=</span><span style="color:#1976D2;--shiki-dark:#82AAFF">true</span></span></code></pre>
+<ul>
+<li><code>token_reviewer_jwt</code> - sử dụng SA <strong>rv-token</strong> đã tạo từ phía K8S.</li>
+<li><code>kubernetes_host</code> - sử dụng giải pháp thay thế nói ở trên thì chỗ này cần fill host của cụm K8S tương ứng đã cấu hình trong Nginx.</li>
+<li><code>kubernetes_ca_cert</code> - CA Certificate của cụm K8S cần cấu hình (lấy từ cụm K8S).</li>
+<li><code>disable_local_ca_jwt</code> - thông thường thì Vault sẽ sử dụng 02 config <code>token_reviewer_jwt</code> và <code>kubernetes_ca_cert</code>, tuy nhiên nó cũng có thể sử dụng các giá trị này từ đầu client gửi lên. Tắt cái này đi thì nó chỉ sử dụng duy nhất cấu hình mà đã thiết lập ở trên.</li>
+</ul>
+<p>Tiếp theo là thực hiện phân quyền cho các SA token từ phía cụm K8S, đây là một JSON Web Token và chúng ta có thể decode nó để xem có thể phân quyền dựa trên những attribute nào. Hiện tại thì đang support phân quyền tới mức Service Account và Namespace của ứng dụng:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">vault</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> write</span><span style="color:#2B5581;--shiki-dark:#ECC48D"> auth/hn-ssi-cluster/role/devweb-app</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">  bound_service_account_names=devwebapp</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">  bound_service_account_namespaces=test</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">  policies=</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">default,devwebapp</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#F78C6C"> \</span></span>
+<span class="line"><span style="color:#2B5581;--shiki-dark:#ECC48D">  ttl=24h</span></span></code></pre>
+<ul>
+<li><code>devwebapp</code> là SA được gắn với Pod đang chạy ứng dụng</li>
+<li>policies là các policy của Vault cho phép SA này + Namespace này được phép lấy những giá trị secret gì.</li>
+</ul>
+<p>Cuối cùng là từ ứng dụng, cấu hình K8S manifest để đọc các giá trị secrets từ Vault, có thể xem chi tiết hướng dẫn ở đây: <a href="https://developer.hashicorp.com/vault/docs/platform/k8s/injector">https://developer.hashicorp.com/vault/docs/platform/k8s/injector</a></p> </article> <hr class="my-8 border-dashed"> <div class="opacity-80 sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/satnaing/astro-paper/edit/main/src/data/blog/kubernetes/integrate-hashicorp-vault-with-k8s-on-rancher.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/kubernetes/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Kubernetes</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/hashicorp-vault/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Hashicorp Vault</span> </a> </li> </ul> <div class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"> <div class="flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start"> <span class="italic">Share this post on:</span> <div class="text-center"> <a href="https://wa.me/?text=https://thuongnn.dev/posts/kubernetes/integrate-hashicorp-vault-with-k8s-on-rancher/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> <span class="sr-only">Share this post via WhatsApp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://thuongnn.dev/posts/kubernetes/integrate-hashicorp-vault-with-k8s-on-rancher/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://thuongnn.dev/posts/kubernetes/integrate-hashicorp-vault-with-k8s-on-rancher/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://thuongnn.dev/posts/kubernetes/integrate-hashicorp-vault-with-k8s-on-rancher/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg> <span class="sr-only">Share this post via Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://thuongnn.dev/posts/kubernetes/integrate-hashicorp-vault-with-k8s-on-rancher/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg> <span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&#38;body=https://thuongnn.dev/posts/kubernetes/integrate-hashicorp-vault-with-k8s-on-rancher/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Share this post via email</span> </a> </div> </div> <button id="back-to-top" class="focus-outline py-1 whitespace-nowrap hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span>Back to Top</span> </button> </div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2">  <a href="/posts/kubernetes/learn-about-ingress-network" class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">Tìm hiểu về Ingress network</div> </div> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="w-full mt-auto"> <div class="max-w-3xl mx-auto px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://github.com/thuongnn" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title=" thuongnn.dev on Github"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only"> thuongnn.dev on Github</span> </a><a href="https://www.facebook.com/thuongnn97" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">thuongnn.dev on Facebook</span> </a><a href="https://www.linkedin.com/in/thuongnn/" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on LinkedIn"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">thuongnn.dev on LinkedIn</span> </a><a href="mailto:thuongnn1997@gmail.com" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to thuongnn.dev"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to thuongnn.dev</span> </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2025</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ml-2 opacity-0 group-hover:opacity-100 focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "copy-code absolute right-3 -top-3 rounded bg-muted px-2 py-1 text-xs leading-4 text-foreground font-medium";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    document.querySelector("#back-to-top")?.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+  }
+  backToTop();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>
