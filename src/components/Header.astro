@@ -8,9 +8,7 @@ import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
 import LinkButton from "./LinkButton.astro";
 import { SITE } from "@/config";
-import { getCollection } from "astro:content";
-import { getAllSeries, type Series } from "@/utils/series";
-import type { CollectionEntry } from "astro:content";
+import { getAllSeries } from "@/utils/series";
 
 const { pathname } = Astro.url;
 
@@ -24,15 +22,6 @@ const isActive = (path: string) => {
 
   return currentPath === path || currentPathArray[0] === pathArray[0];
 };
-
-const posts = await getCollection("blog");
-const nonDraftPosts = posts.filter(post => !post.data.draft);
-
-// Get unique series from posts
-const series = [...new Set(nonDraftPosts.map(post => post.data.folder))].filter(
-  Boolean
-);
-const allSeries = getAllSeries();
 ---
 
 <header>
