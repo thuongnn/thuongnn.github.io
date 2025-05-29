@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://thuongnn.dev/posts/aws/networking/vpc/"><meta name="generator" content="Astro v5.5.2"><!-- General Meta Tags --><title>[AWS] Amazon Virtual Private Cloud (VPC) | thuongnn.dev</title><meta name="title" content="[AWS] Amazon Virtual Private Cloud (VPC) | thuongnn.dev"><meta name="description" content="Tìm hiểu về dịch vụ mạng riêng ảo của AWS, cho phép tạo và quản lý mạng riêng biệt trong đám mây AWS."><meta name="author" content="thuongnn"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="[AWS] Amazon Virtual Private Cloud (VPC) | thuongnn.dev"><meta property="og:description" content="Tìm hiểu về dịch vụ mạng riêng ảo của AWS, cho phép tạo và quản lý mạng riêng biệt trong đám mây AWS."><meta property="og:url" content="https://thuongnn.dev/posts/aws/networking/vpc/"><meta property="og:image" content="https://thuongnn.dev/posts/aws/networking/vpc/index.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2023-05-05T14:20:45.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://thuongnn.dev/posts/aws/networking/vpc/"><meta property="twitter:title" content="[AWS] Amazon Virtual Private Cloud (VPC) | thuongnn.dev"><meta property="twitter:description" content="Tìm hiểu về dịch vụ mạng riêng ảo của AWS, cho phép tạo và quản lý mạng riêng biệt trong đám mây AWS."><meta property="twitter:image" content="https://thuongnn.dev/posts/aws/networking/vpc/index.png"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"[AWS] Amazon Virtual Private Cloud (VPC) | thuongnn.dev","image":"https://thuongnn.dev/posts/aws/networking/vpc/index.png","datePublished":"2023-05-05T14:20:45.000Z","author":[{"@type":"Person","name":"thuongnn","url":"https://thuongnn.dev/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="thuongnn.dev" href="https://thuongnn.dev/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CMTcOisY.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/about.DQgjlE2T.css">
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://thuongnn.dev/posts/aws/networking/vpc/"><meta name="generator" content="Astro v5.5.2"><!-- General Meta Tags --><title>[AWS] Amazon Virtual Private Cloud (VPC) | thuongnn.dev</title><meta name="title" content="[AWS] Amazon Virtual Private Cloud (VPC) | thuongnn.dev"><meta name="description" content="Tìm hiểu về dịch vụ mạng riêng ảo của AWS, cho phép tạo và quản lý mạng riêng biệt trong AWS Cloud."><meta name="author" content="thuongnn"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="[AWS] Amazon Virtual Private Cloud (VPC) | thuongnn.dev"><meta property="og:description" content="Tìm hiểu về dịch vụ mạng riêng ảo của AWS, cho phép tạo và quản lý mạng riêng biệt trong AWS Cloud."><meta property="og:url" content="https://thuongnn.dev/posts/aws/networking/vpc/"><meta property="og:image" content="https://thuongnn.dev/posts/aws/networking/vpc/index.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2023-05-05T14:20:45.000Z"><meta property="article:modified_time" content="2025-05-29T02:06:28.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://thuongnn.dev/posts/aws/networking/vpc/"><meta property="twitter:title" content="[AWS] Amazon Virtual Private Cloud (VPC) | thuongnn.dev"><meta property="twitter:description" content="Tìm hiểu về dịch vụ mạng riêng ảo của AWS, cho phép tạo và quản lý mạng riêng biệt trong AWS Cloud."><meta property="twitter:image" content="https://thuongnn.dev/posts/aws/networking/vpc/index.png"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"[AWS] Amazon Virtual Private Cloud (VPC) | thuongnn.dev","image":"https://thuongnn.dev/posts/aws/networking/vpc/index.png","datePublished":"2023-05-05T14:20:45.000Z","dateModified":"2025-05-29T02:06:28.000Z","author":[{"@type":"Person","name":"thuongnn","url":"https://thuongnn.dev/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="thuongnn.dev" href="https://thuongnn.dev/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CMTcOisY.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/about.DQgjlE2T.css">
 <style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
 [data-astro-image]{width:100%;height:auto;object-fit:var(--fit);object-position:var(--pos);aspect-ratio:var(--w) / var(--h)}[data-astro-image=responsive]{max-width:calc(var(--w) * 1px);max-height:calc(var(--h) * 1px)}[data-astro-image=fixed]{width:calc(var(--w) * 1px);height:calc(var(--h) * 1px)}
 </style><style>[data-astro-transition-scope="astro-fam6wyqg-1"] { view-transition-name: aws-amazon-virtual-private-cloud-vpc; }@layer astro { ::view-transition-old(aws-amazon-virtual-private-cloud-vpc) { 
@@ -117,32 +117,449 @@ Posts
 Tags
 </a> </li> <li class="col-span-2"> <a href="/about">
 About
-</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="max-w-3xl mx-auto px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-3xl items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="mx-auto w-full max-w-3xl px-4 pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-fam6wyqg-1"> [AWS] Amazon Virtual Private Cloud (VPC) </h1> <div class="flex items-center gap-4"> <div class="flex items-end space-x-2 opacity-80 my-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg> <span class="sr-only">Published:</span> <span class="text-sm italic sm:text-base"> <time datetime="2023-05-05T14:20:45.000Z">5 May, 2023</time> <span aria-hidden="true"> | </span> <span class="sr-only">&nbsp;at&nbsp;</span> <span class="text-nowrap">02:20 PM</span> </span> </div> <div class="opacity-80 max-sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="max-w-3xl mx-auto px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-3xl items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="mx-auto w-full max-w-3xl px-4 pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-fam6wyqg-1"> [AWS] Amazon Virtual Private Cloud (VPC) </h1> <div class="flex items-center gap-4"> <div class="flex items-end space-x-2 opacity-80 my-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg> <span class="text-sm italic sm:text-base">
+Updated:
+</span> <span class="text-sm italic sm:text-base"> <time datetime="2025-05-29T02:06:28.000Z">29 May, 2025</time> <span aria-hidden="true"> | </span> <span class="sr-only">&nbsp;at&nbsp;</span> <span class="text-nowrap">02:06 AM</span> </span> </div> <div class="opacity-80 max-sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
 |
 </span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/thuongnn/thuongnn.github.io/edit/master/src/data/blog/aws/networking/vpc.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> </div> <article id="article" class="mx-auto prose mt-8 max-w-3xl"> <p>Bài viết được tham khảo và tổng hợp lại từ Jayendra’s Blog, xem bài viết gốc ở đây: <a href="https://jayendrapatil.com/aws-vpc">https://jayendrapatil.com/aws-vpc</a>.</p>
 <h2 id="table-of-contents">Table of contents</h2>
 <p></p><details><summary>Open Table of contents</summary><p></p>
 <ul>
-<li><a href="#chi-ti%E1%BA%BFt">Chi tiết</a></li>
+<li><a href="#vpc-l%C3%A0-g%C3%AC">VPC là gì?</a></li>
+<li><a href="#subnet">Subnet</a>
+<ul>
+<li><a href="#%C4%91%E1%BB%8Bnh-ngh%C4%A9a-subnet-v%C3%A0-ph%E1%BA%A1m-vi-ho%E1%BA%A1t-%C4%91%E1%BB%99ng"><strong>Định nghĩa Subnet và phạm vi hoạt động</strong></a></li>
+<li><a href="#k%C3%ADch-th%C6%B0%E1%BB%9Bc-subnet-subnet-sizing"><strong>Kích thước Subnet (Subnet Sizing)</strong></a></li>
+<li><a href="#routing-trong-subnet"><strong>Routing trong Subnet</strong></a></li>
+<li><a href="#b%E1%BA%A3o-m%E1%BA%ADt-subnet"><strong>Bảo mật Subnet</strong></a></li>
+</ul>
+</li>
+<li><a href="#vpc--subnet-sizing">VPC &#x26; Subnet Sizing</a></li>
+<li><a href="#ip-addresses">IP Addresses</a></li>
+<li><a href="#elastic-network-interface-eni">Elastic Network Interface (ENI)</a></li>
+<li><a href="#route-tables">Route Tables</a></li>
+<li><a href="#internet-gateways--igw">Internet Gateways – IGW</a></li>
+<li><a href="#egress-only-internet-gateway">Egress-only Internet gateway</a></li>
+<li><a href="#shared-vpcs">Shared VPCs</a></li>
+<li><a href="#vpc-peering">VPC Peering</a>
+<ul>
+<li><a href="#vpc-peering-connectivity"><strong>VPC Peering Connectivity</strong></a></li>
+<li><a href="#vpc-peering-limitations--rules">VPC Peering Limitations &#x26; Rules</a></li>
+<li><a href="#vpc-peering-troubleshooting">VPC Peering Troubleshooting</a></li>
+<li><a href="#vpc-peering-architecture">VPC Peering Architecture</a></li>
+<li><a href="#vpc-peering-vs-transit-gateway"><strong>VPC Peering vs Transit Gateway</strong></a></li>
+</ul>
+</li>
+<li><a href="#vpc-security">VPC Security</a></li>
+<li><a href="#vpc-flow-logs">VPC Flow logs</a></li>
 </ul>
 <p></p></details><p></p>
-<h1 id="chi-tiết">Chi tiết</h1>
-<p><a href="Virtual%20Private%20Network%20%E2%80%93%20VPC%201593fa6ae483806eaa13c20dcc38aafb/VPC%201593fa6ae48380388da6f8b4b499a297.md"><strong>VPC</strong></a></p>
-<p><a href="Virtual%20Private%20Network%20%E2%80%93%20VPC%201593fa6ae483806eaa13c20dcc38aafb/Subnet%201593fa6ae483808f9789f49b3e2d966e.md"><strong>Subnet</strong></a></p>
-<p><a href="Virtual%20Private%20Network%20%E2%80%93%20VPC%201593fa6ae483806eaa13c20dcc38aafb/VPC%20&#x26;%20Subnet%20Sizing%201593fa6ae4838059aab2f38fe237d53f.md"><strong>VPC &#x26; Subnet Sizing</strong></a></p>
-<p><a href="Virtual%20Private%20Network%20%E2%80%93%20VPC%201593fa6ae483806eaa13c20dcc38aafb/IP%20Addresses%201593fa6ae4838079ab75c730b0f660e4.md"><strong>IP Addresses</strong></a></p>
-<p><a href="Virtual%20Private%20Network%20%E2%80%93%20VPC%201593fa6ae483806eaa13c20dcc38aafb/Elastic%20Network%20Interface%20(ENI)%201593fa6ae48380bb819ccb640a31ee04.md">Elastic Network Interface (ENI)</a></p>
-<p><a href="Virtual%20Private%20Network%20%E2%80%93%20VPC%201593fa6ae483806eaa13c20dcc38aafb/Route%20Tables%201593fa6ae48380ecb1abdb6a552c3a79.md"><strong>Route Tables</strong></a></p>
-<p><a href="Virtual%20Private%20Network%20%E2%80%93%20VPC%201593fa6ae483806eaa13c20dcc38aafb/Internet%20Gateways%20%E2%80%93%20IGW%201593fa6ae4838042a42ceeac69b3490a.md"><strong>Internet Gateways – IGW</strong></a></p>
-<p><a href="Virtual%20Private%20Network%20%E2%80%93%20VPC%201593fa6ae483806eaa13c20dcc38aafb/Egress-only%20Internet%20gateway%201593fa6ae4838021aab3c89541dbba2d.md">Egress-only Internet gateway</a></p>
-<p><a href="Virtual%20Private%20Network%20%E2%80%93%20VPC%201593fa6ae483806eaa13c20dcc38aafb/Shared%20VPCs%201593fa6ae4838005b67acadf7ac3835d.md"><strong>Shared VPCs</strong></a></p>
-<p><a href="Virtual%20Private%20Network%20%E2%80%93%20VPC%201593fa6ae483806eaa13c20dcc38aafb/VPC%20Peering%2015a3fa6ae483803784d6ebf9712b44bf.md"><strong>VPC Peering</strong></a></p>
-<p><a href="Virtual%20Private%20Network%20%E2%80%93%20VPC%201593fa6ae483806eaa13c20dcc38aafb/VPC%20Security%2015a3fa6ae483800aa471ce3b7633fbc7.md">VPC Security</a></p>
-<p><a href="Virtual%20Private%20Network%20%E2%80%93%20VPC%201593fa6ae483806eaa13c20dcc38aafb/VPC%20Flow%20logs%2015a3fa6ae48380ab9088d4a19a3a333d.md"><strong>VPC Flow logs</strong></a></p> </article> <hr class="my-8 border-dashed"> <div class="opacity-80 sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+<h1 id="vpc-là-gì">VPC là gì?</h1>
+<p><img alt="1.png" sizes="(min-width: 2342px) 2342px, 100vw" loading="lazy" decoding="async" fetchpriority="auto" style="--w: 2342; --h: 1666;" data-astro-image="responsive" width="2342" height="1666" src="/_astro/1.DV6B2-0f_6sVn2.webp" srcset="/_astro/1.DV6B2-0f_1YqNHn.webp 640w, /_astro/1.DV6B2-0f_2mxrYA.webp 750w, /_astro/1.DV6B2-0f_Z1OqJYW.webp 828w, /_astro/1.DV6B2-0f_ZXBCKu.webp 1080w, /_astro/1.DV6B2-0f_Z26KA0y.webp 1280w, /_astro/1.DV6B2-0f_Z2guSYY.webp 1668w, /_astro/1.DV6B2-0f_Z2jnGvw.webp 2048w, /_astro/1.DV6B2-0f_6sVn2.webp 2342w"></p>
+<p>AWS VPC (Virtual Private Cloud) là một mạng ảo dành riêng cho tài khoản AWS, được cô lập logic với các mạng ảo khác trong môi trường AWS Cloud. Đây là một dịch vụ cung cấp nền tảng mạng ảo tùy chỉnh, với những điểm nổi bật sau:</p>
+<ul>
+<li><strong>Dịch vụ theo khu vực (Regional Service)</strong>:
+<ul>
+<li>VPC là dịch vụ theo khu vực, có nghĩa là nó hoạt động trên tất cả các <strong>Availability Zones (AZ)</strong> trong một <strong>Region</strong>. Trong một VPC, bạn có thể tạo các <strong>subnet</strong>. Mỗi subnet phải gắn liền với một AZ cụ thể.</li>
+<li><strong>Availability Zones</strong> là các địa điểm độc lập và cô lập trong một <strong>Region</strong>, giúp tăng tính sẵn sàng và khả năng chịu lỗi cho các tài nguyên triển khai trong VPC.</li>
+</ul>
+</li>
+<li><strong>Kiểm soát hoàn toàn</strong>: VPC cho phép người dùng tự do quản lý môi trường mạng ảo của mình, bao gồm:
+<ul>
+<li>Lựa chọn phạm vi địa chỉ IP.</li>
+<li>Tạo các subnet (mạng con).</li>
+<li>Cấu hình bảng định tuyến (route tables) và cổng mạng (network gateways).</li>
+</ul>
+</li>
+<li><strong>Hỗ trợ IPv4 và IPv6</strong>: VPC hỗ trợ cả địa chỉ IPv4 và IPv6, giúp đảm bảo truy cập tài nguyên và ứng dụng một cách dễ dàng và an toàn hơn.</li>
+<li><strong>Kích thước VPC</strong>
+<ul>
+<li>VPC cần một tập hợp địa chỉ IP dưới dạng <strong>CIDR block</strong> (Classless Inter-Domain Routing). Ví dụ: <code>10.0.0.0/16</code>, cho phép sử dụng 2^{16} = 65,536 địa chỉ IP.</li>
+<li>Kích thước CIDR block được phép:
+<ul>
+<li><strong>/28 netmask</strong> (tối thiểu, với 2^4 = 16 địa chỉ IP khả dụng)</li>
+<li><strong>/16 netmask</strong> (tối đa, với 2^{16} = 65,536 địa chỉ IP khả dụng)</li>
+</ul>
+</li>
+<li>CIDR block có thể được gán từ các địa chỉ IP <strong>riêng (không thể định tuyến công khai)</strong> như sau:
+<ul>
+<li><code>10.0.0.0 – 10.255.255.255</code> (tiền tố <code>10/8</code>).</li>
+<li><code>172.16.0.0 – 172.31.255.255</code> (tiền tố <code>172.16/12</code>).</li>
+<li><code>192.168.0.0 – 192.168.255.255</code> (tiền tố <code>192.168/16</code>).</li>
+</ul>
+</li>
+<li>CIDR block sau khi được gán cho VPC <strong>không thể thay đổi</strong>.
+<strong>Lưu ý</strong>: Hiện tại, AWS đã hỗ trợ tính năng thay đổi kích thước VPC</li>
+<li>Mỗi VPC là <strong>riêng biệt</strong> với các VPC khác được tạo bằng cùng một CIDR block, ngay cả khi chúng nằm trong cùng một tài khoản AWS.</li>
+</ul>
+</li>
+<li>Kết nối giữa VPC và mạng công ty có thể được thiết lập. Tuy nhiên, các CIDR blocks không được phép trùng lặp. Ví dụ, VPC với CIDR <code>10.0.0.0/16</code> có thể giao tiếp với mạng công ty có CIDR <code>10.1.0.0/16</code>, nhưng kết nối sẽ bị ngắt nếu nó cố gắng kết nối với mạng công ty có CIDR <code>10.0.37.0/16</code> do địa chỉ IP bị trùng lặp.</li>
+<li>VPC cho phép bạn thiết lập các tùy chọn quyền sở hữu (tenancy) cho các instance được khởi chạy trong nó. Mặc định, tùy chọn quyền sở hữu là chia sẻ (shared). Nếu chọn tùy chọn dành riêng (dedicated), tất cả các instance trong VPC sẽ được khởi chạy trên phần cứng riêng biệt, ghi đè cài đặt quyền sở hữu của từng instance.</li>
+<li>Chỉ có thể xóa VPC sau khi:
+<ul>
+<li>Dừng tất cả các instance trong VPC.</li>
+<li>Xóa tất cả các thành phần trong VPC, ví dụ: subnet, security group, network ACL, route table, Internet gateway, kết nối VPC peering, và tùy chọn DHCP.</li>
+</ul>
+</li>
+<li><strong>VPC Peering</strong> cung cấp một kết nối mạng giữa hai VPC (cùng hoặc khác tài khoản và khu vực) cho phép định tuyến lưu lượng giữa chúng bằng cách sử dụng địa chỉ IPv4 riêng tư hoặc địa chỉ IPv6.</li>
+<li><strong>NAT Gateway</strong> cho phép các instance trong một subnet riêng kết nối với Internet nhưng ngăn chặn việc Internet khởi tạo kết nối với các instance.</li>
+<li><strong>VPC endpoints</strong> cho phép tạo kết nối riêng tư giữa VPC và các dịch vụ AWS được hỗ trợ, cũng như các dịch vụ VPC endpoint do PrivateLink cung cấp, sử dụng địa chỉ IP riêng của nó.</li>
+</ul>
+<h1 id="subnet">Subnet</h1>
+<h2 id="định-nghĩa-subnet-và-phạm-vi-hoạt-động"><strong>Định nghĩa Subnet và phạm vi hoạt động</strong></h2>
+<ul>
+<li><strong>Subnet chỉ thuộc một Availability Zone (AZ):</strong>
+<ul>
+<li>Một AZ là một vị trí độc lập, được thiết kế để giảm thiểu ảnh hưởng của lỗi từ các AZ khác.</li>
+<li>Subnet <strong>không thể trải dài qua nhiều AZ</strong>.</li>
+</ul>
+</li>
+<li>Subnet có thể được cấu hình với <strong>Internet Gateway (IGW)</strong> để cho phép giao tiếp qua Internet hoặc với <strong>Virtual Private Gateway (VPN)</strong> để kết nối với mạng nội bộ của công ty.</li>
+<li>Subnet có thể là <strong>Public</strong> hoặc <strong>Private</strong>, tùy thuộc vào việc nó có kết nối Internet hay không, nghĩa là nó có thể định tuyến lưu lượng tới Internet thông qua IGW.</li>
+<li>Các instance trong <strong>Subnet Public</strong> cần được gán <strong>Public IP</strong> hoặc <strong>Elastic IP</strong> để có thể giao tiếp với Internet.</li>
+<li>Đối với các Subnet <strong>không kết nối với Internet</strong> nhưng định tuyến lưu lượng qua Virtual Private Gateway, chúng được gọi là <strong>VPN-only Subnet</strong>.</li>
+<li>Subnet có thể được cấu hình để tự động gán <strong>Public IP</strong> cho tất cả các instance được tạo bên trong nó theo mặc định. Tuy nhiên, cài đặt này có thể được thay đổi trong quá trình tạo instance.</li>
+</ul>
+<h2 id="kích-thước-subnet-subnet-sizing"><strong>Kích thước Subnet (Subnet Sizing)</strong></h2>
+<ul>
+<li><strong>CIDR block</strong> được gán cho Subnet có thể giống với CIDR của VPC. Trong trường hợp này, bạn chỉ có thể tạo một Subnet duy nhất trong VPC của mình.</li>
+<li><strong>CIDR block</strong> được gán cho Subnet có thể là một <strong>phân đoạn con</strong> (subset) của CIDR VPC, điều này cho phép bạn tạo nhiều Subnet trong VPC.</li>
+<li><strong>CIDR block</strong> gán cho Subnet không được phép <strong>chồng lặp (overlapping)</strong> với các CIDR khác.</li>
+<li><strong>Kích thước CIDR block</strong> cho phép nằm trong khoảng:
+<ul>
+<li><strong>/28 netmask</strong> (tối thiểu, với $2^4$ = 16 địa chỉ IP khả dụng)</li>
+<li><strong>/16 netmask</strong> (tối đa, với $2^{16}$ = 65,536 địa chỉ IP khả dụng)</li>
+</ul>
+</li>
+<li>AWS <strong>dự trữ 5 địa chỉ IP</strong> (4 địa chỉ đầu tiên và 1 địa chỉ cuối cùng) trong mỗi Subnet. Những địa chỉ này không thể được sử dụng và không thể gán cho bất kỳ instance nào. Ví dụ, với một Subnet có <strong>CIDR block</strong> là <code>10.0.0.0/24</code>, 5 địa chỉ sau sẽ bị dự trữ:
+<ul>
+<li><code>10.0.0.0</code>: Địa chỉ mạng.</li>
+<li><code>10.0.0.1</code>: Được AWS dự trữ cho router của VPC.</li>
+<li><code>10.0.0.2</code>: Được AWS dự trữ cho ánh xạ DNS do Amazon cung cấp.</li>
+<li><code>10.0.0.3</code>: Được AWS dự trữ cho mục đích sử dụng trong tương lai.</li>
+<li><code>10.0.0.255</code>: Địa chỉ phát sóng mạng. AWS không hỗ trợ phát sóng trong VPC, vì vậy địa chỉ này bị dự trữ.</li>
+</ul>
+</li>
+</ul>
+<h2 id="routing-trong-subnet"><strong>Routing trong Subnet</strong></h2>
+<ul>
+<li>Mỗi Subnet được liên kết với một <strong>Route Table</strong>:
+<ul>
+<li>Route Table kiểm soát lưu lượng vào/ra Subnet.</li>
+<li>Ví dụ:
+<ul>
+<li>Subnet Public sẽ có một route để gửi lưu lượng ra Internet Gateway.</li>
+<li>Subnet Private sẽ gửi lưu lượng qua NAT Gateway hoặc Virtual Private Gateway.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="bảo-mật-subnet"><strong>Bảo mật Subnet</strong></h2>
+<ul>
+<li><strong>Security Groups</strong>:
+<ul>
+<li>Hoạt động ở cấp độ instance.</li>
+<li>Kiểm soát lưu lượng đến và đi dựa trên các quy tắc.</li>
+</ul>
+</li>
+<li><strong>Network ACLs (NACLs)</strong>:
+<ul>
+<li>Hoạt động ở cấp độ Subnet.</li>
+<li>Kiểm soát lưu lượng vào/ra Subnet dựa trên các quy tắc cụ thể.</li>
+</ul>
+</li>
+</ul>
+<h1 id="vpc--subnet-sizing">VPC &#x26; Subnet Sizing</h1>
+<p><img alt="2.png" sizes="(min-width: 1024px) 1024px, 100vw" loading="lazy" decoding="async" fetchpriority="auto" style="--w: 1024; --h: 508;" data-astro-image="responsive" width="1024" height="508" src="/_astro/2.BBmMa624_Z1JE5lT.webp" srcset="/_astro/2.BBmMa624_Z1PyEW7.webp 640w, /_astro/2.BBmMa624_Z2aQsJa.webp 750w, /_astro/2.BBmMa624_2laJCn.webp 828w, /_astro/2.BBmMa624_Z1JE5lT.webp 1024w"></p>
+<ul>
+<li>VPC hỗ trợ địa chỉ IPv4 và IPv6. Có kích thước CIDR block khác nhau cho mỗi loại.</li>
+<li>IPv6 CIDR block có thể tuỳ chọn liên kết với VPC.</li>
+<li>IPv4 CIDR block không thể thay đổi khi đã tạo (có thể tăng nhưng không thể giảm)</li>
+<li>Hạn chế:
+<ul>
+<li>Cho phép CIDR block size giữa <code>/28</code> netmask và <code>/16</code> netmask</li>
+<li>CIDR block không được trùng lặp với bất kỳ CIDR block nào đã được liên kết với VPC.</li>
+<li>CIDR block không được giống hoặc lớn hơn phạm vi CIDR của một tuyến trong bất kỳ bảng định tuyến VPC nào. Ví dụ, đối với CIDR block <code>10.0.0.0/24</code>, chỉ có thể liên kết các CIDR block nhỏ hơn như <code>10.0.0.0/25</code>.</li>
+</ul>
+</li>
+</ul>
+<h1 id="ip-addresses">IP Addresses</h1>
+<p>Các instance được khởi tạo trong VPC có thể được gán các địa chỉ <strong>Private IP</strong>, <strong>Public IP</strong> và <strong>Elastic IP</strong>, và chúng là thuộc tính của <strong>ENI</strong> (Elastic Network Interface).</p>
+<p><strong>Private IP:</strong></p>
+<ul>
+<li><strong>Private IP</strong> không thể truy cập từ Internet và chỉ có thể được sử dụng để giao tiếp giữa các instance trong VPC.</li>
+<li>Tất cả các instance đều được gán một <strong>Private IP</strong>, trong phạm vi địa chỉ IP của <strong>subnet</strong>, cho <strong>network interface</strong> mặc định.</li>
+<li><strong>Primary IP</strong> được liên kết với <strong>network interface</strong> suốt vòng đời của instance, ngay cả khi instance bị dừng và khởi động lại, và chỉ bị giải phóng khi instance bị xóa.</li>
+<li>Các địa chỉ <strong>Private IP</strong> bổ sung, được gọi là <strong>secondary private IP</strong>, có thể được gán cho các instance và có thể được chuyển từ <strong>network interface</strong> này sang <strong>network interface</strong> khác.</li>
+</ul>
+<p><strong>Public IP:</strong></p>
+<ul>
+<li><strong>Public IP</strong> có thể truy cập qua Internet và có thể được sử dụng để giao tiếp giữa các instance và Internet, hoặc với các dịch vụ AWS khác có public endpoints.</li>
+<li>Việc gán <strong>Public IP</strong> cho instance phụ thuộc vào việc tính năng cấp phát <strong>Public IP addressing</strong> có được bật cho <strong>subnet</strong> hay không.</li>
+<li><strong>Public IP</strong> cũng có thể được gán cho instance bằng cách bật tính năng cấp phát <strong>Public IP</strong> khi tạo instance, điều này sẽ ghi đè thuộc tính cấp phát <strong>Public IP</strong> của <strong>subnet</strong>.</li>
+<li><strong>Public IP</strong> được cấp phát từ nhóm địa chỉ IP của AWS và không liên kết với tài khoản AWS, do đó, nó sẽ được giải phóng khi instance bị dừng và khởi động lại hoặc bị xóa.</li>
+</ul>
+<p><strong>Elastic IP:</strong></p>
+<ul>
+<li><strong>Elastic IP</strong> là địa chỉ Public IP tĩnh, bền vững, có thể được gán và hủy gán cho instance khi cần.</li>
+<li><strong>Elastic IP</strong> được cấp phát cho <strong>VPC</strong> và thuộc về tài khoản trừ khi bị giải phóng.</li>
+<li>Một <strong>Network Interface</strong> có thể được gán một <strong>Public IP</strong> hoặc một <strong>Elastic IP</strong>. Nếu bạn gán một instance đã có <strong>Public IP</strong> một <strong>Elastic IP</strong>, <strong>Public IP</strong> sẽ bị giải phóng.</li>
+<li><strong>Elastic IP</strong> có thể được chuyển từ một instance sang instance khác, có thể ở cùng một <strong>VPC</strong> hoặc <strong>VPC</strong> khác trong cùng một tài khoản.</li>
+<li><strong>Elastic IP</strong> sẽ bị tính phí nếu không sử dụng, tức là nếu nó không được gán hoặc được gán cho một instance đã dừng hoặc một <strong>Network Interface</strong> chưa gắn.</li>
+</ul>
+<h1 id="elastic-network-interface-eni">Elastic Network Interface (ENI)</h1>
+<ul>
+<li>Mỗi Instance được gắn với một <strong>Elastic Network Interface</strong> mặc định (Network Interface chính <code>eth0</code>) và không thể tách rời khỏi instance đó.</li>
+<li>ENI có thể bao gồm các thuộc tính sau:
+<ul>
+<li>Địa chỉ IP riêng chính (Primary private IP address)</li>
+<li>Một hoặc nhiều địa chỉ IP riêng phụ (Secondary private IP addresses)</li>
+<li>Một Elastic IP cho mỗi địa chỉ IP riêng</li>
+<li>Một địa chỉ Public IP, có thể được tự động gán cho network interface của <code>eth0</code> khi bạn khởi tạo một instance, nhưng chỉ khi bạn tạo một network interface cho <code>eth0</code> thay vì sử dụng một ENI đã có sẵn.</li>
+<li>Một hoặc nhiều <strong>Security groups</strong></li>
+<li>Địa chỉ MAC (MAC address)</li>
+<li>Cờ kiểm tra nguồn/đích (Source/destination check flag)</li>
+<li>Mô tả (Description)</li>
+</ul>
+</li>
+<li>Các thuộc tính của ENI sẽ theo ENI khi nó được gắn hoặc tách khỏi một instance và được gắn lại với một instance khác. Khi một ENI được chuyển từ instance này sang instance khác, lưu lượng mạng sẽ được chuyển hướng đến instance mới.</li>
+<li>Nhiều ENI có thể được gắn với một instance và điều này hữu ích trong các trường hợp sử dụng sau:
+<ul>
+<li>Tạo một mạng quản lý.</li>
+<li>Sử dụng các thiết bị mạng và bảo mật trong VPC của bạn.</li>
+<li>Tạo các instance hai mạng với các workload/vai trò trên các subnet khác nhau.</li>
+<li>Tạo giải pháp với ngân sách thấp nhưng có tính khả dụng cao.</li>
+</ul>
+</li>
+</ul>
+<h1 id="route-tables">Route Tables</h1>
+<p>Bảng định tuyến (Route table) xác định các quy tắc, được gọi là các <strong>routes</strong>, quyết định lưu lượng mạng từ subnet sẽ được định tuyến đến đâu.</p>
+<ul>
+<li>Mỗi VPC có một bộ định tuyến ngầm định để định tuyến lưu lượng mạng.</li>
+<li>Mỗi VPC có một <strong>Main Route table</strong> (Bảng định tuyến chính) và có thể có nhiều bảng định tuyến tùy chỉnh (custom route tables) được tạo ra.</li>
+<li>Mỗi <strong>Subnet</strong> trong một VPC phải được liên kết với một bảng định tuyến duy nhất tại một thời điểm, trong khi một bảng định tuyến có thể có nhiều subnet được liên kết với nó.</li>
+<li>Nếu một <strong>Subnet</strong> không được liên kết rõ ràng với một bảng định tuyến, nó sẽ được liên kết ngầm định với bảng định tuyến chính.</li>
+<li>Mỗi bảng định tuyến đều chứa một <strong>route local</strong> cho phép giao tiếp trong một VPC và không thể sửa đổi hay xóa.</li>
+<li>Ưu tiên của các route được xác định bằng cách tìm kiếm route cụ thể nhất trong bảng định tuyến phù hợp với lưu lượng mạng.</li>
+<li>Các bảng định tuyến cần được cập nhật để xác định các route cho <strong>Internet gateways</strong>, <strong>Virtual Private gateways</strong>, <strong>VPC Peering</strong>, <strong>VPC Endpoints</strong>, <strong>NAT Devices</strong>, v.v.</li>
+</ul>
+<h1 id="internet-gateways--igw">Internet Gateways – IGW</h1>
+<ul>
+<li><strong>Internet gateway</strong> là một thành phần VPC có khả năng mở rộng theo chiều ngang, dư thừa và có tính sẵn sàng cao, cho phép giao tiếp giữa các instance trong VPC và Internet.</li>
+<li>IGW không tạo ra rủi ro về tính sẵn sàng hoặc giới hạn băng thông đối với lưu lượng mạng.</li>
+<li><strong>Internet gateway</strong> có hai mục đích:
+<ul>
+<li>Cung cấp một điểm đến trong các bảng định tuyến VPC cho lưu lượng mạng có thể định tuyến tới Internet.</li>
+<li>Thực hiện dịch vụ <strong>Network Address Translation (NAT)</strong> cho các instance không được cấp <strong>public IP address</strong>.</li>
+</ul>
+</li>
+<li>Để kích hoạt quyền truy cập Internet cho một Instance, cần thực hiện:
+<ul>
+<li>Gắn <strong>Internet gateway</strong> vào VPC.</li>
+<li>Subnet cần có bảng định tuyến được liên kết với route trỏ tới Internet gateway.</li>
+<li>Instance cần có <strong>Public IP</strong> hoặc <strong>Elastic IP</strong> được gán.</li>
+<li>Các <strong>Security Groups</strong> và <strong>NACLs</strong> liên kết với Instance cần cho phép lưu lượng mạng liên quan.</li>
+</ul>
+</li>
+</ul>
+<h1 id="egress-only-internet-gateway">Egress-only Internet gateway</h1>
+<ul>
+<li>Egress-only Internet gateway hoạt động như một NAT gateway, nhưng dành cho lưu lượng IPv6.</li>
+<li>Egress-only Internet gateway là một thành phần VPC có khả năng mở rộng theo chiều ngang, dư thừa và có tính sẵn sàng cao, cho phép giao tiếp ra ngoài qua IPv6 từ các instance trong VPC tới Internet, và ngăn chặn Internet khởi tạo kết nối IPv6 với các instance.</li>
+<li>Egress-only Internet gateway chỉ được sử dụng cho lưu lượng IPv6. Để kích hoạt giao tiếp Internet chỉ outbound qua IPv4, sử dụng NAT gateway thay thế.</li>
+</ul>
+<h1 id="shared-vpcs">Shared VPCs</h1>
+<ul>
+<li><strong>Shared VPCs</strong> cho phép nhiều tài khoản AWS tạo các tài nguyên ứng dụng của họ, chẳng hạn như EC2 instances, cơ sở dữ liệu RDS, Redshift clusters và AWS Lambda functions, vào các VPC được quản lý tập trung và chia sẻ.</li>
+<li>Trong mô hình này, tài khoản sở hữu VPC (chủ sở hữu) chia sẻ một hoặc nhiều subnet với các tài khoản khác (người tham gia) thuộc cùng tổ chức từ AWS Organizations.</li>
+<li>Sau khi subnet được chia sẻ, người tham gia có thể xem, tạo, chỉnh sửa và xóa các tài nguyên ứng dụng trong các subnet đã được chia sẻ với họ. Người tham gia không thể xem, chỉnh sửa hoặc xóa các tài nguyên thuộc về các người tham gia khác hoặc chủ sở hữu VPC.</li>
+</ul>
+<h1 id="vpc-peering">VPC Peering</h1>
+<p><img alt="3.png" sizes="(min-width: 499px) 499px, 100vw" loading="lazy" decoding="async" fetchpriority="auto" style="--w: 499; --h: 161;" data-astro-image="responsive" width="499" height="161" src="/_astro/3.CR2KGwQo_ZOcgh4.webp" srcset="/_astro/3.CR2KGwQo_ZOcgh4.webp 499w"></p>
+<ul>
+<li>VPC peering là một phương thức kết nối hai Virtual Private Cloud (VPC) lại với nhau trong cùng một môi trường hoặc giữa các tài khoản AWS khác nhau. Kết nối này cho phép các tài nguyên trong hai VPC giao tiếp trực tiếp với nhau qua các địa chỉ Private IP (IPv4 hoặc IPv6), mà không cần sử dụng internet, cổng VPN, hay thiết bị mạng vật lý.</li>
+<li>VPC peering connection
+<ul>
+<li>Có thể thiết lập giữa các VPC trong cùng tài khoản của bạn hoặc với một VPC thuộc tài khoản AWS khác, trong cùng hoặc khác region.</li>
+<li>Là mối quan hệ <strong>1-1</strong> giữa hai VPC.</li>
+<li>Hỗ trợ intra và inter-region peering connections.</li>
+</ul>
+</li>
+<li>Với VPC peering:
+<ul>
+<li>Các instance trong mỗi VPC có thể giao tiếp với nhau như thể chúng nằm trong cùng một mạng.</li>
+<li>AWS sử dụng hạ tầng sẵn có của VPC để tạo kết nối peering; đây không phải là gateway hay kết nối VPN, và không phụ thuộc vào phần cứng vật lý riêng biệt.</li>
+<li>Không có <strong>single point of failure</strong> hoặc <strong>bandwidth bottleneck</strong> trong quá trình giao tiếp.</li>
+<li>Tất cả inter-region traffic đều được mã hóa, không có single point of failure hoặc bandwidth bottleneck. Traffic luôn được truyền qua mạng nội bộ toàn cầu của AWS (<strong>AWS Global Backbone</strong>) và không đi qua public internet, giúp giảm thiểu các mối đe dọa như khai thác lỗ hổng thông thường và tấn công DDoS.</li>
+</ul>
+</li>
+<li><strong>VPC Peering</strong> không phát sinh bất kỳ chi phí riêng nào cho việc thiết lập kết nối. Tuy nhiên, có <strong>tính</strong> <strong>phí truyền dữ liệu</strong> (data transfer charges) áp dụng cho lưu lượng truyền qua kết nối VPC Peering.</li>
+</ul>
+<h2 id="vpc-peering-connectivity"><strong>VPC Peering Connectivity</strong></h2>
+<ul>
+<li>Để tạo một kết nối VPC Peering, Owner của <strong>requester VPC</strong> sẽ gửi một yêu cầu đến Owner của <strong>accepter VPC</strong>. <strong>Accepter VPC</strong> có thể thuộc cùng tài khoản hoặc ở tài khoản AWS khác.</li>
+<li>Sau khi <strong>Accepter VPC</strong> chấp nhận yêu cầu kết nối peering, kết nối sẽ được kích hoạt.</li>
+<li>Cần <strong>cập nhật thủ công route table</strong> trên cả hai VPC để cho phép traffic truyền qua.</li>
+<li>Các <strong>security groups</strong> trên các instance phải được cấu hình để cho phép traffic đến và đi từ các VPC đã kết nối.</li>
+</ul>
+<h2 id="vpc-peering-limitations--rules">VPC Peering Limitations &#x26; Rules</h2>
+<ul>
+<li>Kết nối VPC Peering không thể được thiết lập nếu các VPC có các dải địa chỉ IPv4 hoặc IPv6 <strong>trùng lặp hoặc khớp nhau</strong>.</li>
+<li>Một VPC không có quyền truy cập vào bất kỳ VPC nào khác mà VPC được peering với nó có kết nối, ngay cả khi các kết nối đó nằm trong cùng một tài khoản AWS.</li>
+<li>Không hỗ trợ định tuyến <strong>edge-to-edge</strong> thông qua gateway hoặc Private Connection.</li>
+<li>Trong một kết nối VPC Peering, các VPC không có quyền truy cập vào bất kỳ kết nối nào khác mà VPC được peering có, và ngược lại. Những kết nối mà VPC được peering có thể bao gồm:
+<ul>
+<li><strong>Kết nối VPN</strong> hoặc <strong>AWS Direct Connect</strong> tới mạng doanh nghiệp.</li>
+<li><strong>Kết nối internet</strong> thông qua Internet Gateway.</li>
+<li><strong>Kết nối internet</strong> trong private subnet thông qua <a href="https://www.notion.so/1593fa6ae483806fb810c213765ec338?pvs=21">NAT device</a>.</li>
+<li><strong>Kết nối ClassicLink</strong> tới một EC2-Classic instance.</li>
+<li><strong>Endpoint của VPC</strong> tới một dịch vụ AWS, ví dụ: Endpoint tới S3.</li>
+</ul>
+</li>
+<li>Kết nối VPC Peering bị giới hạn về số lượng <strong>active</strong> và <strong>pending</strong> peering connections mà bạn có thể thiết lập trên mỗi VPC.</li>
+<li>Chỉ có thể thiết lập <strong>một kết nối peering</strong> giữa cùng hai VPC tại một thời điểm (phải tạo kết nối peering riêng biệt cho mỗi cặp VPC, không thể thiết lập nhiều kết nối peering giữa cùng một cặp VPC cùng lúc.)</li>
+<li><strong>Jumbo frames</strong> (là các gói dữ liệu mạng có kích thước lớn hơn gói dữ liệu chuẩn) được hỗ trợ cho các kết nối peering trong cùng một region.</li>
+<li>Một <strong>placement group</strong> có thể trải rộng qua các VPC đã peering trong cùng một region. Tuy nhiên, bạn sẽ không có <strong>full-bisection bandwidth</strong> giữa các instance trong các VPC đã peering.</li>
+<li>Inter-region VPC peering connections:
+<ul>
+<li><strong>Maximum Transmission Unit (MTU)</strong> qua một kết nối peering giữa các khu vực là 1500 byte. <strong>Jumbo frames</strong> không được hỗ trợ.</li>
+<li>Không thể tạo <strong>security group rule</strong> tham chiếu đến <strong>security group</strong> của VPC peer.</li>
+</ul>
+</li>
+</ul>
+<h2 id="vpc-peering-troubleshooting">VPC Peering Troubleshooting</h2>
+<ul>
+<li>Kiểm tra để đảm bảo kết nối VPC Peering đã được kích hoạt và đang hoạt động.</li>
+<li>Đảm bảo rằng các <strong>route table</strong> được cập nhật đúng để kết nối với dải địa chỉ IP của các VPC đã peering qua cổng gateway thích hợp.</li>
+<li>Kiểm tra bảng NACL để đảm bảo các quy tắc ALLOW cho phép traffic mạng cần thiết.</li>
+<li>Kiểm tra các rule trong security group của các VPC để đảm bảo chúng cho phép giao tiếp mạng giữa các VPC đã peering.</li>
+<li>Kiểm tra VPC flow logs để đảm bảo lưu lượng không bị từ chối vì các quyền của security groups hoặc network ACLs.</li>
+<li>Sử dụng các công cụ như <strong>traceroute</strong> (Linux) hoặc <strong>tracert</strong> (Windows) để kiểm tra các firewall rules như <strong>iptables</strong> (Linux) hoặc <strong>Windows Firewall</strong> (Windows).</li>
+</ul>
+<h2 id="vpc-peering-architecture">VPC Peering Architecture</h2>
+<p><img alt="4.png" sizes="(min-width: 1024px) 1024px, 100vw" loading="lazy" decoding="async" fetchpriority="auto" style="--w: 1024; --h: 683;" data-astro-image="responsive" width="1024" height="683" src="/_astro/4.qgWYQpPT_fWTcP.webp" srcset="/_astro/4.qgWYQpPT_Z1EQKAr.webp 640w, /_astro/4.qgWYQpPT_1RSiX5.webp 750w, /_astro/4.qgWYQpPT_2c61aM.webp 828w, /_astro/4.qgWYQpPT_fWTcP.webp 1024w"></p>
+<ul>
+<li>Việc sử dụng <strong>VPC Peering</strong> có thể giúp <strong>tạo một single point of contact</strong> cho các dịch vụ giữa các VPC. Điều này rất hữu ích khi chúng ta cần kết nối và chia sẻ tài nguyên giữa các VPC mà không cần phải thiết lập nhiều kết nối VPN riêng biệt.</li>
+<li>VPC Peering cũng có thể giúp <strong>giới hạn số lượng kết nối VPN</strong> bằng cách chỉ sử dụng một <strong>kết nối VPN duy nhất</strong> cho toàn bộ kết nối đến một <strong>tài khoản</strong> hoặc <strong>VPC</strong>. Điều này làm giảm độ phức tạp trong việc quản lý kết nối và cải thiện tính bảo mật khi không cần mở nhiều kết nối VPN.</li>
+</ul>
+<h2 id="vpc-peering-vs-transit-gateway"><strong>VPC Peering vs Transit Gateway</strong></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th><strong>Tiêu chí</strong></th><th><strong>VPC Peering</strong></th><th><strong>Transit VPC</strong></th><th><strong>Transit Gateway</strong></th></tr></thead><tbody><tr><td>Kiến trúc</td><td>Full mesh - One-to-One mapping</td><td>VPN dựa trên hub và spoke</td><td>VPN dựa trên hub và spoke, có thể kết nối với các TGW khác</td></tr><tr><td>Kết nối Hybrid</td><td>Không hỗ trợ - Chỉ VPC đến VPC</td><td>Hỗ trợ</td><td>Hỗ trợ</td></tr><tr><td>Độ phức tạp</td><td>Tăng theo số lượng VPC</td><td>Khách hàng cần duy trì instance EC2/HA</td><td>AWS quản lý dịch vụ, tăng theo số lượng Transit Gateway</td></tr><tr><td>Transitive Routing</td><td>Không hỗ trợ</td><td>Hỗ trợ</td><td>Hỗ trợ</td></tr><tr><td>Khả năng mở rộng</td><td>125 kết nối Peers/VPC (thay đổi theo thời gian)</td><td>Phụ thuộc vào virtual router/EC2</td><td>5000 kết nối mỗi Region</td></tr><tr><td>Segmentation</td><td>Security groups</td><td>Customer managed</td><td>Transit Gateway route tables</td></tr><tr><td>Độ trễ</td><td>Thấp nhất</td><td>Thêm độ trễ do mã hóa VPN</td><td>Thêm độ trễ do các hops Transit Gateway</td></tr><tr><td>Giới hạn băng thông</td><td>Không có giới hạn</td><td>Phụ thuộc vào băng thông của instance EC2</td><td>Đến 50 Gbps (burst/attachment)</td></tr><tr><td>Visibility</td><td>VPC Flow Logs</td><td>VPC Flow Logs và CloudWatch Metrics</td><td>Transit Gateway Network Manager, VPC Flow Logs, CloudWatch Metrics</td></tr><tr><td>Cross-referencing Security Group</td><td>Hỗ trợ</td><td>Không hỗ trợ</td><td>Không hỗ trợ</td></tr><tr><td>Chi phí</td><td>Data transfer</td><td>Chi phí theo EC2 instance, VPN tunnels và dữ liệu</td><td>Chi phí theo từng kết nối và dữ liệu chuyển</td></tr></tbody></table>
+<h1 id="vpc-security">VPC Security</h1>
+<ul>
+<li>Trong một VPC, cả <em>Security Groups</em> và <em>Network ACLs (NACLs)</em> cùng nhau giúp xây dựng một lớp phòng thủ mạng.</li>
+<li><strong>Security Groups</strong>: Hoạt động như một tường lửa ảo cho các <em>instances</em> được liên kết, kiểm soát cả traffic <em>inbound</em> và <em>outbound</em> ở cấp độ <em>instance</em>.</li>
+<li><strong>Network Access Control Lists (NACLs)</strong>: Hoạt động như một tường lửa cho các <em>subnets</em> được liên kết, kiểm soát cả traffic <em>inbound</em> và <em>outbound</em> ở cấp độ <em>subnet</em>.</li>
+</ul>
+<h1 id="vpc-flow-logs">VPC Flow logs</h1>
+<ul>
+<li><strong>VPC Flow Logs</strong> giúp thu thập thông tin về IP traffic đi đến và từ các <em>network interfaces</em> trong VPC và có thể hỗ trợ giám sát traffic hoặc xử lý các vấn đề kết nối.</li>
+<li>Dữ liệu <em>Flow log</em> có thể được đẩy lên <em>CloudWatch Logs</em>, S3, và <em>Kinesis Data Firehose</em>.</li>
+<li>Flow log có thể được tạo cho toàn bộ VPC, các <em>subnets</em>, hoặc mỗi <em>network interface</em>. Nếu được kích hoạt, toàn bộ các <em>network interfaces</em> trong tài nguyên đó sẽ được giám sát.</li>
+<li>Flow log có thể được cấu hình để thu thập loại traffic (accepted traffic, rejected traffic, hoặc tất cả traffic).</li>
+<li>Flow logs không thu thập các luồng log thời gian thực cho các <em>network interfaces</em>.</li>
+<li>Dữ liệu <em>Flow log</em> được thu thập ngoài đường truyền traffic mạng, vì vậy không ảnh hưởng đến network throughput hoặc độ trễ mạng.</li>
+<li>Flow logs có thể được tạo cho các <em>network interfaces</em> được tạo bởi các dịch vụ AWS khác, ví dụ như ELB, RDS, ElastiCache, Redshift, và WorkSpaces.</li>
+<li><strong>Flow logs không thu thập traffic sau:</strong>
+<ul>
+<li>Traffic được tạo ra bởi các instances khi chúng liên lạc với máy chủ DNS của Amazon.</li>
+<li>Traffic được tạo ra bởi một instance Windows cho việc kích hoạt giấy phép Amazon Windows.</li>
+<li>Traffic đến và đi từ địa chỉ IP <code>169.254.169.254</code> cho <em>instance metadata</em>.</li>
+<li>Traffic đến và đi từ địa chỉ IP <code>169.254.169.123</code> cho <em>Amazon Time Sync Service</em>.</li>
+<li>DHCP traffic.</li>
+<li>Mirrored traffic.</li>
+<li>Traffic đến và đi từ địa chỉ IP dự phòng cho VPC router mặc định.</li>
+<li>Traffic giữa <em>endpoint network interface</em> và <em>Network Load Balancer network interface</em>.</li>
+</ul>
+</li>
+<li><strong>Xử lý sự cố traffic flow:</strong>
+<ul>
+<li>Nếu <em>ACCEPT</em> theo sau bởi <em>REJECT</em>, lưu lượng vào đã được chấp nhận bởi <em>Security Groups</em> và <em>ACLs</em>, nhưng bị từ chối bởi <em>NACLs</em> ở phía outbound.</li>
+<li>Nếu <em>REJECT</em>, lưu lượng vào đã bị từ chối bởi <em>Security Groups</em> hoặc <em>NACLs</em>.</li>
+</ul>
+</li>
+</ul> </article> <hr class="my-8 border-dashed"> <div class="opacity-80 sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
 |
 </span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/thuongnn/thuongnn.github.io/edit/master/src/data/blog/aws/networking/vpc.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/aws/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
 &nbsp;<span>AWS</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/amazon-web-services/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
-&nbsp;<span>Amazon Web Services</span> </a> </li> </ul> <div class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"> <div class="flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start"> <span class="italic">Share this post on:</span> <div class="text-center"> <a href="https://wa.me/?text=https://thuongnn.dev/posts/aws/networking/vpc/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> <span class="sr-only">Share this post via WhatsApp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://thuongnn.dev/posts/aws/networking/vpc/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://thuongnn.dev/posts/aws/networking/vpc/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://thuongnn.dev/posts/aws/networking/vpc/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg> <span class="sr-only">Share this post via Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://thuongnn.dev/posts/aws/networking/vpc/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg> <span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&#38;body=https://thuongnn.dev/posts/aws/networking/vpc/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Share this post via email</span> </a> </div> </div> <button id="back-to-top" class="focus-outline py-1 whitespace-nowrap hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span>Back to Top</span> </button> </div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/aws/networking/route53" class="flex w-full gap-1 hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">[AWS] Amazon Route 53</div> </div> </a> <a href="/posts/aws/compute/ec2-spot-instances" class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">[AWS] EC2 Spot Instances</div> </div> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="w-full mt-auto"> <div class="max-w-3xl mx-auto px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://github.com/thuongnn" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title=" thuongnn.dev on Github"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only"> thuongnn.dev on Github</span> </a><a href="https://www.facebook.com/thuongnn97" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">thuongnn.dev on Facebook</span> </a><a href="https://www.linkedin.com/in/thuongnn/" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on LinkedIn"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">thuongnn.dev on LinkedIn</span> </a><a href="mailto:thuongnn1997@gmail.com" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to thuongnn.dev"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to thuongnn.dev</span> </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2025</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  </body></html> <script data-astro-rerun>
+&nbsp;<span>Amazon Web Services</span> </a> </li> </ul> <div class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"> <div class="flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start"> <span class="italic">Share this post on:</span> <div class="text-center"> <a href="https://wa.me/?text=https://thuongnn.dev/posts/aws/networking/vpc/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> <span class="sr-only">Share this post via WhatsApp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://thuongnn.dev/posts/aws/networking/vpc/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://thuongnn.dev/posts/aws/networking/vpc/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://thuongnn.dev/posts/aws/networking/vpc/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg> <span class="sr-only">Share this post via Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://thuongnn.dev/posts/aws/networking/vpc/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg> <span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&#38;body=https://thuongnn.dev/posts/aws/networking/vpc/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Share this post via email</span> </a> </div> </div> <button id="back-to-top" class="focus-outline py-1 whitespace-nowrap hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span>Back to Top</span> </button> </div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2">  <a href="/posts/aws/databases/aws-rds-aurora" class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">[AWS] Amazon RDS Aurora</div> </div> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="w-full mt-auto"> <div class="max-w-3xl mx-auto px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://github.com/thuongnn" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title=" thuongnn.dev on Github"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only"> thuongnn.dev on Github</span> </a><a href="https://www.facebook.com/thuongnn97" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">thuongnn.dev on Facebook</span> </a><a href="https://www.linkedin.com/in/thuongnn/" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on LinkedIn"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">thuongnn.dev on LinkedIn</span> </a><a href="mailto:thuongnn1997@gmail.com" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to thuongnn.dev"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to thuongnn.dev</span> </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2025</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  </body></html> <script data-astro-rerun>
   /** Create a progress indicator
    *  at the top */
   function createProgressBar() {
