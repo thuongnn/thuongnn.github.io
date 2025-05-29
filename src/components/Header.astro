@@ -8,7 +8,8 @@ import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
 import LinkButton from "./LinkButton.astro";
 import { SITE } from "@/config";
-import { getAllSeries } from "@/utils/series";
+import { getAllCollections } from "@/utils/collections";
+import type { Collection } from "@/constants";
 
 const { pathname } = Astro.url;
 
@@ -104,13 +105,13 @@ const isActive = (path: string) => {
               >
                 <ul class="pt-2 pb-1">
                   {
-                    getAllSeries().map(series => (
+                    getAllCollections().map((collection: Collection) => (
                       <li>
                         <a
-                          href={`/tags/series/${series.folder}`}
-                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800"
+                          href={`/tags/collections/${collection.folder}`}
                         >
-                          {series.name}
+                          {collection.name}
                         </a>
                       </li>
                     ))

@@ -88,14 +88,14 @@ export const GISCUS: GiscusProps = {
   loading: "lazy",
 };
 
-export interface Series {
-  folder: string; // Tên thư mục trong src/data/blog
-  name: string; // Tên hiển thị
-  description?: string; // Mô tả ngắn về series
-  icon?: string; // Icon cho series (có thể thêm sau)
+export interface Collection {
+  folder: string; // Tên folder chứa các bài viết
+  name: string; // Tên hiển thị của collection
+  description?: string; // Mô tả ngắn về collection
+  icon?: string; // Icon cho collection (có thể thêm sau)
 }
 
-export const SERIES: Series[] = [
+export const COLLECTIONS: Collection[] = [
   {
     folder: "aws",
     name: "Amazon Web Services",
