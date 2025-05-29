@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2022-09-12T02:11:35Z
+modDatetime: 2022-09-12T02:11:35Z
 title: "[Google Cloud] Resource Hierarchy, Roles and Identities"
 folder: "gcp"
 draft: false

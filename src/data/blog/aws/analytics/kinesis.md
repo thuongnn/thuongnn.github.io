@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-01-17T10:45:33Z
+modDatetime: 2023-01-17T10:45:33Z
 title: "[AWS] Amazon Kinesis"
 folder: "aws"
 draft: false

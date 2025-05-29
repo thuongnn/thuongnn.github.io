@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2022-10-06T13:21:12Z
+modDatetime: 2022-10-06T13:21:12Z
 title: "[Google Cloud] Tìm hiểu về Cloud NAT"
 folder: "gcp"
 draft: false

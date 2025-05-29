@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-25T10:20:15Z
+modDatetime: 2023-07-25T10:20:15Z
 title: "[AWS] Amazon GuardDuty"
 folder: "aws"
 draft: false

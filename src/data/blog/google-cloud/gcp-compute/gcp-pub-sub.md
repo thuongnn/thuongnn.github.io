@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2022-10-02T23:01:32Z
+modDatetime: 2022-10-02T23:01:32Z
 title: "[Google Cloud] GCP Pub/Sub"
 folder: "gcp"
 draft: false

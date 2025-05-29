@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-27T09:15:33Z
+modDatetime: 2023-07-27T09:15:33Z
 title: "[AWS] AWS Web Application Firewall"
 folder: "aws"
 draft: false

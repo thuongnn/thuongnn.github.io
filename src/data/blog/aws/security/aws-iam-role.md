@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-08-30T11:20:33Z
+modDatetime: 2023-08-30T11:20:33Z
 title: "[AWS] AWS Identity and Access Management (IAM) Roles"
 folder: "aws"
 draft: false

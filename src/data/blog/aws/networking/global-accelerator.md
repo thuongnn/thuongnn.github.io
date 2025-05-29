@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-10T15:30:45Z
+modDatetime: 2023-05-10T15:30:45Z
 title: "[AWS] AWS Global Accelerator"
 folder: "aws"
 draft: false

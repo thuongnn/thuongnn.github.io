@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-28T11:45:22Z
+modDatetime: 2023-07-28T11:45:22Z
 title: "[AWS] AWS Key Management Service"
 folder: "aws"
 draft: false

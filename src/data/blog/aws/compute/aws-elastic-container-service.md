@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-03-25T09:15:33Z
+modDatetime: 2023-03-25T09:15:33Z
 title: "[AWS] Amazon Elastic Container Service (ECS)"
 folder: "aws"
 draft: false

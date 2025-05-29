@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2021-11-28T15:29:35Z
+modDatetime: 2021-11-28T15:29:35Z
 title: Tìm hiểu về Ingress network
 draft: false
 tags:

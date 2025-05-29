@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-19T15:30:45Z
+modDatetime: 2023-07-19T15:30:45Z
 title: "[AWS] Amazon DynamoDB"
 folder: "aws"
 draft: false

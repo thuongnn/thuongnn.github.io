@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2020-07-11T23:21:35Z
+modDatetime: 2020-07-11T23:21:35Z
 title: "[Computer Science] Kiến thức về OS cơ bản"
 draft: false
 tags:

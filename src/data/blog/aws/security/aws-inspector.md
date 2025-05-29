@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-24T15:30:45Z
+modDatetime: 2023-07-24T15:30:45Z
 title: "[AWS] Amazon Inspector"
 folder: "aws"
 draft: false

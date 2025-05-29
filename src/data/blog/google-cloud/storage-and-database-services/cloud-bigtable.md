@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2022-10-15T20:13:45Z
+modDatetime: 2022-10-15T20:13:45Z
 title: "[Google Cloud] Cloud Bigtable"
 folder: "gcp"
 draft: false

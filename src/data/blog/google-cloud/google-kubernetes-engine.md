@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2022-10-16T23:19:35Z
+modDatetime: 2022-10-16T23:19:35Z
 title: "[Google Cloud] Google Kubernetes Engine"
 folder: "gcp"
 draft: false

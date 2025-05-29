@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-06T10:35:12Z
+modDatetime: 2023-05-06T10:35:12Z
 title: "[AWS] Amazon Route 53"
 folder: "aws"
 draft: false

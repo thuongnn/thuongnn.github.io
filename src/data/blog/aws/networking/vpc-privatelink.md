@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-13T09:15:33Z
+modDatetime: 2023-05-13T09:15:33Z
 title: "[AWS] VPC PrivateLink"
 folder: "aws"
 draft: false

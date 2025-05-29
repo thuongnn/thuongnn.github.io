@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-21T14:30:45Z
+modDatetime: 2023-07-21T14:30:45Z
 title: "[AWS] Amazon RDS Aurora"
 folder: "aws"
 draft: false

@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-04-02T10:20:15Z
+modDatetime: 2023-04-02T10:20:15Z
 title: "[AWS] EC2 Spot Instances"
 folder: "aws"
 draft: false

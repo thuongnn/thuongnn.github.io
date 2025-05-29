@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-04-01T15:30:45Z
+modDatetime: 2023-04-01T15:30:45Z
 title: "[AWS] EC2 Instance Lifecycle"
 folder: "aws"
 draft: false

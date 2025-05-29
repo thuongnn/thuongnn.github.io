@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-14T15:30:45Z
+modDatetime: 2023-07-14T15:30:45Z
 title: "[AWS] Amazon S3 Glacier"
 folder: "aws"
 draft: false

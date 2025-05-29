@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2020-07-22T22:11:35Z
+modDatetime: 2020-07-22T22:11:35Z
 title: "[Computer Science] Kiến thức về Database cơ bản"
 draft: false
 tags:

@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-05T14:20:45Z
+modDatetime: 2023-05-05T14:20:45Z
 title: "[AWS] Amazon Virtual Private Cloud (VPC)"
 folder: "aws"
 draft: false

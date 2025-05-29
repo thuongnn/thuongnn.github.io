@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-08-02T11:45:22Z
+modDatetime: 2023-08-02T11:45:22Z
 title: "[AWS] AWS CloudFormation"
 folder: "aws"
 draft: false

@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-01-15T09:15:22Z
+modDatetime: 2023-01-15T09:15:22Z
 title: "[AWS] AWS CloudTrail"
 folder: "aws"
 draft: false

@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-03-28T10:20:15Z
+modDatetime: 2023-03-28T10:20:15Z
 title: "[AWS] AWS Auto Scaling"
 folder: "aws"
 draft: false

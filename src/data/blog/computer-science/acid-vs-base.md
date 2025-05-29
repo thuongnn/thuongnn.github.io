@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2021-06-09T14:29:35Z
+modDatetime: 2021-06-09T14:29:35Z
 title: "[ACID vs BASE] So sánh các mô hình Database Transaction"
 draft: false
 tags:

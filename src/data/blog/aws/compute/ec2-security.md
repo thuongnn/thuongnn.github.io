@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-03-29T14:30:45Z
+modDatetime: 2023-03-29T14:30:45Z
 title: "[AWS] EC2 Security"
 folder: "aws"
 draft: false

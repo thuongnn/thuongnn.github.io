@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-15T10:20:15Z
+modDatetime: 2023-07-15T10:20:15Z
 title: "[AWS] Amazon Elastic File System (EFS)"
 folder: "aws"
 draft: false

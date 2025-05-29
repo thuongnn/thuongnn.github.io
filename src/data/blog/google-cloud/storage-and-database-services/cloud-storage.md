@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2022-10-13T21:41:35Z
+modDatetime: 2022-10-13T21:41:35Z
 title: "[Google Cloud] Cloud Storage"
 folder: "gcp"
 draft: false

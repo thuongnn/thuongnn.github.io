@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2022-10-15T19:11:55Z
+modDatetime: 2022-10-15T19:11:55Z
 title: "[Google Cloud] Cloud SQL"
 folder: "gcp"
 draft: false

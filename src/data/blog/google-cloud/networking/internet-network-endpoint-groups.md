@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2022-10-06T23:40:22Z
+modDatetime: 2022-10-06T23:40:22Z
 title: "[Google Cloud] Tìm hiểu về Internet Network Endpoint Groups (NEG)"
 folder: "gcp"
 draft: false

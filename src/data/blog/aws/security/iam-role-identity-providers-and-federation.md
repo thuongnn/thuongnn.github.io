@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-29T15:30:45Z
+modDatetime: 2023-07-29T15:30:45Z
 title: "[AWS] IAM Role, Identity Providers and Federation"
 folder: "aws"
 draft: false

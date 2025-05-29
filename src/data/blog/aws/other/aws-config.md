@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-08-01T09:15:33Z
+modDatetime: 2023-08-01T09:15:33Z
 title: "[AWS] AWS Config"
 folder: "aws"
 draft: false

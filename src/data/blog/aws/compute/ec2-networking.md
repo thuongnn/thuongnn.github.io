@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-03-31T11:45:22Z
+modDatetime: 2023-03-31T11:45:22Z
 title: "[AWS] EC2 Networking"
 folder: "aws"
 draft: false

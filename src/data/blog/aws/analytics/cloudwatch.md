@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-01-16T14:30:45Z
+modDatetime: 2023-01-16T14:30:45Z
 title: "[AWS] Amazon CloudWatch"
 folder: "aws"
 draft: false

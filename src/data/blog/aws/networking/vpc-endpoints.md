@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-14T11:45:22Z
+modDatetime: 2023-05-14T11:45:22Z
 title: "[AWS] VPC Endpoints"
 folder: "aws"
 draft: false

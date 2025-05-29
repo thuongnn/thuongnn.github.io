@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2022-10-15T19:01:55Z
+modDatetime: 2022-10-15T19:01:55Z
 title: "[Google Cloud] Firestore"
 folder: "gcp"
 draft: false

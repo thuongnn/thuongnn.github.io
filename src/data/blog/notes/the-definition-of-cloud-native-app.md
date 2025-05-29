@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2021-03-14T20:20:35Z
+modDatetime: 2021-03-14T20:20:35Z
 title: "[Series tự học] Định nghĩa về Cloud Native App"
 draft: false
 tags:

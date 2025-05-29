@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-13T11:45:22Z
+modDatetime: 2023-07-13T11:45:22Z
 title: "[AWS] AWS Storage Gateway"
 folder: "aws"
 draft: false

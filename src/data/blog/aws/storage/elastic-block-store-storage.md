@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-17T09:15:33Z
+modDatetime: 2023-07-17T09:15:33Z
 title: "[AWS] Amazon Elastic Block Store (EBS)"
 folder: "aws"
 draft: false

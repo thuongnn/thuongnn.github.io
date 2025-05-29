@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-03-24T14:30:45Z
+modDatetime: 2023-03-24T14:30:45Z
 title: "[AWS] AWS Elastic Beanstalk"
 folder: "aws"
 draft: false

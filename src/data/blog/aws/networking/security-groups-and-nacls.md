@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-07T14:30:45Z
+modDatetime: 2023-05-07T14:30:45Z
 title: "[AWS] Security Groups and Network ACLs"
 folder: "aws"
 draft: false

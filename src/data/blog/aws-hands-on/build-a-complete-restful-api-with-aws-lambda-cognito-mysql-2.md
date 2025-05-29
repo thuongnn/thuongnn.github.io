@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2019-05-24T22:50:35Z
+modDatetime: 2019-05-24T22:50:35Z
 title: "[Phần 2] Xây dựng RESTful API hoàn chỉnh với AWS Lambda + Cognito + MySQL"
 draft: false
 tags:

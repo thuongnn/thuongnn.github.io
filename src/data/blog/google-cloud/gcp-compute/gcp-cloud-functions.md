@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2022-09-20T19:01:35Z
+modDatetime: 2022-09-20T19:01:35Z
 title: "[Google Cloud] GCP Cloud Functions"
 folder: "gcp"
 draft: false

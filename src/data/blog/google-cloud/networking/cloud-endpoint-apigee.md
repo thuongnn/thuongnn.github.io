@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2022-10-07T01:14:22Z
+modDatetime: 2022-10-07T01:14:22Z
 title: "[Google Cloud] Tìm hiểu về Cloud Endpoint & Apigee"
 folder: "gcp"
 draft: false

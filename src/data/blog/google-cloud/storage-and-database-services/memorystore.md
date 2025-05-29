@@ -1,6 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2022-10-15T19:53:55Z
+modDatetime: 2022-10-15T19:53:55Z
 title: "[Google Cloud] Memorystore"
 folder: "gcp"
 draft: false
