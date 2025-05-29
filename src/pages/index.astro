@@ -17,9 +17,8 @@ const recentPosts = getSortedPosts(posts);
 
 const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
 const randomPosts = [...posts].sort((a, b) => {
-  // Sử dụng currentHour làm seed cho việc xáo trộn
-  const seedA = (currentHour + a.data.title.length) % posts.length;
-  const seedB = (currentHour + b.data.title.length) % posts.length;
+  const seedA = (currentHour * 31 + a.data.title.length * 17 + a.data.pubDatetime.getTime() % 1000) % posts.length;
+  const seedB = (currentHour * 31 + b.data.title.length * 17 + b.data.pubDatetime.getTime() % 1000) % posts.length;
   return seedA - seedB;
 });
 
