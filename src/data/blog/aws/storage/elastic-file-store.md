@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-15T10:20:15Z
-modDatetime: 2025-05-29T01:52:06Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] Amazon Elastic File System (EFS)"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về dịch vụ lưu trữ file của AWS, cho phép c
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-efs.
 
 ## Table of contents
+
+# Giới thiệu
 
 - **Dịch vụ lưu trữ file serverless**, được AWS quản lý hoàn toàn.
 - **Tự động mở rộng** từ gigabytes đến petabytes, không cần provisioning trước.

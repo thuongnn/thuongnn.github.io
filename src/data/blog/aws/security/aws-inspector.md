@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-24T15:30:45Z
-modDatetime: 2023-07-24T15:30:45Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] Amazon Inspector"
 folder: "aws"
 draft: false
@@ -12,8 +12,6 @@ description: Tìm hiểu về dịch vụ đánh giá bảo mật tự động c
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-inspector.
-
-## Table of contents
 
 ![1.png](@/assets/images/aws/security/aws-inspector/1.png)
 

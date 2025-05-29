@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-10T15:30:45Z
-modDatetime: 2023-05-10T15:30:45Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] AWS Global Accelerator"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về dịch vụ tăng tốc toàn cầu của AWS, gi�
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-global-accelerator.
 
 ## Table of contents
+
+# Giới thiệu
 
 - **AWS Global Accelerator** là một networking service giúp cải thiện độ khả dụng và hiệu suất của các ứng dụng đối với người dùng toàn cầu.
 - **AWS Global Accelerator** tối ưu hóa đường dẫn đến ứng dụng để giữ packet loss, độ trễ và độ jitter luôn ở mức thấp.

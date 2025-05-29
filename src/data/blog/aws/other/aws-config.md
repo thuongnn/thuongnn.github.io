@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-08-01T09:15:33Z
-modDatetime: 2025-05-29T01:52:06Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] AWS Config"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về dịch vụ theo dõi, quản lý thay đổi và 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-config.
 
 ## Table of contents
+
+# Giới thiệu
 
 - **AWS Config** là một dịch vụ được quản lý hoàn toàn, cung cấp **danh sách tài nguyên AWS**, **lịch sử cấu hình**, và **thông báo thay đổi cấu hình** để hỗ trợ **bảo mật**, **tuân thủ**, và **quản trị**.
 - Cung cấp cái nhìn chi tiết về **cấu hình** của các tài nguyên AWS trong **tài khoản AWS**.

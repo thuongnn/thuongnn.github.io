@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-13T11:45:22Z
-modDatetime: 2025-05-29T01:52:06Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] AWS Storage Gateway"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về dịch vụ kết nối môi trường on-premises
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-storage-gateway.
 
 ## Table of contents
+
+# Giới thiệu
 
 - **AWS Storage Gateway** kết nối **các thiết bị lưu trữ tại chỗ (on-premises storage appliances)** với **AWS cloud storage**, giúp tích hợp liền mạch với các tính năng bảo mật dữ liệu.
 - Đây là **dịch vụ lưu trữ hybrid cloud**, cho phép truy cập dữ liệu tại chỗ với **khả năng mở rộng gần như vô hạn** trên AWS.

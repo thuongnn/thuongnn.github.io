@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-01-16T14:30:45Z
-modDatetime: 2023-01-16T14:30:45Z
+modDatetime: 2025-05-29T02:30:40Z
 title: "[AWS] Amazon CloudWatch"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về dịch vụ giám sát và quan sát tài nguyên 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-cloudwatch.
 
 ## Table of contents
+
+# Giới thiệu
 
 - **CloudWatch** giám sát các tài nguyên và ứng dụng AWS theo thời gian thực.
 - Có thể sử dụng CloudWatch để thu thập và theo dõi các **số liệu (metrics)**, là các biến được đo lường cho tài nguyên và ứng dụng.

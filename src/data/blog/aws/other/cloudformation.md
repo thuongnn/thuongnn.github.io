@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-08-02T11:45:22Z
-modDatetime: 2023-08-02T11:45:22Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] AWS CloudFormation"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về dịch vụ Infrastructure as Code của AWS, giú
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-cloudformation.
 
 ## Table of contents
+
+# Giới thiệu
 
 - AWS CloudFormation cung cấp cho các nhà phát triển và quản trị viên hệ thống một cách dễ dàng để **tạo** và **quản lý** một tập hợp các tài nguyên AWS liên quan, cung cấp và cập nhật chúng một cách **có thứ tự** và **dễ đoán**.
 - CloudFormation bao gồm:

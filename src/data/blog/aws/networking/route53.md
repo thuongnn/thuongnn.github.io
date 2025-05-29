@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-06T10:35:12Z
-modDatetime: 2023-05-06T10:35:12Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] Amazon Route 53"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về dịch vụ DNS có khả năng mở rộng cao c�
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-route53.
 
 ## Table of contents
+
+# Giới thiệu
 
 ![1.png](@/assets/images/aws/networking/route53/1.png)
 

@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-28T11:45:22Z
-modDatetime: 2023-07-28T11:45:22Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] AWS Key Management Service"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về dịch vụ quản lý khóa mã hóa của AWS, g
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-kms.
 
 ## Table of contents
+
+### Giới thiệu
 
 **AWS Key Management Service – KMS** là một dịch vụ mã hóa được quản lý, cho phép tạo và kiểm soát các khóa mã hóa nhằm hỗ trợ mã hóa dữ liệu.
 

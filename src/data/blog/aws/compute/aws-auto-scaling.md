@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-03-28T10:20:15Z
-modDatetime: 2023-03-28T10:20:15Z
+modDatetime: 2025-05-29T02:30:40Z
 title: "[AWS] AWS Auto Scaling"
 folder: "aws"
 draft: false
@@ -13,9 +13,9 @@ description: Tìm hiểu về dịch vụ tự động điều chỉnh quy mô c
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-auto-scaling.
 
-## Table of contents
-
 **AWS Auto Scaling** là dịch vụ tự động điều chỉnh số lượng phiên bản EC2 để đáp ứng nhu cầu ứng dụng, đảm bảo hiệu suất và tối ưu chi phí.
+
+## Table of contents
 
 # **Thành phần chính của Auto Scaling**
 

@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-29T15:30:45Z
-modDatetime: 2025-05-29T01:52:06Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] IAM Role, Identity Providers and Federation"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: "IAM Role, Identity Providers và Federation trong AWS: cách quả
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-iam-role-identity-providers-and-federation.
 
 ## Table of contents
+
+# Giới thiệu
 
 - Nhà cung cấp nhận dạng (Identity Provider - IdP) có thể được sử dụng để cấp quyền truy cập tài nguyên AWS cho người dùng bên ngoài mà không cần phải tạo tài khoản người dùng trong AWS của bạn.
 - Nhận dạng người dùng bên ngoài có thể được xác thực thông qua hệ thống xác thực của tổ chức hoặc thông qua các nhà cung cấp nhận dạng phổ biến như Amazon, Google, v.v.

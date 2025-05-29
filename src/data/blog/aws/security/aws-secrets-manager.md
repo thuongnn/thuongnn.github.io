@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-23T11:45:22Z
-modDatetime: 2025-05-29T01:52:06Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] AWS Secrets Manager"
 folder: "aws"
 draft: false
@@ -12,8 +12,6 @@ description: Tìm hiểu về dịch vụ quản lý bí mật của AWS, giúp 
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-secrets-manager.
-
-## Table of contents
 
 AWS Secrets Manager là dịch vụ quản lý thông tin nhạy cảm như mật khẩu, khóa API, và thông tin cấu hình với khả năng mã hóa, tự động hóa và bảo mật.
 

@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-03-25T09:15:33Z
-modDatetime: 2023-03-25T09:15:33Z
+modDatetime: 2025-05-29T02:30:40Z
 title: "[AWS] Amazon Elastic Container Service (ECS)"
 folder: "aws"
 draft: false
@@ -13,9 +13,9 @@ description: Tìm hiểu về dịch vụ quản lý container của AWS, cho ph
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ecs.
 
-## Table of contents
-
 AWS **Elastic Container Service (ECS)** là dịch vụ **quản lý container** giúp chạy, dừng và quản lý các container trên cụm **EC2** hoặc **AWS Fargate**. ECS hỗ trợ **Docker** và tích hợp sâu với hệ sinh thái AWS.
+
+## Table of contents
 
 ## **ECS Kiến Trúc & Thành Phần Chính**
 

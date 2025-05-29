@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-04-02T10:20:15Z
-modDatetime: 2023-04-02T10:20:15Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] EC2 Spot Instances"
 folder: "aws"
 draft: false
@@ -13,9 +13,9 @@ description: Tìm hiểu về Spot Instances trong EC2, cách tận dụng công
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-spot-instances.
 
-## Table of contents
-
 **Spot Instances** là một trong những tùy chọn mua **EC2 instance với giá rẻ hơn tới 90%** so với **On-Demand**, giúp tiết kiệm chi phí đáng kể cho các workload có tính linh hoạt. Tuy nhiên, **Spot Instances có thể bị AWS thu hồi bất cứ lúc nào** nếu nhu cầu tài nguyên tăng lên.
+
+## Table of contents
 
 # **Spot Instances là gì?**
 

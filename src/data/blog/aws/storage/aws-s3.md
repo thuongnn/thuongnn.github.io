@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-10T13:45:28Z
-modDatetime: 2023-07-10T13:45:28Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] Amazon Simple Storage Service (S3)"
 folder: "aws"
 draft: false
@@ -13,9 +13,9 @@ description: Tìm hiểu về dịch vụ lưu trữ đối tượng có khả n
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-s3.
 
-## Table of contents
-
 Amazon Simple Storage Service (S3) là dịch vụ lưu trữ đối tượng của Amazon Web Services (AWS). Nó cho phép các tổ chức lưu trữ và truy xuất lượng dữ liệu khổng lồ từ bất kỳ đâu trên thế giới thông qua giao diện web đơn giản. S3 cung cấp một nền tảng với độ bền cao, dễ sử dụng và dễ quản lý, phù hợp với nhiều ứng dụng từ sao lưu dữ liệu, đến phân phối nội dung.
+
+## Table of contents
 
 ### **Các tính năng chính của AWS S3**
 

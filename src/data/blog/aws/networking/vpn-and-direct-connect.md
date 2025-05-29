@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-12T14:30:45Z
-modDatetime: 2023-05-12T14:30:45Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] VPN and Direct Connect"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về các phương thức kết nối an toàn đến A
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-vpn-and-direct-connect.
 
 ## Table of contents
+
+# Giới thiệu
 
 - Các kết nối **VPN AWS** được sử dụng để **mở rộng các on-premises data centers tới AWS**. Kết nối VPN cung cấp các kết nối IPSec an toàn giữa data center hoặc branch office và các tài nguyên AWS.
 - AWS Site-to-Site VPN, AWS Hardware VPN hoặc AWS Managed VPN

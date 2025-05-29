@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-03-09T11:22:35Z
-modDatetime: 2023-03-09T11:22:35Z
+modDatetime: 2025-05-29T02:30:40Z
 title: "[AWS] AWS Glue"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu dịch vụ ETL (trích xuất, chuyển đổi và t�
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-glue.
 
 ## Table of contents
+
+# Giới thiệu
 
 ![1.png](@/assets/images/aws/analytics/aws-glue/1.png)
 

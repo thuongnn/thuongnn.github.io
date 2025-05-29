@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-03-27T15:30:45Z
-modDatetime: 2023-03-27T15:30:45Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] EC2 Placement Groups"
 folder: "aws"
 draft: false
@@ -13,9 +13,9 @@ description: Tìm hiểu về các nhóm placement trong EC2, giúp kiểm soát
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-placement-groups.
 
-## Table of contents
-
 AWS EC2 **Placement Groups** giúp kiểm soát vị trí của các phiên bản EC2 trong cùng một khu vực, tối ưu hóa hiệu suất, độ trễ, hoặc khả năng chịu lỗi tùy theo nhu cầu của ứng dụng. Có 3 loại Placement Groups chính:
+
+## Table of contents
 
 ### **Cluster Placement Group**
 

@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-13T09:15:33Z
-modDatetime: 2023-05-13T09:15:33Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] VPC PrivateLink"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về PrivateLink, dịch vụ cho phép kết nối an 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-vpc-privatelink.
 
 ## Table of contents
+
+# Giới thiệu
 
 ![1.png](@/assets/images/aws/networking/vpc-privatelink/1.png)
 

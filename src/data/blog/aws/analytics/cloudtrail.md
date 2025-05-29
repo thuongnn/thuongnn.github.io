@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-01-15T09:15:22Z
-modDatetime: 2023-01-15T09:15:22Z
+modDatetime: 2025-05-29T02:30:40Z
 title: "[AWS] AWS CloudTrail"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về dịch vụ ghi lại hoạt động của tài kh
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-cloudtrail.
 
 ## Table of contents
+
+# Giới thiệu
 
 - AWS CloudTrail giúp kích hoạt **quản trị**, **tuân thủ**, **vận hành** và **kiểm toán rủi ro** cho tài khoản AWS.
 - CloudTrail hỗ trợ lấy **lịch sử các lệnh gọi API AWS** và các sự kiện liên quan cho tài khoản AWS.

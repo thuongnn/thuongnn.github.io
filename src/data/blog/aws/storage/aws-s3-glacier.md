@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-14T15:30:45Z
-modDatetime: 2023-07-14T15:30:45Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] Amazon S3 Glacier"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về dịch vụ lưu trữ dữ liệu lưu trữ dài
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-s3-glacier.
 
 ## Table of contents
+
+### Giới thiệu
 
 **S3 Glacier** là dịch vụ lưu trữ **tối ưu cho dữ liệu lưu trữ lâu dài** (archival) hoặc **dữ liệu truy cập không thường xuyên** ("cold data").
 

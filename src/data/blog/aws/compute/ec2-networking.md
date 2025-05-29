@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-03-31T11:45:22Z
-modDatetime: 2023-03-31T11:45:22Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] EC2 Networking"
 folder: "aws"
 draft: false
@@ -13,9 +13,9 @@ description: Tìm hiểu về các tính năng mạng cơ bản của EC2, bao g
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-networking.
 
-## Table of contents
-
 EC2 networking cung cấp các tùy chọn kết nối linh hoạt và bảo mật giữa các instance, dịch vụ AWS và các hệ thống bên ngoài. AWS sử dụng **Amazon Virtual Private Cloud (VPC)** làm nền tảng để quản lý mạng, cho phép bạn kiểm soát toàn bộ kiến trúc mạng của mình.
+
+## Table of contents
 
 ## **Các thành phần chính trong EC2 Networking**
 

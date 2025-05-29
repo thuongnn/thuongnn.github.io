@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-03-21T11:45:22Z
-modDatetime: 2023-03-21T11:45:22Z
+modDatetime: 2025-05-29T02:30:40Z
 title: "[AWS] Amazon Machine Image (AMI)"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về AMI - template chứa thông tin cấu hình phầ
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ami.
 
 ## Table of contents
+
+## Giới thiệu
 
 **Amazon Machine Image (AMI)** là một mẫu chứa tất cả thông tin cần thiết để khởi chạy một **EC2 instance** (máy chủ ảo trên AWS).
 

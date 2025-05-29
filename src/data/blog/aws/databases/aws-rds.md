@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-09-15T15:30:45Z
-modDatetime: 2023-09-15T15:30:45Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] Amazon Relational Database Service (RDS)"
 folder: "aws"
 draft: false
@@ -13,9 +13,9 @@ description: Tìm hiểu về dịch vụ cơ sở dữ liệu quan hệ đượ
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-rds.
 
-## Table of contents
-
 Amazon RDS là một dịch vụ được quản lý giúp dễ dàng thiết lập, vận hành và mở rộng cơ sở dữ liệu quan hệ trên AWS. Dịch vụ này giúp tự động hóa các tác vụ quản trị như cung cấp cơ sở dữ liệu, vá lỗi phần mềm, sao lưu và phục hồi, cũng như hỗ trợ mở rộng linh hoạt.
+
+## Table of contents
 
 # Lợi ích chính của Amazon RDS
 

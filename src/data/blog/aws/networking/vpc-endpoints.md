@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-14T11:45:22Z
-modDatetime: 2023-05-14T11:45:22Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] VPC Endpoints"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về VPC Endpoints, cách kết nối an toàn đến c
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-vpc-endpoints.
 
 ## Table of contents
+
+# Giới thiệu
 
 ![1.png](@/assets/images/aws/networking/vpc-endpoints/1.png)
 

@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-21T14:30:45Z
-modDatetime: 2025-05-29T01:52:06Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] Amazon RDS Aurora"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về Aurora, cơ sở dữ liệu quan hệ được t�
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-aurora.
 
 ## Table of contents
+
+# Giới thiệu
 
 Amazon Aurora là dịch vụ cơ sở dữ liệu quan hệ được AWS quản lý hoàn toàn, kết hợp hiệu suất cao, độ tin cậy của các cơ sở dữ liệu thương mại với sự đơn giản và chi phí tối ưu của cơ sở dữ liệu mã nguồn mở.
 

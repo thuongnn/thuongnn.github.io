@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-08-30T11:20:33Z
-modDatetime: 2023-08-30T11:20:33Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] AWS Identity and Access Management (IAM) Roles"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về vai trò IAM trong AWS, cách quản lý quyền t
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-iam-roles.
 
 ## Table of contents
+
+# Giới thiệu
 
 - **IAM Role** rất giống với một user, vì nó cũng là một danh tính với các permission policies xác định những gì danh tính đó có thể và không thể làm trong AWS.
 - IAM Role không được thiết kế để gắn cố định với một người dùng, nhóm, hoặc dịch vụ cụ thể mà được tạo ra để bất kỳ ai cần đều có thể giả định (assume).

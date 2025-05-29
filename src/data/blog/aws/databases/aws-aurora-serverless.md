@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-20T10:20:15Z
-modDatetime: 2023-07-20T10:20:15Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] Amazon Aurora Serverless"
 folder: "aws"
 draft: false
@@ -13,9 +13,9 @@ description: Tìm hiểu về phiên bản serverless của Aurora, tự động
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-aurora-serverless.
 
-## Table of contents
-
 Amazon Aurora Serverless là một cấu hình **tự động điều chỉnh theo nhu cầu** cho các phiên bản Aurora tương thích với MySQL và PostgreSQL, giúp tự động khởi động, tắt và điều chỉnh công suất dựa trên nhu cầu của ứng dụng, loại bỏ việc quản lý thủ công các instance cơ sở dữ liệu.
+
+## Table of contents
 
 # **Kiến trúc của Aurora Serverless**
 

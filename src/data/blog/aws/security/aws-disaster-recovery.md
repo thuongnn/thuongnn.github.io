@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-22T09:15:33Z
-modDatetime: 2023-07-22T09:15:33Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] AWS Disaster Recovery"
 folder: "aws"
 draft: false
@@ -13,9 +13,9 @@ description: Tìm hiểu về các chiến lược và dịch vụ phục hồi 
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-disaster-recovery.
 
-## Table of contents
-
 AWS cung cấp các chiến lược và công cụ giúp tổ chức xây dựng kế hoạch phục hồi sau thảm họa (Disaster Recovery) để đảm bảo tính liên tục của hệ thống và giảm thiểu thời gian ngừng hoạt động. AWS Disaster Recovery giúp tổ chức xây dựng hệ thống sẵn sàng với chi phí hợp lý, hỗ trợ linh hoạt từ chiến lược đơn giản đến phức tạp, tùy thuộc vào nhu cầu cụ thể của doanh nghiệp.
+
+## Table of contents
 
 ### **Khái niệm chính**
 

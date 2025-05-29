@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-11T10:20:15Z
-modDatetime: 2023-05-11T10:20:15Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] Amazon CloudFront"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về dịch vụ CDN của AWS, giúp phân phối nộ
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-cloudfront.
 
 ## Table of contents
+
+# Giới thiệu
 
 - CloudFront là fully managed, fast content delivery network (CDN), giúp tăng tốc phân phối nội dung tĩnh, động trên web hoặc nội dung phát trực tuyến đến người dùng cuối.
 - CloudFront phân phối nội dung thông qua mạng lưới trung tâm dữ liệu toàn cầu được gọi là **edge locations** hoặc **Point of Presence (POP)**.

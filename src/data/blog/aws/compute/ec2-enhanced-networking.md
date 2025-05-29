@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-03-30T09:15:33Z
-modDatetime: 2023-03-30T09:15:33Z
+modDatetime: 2025-05-29T02:30:40Z
 title: "[AWS] EC2 Enhanced Networking"
 folder: "aws"
 draft: false
@@ -13,9 +13,9 @@ description: Tìm hiểu về các tính năng mạng nâng cao của EC2, giúp
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-enhanced-networking.
 
-## Table of contents
-
 Enhanced Networking là tính năng giúp **tăng tốc độ mạng, giảm độ trễ và giảm tải CPU** cho EC2 instances bằng cách sử dụng **SR-IOV (Single Root I/O Virtualization)** hoặc **Elastic Network Adapter (ENA)**.
+
+## Table of contents
 
 ## **Lợi ích của Enhanced Networking**
 

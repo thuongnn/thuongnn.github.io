@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-03-22T09:15:33Z
-modDatetime: 2023-03-22T09:15:33Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] EC2 Instance Types"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về các loại instance EC2 khác nhau, từ tối ư
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-instance-types.
 
 ## Table of contents
+
+## Giới thiệu
 
 - EC2 instance là **máy chủ ảo trên AWS**, có thể được khởi chạy từ **Amazon Machine Image (AMI)**.
 - AWS cung cấp **nhiều loại instance** được tối ưu hóa cho các trường hợp sử dụng khác nhau như **tính toán hiệu suất cao, lưu trữ, bộ nhớ, GPU...**

@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-08T09:15:33Z
-modDatetime: 2023-05-08T09:15:33Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] Amazon CloudFront Security"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về các tính năng bảo mật của CloudFront, bao
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-cloudfront-security.
 
 ## Table of contents
+
+# Giới thiệu
 
 CloudFront Security có nhiều tính năng, bao gồm:
 

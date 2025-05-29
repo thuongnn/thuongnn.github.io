@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-07T14:30:45Z
-modDatetime: 2023-05-07T14:30:45Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] Security Groups and Network ACLs"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về hai lớp bảo mật mạng trong AWS, cách cấ
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-security-groups-and-nacls.
 
 ## Table of contents
+
+# Giới thiệu
 
 ![1.png](@/assets/images/aws/networking/security-groups-and-nacls/1.png)
 

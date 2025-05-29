@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-12T09:15:33Z
-modDatetime: 2023-07-12T09:15:33Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] Amazon FSx for Windows File Server"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về dịch vụ lưu trữ file Windows được quả
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-fsx-for-windows.
 
 ## Table of contents
+
+# Giới thiệu
 
 Amazon FSx for Windows File Server cung cấp **lưu trữ file được quản lý hoàn toàn**, **đáng tin cậy**, và **có thể mở rộng**, truy cập qua **giao thức SMB (Server Message Block)**.
 

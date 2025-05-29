@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-15T15:30:45Z
-modDatetime: 2023-05-15T15:30:45Z
+modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] NAT Gateway"
 folder: "aws"
 draft: false
@@ -14,6 +14,8 @@ description: Tìm hiểu về NAT Gateway, dịch vụ cho phép các instance t
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-nat-gateway.
 
 ## Table of contents
+
+# Giới thiệu
 
 - **AWS NAT (Network Address Translation)** là các thiết bị được triển khai trong public subnet, cho phép các instance trong private subnet kết nối với Internet nhưng ngăn chặn Internet khởi tạo kết nối với các instance.
 - Các instance trong private subnet cần kết nối Internet để thực hiện cập nhật phần mềm hoặc truy cập các dịch vụ bên ngoài.
