@@ -5,6 +5,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { getCollection } from "astro:content";
 import { getAllCollections } from "@/utils/collections";
+import { SITE } from "../../../config";
 
 const collections = getAllCollections();
 
@@ -22,7 +23,7 @@ const collectionsWithPostCount = await Promise.all(
 );
 ---
 
-<Layout>
+<Layout title={`Collections | ${SITE.title}`}>
   <Header />
   <Main
     pageTitle="Collections"
