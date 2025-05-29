@@ -12,6 +12,7 @@ import { getPath } from "@/utils/getPath";
 import { slugifyStr } from "@/utils/slugify";
 import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
+import Comments from "@/components/Comments";
 import { SITE } from "@/config";
 
 export interface Props {
@@ -113,8 +114,10 @@ const nextPost =
       {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} />)}
     </ul>
 
+    <Comments client:only="react" />
+
     <div
-      class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"
+      class="mt-4 flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"
     >
       <ShareLinks />
 

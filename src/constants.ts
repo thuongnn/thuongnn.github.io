@@ -6,6 +6,7 @@ import IconWhatsapp from "@/assets/icons/IconWhatsapp.svg";
 import IconFacebook from "@/assets/icons/IconFacebook.svg";
 import IconTelegram from "@/assets/icons/IconTelegram.svg";
 import IconPinterest from "@/assets/icons/IconPinterest.svg";
+import type { GiscusProps } from "@giscus/react";
 import { SITE } from "@/config";
 
 export const SOCIALS = [
@@ -73,3 +74,17 @@ export const SHARE_LINKS = [
     icon: IconMail,
   },
 ] as const;
+
+export const GISCUS: GiscusProps = {
+  repo: "thuongnn/thuongnn.github.io",
+  repoId: "MDEwOlJlcG9zaXRvcnkyMTk3NTcxNTQ=",
+  category: "General",
+  categoryId: "DIC_kwDODRk6Ys4Cqtv2",
+  mapping: "title",
+  reactionsEnabled: "1",
+  emitMetadata: "0",
+  inputPosition: "top",
+  theme: "light",
+  lang: "en",
+  loading: "lazy",
+};
