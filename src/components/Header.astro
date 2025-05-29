@@ -8,6 +8,9 @@ import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
 import LinkButton from "./LinkButton.astro";
 import { SITE } from "@/config";
+import { getCollection } from "astro:content";
+import { getAllSeries, type Series } from "@/utils/series";
+import type { CollectionEntry } from "astro:content";
 
 const { pathname } = Astro.url;
 
@@ -21,6 +24,15 @@ const isActive = (path: string) => {
 
   return currentPath === path || currentPathArray[0] === pathArray[0];
 };
+
+const posts = await getCollection("blog");
+const nonDraftPosts = posts.filter(post => !post.data.draft);
+
+// Get unique series from posts
+const series = [...new Set(nonDraftPosts.map(post => post.data.folder))].filter(
+  Boolean
+);
+const allSeries = getAllSeries();
 ---
 
 <header>
@@ -74,9 +86,49 @@ const isActive = (path: string) => {
             </a>
           </li>
           <li class="col-span-2">
-            <a href="/tags" class:list={{ "active-nav": isActive("/tags") }}>
-              Tags
-            </a>
+            <div class="relative" id="tags-dropdown">
+              <a
+                href="/tags"
+                class:list={[
+                  "block px-4 py-3 text-center font-medium hover:text-accent sm:px-2 sm:py-1",
+                  { "active-nav": isActive("/tags") },
+                ]}
+              >
+                <span class="flex items-center justify-center gap-1">
+                  Tags
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                </span>
+              </a>
+              <div
+                class="absolute top-full left-0 z-50 mt-1 hidden w-48 rounded-md bg-white py-1 shadow-lg dark:bg-gray-800"
+                id="tags-menu"
+              >
+                <ul class="pt-2 pb-1">
+                  {
+                    getAllSeries().map(series => (
+                      <li>
+                        <a
+                          href={`/tags/series/${series.folder}`}
+                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        >
+                          {series.name}
+                        </a>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            </div>
           </li>
           <li class="col-span-2">
             <a href="/about" class:list={{ "active-nav": isActive("/about") }}>
@@ -161,8 +213,31 @@ const isActive = (path: string) => {
     });
   }
 
+  function handleTagsDropdown() {
+    const dropdown = document.getElementById("tags-dropdown");
+    const menu = document.getElementById("tags-menu");
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    if (!dropdown || !menu) return;
+
+    dropdown.addEventListener("mouseenter", () => {
+      clearTimeout(timeoutId);
+      menu.classList.remove("hidden");
+    });
+
+    dropdown.addEventListener("mouseleave", () => {
+      timeoutId = setTimeout(() => {
+        menu.classList.add("hidden");
+      }, 100);
+    });
+  }
+
   toggleNav();
+  handleTagsDropdown();
 
   // Runs on view transitions navigation
-  document.addEventListener("astro:after-swap", toggleNav);
+  document.addEventListener("astro:after-swap", () => {
+    toggleNav();
+    handleTagsDropdown();
+  });
 </script>

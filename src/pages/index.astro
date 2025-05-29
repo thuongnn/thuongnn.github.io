@@ -14,24 +14,6 @@ import { SOCIALS } from "@/constants";
 
 const posts = await getCollection("blog");
 const recentPosts = getSortedPosts(posts);
-
-const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
-const randomPosts = [...posts].sort((a, b) => {
-  const seedA =
-    (currentHour * 31 +
-      a.data.title.length * 17 +
-      (a.data.pubDatetime.getTime() % 1000)) %
-    posts.length;
-  const seedB =
-    (currentHour * 31 +
-      b.data.title.length * 17 +
-      (b.data.pubDatetime.getTime() % 1000)) %
-    posts.length;
-  return seedA - seedB;
-});
-
-const awsPosts = randomPosts.filter(({ data }) => data.folder == "aws");
-const gcpPosts = randomPosts.filter(({ data }) => data.folder == "gcp");
 ---
 
 <Layout>
@@ -81,48 +63,6 @@ const gcpPosts = randomPosts.filter(({ data }) => data.folder == "gcp");
     <Hr />
 
     {
-      awsPosts.length > 0 && (
-        <section id="aws" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">
-            <a
-              href="/tags/aws"
-              class="inline-block decoration-dashed underline-offset-4"
-            >
-              Amazon Web Services (AWS)
-            </a>
-          </h2>
-          <ul>
-            {awsPosts.map(
-              (data, index) =>
-                index < SITE.postPerIndex && <Card variant="h3" {...data} />
-            )}
-          </ul>
-        </section>
-      )
-    }
-
-    {
-      gcpPosts.length > 0 && (
-        <section id="google-cloud" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">
-            <a
-              href="/tags/google-cloud"
-              class="inline-block decoration-dashed underline-offset-4"
-            >
-              Google Cloud (GCP)
-            </a>
-          </h2>
-          <ul>
-            {gcpPosts.map(
-              (data, index) =>
-                index < SITE.postPerIndex && <Card variant="h3" {...data} />
-            )}
-          </ul>
-        </section>
-      )
-    }
-
-    {
       recentPosts.length > 0 && (
         <section id="recent-posts" class="pt-12 pb-6">
           <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
@@ -153,5 +93,56 @@ const gcpPosts = randomPosts.filter(({ data }) => data.folder == "gcp");
     if (indexLayout) {
       sessionStorage.setItem("backUrl", "/");
     }
+
+    // Handle folder toggles
+    document.querySelectorAll("[data-folder]").forEach(folder => {
+      folder.addEventListener("click", () => {
+        const folderName = folder.getAttribute("data-folder");
+        const content = document.querySelector(
+          `[data-content="${folderName}"]`
+        );
+        const toggle = folder.querySelector(".folder-toggle");
+
+        if (content) {
+          content.classList.toggle("hidden");
+          if (toggle) {
+            toggle.textContent = content.classList.contains("hidden")
+              ? "▶"
+              : "▼";
+          }
+        }
+      });
+    });
+
+    // Handle subfolder toggles
+    document.querySelectorAll("[data-subfolder]").forEach(subfolder => {
+      subfolder.addEventListener("click", () => {
+        const subfolderName = subfolder.getAttribute("data-subfolder");
+        const content = document.querySelector(
+          `[data-subfolder-content="${subfolderName}"]`
+        );
+        const toggle = subfolder.querySelector(".subfolder-toggle");
+
+        if (content) {
+          content.classList.toggle("hidden");
+          if (toggle) {
+            toggle.textContent = content.classList.contains("hidden")
+              ? "▶"
+              : "▼";
+          }
+        }
+      });
+    });
   });
 </script>
+
+<style>
+  .folder-toggle,
+  .subfolder-toggle {
+    transition: transform 0.2s;
+  }
+  [data-content]:not(.hidden) .folder-toggle,
+  [data-subfolder-content]:not(.hidden) .subfolder-toggle {
+    transform: rotate(90deg);
+  }
+</style>

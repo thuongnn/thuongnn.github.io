@@ -20,18 +20,20 @@ import { SITE } from "@/config";
 }
 
 <script>
-  /* Update Search Praam */
-  function updateGoBackUrl() {
-    const backButton: HTMLAnchorElement | null =
-      document.querySelector("#back-button");
+  function handleBackButton() {
+    const backButton = document.getElementById("back-button");
+    if (!backButton) return;
 
-    const backUrl = sessionStorage.getItem("backUrl");
-
-    if (backUrl && backButton) {
-      backButton.href = backUrl;
-    }
+    backButton.addEventListener("click", e => {
+      // Kiểm tra xem có trang trước đó không
+      if (window.history.length > 1) {
+        e.preventDefault(); // Ngăn chặn hành vi mặc định của link
+        window.history.back();
+      }
+      // Nếu không có trang trước đó, để link hoạt động bình thường (về home)
+    });
   }
 
-  document.addEventListener("astro:page-load", updateGoBackUrl);
-  updateGoBackUrl();
+  document.addEventListener("astro:page-load", handleBackButton);
+  handleBackButton();
 </script>

@@ -87,3 +87,28 @@ export const GISCUS: GiscusProps = {
   lang: "en",
   loading: "lazy",
 };
+
+export interface Series {
+  folder: string; // Tên thư mục trong src/data/blog
+  name: string; // Tên hiển thị
+  description?: string; // Mô tả ngắn về series
+  icon?: string; // Icon cho series (có thể thêm sau)
+}
+
+export const SERIES: Series[] = [
+  {
+    folder: "aws",
+    name: "Amazon Web Services",
+    description: "Tổng hợp các bài viết về AWS services",
+  },
+  {
+    folder: "google-cloud",
+    name: "Google Cloud Platform",
+    description: "Tổng hợp các bài viết về Google Cloud services",
+  },
+  {
+    folder: "computer-science",
+    name: "Computer Science",
+    description: "Tổng hợp các bài viết về Computer Science",
+  },
+];
