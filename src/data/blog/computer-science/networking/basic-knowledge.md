@@ -8,6 +8,7 @@ tags:
   - Networking
   - Computer Science
 description: Tổng hợp câu hỏi và trả lời về networking cơ bản.
+ogImage: https://github.com/user-attachments/assets/39f9f76f-96b4-4d66-b131-ef9e1a3f4cb6
 ---
 
 Bài viết tổng hợp câu trả lời cho các câu hỏi networking cơ bản trong computer science được fork từ repo: https://github.com/vietnakid/learning-material.git

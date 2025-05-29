@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ kho dữ liệu (data warehouse) được quản lý hoàn toàn bởi AWS, giúp phân tích dữ liệu quy mô lớn với hiệu suất cao.
+ogImage: ../../../../assets/images/aws/analytics/redshift/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-redshift.

@@ -8,6 +8,7 @@ tags:
   - Database
   - Computer Science
 description: Tổng hợp câu hỏi và trả lời về Database cơ bản.
+ogImage: https://github.com/user-attachments/assets/46f9f062-9035-4da6-9a84-887d39444dec
 ---
 
 Bài viết tổng hợp câu trả lời cho các câu hỏi về Database cơ bản trong computer science được fork từ repo: https://github.com/vietnakid/learning-material.git

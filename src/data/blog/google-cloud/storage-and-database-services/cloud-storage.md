@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về Cloud Storage trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/623b564f-a67f-4f0b-b68b-e8d4119e8001
 ---
 
 ## Table of contents
@@ -46,7 +47,7 @@ description: Tìm hiểu về Cloud Storage trong Google Cloud.
 
   **Storage Classes** chính là câu trả lời, nó sẽ giúp chúng ta tối ưu chi phí dựa trên tải truy cập vào Object.
 
-- Google Cloud Storage có thể đảm bảo độ bền của dịch vụ đạt tới **99.999999999%(11 9’s)**
+- Google Cloud Storage có thể đảm bảo độ bền của dịch vụ đạt tới **99.999999999%(11 9's)**
 - Bảng so sánh các loại Storage Classes trong GCP
 
   | Storage Class    | Name     | Minimum Storage duration | Typical Monthly availability                                | Use case                                   |
@@ -133,7 +134,7 @@ Dưới đây là bảng so sánh các kịch bản Upload/Download Object trên
 | Scenario                                                                                                       | Description                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | How do you speed up large uploads (example: 100 GB) to Cloud Storage?                                          | Use Parallel composite uploads (File is broken in to small chunks and uploaded)                                            |
-| You want to permanently store application logs for regulatory reasons. You don’t expect to access them at all. | Cloud storage - Archive                                                                                                    |
+| You want to permanently store application logs for regulatory reasons. You don't expect to access them at all. | Cloud storage - Archive                                                                                                    |
 | Log files stored in Cloud storage. You expect to access them once in quarter.                                  | Cold Line                                                                                                                  |
 | How do you change storage class of an existing bucket in Cloud Storage?                                        | **Step 1**: Change Default Storage Class of the bucket. **Step 2**: Update the Storage Class of the objects in the bucket. |
 
@@ -146,7 +147,7 @@ Dưới đây là bảng so sánh các kịch bản Upload/Download Object trên
   - `gsutil mb gs://BKT_NAME` (Create Cloud Storage bucket)
   - `gsutil ls -a gs://BKT_NAME` (List current and non-current object versions)
   - `gsutil cp gs://SRC_BKT/SRC_OBJ gs://DESTN_BKT/NAME_COPY` (Copy objects)
-    - o ‘**GSUtil:encryption_key=ENCRYPTION_KEY**’ - Encrypt Object
+    - o '**GSUtil:encryption_key=ENCRYPTION_KEY**' - Encrypt Object
   - `gsutil mv` (Rename/Move objects)
     - `gsutil mv gs://BKT_NAME/OLD_OBJ_NAME gs://BKT_NAME/NEW_OBJ_NAME`
     - `gsutil mv gs://OLD_BUCKET_NAME/OLD_OBJECT_NAME gs://NEW_BKT_NAME/NEW_OBJ_NAME`

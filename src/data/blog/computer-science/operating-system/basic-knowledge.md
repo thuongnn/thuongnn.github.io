@@ -8,6 +8,7 @@ tags:
   - Operating System
   - Computer Science
 description: Tổng hợp câu hỏi và trả lời về OS cơ bản.
+ogImage: https://github.com/user-attachments/assets/39f9f76f-96b4-4d66-b131-ef9e1a3f4cb6
 ---
 
 Bài viết tổng hợp câu trả lời cho các câu hỏi về OS cơ bản trong computer science được fork từ repo: https://github.com/vietnakid/learning-material.git

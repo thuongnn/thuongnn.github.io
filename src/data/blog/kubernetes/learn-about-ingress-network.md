@@ -9,6 +9,7 @@ tags:
   - Networking
   - Ingress
 description: Tìm hiểu về network trong Kubernetes Ingress.
+ogImage: https://github.com/user-attachments/assets/afd8b13f-f3a4-4e0b-a484-c293bf95e661
 ---
 
 Ingress là gì, Ingress resource khác gì với Service type là LoadBalancer?
@@ -97,7 +98,7 @@ Kubernetes hỗ trợ Ingress Controller dưới dạng một interface mà chú
 
 ## Ingress Tutorial
 
-- Xem hướng dẫn cấu hình NGINX Ingress với [Cert Manager](https://cert-manager.io/docs/tutorials/acme/ingress/) (sử dụng [Let’s Encrypt](https://letsencrypt.org/docs/)) trong Kubernetes [ở đây](https://medium.com/containerum/how-to-launch-nginx-ingress-and-cert-manager-in-kubernetes-55b182a80c8f).
+- Xem hướng dẫn cấu hình NGINX Ingress với [Cert Manager](https://cert-manager.io/docs/tutorials/acme/ingress/) (sử dụng [Let's Encrypt](https://letsencrypt.org/docs/)) trong Kubernetes [ở đây](https://medium.com/containerum/how-to-launch-nginx-ingress-and-cert-manager-in-kubernetes-55b182a80c8f).
 - Demonstration triển khai Kubernetes Ingress với Nginx [ở đây](https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-ingress-guide-nginx-example.html).
 
 ## Tham Khảo

@@ -9,6 +9,7 @@ tags:
   - Devops
   - Architecture
 description: Triển khai kiến trúc serverless với AWS Cloud phần 1.
+ogImage: https://github.com/user-attachments/assets/af00c828-7de7-42d3-bf7e-d56e3d6b28a2
 ---
 
 Có một lần đi xem bảo vệ đồ án của một anh cùng phòng, mình đã tình cờ biết đến kiến trúc Serverless và Amazon AWS. Sau một thời gian tìm hiểu và vọc code, mình bắt đầu series này để chia sẻ lại những kiến thức mà mình tìm hiểu và tích lũy được.
@@ -35,7 +36,7 @@ Thực tế thì mình chưa dùng hết cả 3 dịch vụ cung cấp trên nh�
 
 ## API Gateway
 
-**“Amazon API Gateway** là dịch vụ được quản lý hoàn toàn giúp các nhà phát triển dễ dàng tạo, phát hành, duy trì, giám sát và bảo vệ API ở mọi quy mô. Chỉ với vài cú nhấp chuột trên Bảng điều khiển quản lý AWS, bạn có thể tạo các API REST và WebSocket hoạt động giống như “cửa trước” để các ứng dụng truy cập dữ liệu, logic nghiệp vụ hoặc chức năng từ các dịch vụ phụ trợ — [Amazon](https://aws.amazon.com/vi/api-gateway/)”.\*
+**“Amazon API Gateway** là dịch vụ được quản lý hoàn toàn giúp các nhà phát triển dễ dàng tạo, phát hành, duy trì, giám sát và bảo vệ API ở mọi quy mô. Chỉ với vài cú nhấp chuột trên Bảng điều khiển quản lý AWS, bạn có thể tạo các API REST và WebSocket hoạt động giống như "cửa trước" để các ứng dụng truy cập dữ liệu, logic nghiệp vụ hoặc chức năng từ các dịch vụ phụ trợ — [Amazon](https://aws.amazon.com/vi/api-gateway/)".
 
 Mọi người có thể hiểu _API Gateway_ là cái [cửa khẩu](https://vi.wikipedia.org/wiki/C%E1%BB%ADa_kh%E1%BA%A9u) quốc tế :3 bất cứ ai đi qua đều phải xuất trình [hộ chiếu](https://vi.wikipedia.org/wiki/H%E1%BB%99_chi%E1%BA%BFu) (_AWS Cognito_), tùy vào điểm đến bên trong có thể có những điểm đến (_Lambda Function_) cần phải bảo mật hoặc bị cấm với một số người không được phép đến những nơi đó :D
 
@@ -47,7 +48,7 @@ Chi phí để sử dụng *API Gateway *giống với _AWS Lambda_, với mỗi
 
 ![](https://github.com/user-attachments/assets/16c9df38-ff63-4099-9b54-b22ecd91269a)
 
-**\*“Amazon Cognito** cho phép bạn bổ sung tính năng đăng ký, đăng nhập và kiểm soát truy cập người dùng vào trang web và ứng dụng di động một cách nhanh chóng và dễ dàng. Amazon Cognito có quy mô lên tới hàng triệu người dùng và hỗ trợ đăng nhập thông qua các nhà cung cấp định danh mạng xã hội như Facebook, Google và Amazon, cũng như các nhà cung cấp định danh doanh nghiệp thông qua SAML 2.0 — [Amazon](https://aws.amazon.com/vi/cognito/)”.\*
+**"Amazon Cognito** cho phép bạn bổ sung tính năng đăng ký, đăng nhập và kiểm soát truy cập người dùng vào trang web và ứng dụng di động một cách nhanh chóng và dễ dàng. Amazon Cognito có quy mô lên tới hàng triệu người dùng và hỗ trợ đăng nhập thông qua các nhà cung cấp định danh mạng xã hội như Facebook, Google và Amazon, cũng như các nhà cung cấp định danh doanh nghiệp thông qua SAML 2.0 — [Amazon](https://aws.amazon.com/vi/cognito/)".
 
 Đây chính là cái [hộ chiếu](https://vi.wikipedia.org/wiki/H%E1%BB%99_chi%E1%BA%BFu) của người dùng dùng để đi đến những điểm đến mà họ muốn :3 Chính xác thì *AWS Cognito *sẽ thay ta quản lý toàn bộ người dùng đăng nhập vào hệ thống, xác thực tin nhắn, định danh, phân quyền người dùng,… Và dễ dàng tích hợp vào hệ thống.
 
@@ -56,7 +57,7 @@ Chi phí để sử dụng *API Gateway *giống với _AWS Lambda_, với mỗi
 
 ## Amazon RDS for MySQL
 
-**\*“Amazon Relational Database Service (Amazon RDS)** là một dịch vụ được quản lý giúp bạn dễ dàng thiết lập, vận hành và thay đổi quy mô cơ sở dữ liệu quan hệ trên đám mây. Dịch vụ này cung cấp tính năng hiệu quả về chi phí và có thể thay đổi quy mô, trong khi vẫn quản lý được các tác vụ quản trị cơ sở dữ liệu tiêu tốn nhiều thời gian, giúp bạn thoải mái tập trung vào các ứng dụng và công việc của bạn — [Amazon](https://aws.amazon.com/vi/rds/faqs/)”.\*
+**"Amazon Relational Database Service (Amazon RDS)** là một dịch vụ được quản lý giúp bạn dễ dàng thiết lập, vận hành và thay đổi quy mô cơ sở dữ liệu quan hệ trên đám mây. Dịch vụ này cung cấp tính năng hiệu quả về chi phí và có thể thay đổi quy mô, trong khi vẫn quản lý được các tác vụ quản trị cơ sở dữ liệu tiêu tốn nhiều thời gian, giúp bạn thoải mái tập trung vào các ứng dụng và công việc của bạn — [Amazon](https://aws.amazon.com/vi/rds/faqs/)".
 
 _AWS RDS_ có hỗ trợ rất nhiều công cụ cơ sở dữ liệu ví dụ như: PostgreSQL, Oracle, MySQL, SQL Server,… Trong series này mình sẽ sử dụng [MySQL](https://aws.amazon.com/vi/rds/mysql/) làm cơ sở dữ liệu chính, đối với tài khoản AWS mới tạo mọi người có thể sử dụng miễn phí 1 năm với những option bị giới hạn (**db.t2.micro — 1 vCPU, 1 GiB RAM**). Sau 1 năm Amazon sẽ bắt đầu tính phí sử dụng dịch vụ, bạn có thể tìm hiểu thêm về chi phí sử dụng ở đây:
 [https://aws.amazon.com/vi/rds/pricing](https://aws.amazon.com/vi/rds/pricing/)

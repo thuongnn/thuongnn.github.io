@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ mạng riêng ảo của AWS, cho phép tạo và quản lý mạng riêng biệt trong AWS Cloud.
+ogImage: ../../../../assets/images/aws/networking/vpc/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-vpc.

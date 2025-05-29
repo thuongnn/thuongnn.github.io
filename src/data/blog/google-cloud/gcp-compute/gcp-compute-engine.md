@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về Compute Engine trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/633b8074-63b6-4272-8896-1bfb4c063639
 ---
 
 ## Table of contents
@@ -204,6 +205,6 @@ Google Compute Engine hỗ trợ nhiều họ Machine khác nhau phục vụ cho
 - Lựa chọn Machine type sao cho phù hợp:
   - Nên chạy thử nghiệm ứng dụng trên các loại Machine type để lấy thêm đánh giá.
   - Sử dụng GPUs cho trường hợp ứng dụng cần tính toán chuyên sâu và đồ hoạ.
-- Ước lượng và lên plan cho các workloads chạy dài hạn để áp dụng **“committed use discounts”** cho tiết kiệm chi phí.
+- Ước lượng và lên plan cho các workloads chạy dài hạn để áp dụng **"committed use discounts"** cho tiết kiệm chi phí.
 - Sử dụng **preemptible instances** cho các ứng dụng chịu lỗi tốt (fault-tolerant), chạy bất cứ lúc nào cũng được (ứng dụng không cần chạy ngay lập tức)
 - Sử dụng **labels** để đánh nhãn theo môi trường triển khai, team dự án, loại business,… để phân loại quản lý.

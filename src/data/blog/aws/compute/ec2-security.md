@@ -1,14 +1,15 @@
 ---
 author: thuongnn
-pubDatetime: 2023-03-29T14:30:45Z
-modDatetime: 2023-03-29T14:30:45Z
+pubDatetime: 2023-03-26T09:15:33Z
+modDatetime: 2023-03-26T09:15:33Z
 title: "[AWS] EC2 Security"
 folder: "aws"
 draft: false
 tags:
   - AWS
   - Amazon Web Services
-description: Tìm hiểu về các tính năng bảo mật của EC2, bao gồm security groups, IAM roles và encryption.
+description: Tìm hiểu về bảo mật cho EC2, các best practices và công cụ hỗ trợ.
+ogImage: https://techblogbuilder.com/wp-content/uploads/sites/4/2021/06/techblogbuilder-home.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-security.

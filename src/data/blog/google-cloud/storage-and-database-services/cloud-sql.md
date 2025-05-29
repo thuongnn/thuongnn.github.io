@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về Cloud SQL trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/c6606129-4718-4648-85a5-7e0d33642084
 ---
 
 ![CloudSQL.jpeg](https://github.com/user-attachments/assets/c6606129-4718-4648-85a5-7e0d33642084)

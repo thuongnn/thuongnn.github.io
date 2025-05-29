@@ -5,6 +5,7 @@ modDatetime: 2023-07-27T09:15:33Z
 title: "[AWS] AWS Web Application Firewall"
 folder: "aws"
 draft: false
+ogImage: "../../../../assets/images/aws/security/aws-web-application-firewall/1.png"
 tags:
   - AWS
   - Amazon Web Services

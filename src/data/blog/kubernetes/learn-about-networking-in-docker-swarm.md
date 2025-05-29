@@ -9,6 +9,7 @@ tags:
   - Docker Swarm
   - Networking
 description: Tìm hiểu chi tiết các loại network trong Docker Swarm và cách hoạt động của nó.
+ogImage: https://github.com/user-attachments/assets/6f75a3e7-0c40-4d8a-8b22-531d2aff70d5
 ---
 
 ## Table of contents

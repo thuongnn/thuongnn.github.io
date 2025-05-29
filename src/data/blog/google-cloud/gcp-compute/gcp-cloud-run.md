@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về Cloud Run trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/69f372b6-ce3a-4686-91e1-d61fbb9bbd12
 ---
 
 ![Untitled](https://github.com/user-attachments/assets/69f372b6-ce3a-4686-91e1-d61fbb9bbd12)

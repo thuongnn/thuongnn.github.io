@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ quản lý bí mật của AWS, giúp bảo vệ thông tin nhạy cảm và tự động rotation cho các giá trị bí mật đó.
+ogImage: https://techblogbuilder.com/wp-content/uploads/sites/4/2021/06/techblogbuilder-home.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-secrets-manager.

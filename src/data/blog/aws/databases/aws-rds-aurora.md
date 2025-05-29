@@ -1,10 +1,11 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-21T14:30:45Z
-modDatetime: 2025-05-29T02:30:41Z
+modDatetime: 2023-07-21T14:30:45Z
 title: "[AWS] Amazon RDS Aurora"
 folder: "aws"
 draft: false
+ogImage: "../../../../assets/images/aws/databases/aws-rds-aurora/1.png"
 tags:
   - AWS
   - Amazon Web Services

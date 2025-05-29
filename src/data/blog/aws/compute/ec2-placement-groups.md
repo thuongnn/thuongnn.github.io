@@ -1,14 +1,15 @@
 ---
 author: thuongnn
-pubDatetime: 2023-03-27T15:30:45Z
-modDatetime: 2025-05-29T02:30:41Z
+pubDatetime: 2023-03-25T09:15:33Z
+modDatetime: 2023-03-25T09:15:33Z
 title: "[AWS] EC2 Placement Groups"
 folder: "aws"
 draft: false
 tags:
   - AWS
   - Amazon Web Services
-description: Tìm hiểu về các nhóm placement trong EC2, giúp kiểm soát vị trí vật lý của các instance.
+description: Tìm hiểu về EC2 Placement Groups, các loại và cách sử dụng để tối ưu hiệu suất.
+ogImage: https://techblogbuilder.com/wp-content/uploads/sites/4/2021/06/techblogbuilder-home.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-placement-groups.

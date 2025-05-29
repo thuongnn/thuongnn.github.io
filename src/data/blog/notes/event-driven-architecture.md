@@ -11,6 +11,7 @@ tags:
   - Event Sourcing
   - Architecture
 description: Tổng hợp và trình bày lại những hiểu biết của bản thân về kiến trúc Event Driven.
+ogImage: https://private-user-images.githubusercontent.com/33452221/448013751-0254a39d-daf4-4fc5-a8e8-a35bc103e7ec.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDgzNjI0MjksIm5iZiI6MTc0ODM2MjEyOSwicGF0aCI6Ii8zMzQ1MjIyMS80NDgwMTM3NTEtMDI1NGEzOWQtZGFmNC00ZmM1LWE4ZTgtYTM1YmMxMDNlN2VjLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA1MjclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNTI3VDE2MDg0OVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWNkNzgzZjFhODRiMTAwZTQ0YzM0MGExNTBlYmFiOTNkNTNmNWJmYjNmZWE5YTQ4OGIxYjY3NmEzNWY0ZGNlYjYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.foV73Afg2CR-v3zBQVIu5qPx0DCd4RXWKjU_LxDhJ1I
 ---
 
 ## Table of contents
@@ -41,7 +42,7 @@ Khi các component cần phải cộng tác, giả sử một **Component A** c�
 
 Tuy nhiên, nếu **A** biết về sự tồn tại của **B**, chúng đang _tigh coupling_ với nhau, **A** phụ thuộc vào **B**, làm cho hệ thống khó khăn hơn để thay đổi và duy trì.
 
-Do đó, **Event Driven** có thể được sử dụng ngăn chặn tình trạng “dính chặt” vào nhau giữa các components.
+Do đó, **Event Driven** có thể được sử dụng ngăn chặn tình trạng "dính chặt" vào nhau giữa các components.
 
 Có 3 trường hợp nên dùng **Event Driven**
 
@@ -137,13 +138,13 @@ Theo cách lưu trữ trạng thái truyền thống, các entity chỉ được
 
 - Nhu cầu cần biết quá trình mà 1 entity đạt được trạng thái đó từ khi bắt đầu đến thời điểm hiện tại chứ không phải chỉ là trạng thái cuối cùng của nó.
 
-- **Lấy ví dụ**, chúng ta có một tài khoản ngân hàng, nếu theo cách lưu trữ truyền thống; chúng ta chỉ có thể xem số dư tại thời điểm hiện tại của tài khoản chúng ta. Và nếu ngân hàng không support sao kê, để xem tiền vào, tiền ra trong một khoảng thời gian nào đó; thậm chí là từ lúc mở toàn khoản đến giờ thì sẽ không có cách nào để kiểm tra liệu hệ thống tính toán, lưu trữ ở phía ngân hàng làm việc có chính xác hay không. “Sao kê“ ở đây chính là một ví dụ cho Event Sourcing.
+- **Lấy ví dụ**, chúng ta có một tài khoản ngân hàng, nếu theo cách lưu trữ truyền thống; chúng ta chỉ có thể xem số dư tại thời điểm hiện tại của tài khoản chúng ta. Và nếu ngân hàng không support sao kê, để xem tiền vào, tiền ra trong một khoảng thời gian nào đó; thậm chí là từ lúc mở toàn khoản đến giờ thì sẽ không có cách nào để kiểm tra liệu hệ thống tính toán, lưu trữ ở phía ngân hàng làm việc có chính xác hay không. "Sao kê" ở đây chính là một ví dụ cho Event Sourcing.
 
 - Sử dụng **Event Sourcing**, thay vì lưu trữ trạng thái Thực thể, chúng ta tập trung vào việc lưu trữ thay đổi trạng thái Thực thể và tính toán trạng thái Thực thể từ những thay đổi đó.
 
 ### Deletions
 
-- Nếu người dùng “lỡ tay” và tạo ra một sự thay đổi trạng thái (event) không mong muốn, chúng ta không thể xóa event đó nó sẽ thay đổi lịch sử thay đổi trạng thái, và nó sẽ đi ngược lại toàn bộ ý tưởng của event sourcing.
+- Nếu người dùng "lỡ tay" và tạo ra một sự thay đổi trạng thái (event) không mong muốn, chúng ta không thể xóa event đó nó sẽ thay đổi lịch sử thay đổi trạng thái, và nó sẽ đi ngược lại toàn bộ ý tưởng của event sourcing.
 
 - Thay vào đó, chúng ta tạo thêm 1 event để đảo ngược (reverse) trạng thái từ event không mong muốn trước đó. Quá trình này được gọi là một giao dịch đảo ngược (Reversal Transaction).
 
@@ -157,7 +158,7 @@ Theo cách lưu trữ trạng thái truyền thống, các entity chỉ được
 
 - Bằng cách này, khi cần trạng thái của thực thể, chúng ta chỉ cần tính toán nó từ bản Snapshots cuối cùng. Thậm chí, chúng ta có thể giữ một bản chụp cập nhật vĩnh viễn của Thực thể tại thời điểm mới nhất để không mất công đi tính toán lại.
 
-![](https://private-user-images.githubusercontent.com/33452221/448013883-3d84f476-9eb7-4d52-b25e-7ce224281c69.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDgzNjI0MjksIm5iZiI6MTc0ODM2MjEyOSwicGF0aCI6Ii8zMzQ1MjIyMS80NDgwMTM4ODMtM2Q4NGY0NzYtOWViNy00ZDUyLWIyNWUtN2NlMjI0MjgxYzY5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA1MjclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNTI3VDE2MDg0OVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWY5M2M1MDczNTRkMDVkNjk3NjU4Mzk2N2MxZjUxNGE4ZjJhZGQ4NDZlOGMyZTlmMjJiYmQzOTM4OTU1NzE0MjEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.BQGC1dvKfcbAl6eutzJFcpZSSVjoXlQ64a9CNcwKwhg)
+![](https://private-user-images.githubusercontent.com/33452221/448013883-3d84f476-9eb7-4d52-b25e-7ce224281c69.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDgzNjI0MjksIm5iZiI6MTc0ODM2MjEyOSwicGF0aCI6Ii8zMzQ1MjIyMS80NDgwMTM4ODMtM2Q4NGY0NzYtOWViNy00ZDUyLWIyNWUtN2NlMjI0MjgxYzY5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA1MjclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNTI3VDE2MDg0OVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTg2MTVhOWU1MTZiYzAwOGM5NDQ5ZGM1YTY2MTAyOTkyNDcwYWIyMGEwYTAxNDc3MDczNTM4OTg3YTVjMGYwZWEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.BQGC1dvKfcbAl6eutzJFcpZSSVjoXlQ64a9CNcwKwhg)
 
 ### Projections
 
@@ -165,7 +166,7 @@ Theo cách lưu trữ trạng thái truyền thống, các entity chỉ được
 
 - Đó là ảnh chụp nhanh (Snapshots) hoặc trạng thái hiện tại của một thực thể, phù hợp với định nghĩa của phép chiếu.
 
-- Nhưng ý tưởng có giá trị nhất trong khái niệm Projections là chúng ta có thể phân tích “hành vi” của các thực thể trong các khoảng thời gian cụ thể, cho phép chúng ta dự đoán về tương lai (ví dụ, nếu trong 5 năm qua, một thực thể tăng cường hoạt động trong tháng 8, có khả năng là tháng 8 năm sau sẽ giống nhau), và đây có thể là một khả năng cực kỳ có giá trị cho doanh nghiệp.
+- Nhưng ý tưởng có giá trị nhất trong khái niệm Projections là chúng ta có thể phân tích "hành vi" của các thực thể trong các khoảng thời gian cụ thể, cho phép chúng ta dự đoán về tương lai (ví dụ, nếu trong 5 năm qua, một thực thể tăng cường hoạt động trong tháng 8, có khả năng là tháng 8 năm sau sẽ giống nhau), và đây có thể là một khả năng cực kỳ có giá trị cho doanh nghiệp.
 
 ## Ưu điểm
 

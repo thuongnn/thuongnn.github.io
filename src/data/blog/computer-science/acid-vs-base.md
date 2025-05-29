@@ -10,6 +10,7 @@ tags:
   - ACID
   - Database
 description: Quyết định lựa chọn một hệ thống quản lý cơ sở dữ liệu phù hợp (DBMS)...
+ogImage: https://github.com/user-attachments/assets/46f9f062-9035-4da6-9a84-887d39444dec
 ---
 
 Quyết định lựa chọn một hệ thống quản lý cơ sở dữ liệu phù hợp (DBMS) có thể là một nhiệm vụ khó khăn. Có rất nhiều các tuỳ chọn DBMS có sẵn vậy nên trước khi bắt đầu tìm kiếm một giải pháp cơ sở dữ liệu phù hợp, hãy xem xét lại các yêu cầu hệ thống của bạn.

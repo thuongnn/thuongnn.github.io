@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Cách tổ chức tài nguyên trong Google Cloud, vai trò và phân quyền.
+ogImage: https://github.com/user-attachments/assets/47b3131b-4397-42e8-b5ed-59274a05df5c
 ---
 
 ## Table of contents
@@ -53,8 +54,8 @@ description: Cách tổ chức tài nguyên trong Google Cloud, vai trò và ph�
   - Cô lập môi trường Production của các bộ phận với nhau, tránh rủi ro về bảo mật thông tin.
   - Chúng ta có thể tạo một shared folder để chia sẻ tài nguyên với nhau.
 - **One project per application per environment**:
-  - Ví dụ có 02 ứng dụng: “Order” và “Product”
-  - Giả sử cần có 02 môi trường là “DEV” và “PROD”
+  - Ví dụ có 02 ứng dụng: "Order" và "Product"
+  - Giả sử cần có 02 môi trường là "DEV" và "PROD"
   - Dựa vào nguyên tắc ở trên thì chúng ta cần tạo 04 projects: Order-DEV, Order-PROD, Product-DEV, Product-PROD
     - Cô lập các môi trường triển khai với nhau
     - Thay đổi ở môi trường DEV sẽ không ảnh hưởng gì tới PROD
@@ -118,7 +119,7 @@ description: Cách tổ chức tài nguyên trong Google Cloud, vai trò và ph�
 | Roles                         | Description                                                        | Use Case       |
 | ----------------------------- | ------------------------------------------------------------------ | -------------- |
 | Billing Account Creator       | Permissions to create new billing accounts                         | Finance Team   |
-| Billing Account Administrator | Manages billing account but can’t create them                      | Finance Team   |
+| Billing Account Administrator | Manages billing account but can't create them                      | Finance Team   |
 | Billing Account User          | Assigns projects to billing accounts                               | Project Owner  |
 | Billing Account Viewer        | View only access to billing account                                | Auditor        |
 | Billing Account Costs Manager | Manage budgets, view & export cost information of billing accounts | budget Team    |

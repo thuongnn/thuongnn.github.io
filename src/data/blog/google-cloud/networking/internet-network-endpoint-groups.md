@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về Internet Network Endpoint Groups (NEG) trong Google Cloud.
+ogImage: https://storage.googleapis.com/gweb-cloudblog-publish/images/Hybrid_Cloud.max-1000x1000.jpg
 ---
 
 ## Table of contents

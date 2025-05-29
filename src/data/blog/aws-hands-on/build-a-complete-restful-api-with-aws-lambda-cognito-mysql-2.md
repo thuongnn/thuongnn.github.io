@@ -9,6 +9,7 @@ tags:
   - Devops
   - Architecture
 description: Triển khai kiến trúc serverless với AWS Cloud phần 2.
+ogImage: https://github.com/user-attachments/assets/f690c4e3-e062-48c0-a9d0-eecc94f2be4f
 ---
 
 AWS Cognito là một dịch vụ kiểm soát truy cập người dùng đơn giản và bảo mật, nó hỗ trợ đăng nhập thông qua các nhà cung cấp định danh mạng xã hội như Facebook, Google. Trong bài viết này mình sẽ hướng dẫn mọi người xây dựng hệ thống đăng nhập sử dụng AWS Cognito và AWS Amplify trong dự án nhé :D

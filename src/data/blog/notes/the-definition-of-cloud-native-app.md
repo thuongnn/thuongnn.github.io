@@ -11,6 +11,7 @@ tags:
   - CI/CD
   - Architecture
 description: Bài viết đi tổng hợp và tự viết lại những hiểu biết về Cloud Native App của bản thân.
+ogImage: https://github.com/user-attachments/assets/4da0be5a-f580-4778-ac0c-cbb97dfe8da0
 ---
 
 Có nhiều định nghĩa đặt ra cho CNA nhưng chỉ cần hiểu đơn giản CNA là một app _thuần_ cloud. Dưới góc nhìn high level, nó là app được thiết kế để chạy trên môi trường cloud.
@@ -22,13 +23,13 @@ CNA còn được định nghĩa trong Beyond the _twelve-factor app_ như sau:
 > A cloud-native application is an application that has been designed and implemented to run on a Platform-as-a-Service installation and to embrace horizontal elastic scaling.
 
 Các ứng dụng ngày càng trở nên phức tạp với nhu cầu ngày càng cao của người dùng; Người dùng mong đợi khả năng đáp ứng nhanh chóng, các tính năng hữu ích và không có _downtime_. Tốc độ và sự linh hoạt của CNA đến từ một số yếu tố sau:
-![](https://private-user-images.githubusercontent.com/33452221/448012089-4da0be5a-f580-4778-ac0c-cbb97dfe8da0.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDgzNjIxMzcsIm5iZiI6MTc0ODM2MTgzNywicGF0aCI6Ii8zMzQ1MjIyMS80NDgwMTIwODktNGRhMGJlNWEtZjU4MC00Nzc4LWFjMGMtY2JiOTdkZmU4ZGEwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA1MjclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNTI3VDE2MDM1N1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTBkOTVmZGQ2NzQ0NmJjNjNlNjhhNGIzZGU3NjM3MTVlNzIwZDU2NzlkZDBlMGEwZTEzNzRmNmNhNTE0ZTdmMmImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.BnQDGWx6eQbb7rA2P0aj4VyIQOfMIfdMjj01dc1BdaA)
+![](https://github.com/user-attachments/assets/4da0be5a-f580-4778-ac0c-cbb97dfe8da0)
 
 ## Table of contents
 
 # Microservices
 
-![](https://private-user-images.githubusercontent.com/33452221/448012091-41451743-2b86-4fc6-84f5-06feb498b5cc.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDgzNjIxMzcsIm5iZiI6MTc0ODM2MTgzNywicGF0aCI6Ii8zMzQ1MjIyMS80NDgwMTIwOTEtNDE0NTE3NDMtMmI4Ni00ZmM2LTg0ZjUtMDZmZWI0OThiNWNjLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA1MjclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNTI3VDE2MDM1N1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTAzMzVkYmNjN2E3YzY1MDJiYWM5ZmZhMTBhM2MyNDViZWUxYjYyMzUwYzYwNDAyMWZkMGQ0MTU3MGQxYzkzYzkmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.fZdsEOihyNh7ZbVpUTmNPLa8g1AfWc1Djw4QUY3weIU)
+![](https://github.com/user-attachments/assets/41451743-2b86-4fc6-84f5-06feb498b5cc)
 Thiết kế các app theo kiến trúc microservices mang lại cho hệ thống rất nhiều lợi ích và cũng đang là xu hướng _thời thượng_ vì đơn giản rất nhiều sản phẩm của các hãng lớn đã và đang theo con đường này.
 
 Một app dưới góc nhìn tổng quát chính là sự tổng hòa của một hoặc nhiều component. CNA cũng không ngoại lệ, để app phù hợp với môi trường cloud thì kiến trúc microservice là điều không thể tránh khỏi khi thiết kế CNA.
@@ -66,7 +67,7 @@ Dưới đây là các yếu tố được đề cập đến:
 | 11 | Logging | Coi _treat logs_ được tạo bởi microservices như các _event streams_. Luồng này cần được lưu trữ và quản lý bởi các công cụ khác mang lại nhiều lợi ích. |
 | 12 | Admin Processes | Các tác vụ quản trị, quản lý nên được chạy dưới dạng quy trình một lần, tách biệt với app. Các tác vụ có thể là: migrate database, cronjobs, report, etc. |
 
-Tuy nhiên 12 yêu tố ban đầu (từ 2011) được đề cập ở trên vẫn chưa đủ đối với thiết kế Cloud Native App ngày nay. Thêm vào đó có 3 yếu tố được bổ sung thêm:
+Tuy nhiên 12 yếu tố ban đầu (từ 2011) được đề cập ở trên vẫn chưa đủ đối với thiết kế Cloud Native App ngày nay. Thêm vào đó có 3 yếu tố được bổ sung thêm:
 | | New Factor | Giải thích |
 |:--|:--|:--|
 | 13 | API First | Triển khai ứng dụng như một dịch vụ, hãy giải sử app được sử dụng bởi front-end client, gateway, third party services, etc. |
@@ -78,7 +79,7 @@ Ngoài 15 yếu tố trên, còn có những cân nhắc quan trọng trong thi�
 - **Communication** — Giao tiếp giữa các ứng dụng _front-end_ và _back-end_, internal services; khả năng kiểm soát bảo mật trong giao tiếp; xem xét việc kết nối trực tiếp hay tách rời (message broker).
 - **Resiliency** — Khả năng phục hồi của các microservice; trong kiến trúc phân tán, điều gì sẽ xảy ra khi _Service B_ không phản hồi _Service A_, _Service C_ tạm thời gián đoạn khiến cho các service khác không thể kết nối.
 - **Distributed Data** — Theo chuẩn kiến trúc microservice, mỗi microservice sẽ được đóng gói với database của chính nó. Xảy ra TH có nhiều microservice cần truy vấn dữ liệu hoặc thực hiện một giao dịch.
-- **Identity** — Trong mạng lưới các microservice, các microservice có thực sự _“trust”_ nhau không? Một service làm thế nào để xác định ai đang yêu cầu truy cập và có quyền gì?
+- **Identity** — Trong mạng lưới các microservice, các microservice có thực sự _"trust"_ nhau không? Một service làm thế nào để xác định ai đang yêu cầu truy cập và có quyền gì?
 
 # Containers
 
@@ -89,7 +90,7 @@ Container image có thể chạy trên bất kỳ máy chủ (cài sẵn Docker)
 
 ## Container Orchestration
 
-![](https://private-user-images.githubusercontent.com/33452221/448013114-a3eb41d0-ba15-4627-bd56-9585b834197c.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDgzNjIyOTYsIm5iZiI6MTc0ODM2MTk5NiwicGF0aCI6Ii8zMzQ1MjIyMS80NDgwMTMxMTQtYTNlYjQxZDAtYmExNS00NjI3LWJkNTYtOTU4NWI4MzQxOTdjLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA1MjclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNTI3VDE2MDYzNlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTI2Y2VkZGRjYmJhZmE1OTk1ZWUwOWM0ZmM5YmI5NDU2ZmY5OWE4MDE0OTg4MzFlODQzYjZlMDVmOWE1NmQ2NjMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.RiCrHm6DZJFSjv33JAyry7_HkEr5w1uVeL-0g8ng_b4)
+![](https://github.com/user-attachments/assets/a3eb41d0-ba15-4627-bd56-9585b834197c)
 Trong khi các công cụ như Docker tạo ra images và chạy các containers, Chúng ta cũng cần các công cụ để quản lý chúng. Quản lý container được thực hiện bằng một giải pháp được gọi là _container orchestrator_. Khi hoạt động ở quy mô lớn, việc điều phối container là điều cần thiết. Hiện nay có nhiều công cụ hỗ trợ điều phối container, tuy nhiên nổi bật về orchestration thì có 3 giải pháp đó là Docker Swarm, Kubernetes và Nomad.
 
 Đa số các _Container Orchestration_ đều có nhiệm vụ và chức năng giống nhau:

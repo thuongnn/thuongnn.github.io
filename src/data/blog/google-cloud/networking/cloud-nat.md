@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về dịch vụ Cloud NAT trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/a21ffe45-27f9-400d-bdd2-2640fa3d7d68
 ---
 
 ![](https://github.com/user-attachments/assets/a21ffe45-27f9-400d-bdd2-2640fa3d7d68)

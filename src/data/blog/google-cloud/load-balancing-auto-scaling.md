@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về Load Balancing & Auto Scaling trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/82022135-a886-49c0-8a86-b5ce92bf0e78
 ---
 
 # How to choose?

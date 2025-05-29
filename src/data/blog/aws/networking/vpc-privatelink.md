@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về PrivateLink, dịch vụ cho phép kết nối an toàn giữa VPC và các dịch vụ AWS.
+ogImage: ../../../../assets/images/aws/networking/vpc-privatelink/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-vpc-privatelink.

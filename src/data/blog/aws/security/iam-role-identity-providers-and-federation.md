@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: "IAM Role, Identity Providers và Federation trong AWS: cách quản lý quyền truy cập an toàn và tích hợp danh tính bên ngoài."
+ogImage: ../../../../assets/images/aws/security/iam-role-identity-providers-and-federation/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-iam-role-identity-providers-and-federation.

@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về các dịch vụ liên quan Pub/Sub trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/1fea20f8-8f76-4700-b91a-54c7fce7c003
 ---
 
 ## Table of contents

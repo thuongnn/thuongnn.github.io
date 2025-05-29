@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-14T11:45:22Z
-modDatetime: 2025-05-29T02:30:41Z
+modDatetime: 2023-05-14T11:45:22Z
 title: "[AWS] VPC Endpoints"
 folder: "aws"
 draft: false
@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về VPC Endpoints, cách kết nối an toàn đến các dịch vụ AWS mà không cần Internet Gateway.
+ogImage: ../../../../assets/images/aws/networking/vpc-endpoints/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-vpc-endpoints.

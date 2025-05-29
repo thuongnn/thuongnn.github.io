@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ PaaS của AWS, giúp triển khai và quản lý ứng dụng web một cách dễ dàng.
+ogImage: ../../../../assets/images/aws/compute/aws-elastic-beanstalk/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-elastic-beanstalk.

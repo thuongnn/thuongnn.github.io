@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về hai lớp bảo mật mạng trong AWS, cách cấu hình và quản lý quyền truy cập vào tài nguyên.
+ogImage: ../../../../assets/images/aws/networking/security-groups-and-nacls/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-security-groups-and-nacls.

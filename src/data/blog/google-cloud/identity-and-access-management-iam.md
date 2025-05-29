@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Cách quản lý danh tính và truy cập trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/39ef248c-8f6d-4a4e-8461-f885fc5317aa
 ---
 
 ## Table of contents
@@ -46,7 +47,7 @@ description: Cách quản lý danh tính và truy cập trong Google Cloud.
     - **Editor (roles.editor)** - Viewer + Edit actions
     - **Owner (roles.owner)** - Editor + Manage Roles and Permissions + Billing
     - EARLIEST VERSION: Created before IAM
-    - NOT RECOMMENDED: **Don’t use in production**
+    - NOT RECOMMENDED: **Don't use in production**
   - **`Predefined Roles`** - Các Roles được xác định chi tiết từ trước và được quản lý bởi Google
     - Các Roles khác nhau cho những mục đích khác nhau
     - **Ví dụ**: Storage Admin, Storage Object Admin, Storage Object Viewer, Storage Object Creator
@@ -184,7 +185,7 @@ description: Cách quản lý danh tính và truy cập trong Google Cloud.
 ## Tính năng
 
 - Quyền truy cập được cấp phép bằng cách cung cấp vai trò **Người dùng web được IAP bảo mật** cho một hoặc nhiều địa chỉ email riêng lẻ, toàn bộ miền email hoặc một nhóm các địa chỉ email.
-- Chức năng **tạo máy chủ** chỉ dành riêng cho nhân viên hoặc “mạng nội bộ”, họ có thể chỉ định những người dùng được xác thực bằng địa chỉ email của công ty mới được phép truy cập. Các máy chủ này có thể liên kiến với:
+- Chức năng **tạo máy chủ** chỉ dành riêng cho nhân viên hoặc "mạng nội bộ", họ có thể chỉ định những người dùng được xác thực bằng địa chỉ email của công ty mới được phép truy cập. Các máy chủ này có thể liên kiến với:
   - Địa chỉ Gmail
   - Google Workspace
   - Địa chỉ trong Active Directory của công ty

@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ cơ sở dữ liệu quan hệ được quản lý hoàn toàn bởi AWS, hỗ trợ nhiều loại database engine phổ biến.
+ogImage: https://techblogbuilder.com/wp-content/uploads/sites/4/2021/06/techblogbuilder-home.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-rds.
@@ -92,10 +93,10 @@ Amazon RDS là một dịch vụ được quản lý giúp dễ dàng thiết l�
 
 # Khi nào nên sử dụng Amazon RDS?
 
-- ✔ Nếu bạn cần một dịch vụ cơ sở dữ liệu quan hệ được quản lý, hỗ trợ sao lưu tự động, bảo mật và mở rộng linh hoạt.
-- ✔ Khi ứng dụng của bạn cần độ tin cậy cao với Multi-AZ hoặc Read Replicas.
-- ✔ Nếu bạn không muốn tốn thời gian vận hành, cập nhật và bảo trì cơ sở dữ liệu.
-- ✔ Nếu bạn sử dụng MySQL, PostgreSQL, MariaDB, SQL Server hoặc Oracle mà không cần tùy chỉnh sâu.
+- ✔ Nếu bạn cần một dịch vụ cơ sở dữ liệu quan hệ được quản lý, hỗ trợ sao lưu tự động, bảo mật và mở rộng linh hoạt.
+- ✔ Khi ứng dụng của bạn cần độ tin cậy cao với Multi-AZ hoặc Read Replicas.
+- ✔ Nếu bạn không muốn tốn thời gian vận hành, cập nhật và bảo trì cơ sở dữ liệu.
+- ✔ Nếu bạn sử dụng MySQL, PostgreSQL, MariaDB, SQL Server hoặc Oracle mà không cần tùy chỉnh sâu.
 
 # **Hạn chế của Amazon RDS**
 

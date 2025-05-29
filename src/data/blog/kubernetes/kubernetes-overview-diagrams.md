@@ -8,6 +8,7 @@ tags:
   - Kubernetes
   - Architecture
 description: Tổng hợp diagram về các thành phần và kiến trúc trong Kubernetes
+ogImage: https://github.com/user-attachments/assets/93b74965-8498-4622-95e8-cc0ae2f7fce8
 ---
 
 Bài viết được copy lại từ bài blog của anh Max Brenner với mục đích lưu trữ kiến thức cho bản thân (bài viết gốc [ở đây](https://brennerm.github.io/posts/kubernetes-overview-diagrams.html))

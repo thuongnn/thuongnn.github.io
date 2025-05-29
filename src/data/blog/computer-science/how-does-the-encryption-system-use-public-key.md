@@ -8,6 +8,7 @@ tags:
   - Security
   - Algorithms
 description: Hiểu đơn giản về mã hoá (encryption), cách mã hoá hoạt động khi gửi một tin nhắn bí mật.
+ogImage: https://github.com/user-attachments/assets/6a69fdfb-d498-484a-82ff-bfcf3666899d
 ---
 
 Hiểu đơn giản về mã hoá (encryption), cách mã hoá hoạt động khi gửi một tin nhắn bí mật như sau:

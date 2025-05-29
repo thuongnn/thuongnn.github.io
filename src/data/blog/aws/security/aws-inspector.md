@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ đánh giá bảo mật tự động của AWS, giúp phát hiện lỗ hổng và tuân thủ bảo mật.
+ogImage: ../../../../assets/images/aws/security/aws-inspector/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-inspector.

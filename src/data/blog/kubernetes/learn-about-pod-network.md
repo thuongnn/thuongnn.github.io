@@ -8,6 +8,7 @@ tags:
   - Kubernetes
   - Networking
 description: Tìm hiểu về network trong Kubernetes Pod.
+ogImage: https://github.com/user-attachments/assets/20fe0f95-ea17-4de2-83f0-ab419b15bf49
 ---
 
 ## Table of contents

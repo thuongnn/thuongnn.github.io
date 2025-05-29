@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ kết nối môi trường on-premises với lưu trữ AWS Cloud một cách liền mạch.
+ogImage: ../../../../assets/images/aws/storage/aws-storage-gateway/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-storage-gateway.

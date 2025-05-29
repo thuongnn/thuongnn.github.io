@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ lưu trữ file của AWS, cho phép chia sẻ file giữa nhiều EC2 instance.
+ogImage: ../../../../assets/images/aws/storage/elastic-file-store/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-efs.

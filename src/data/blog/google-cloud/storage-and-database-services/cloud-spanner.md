@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về Cloud Spanner trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/0f9d84e2-4528-4b1b-9e4f-ea9790cfa360
 ---
 
 ![CloudSpanner.jpeg](https://github.com/user-attachments/assets/0f9d84e2-4528-4b1b-9e4f-ea9790cfa360)

@@ -8,6 +8,7 @@ tags:
   - Security
   - Computer Science
 description: Tổng hợp câu hỏi và trả lời về Security cơ bản.
+ogImage: https://github.com/user-attachments/assets/39f9f76f-96b4-4d66-b131-ef9e1a3f4cb6
 ---
 
 Bài viết tổng hợp câu trả lời cho các câu hỏi về Security cơ bản trong computer science được fork từ repo: https://github.com/vietnakid/learning-material.git
@@ -228,7 +229,7 @@ Bài viết tổng hợp câu trả lời cho các câu hỏi về Security cơ 
     1. **Domain Validated (DV)**:
        - Chỉ xác minh quyền sở hữu tên miền.
        - Rẻ, nhanh (dùng cho blog, web nhỏ).
-       - Ví dụ: Let’s Encrypt.
+       - Ví dụ: Let's Encrypt.
     2. **Organization Validated (OV)**:
        - Xác minh tổ chức sở hữu tên miền.
        - Dùng cho doanh nghiệp.
@@ -245,7 +246,7 @@ Bài viết tổng hợp câu trả lời cho các câu hỏi về Security cơ 
 
 - **CA Là Gì?**
   - **Certificate Authority (CA)** là tổ chức đáng tin cậy, phát hành và ký chứng chỉ số để xác thực danh tính của server, tổ chức, hoặc cá nhân.
-  - **Ví dụ**: DigiCert, GlobalSign, Let’s Encrypt.
+  - **Ví dụ**: DigiCert, GlobalSign, Let's Encrypt.
   - **Vai trò**:
     - Ký chứng chỉ bằng private key của CA.
     - Cung cấp public key để client kiểm tra.

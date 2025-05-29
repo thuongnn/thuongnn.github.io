@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về Memorystore trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/76bd7899-80aa-414d-bb87-d7ccad4c7992
 ---
 
 ![Image](https://github.com/user-attachments/assets/76bd7899-80aa-414d-bb87-d7ccad4c7992)

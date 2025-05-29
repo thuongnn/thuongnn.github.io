@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-01-15T09:15:22Z
-modDatetime: 2025-05-29T02:30:40Z
+modDatetime: 2023-01-15T09:15:22Z
 title: "[AWS] AWS CloudTrail"
 folder: "aws"
 draft: false
@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ ghi lại hoạt động của tài khoản AWS, giúp theo dõi và kiểm soát các thay đổi trong tài nguyên AWS.
+ogImage: ../../../../assets/images/aws/analytics/cloudtrail/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-cloudtrail.

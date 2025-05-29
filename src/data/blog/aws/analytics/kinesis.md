@@ -1,14 +1,15 @@
 ---
 author: thuongnn
-pubDatetime: 2023-01-17T10:45:33Z
-modDatetime: 2023-01-17T10:45:33Z
+pubDatetime: 2023-08-01T10:20:15Z
+modDatetime: 2023-08-01T10:20:15Z
 title: "[AWS] Amazon Kinesis"
 folder: "aws"
 draft: false
 tags:
   - AWS
   - Amazon Web Services
-description: Tìm hiểu về dịch vụ xử lý dữ liệu streaming thời gian thực, giúp thu thập, xử lý và phân tích dữ liệu theo thời gian thực.
+description: Tìm hiểu về dịch vụ xử lý dữ liệu streaming của AWS, cho phép thu thập, xử lý và phân tích dữ liệu theo thời gian thực.
+ogImage: https://techblogbuilder.com/wp-content/uploads/sites/4/2021/06/techblogbuilder-home.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-kinesis.

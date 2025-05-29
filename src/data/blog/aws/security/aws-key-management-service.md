@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ quản lý khóa mã hóa của AWS, giúp tạo và kiểm soát các khóa mã hóa.
+ogImage: ../../../../assets/images/aws/security/aws-key-management-service/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-kms.

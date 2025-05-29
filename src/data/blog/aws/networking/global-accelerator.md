@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ tăng tốc toàn cầu của AWS, giúp cải thiện hiệu suất và độ tin cậy của ứng dụng.
+ogImage: ../../../../assets/images/aws/networking/global-accelerator/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-global-accelerator.

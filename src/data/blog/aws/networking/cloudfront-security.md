@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về các tính năng bảo mật của CloudFront, bao gồm SSL/TLS, signed URLs và field-level encryption.
+ogImage: ../../../../assets/images/aws/networking/cloudfront-security/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-cloudfront-security.

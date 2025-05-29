@@ -10,6 +10,7 @@ tags:
   - Floating Point
   - Computer Science
 description: Tìm hiểu cách mà máy tính xử lý phép cộng trừ số thập phân.
+ogImage: https://github.com/user-attachments/assets/65d09ce2-5fc1-479b-ac13-6136fc7ff8a7
 ---
 
 Thật tình cờ trong kỳ học vừa rồi mình có học qua môn SWD391 và được giao đề tài mô phỏng về cách máy tính cộng trừ nhân chia. Mới đầu tìm hiểu thì thấy hơi khó vì tài liệu trên mạng thì tràn lan không rõ ràng cho lắm, sau gần một tuần tìm hiểu và được thầy giáo hỗ trợ cuối cùng mình cũng được thông não^^. Tìm hiểu xong mình thấy khá là thú vị nhưng thấy tài liệu trên mạng toàn tiếng anh với không được rõ ràng lắm nên mình viết bài này để tổng hợp và chia sẻ lại về phần này.

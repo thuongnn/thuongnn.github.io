@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về lưu trữ cục bộ của EC2 instance, phù hợp cho dữ liệu tạm thời và hiệu suất cao.
+ogImage: ../../../../assets/images/aws/storage/ec2-instance-store-storage/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-instance-store.

@@ -8,6 +8,7 @@ tags:
   - Circuit Breaker
   - Architecture
 description: Tổng hợp và trình bày những hiểu biết bản thân về Circuit Breaker.
+ogImage: https://github.com/user-attachments/assets/1f25eb1a-7a82-4fa9-b97c-50c0eaf4c40d
 ---
 
 **Circuit Breaker (CB)** nếu dịch theo nghĩa Tiếng Việt được gọi là cầu giao, nhiệm vụ chính của nó chính là ngắt mạch mỗi khi hệ thống điện có vấn đề xảy ra để tránh hệ thống quá tải dẫn đến các thành phần bên trong bị sụp đổ theo dẫn đến một thảm họa khác.
@@ -24,7 +25,7 @@ Circuit Breaker sẽ tự động ngắt mạch trong trường hợp đạt đ�
 
 ![](https://github.com/user-attachments/assets/1f25eb1a-7a82-4fa9-b97c-50c0eaf4c40d)
 
-Cơ chế này sẽ quản lý và thống kê số lần lỗi xảy ra trong một khoảng thời gian để quyết định xem có cho phép chương trình tiếp tục hay “ngắt mạch” ngay lập tức. Nếu mạch đã bị ngắt thì những lời gọi tiếp theo sẽ được thực hiện nhanh chóng như trả ra lỗi hoặc gọi sang dịch vụ khác.
+Cơ chế này sẽ quản lý và thống kê số lần lỗi xảy ra trong một khoảng thời gian để quyết định xem có cho phép chương trình tiếp tục hay "ngắt mạch" ngay lập tức. Nếu mạch đã bị ngắt thì những lời gọi tiếp theo sẽ được thực hiện nhanh chóng như trả ra lỗi hoặc gọi sang dịch vụ khác.
 
 - **CLOSED**: Khi ở trạng thái này, toàn bộ chương trình hoạt động bình thường, các remote calls vẫn được phép gọi nhưng một remote call nào đó bị fail thì bộ đếm lỗi của CB kích hoạt và tăng lên một đơn vị. Mục đích bộ đếm lỗi (error counter) ở đây là xác định được số lượng fail tối đa mà hệ thống cho phép, nếu vượt quá thì CB sẽ thực hiện mở ra trạng thái **OPEN**.
 

@@ -8,6 +8,7 @@ tags:
   - Distributed Systems
   - Architecture
 description: Tìm hiểu và tổng hợp lại kiến thức về Distributed System.
+ogImage: https://upload.wikimedia.org/wikipedia/commons/6/6a/Distributed_Systems.png
 ---
 
 ## Table of contents
@@ -88,7 +89,7 @@ Disaster recovery cũng giống như Resiliency đều là những phương phá
 
 Disaster recovery nó ở đẳng cấp khác, đẳng cấp của thảm họa như động đất, sóng thần, bom đạn. Rõ ràng không ai muốn có thảm họa xảy ra.
 
-Tuy nhiên trong thực tế, đã có case như vậy, đơn cử là vụ sập điện tại bang Virginia của Mỹ khiến do bão gây ra khiến cho các data center của AWS ở đó sập hoàn toàn, trên phạm vi toàn region, khiến rất nhiều website sử dụng dịch vụ này bao gồm Pinterest, Netfilx, Heroku… “tắt điện” nhiều giờ liền.
+Tuy nhiên trong thực tế, đã có case như vậy, đơn cử là vụ sập điện tại bang Virginia của Mỹ khiến do bão gây ra khiến cho các data center của AWS ở đó sập hoàn toàn, trên phạm vi toàn region, khiến rất nhiều website sử dụng dịch vụ này bao gồm Pinterest, Netfilx, Heroku… "tắt điện" nhiều giờ liền.
 
 ## Reference
 

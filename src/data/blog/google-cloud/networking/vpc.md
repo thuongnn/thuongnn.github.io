@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về VPC trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/1cba89d9-c306-4c81-a90f-38e71a1d54d8
 ---
 
 ## Table of contents

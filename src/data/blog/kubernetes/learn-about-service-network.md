@@ -8,6 +8,7 @@ tags:
   - Kubernetes
   - Networking
 description: Tìm hiểu về network trong Kubernetes Service.
+ogImage: https://github.com/user-attachments/assets/3670a594-98f9-4e60-bd6d-5d9559ad2759
 ---
 
 Trong phần Pod network chúng ta đều biết rằng Pod resource là đơn vị nhỏ nhất sẽ có chứa ứng dụng bên trong nó khi triển khai và loại resource này khá là linh hoạt (có thể scale up, scale down, stop, re-created, re-allocated,…)

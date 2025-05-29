@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về App Engine trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/39f9f76f-96b4-4d66-b131-ef9e1a3f4cb6
 ---
 
 ## Table of contents
@@ -234,7 +235,7 @@ queue:
 
 Tham khảo chi tiết cách **Deploying new versions without downtime**
 
-- **Option 1**: I’m very confident - Deploy & shift all traffic at once:
+- **Option 1**: I'm very confident - Deploy & shift all traffic at once:
   - Deploy and shift all traffic at once from v1 to v2: `gcloud app deploy`
 - **Option 2**: I want to manage the migration from v1 to v2
   - **STEP 1**: Deploy v2 without shifting traffic (`-no-promote`)

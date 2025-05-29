@@ -8,6 +8,7 @@ tags:
   - Kubernetes
   - Hashicorp Vault
 description: Hướng dẫn chi tiết cách tích hợp Hashicorp Vault với Kubernetes (triển khai qua Rancher) để lấy giá trị bí mật.
+ogImage: https://cdn-images-1.medium.com/max/2000/1*0BU3W4JmVGqIxdqlQx7uRQ.png
 ---
 
 ## Table of contents

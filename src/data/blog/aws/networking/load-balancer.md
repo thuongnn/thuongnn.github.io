@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ cân bằng tải của AWS, giúp phân phối lưu lượng truy cập đến các instance một cách hiệu quả.
+ogImage: ../../../../assets/images/aws/networking/load-balancer/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-elastic-load-balancing.

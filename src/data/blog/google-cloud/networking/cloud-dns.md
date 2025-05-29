@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về dịch vụ Cloud DNS trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/134248b5-7f78-4f1d-9cfd-7e2b4df74bc2
 ---
 
 ## Table of contents
@@ -48,9 +49,9 @@ description: Tìm hiểu về dịch vụ Cloud DNS trong Google Cloud.
 
 ![](https://github.com/user-attachments/assets/168bf88b-1165-40ff-b9f8-1a03ab1822b1)
 
-- DNS peering allows sending requests for records that come from one zone’s namespace to another VPC network _for e.g., a SaaS provider can give a SaaS customer access to DNS records it manages._
+- DNS peering allows sending requests for records that come from one zone's namespace to another VPC network _for e.g., a SaaS provider can give a SaaS customer access to DNS records it manages._
 - To provide DNS peering
-  - Cloud DNS peering zone must be created and configured to perform DNS lookups in a VPC network where the records for that zone’s namespace are available.
+  - Cloud DNS peering zone must be created and configured to perform DNS lookups in a VPC network where the records for that zone's namespace are available.
   - The VPC network where the DNS peering zone performs lookups is called the DNS producer network.
 - To use DNS peering
   - A network must be authorized to use a peering zone.
@@ -77,6 +78,6 @@ description: Tìm hiểu về dịch vụ Cloud DNS trong Google Cloud.
 - DNSSEC provides strong authentication for domain lookups, but it does not provide encryption
 - Both the registrar and registry must support DNSSEC for the Top Level Domain (TLD) used
 - For Enabling DNSSEC
-  - Enable DNSSEC on the domain. DNS zone for the domain must serve special DNSSEC records for public keys (DNSKEY), signatures (RRSIG), and non-existence (NSEC, or NSEC3 and NSEC3PARAM) to authenticate the zone’s contents.
+  - Enable DNSSEC on the domain. DNS zone for the domain must serve special DNSSEC records for public keys (DNSKEY), signatures (RRSIG), and non-existence (NSEC, or NSEC3 and NSEC3PARAM) to authenticate the zone's contents.
   - DS record must be added to the TLD at the registrar
   - DNS resolver that validates signatures for DNSSEC-signed domains must be used

@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về Cloud Bigtable trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/9b8fbc9e-023a-4843-91ef-ac9dbade0fe0
 ---
 
 ![Untitled](https://github.com/user-attachments/assets/9b8fbc9e-023a-4843-91ef-ac9dbade0fe0)

@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về Google Kubernetes Engine trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/682f2a05-3cf4-49bc-bbe2-1df5328931ff
 ---
 
 ### Overview

@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-11T10:20:15Z
-modDatetime: 2025-05-29T02:30:41Z
+modDatetime: 2023-05-11T10:20:15Z
 title: "[AWS] Amazon CloudFront"
 folder: "aws"
 draft: false
@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ CDN của AWS, giúp phân phối nội dung với hiệu suất cao và độ trễ thấp.
+ogImage: ../../../../assets/images/aws/networking/cloudfront/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-cloudfront.

@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ lưu trữ file hiệu suất cao của AWS, tối ưu cho các workload tính toán song song.
+ogImage: ../../../../assets/images/aws/storage/aws-fsx-for-lustre/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-fsx-for-lustre.

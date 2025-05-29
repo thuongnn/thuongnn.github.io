@@ -5,6 +5,7 @@ modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] AWS Config"
 folder: "aws"
 draft: false
+ogImage: "../../../../assets/images/aws/other/aws-config/1.png"
 tags:
   - AWS
   - Amazon Web Services
@@ -113,7 +114,7 @@ Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xe
   - **Một tài khoản** và **nhiều regions**.
   - Một **tổ chức** trong [AWS Organizations](https://jayendrapatil.com/aws-organizations/) và **tất cả các tài khoản** trong tổ chức đó đã bật **AWS Config**.
 
-# **AWS Config vs [CloudTrail](../Analytics%2039e8d9e64dba48e5ae035778f9e6131d/CloudTrail%201d63fa6ae483808c99c2cccb78cf4970.md)**
+# **AWS Config vs [CloudTrail](../Analytics%2039e8d9e64dba48e5ae035778f9e6131d/CloudTrail%201d63fa6ae483808c99c2cccb78cf4970.md)**
 
 - **AWS Config** báo cáo về **CÁI GÌ** đã **thay đổi**, trong khi **CloudTrail** báo cáo về **AI** đã thực hiện **thay đổi**, **KHI NÀO** và từ **VỊ TRÍ NÀO**.
 - **AWS Config** tập trung vào **cấu hình** của các **tài nguyên AWS** và báo cáo với các **ảnh chụp chi tiết** về **CÁCH** tài nguyên đã **thay đổi**, trong khi **CloudTrail** tập trung vào các **sự kiện**, hoặc **lệnh gọi API**, thúc đẩy những **thay đổi** đó. Nó tập trung vào **người dùng**, **ứng dụng** và **hoạt động** được thực hiện trên **hệ thống**.

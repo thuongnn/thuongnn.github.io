@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về vòng đời của EC2 instance, từ khởi tạo đến kết thúc và các trạng thái trung gian.
+ogImage: ../../../../assets/images/aws/compute/ec2-instance-lifecycle/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2-instance-lifecycle.

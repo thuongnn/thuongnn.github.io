@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về các phương thức kết nối an toàn đến AWS, bao gồm VPN và Direct Connect.
+ogImage: ../../../../assets/images/aws/networking/vpn-and-direct-connect/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-vpn-and-direct-connect.

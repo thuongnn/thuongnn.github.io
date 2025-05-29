@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-15T15:30:45Z
-modDatetime: 2025-05-29T02:30:41Z
+modDatetime: 2023-05-15T15:30:45Z
 title: "[AWS] NAT Gateway"
 folder: "aws"
 draft: false
@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về NAT Gateway, dịch vụ cho phép các instance trong private subnet kết nối với internet.
+ogImage: ../../../../assets/images/aws/networking/nat-gateway/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-nat-gateway.

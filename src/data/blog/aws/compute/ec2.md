@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ máy chủ ảo đàn hồi của AWS, cho phép khởi tạo và quản lý các máy chủ ảo trong đám mây.
+ogImage: https://jayendrapatil.com/aws-ec2
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ec2.

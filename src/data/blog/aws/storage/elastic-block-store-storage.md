@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về dịch vụ lưu trữ block của AWS, cung cấp dịch vụ lưu trữ cho EC2 instance.
+ogImage: ../../../../assets/images/aws/storage/elastic-block-store-storage/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-ebs.

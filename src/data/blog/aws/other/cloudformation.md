@@ -5,6 +5,7 @@ modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] AWS CloudFormation"
 folder: "aws"
 draft: false
+ogImage: "../../../../assets/images/aws/other/cloudformation/1.png"
 tags:
   - AWS
   - Amazon Web Services

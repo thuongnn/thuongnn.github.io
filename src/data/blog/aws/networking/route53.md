@@ -1,14 +1,15 @@
 ---
 author: thuongnn
-pubDatetime: 2023-05-06T10:35:12Z
-modDatetime: 2025-05-29T02:30:41Z
+pubDatetime: 2023-05-10T14:20:45Z
+modDatetime: 2025-05-29T02:06:28Z
 title: "[AWS] Amazon Route 53"
 folder: "aws"
 draft: false
 tags:
   - AWS
   - Amazon Web Services
-description: Tìm hiểu về dịch vụ DNS có khả năng mở rộng cao của AWS, giúp định tuyến người dùng đến các ứng dụng internet.
+description: Tìm hiểu về dịch vụ DNS quản lý tên miền của AWS, cung cấp khả năng định tuyến và cân bằng tải toàn cầu.
+ogImage: https://techblogbuilder.com/wp-content/uploads/sites/4/2021/06/techblogbuilder-home.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-route53.

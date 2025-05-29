@@ -1,13 +1,14 @@
 ---
 author: thuongnn
 pubDatetime: 2022-10-05T21:11:22Z
-modDatetime: 2022-10-05T21:11:22Z
+modDatetime: 2022-10-05T21:21:11Z
 title: "[Google Cloud] Tìm hiểu về VPC Service Controls"
 folder: "gcp"
 draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về VPC Service Controls trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/9435b6ea-f8d7-4665-badb-26e6d0f413e7
 ---
 
 ## Table of contents

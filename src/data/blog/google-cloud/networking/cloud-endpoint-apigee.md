@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về dịch vụ Cloud Endpoint & Apigee trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/39f9f76f-96b4-4d66-b131-ef9e1a3f4cb6
 ---
 
 - Cloud Endpoint

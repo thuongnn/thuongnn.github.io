@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-20T10:20:15Z
-modDatetime: 2025-05-29T02:30:41Z
+modDatetime: 2023-07-20T10:20:15Z
 title: "[AWS] Amazon Aurora Serverless"
 folder: "aws"
 draft: false
@@ -9,6 +9,7 @@ tags:
   - AWS
   - Amazon Web Services
 description: Tìm hiểu về phiên bản serverless của Aurora, tự động mở rộng theo nhu cầu và chỉ tính phí khi sử dụng.
+ogImage: ../../../../assets/images/aws/databases/aws-aurora-serverless/1.png
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-aurora-serverless.

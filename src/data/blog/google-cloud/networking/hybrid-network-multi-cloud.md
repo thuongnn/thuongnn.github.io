@@ -8,6 +8,7 @@ draft: false
 tags:
   - Google Cloud
 description: Tìm hiểu về Hybrid Network & Multi-Cloud trong Google Cloud.
+ogImage: https://github.com/user-attachments/assets/b3e500f1-1bd4-460f-aacf-7e1d8c3c0825
 ---
 
 ## Table of contents
