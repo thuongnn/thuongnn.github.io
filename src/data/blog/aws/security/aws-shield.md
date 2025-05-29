@@ -1,14 +1,14 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-26T14:30:45Z
-modDatetime: 2023-07-26T14:30:45Z
+modDatetime: 2025-05-29T01:52:06Z
 title: "[AWS] AWS Shield"
 folder: "aws"
 draft: false
 tags:
   - AWS
   - Amazon Web Services
-description: Tìm hiểu về dịch vụ bảo vệ DDoS của AWS, giúp bảo vệ ứng dụng khỏi các cuộc tấn công từ chối dịch vụ.
+description: Tìm hiểu về dịch vụ bảo vệ DDoS của AWS, giúp bảo vệ ứng dụng khỏi các cuộc tấn công DDoS.
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-shield.

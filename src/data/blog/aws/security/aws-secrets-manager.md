@@ -1,14 +1,14 @@
 ---
 author: thuongnn
 pubDatetime: 2023-07-23T11:45:22Z
-modDatetime: 2023-07-23T11:45:22Z
+modDatetime: 2025-05-29T01:52:06Z
 title: "[AWS] AWS Secrets Manager"
 folder: "aws"
 draft: false
 tags:
   - AWS
   - Amazon Web Services
-description: Tìm hiểu về dịch vụ quản lý bí mật của AWS, giúp bảo vệ thông tin nhạy cảm và tự động luân chuyển.
+description: Tìm hiểu về dịch vụ quản lý bí mật của AWS, giúp bảo vệ thông tin nhạy cảm và tự động rotation cho các giá trị bí mật đó.
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-secrets-manager.

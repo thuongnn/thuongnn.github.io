@@ -1,14 +1,14 @@
 ---
 author: thuongnn
 pubDatetime: 2023-05-05T14:20:45Z
-modDatetime: 2023-05-05T14:20:45Z
+modDatetime: 2025-05-29T01:52:06Z
 title: "[AWS] Amazon Virtual Private Cloud (VPC)"
 folder: "aws"
 draft: false
 tags:
   - AWS
   - Amazon Web Services
-description: Tìm hiểu về dịch vụ mạng riêng ảo của AWS, cho phép tạo và quản lý mạng riêng biệt trong đám mây AWS.
+description: Tìm hiểu về dịch vụ mạng riêng ảo của AWS, cho phép tạo và quản lý mạng riêng biệt trong AWS Cloud.
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-vpc.

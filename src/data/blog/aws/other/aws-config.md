@@ -1,14 +1,14 @@
 ---
 author: thuongnn
 pubDatetime: 2023-08-01T09:15:33Z
-modDatetime: 2023-08-01T09:15:33Z
+modDatetime: 2025-05-29T01:52:06Z
 title: "[AWS] AWS Config"
 folder: "aws"
 draft: false
 tags:
   - AWS
   - Amazon Web Services
-description: Tìm hiểu về dịch vụ đánh giá, kiểm tra và kiểm toán cấu hình tài nguyên AWS.
+description: Tìm hiểu về dịch vụ theo dõi, quản lý thay đổi và đánh giá tuân thủ cấu hình tài nguyên AWS.
 ---
 
 Bài viết được tham khảo và tổng hợp lại từ Jayendra's Blog, xem bài viết gốc ở đây: https://jayendrapatil.com/aws-config.
