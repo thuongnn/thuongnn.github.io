@@ -1,9 +1,10 @@
 ---
 author: thuongnn
 pubDatetime: 2021-11-28T01:29:35Z
-modDatetime: 2021-11-28T01:29:35Z
+modDatetime: 2025-05-30T07:37:55Z
 title: Tìm hiểu về Service network
 draft: false
+isPinned: true
 tags:
   - Kubernetes
   - Networking
