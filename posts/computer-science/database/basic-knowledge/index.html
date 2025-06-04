@@ -1,0 +1,1961 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://thuongnn.dev/posts/computer-science/database/basic-knowledge/"><meta name="generator" content="Astro v5.5.2"><!-- General Meta Tags --><title>[Computer Science] Kiến thức về Database cơ bản | thuongnn.dev</title><meta name="title" content="[Computer Science] Kiến thức về Database cơ bản | thuongnn.dev"><meta name="description" content="Tổng hợp câu hỏi và trả lời về Database cơ bản."><meta name="author" content="thuongnn"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="[Computer Science] Kiến thức về Database cơ bản | thuongnn.dev"><meta property="og:description" content="Tổng hợp câu hỏi và trả lời về Database cơ bản."><meta property="og:url" content="https://thuongnn.dev/posts/computer-science/database/basic-knowledge/"><meta property="og:image" content="https://github.com/user-attachments/assets/46f9f062-9035-4da6-9a84-887d39444dec"><!-- Article Published/Modified time --><meta property="article:published_time" content="2020-07-22T22:11:35.000Z"><meta property="article:modified_time" content="2020-07-22T22:11:35.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://thuongnn.dev/posts/computer-science/database/basic-knowledge/"><meta property="twitter:title" content="[Computer Science] Kiến thức về Database cơ bản | thuongnn.dev"><meta property="twitter:description" content="Tổng hợp câu hỏi và trả lời về Database cơ bản."><meta property="twitter:image" content="https://github.com/user-attachments/assets/46f9f062-9035-4da6-9a84-887d39444dec"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"[Computer Science] Kiến thức về Database cơ bản | thuongnn.dev","image":"https://github.com/user-attachments/assets/46f9f062-9035-4da6-9a84-887d39444dec","datePublished":"2020-07-22T22:11:35.000Z","dateModified":"2020-07-22T22:11:35.000Z","author":[{"@type":"Person","name":"thuongnn","url":"https://thuongnn.dev/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="thuongnn.dev" href="https://thuongnn.dev/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CMTcOisY.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/about.DCaVTJMw.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+[data-astro-image]{width:100%;height:auto;object-fit:var(--fit);object-position:var(--pos);aspect-ratio:var(--w) / var(--h)}[data-astro-image=responsive]{max-width:calc(var(--w) * 1px);max-height:calc(var(--h) * 1px)}[data-astro-image=fixed]{width:calc(var(--w) * 1px);height:calc(var(--h) * 1px)}
+</style><style>[data-astro-transition-scope="astro-fam6wyqg-1"] { view-transition-name: computer-science-ki\1EBFn-th\1EE9 c-v\1EC1-database-c\1A1-b\1EA3n; }@layer astro { ::view-transition-old(computer-science-ki\1EBFn-th\1EE9 c-v\1EC1-database-c\1A1-b\1EA3n) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(computer-science-ki\1EBFn-th\1EE9 c-v\1EC1-database-c\1A1-b\1EA3n) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(computer-science-ki\1EBFn-th\1EE9 c-v\1EC1-database-c\1A1-b\1EA3n) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(computer-science-ki\1EBFn-th\1EE9 c-v\1EC1-database-c\1A1-b\1EA3n) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: database; }@layer astro { ::view-transition-old(database) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(database) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(database) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(database) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: computer-science; }@layer astro { ::view-transition-old(computer-science) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(computer-science) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(computer-science) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(computer-science) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="absolute -top-full left-16 z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"> <a href="/" class="absolute py-1 text-2xl leading-7 font-semibold whitespace-nowrap sm:static"> thuongnn.dev </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:ml-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <div class="relative" id="tags-dropdown"> <a href="/tags" class="block px-4 py-3 text-center font-medium hover:text-accent sm:px-2 sm:py-1"> <span class="flex items-center justify-center gap-1">
+Tags
+<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"> <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path> </svg> </span> </a> <div class="absolute top-full left-0 z-50 mt-1 hidden w-48 rounded-md bg-white py-1 shadow-lg dark:bg-gray-800" id="tags-menu"> <ul class="pt-2 pb-1"> <li> <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/tags/collections/aws"> Amazon Web Services </a> </li><li> <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/tags/collections/google-cloud"> Google Cloud Platform </a> </li><li> <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/tags/collections/computer-science"> Computer Science </a> </li> </ul> </div> </div> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" class="group inline-block hover:text-accent focus-outline flex justify-center p-3 sm:p-1" aria-label="archives" title="Archives"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="max-w-3xl mx-auto px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function d(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const s=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",s?"false":"true"),e.setAttribute("aria-label",s?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}function u(){const e=document.getElementById("tags-dropdown"),t=document.getElementById("tags-menu");let n;!e||!t||(e.addEventListener("mouseenter",()=>{clearTimeout(n),t.classList.remove("hidden")}),e.addEventListener("mouseleave",()=>{n=setTimeout(()=>{t.classList.add("hidden")},100)}))}d();u();document.addEventListener("astro:after-swap",()=>{d(),u()});</script> <div class="mx-auto flex w-full max-w-3xl items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent focus-outline mt-8 mb-2 flex hover:text-foreground/75"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="mx-auto w-full max-w-3xl px-4 pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-fam6wyqg-1"> [Computer Science] Kiến thức về Database cơ bản </h1> <div class="flex items-center gap-4"> <div class="flex items-end space-x-2 opacity-80 my-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg> <span class="sr-only">Published:</span> <span class="text-sm italic sm:text-base"> <time datetime="2020-07-22T22:11:35.000Z">22 Jul, 2020</time> <span aria-hidden="true"> | </span> <span class="sr-only">&nbsp;at&nbsp;</span> <span class="text-nowrap">10:11 PM</span> </span> </div> <div class="opacity-80 max-sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/thuongnn/thuongnn.github.io/edit/master/src/data/blog/computer-science/database/basic-knowledge.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> </div> <article id="article" class="mx-auto prose mt-8 max-w-3xl"> <p>Bài viết tổng hợp câu trả lời cho các câu hỏi về Database cơ bản trong computer science được fork từ repo: <a href="https://github.com/vietnakid/learning-material.git">https://github.com/vietnakid/learning-material.git</a></p>
+<h2 id="table-of-contents">Table of contents</h2>
+<p></p><details><summary>Open Table of contents</summary><p></p>
+<ul>
+<li><a href="#compare-relational-db-sql-vs-nosql">Compare <code>Relational DB (SQL)</code> vs <code>NoSQL</code></a>
+<ul>
+<li><a href="#how-these-2-things-can-scale-up">How these 2 things can scale up?</a></li>
+<li><a href="#how-transaction-is-handled">How Transaction is handled?</a></li>
+<li><a href="#acid-of-sql-and-base-of-nosql-why-nosql-is-eventual-consistency"><code>ACID</code> of <code>SQL</code> and <code>BASE</code> of <code>NoSQL</code>? Why <code>NoSQL</code> is <code>eventual consistency</code>?</a></li>
+<li><a href="#cap-theorem-in-this-case"><code>CAP</code> theorem in this case</a></li>
+</ul>
+</li>
+<li><a href="#what-is-parameterized-statement-in-java-its-prepared-statement-how-does-it-work-internally">What is <code>parameterized statement</code> (in Java it’s <code>prepared statement</code>)? How does it work <strong>internally</strong>?</a>
+<ul>
+<li><a href="#what-is-sql-injection-how-to-avoid-it">What is <code>SQL injection</code>? how to avoid it?</a></li>
+<li><a href="#how-many-requests-you-have-to-send-to-database-in-a-single-prepared-statement-query">How many “requests” you have to send to <code>Database</code> in a single <code>prepared statement</code> query?</a></li>
+<li><a href="#can-you-reuse-the-compiled-query-multiple-times">Can you reuse the <code>compiled</code> query multiple times?</a></li>
+</ul>
+</li>
+<li><a href="#how-indexing-works-internally">How indexing works internally?</a>
+<ul>
+<li><a href="#what-algorithm-and-data-structure-indexing-used-and-why">What algorithm and data structure <code>indexing</code> used? And why?</a></li>
+<li><a href="#how-composite-indexing-works">How <code>composite indexing</code> works?</a></li>
+<li><a href="#how-to-know-your-query-is-using-index">How to know your query is using index?</a></li>
+<li><a href="#how-index-work-in-this-case-where-age--5-and-where-age--5-the-complexity-to-go-to-the-next-record">How index work in this case: <code>WHERE age = 5</code> and <code>Where age > 5</code>? The complexity to go to the next record?</a></li>
+<li><a href="#indexing-with-char">Indexing with char?</a></li>
+</ul>
+</li>
+<li><a href="#the-complexity-of-sql-query-how-to-measure-it-how-sql-optimize-a-query">The complexity of SQL query? How to measure it? How SQL optimize a query?</a>
+<ul>
+<li><a href="#compare-where-id--a-and-id--b-and-id--c-vs-where-id-in-a-b-c">Compare <code>WHERE id = 'a' AND id = 'b' AND id = 'c'</code> vs <code>WHERE id in (a, b, c)</code>?</a></li>
+<li><a href="#complexity-of-this-query-select--from-abc-order-by-name-limit-10-offset-1000000-select-10-record-from-offset-106-after-sort-by-name-which-is-a-char-how-to-optimize-it">Complexity of this query <code>SELECT * FROM abc ORDER BY name LIMIT 10 OFFSET 1000000</code>. SELECT 10 record from offset $10^6$ after sort by name (which is a char)? How to optimize it?</a></li>
+<li><a href="#what-is-the-complexity-of-count-query">What is the complexity of <code>COUNT(*)</code> query?</a></li>
+<li><a href="#how-to-write-query-to-avoid-full-table-scan">How to write query to avoid full table scan?</a></li>
+<li><a href="#complexity-of-join-inner-join-outter-join">Complexity of JOIN, INNER JOIN, OUTTER JOIN?</a></li>
+</ul>
+</li>
+<li><a href="#what-is-database-replicating-when-we-need-it">What is Database Replicating? When we need it?</a>
+<ul>
+<li><a href="#what-is-bin-log-how-master-db-sync-with-slave-db">What is <code>bin log</code>? How <code>Master DB</code> sync with <code>Slave DB</code>?</a></li>
+<li><a href="#can-a-slave-db-be-a-slave-of-another-slave-db-we-do-not-need-to-sync-from-master-db-directly">Can a <code>Slave DB</code> be a slave of another <code>Slave DB</code> (we do not need to sync from <code>Master DB</code> directly)?</a></li>
+</ul>
+</li>
+<li><a href="#what-is-database-sharding-when-we-need-it">What is Database Sharding? When we need it?</a>
+<ul>
+<li><a href="#which-rule-we-can-apply-to-db-sharding">Which rule we can apply to DB Sharding?</a></li>
+<li><a href="#how-to-ensure-primary-key-is-globally-unique-when-sharding">How to ensure <code>primary key</code> is globally unique when sharding?</a></li>
+<li><a href="#how-we-can-shard-a-table-to-multiple-tables-same-server-and-multiple-db-multiple-servers">How we can shard a table to multiple tables (same server) and multiple DB (multiple servers)?</a></li>
+<li><a href="#how-query-can-work-when-we-sharding-for-example-query-but-the-data-is-in-different-tablesdbs">How query can work when we sharding? for example query but the data is in different tables/dbs?</a></li>
+</ul>
+</li>
+<li><a href="#what-is-database-transaction">What is database transaction?</a>
+<ul>
+<li><a href="#how-rollback-works-internally">How <code>rollback</code> works internally?</a></li>
+<li><a href="#acid-what-is-dirty-read"><code>ACID</code>? What is <code>dirty read</code>?</a></li>
+<li><a href="#how-transaction-work-when-there-are-many-concurrent-requests">How transaction work when there are many concurrent requests?</a></li>
+<li><a href="#how-to-avoid-race-condition-in-db-readwrite-lock">How to avoid <code>race condition</code> in DB? <code>Read/Write</code> lock?</a></li>
+<li><a href="#distributed-transaction-how-to-make-a-transaction-when-a-query-needs-to-access-multiple-db"><code>Distributed transaction</code>? How to make a transaction when a query needs to access multiple DB?</a></li>
+</ul>
+</li>
+</ul>
+<p></p></details><p></p>
+<h2 id="compare-relational-db-sql-vs-nosql">Compare <code>Relational DB (SQL)</code> vs <code>NoSQL</code></h2>
+<ul>
+<li><strong>Relational DB (SQL)</strong>
+<ul>
+<li>Là cơ sở dữ liệu quan hệ, lưu dữ liệu trong bảng (table) với cấu trúc cố định (schema) gồm cột và hàng, dùng SQL để truy vấn.</li>
+<li><strong>Đặc điểm</strong>:
+<ul>
+<li>Dữ liệu có cấu trúc (<code>structured</code>).</li>
+<li>Hỗ trợ quan hệ (foreign key, join).</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>: MySQL, PostgreSQL, Oracle.</li>
+<li><strong>Ưu điểm</strong>:
+<ul>
+<li>Đảm bảo tính toàn vẹn (integrity).</li>
+<li>Truy vấn phức tạp tốt (JOIN, GROUP BY).</li>
+</ul>
+</li>
+<li><strong>Nhược điểm</strong>:
+<ul>
+<li>Khó mở rộng ngang (horizontal scaling).</li>
+<li>Hiệu suất giảm với dữ liệu lớn.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>NoSQL</strong>
+<ul>
+<li>Là cơ sở sở dữ liệu phi quan hệ, không yêu cầu schema cố định, hỗ trợ nhiều loại dữ liệu (key-value, document, column-family, graph).</li>
+<li><strong>Đặc điểm</strong>:
+<ul>
+<li>Dữ liệu không cấu trúc hoặc bán cấu trúc (<code>unstructured</code>/<code>semi-structured</code>).</li>
+<li>Linh hoạt, dễ mở rộng.</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>: MongoDB (document), Cassandra (column-family), Redis (key-value).</li>
+<li><strong>Ưu điểm</strong>:
+<ul>
+<li>Mở rộng ngang dễ (scale out).</li>
+<li>Hiệu suất cao với dữ liệu lớn, phân tán.</li>
+</ul>
+</li>
+<li><strong>Nhược điểm</strong>:
+<ul>
+<li>Không hỗ trợ JOIN tốt.</li>
+<li>Tính nhất quán yếu hơn (eventual consistency).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>NewSQL</strong>
+<ul>
+<li>Kết hợp ưu điểm của SQL (ACID, truy vấn phức tạp) và NoSQL (mở rộng ngang, hiệu suất cao). Thường tự động phân mảnh (auto-sharding).</li>
+<li><strong>Đặc điểm</strong>:
+<ul>
+<li>Giữ SQL làm ngôn ngữ truy vấn.</li>
+<li>Phân tán dữ liệu như NoSQL nhưng vẫn đảm bảo giao dịch mạnh.</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>: CockroachDB, Google Spanner, TiDB.</li>
+<li><strong>Ưu điểm</strong>:
+<ul>
+<li>Vừa scale tốt vừa giữ ACID.</li>
+<li>Hỗ trợ truy vấn SQL phức tạp.</li>
+</ul>
+</li>
+<li><strong>Nhược điểm</strong>:
+<ul>
+<li>Phức tạp hơn để triển khai.</li>
+<li>Chưa phổ biến bằng SQL/NoSQL truyền thống.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="how-these-2-things-can-scale-up">How these 2 things can scale up?</h3>
+<ul>
+<li><strong>Relational DB (SQL)</strong>
+<ul>
+<li><strong>Vertical Scaling (Scale Up)</strong>:
+<ul>
+<li>Thêm tài nguyên (CPU, RAM, SSD) cho một server duy nhất.</li>
+<li><strong>Ví dụ</strong>: Nâng cấp server MySQL từ 8GB RAM lên 32GB.</li>
+</ul>
+</li>
+<li><strong>Hạn chế</strong>:
+<ul>
+<li>Có giới hạn phần cứng (không thể tăng mãi).</li>
+<li>Downtime khi nâng cấp, chi phí cao.</li>
+</ul>
+</li>
+<li><strong>Horizontal Scaling (Scale Out)</strong>:
+<ul>
+<li>Khó vì dữ liệu tập trung. Cần thủ công chia nhỏ (sharding) hoặc dùng replication (master-slave).</li>
+<li><strong>Ví dụ</strong>: Master-slave replication trong MySQL, nhưng slave chỉ đọc, không ghi.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>NoSQL</strong>
+<ul>
+<li><strong>Horizontal Scaling (Scale Out)</strong>:
+<ul>
+<li>Thêm server mới vào hệ thống phân tán, tự động chia dữ liệu (sharding).</li>
+<li><strong>Ví dụ</strong>: MongoDB dùng sharding để chia collection qua nhiều node.</li>
+</ul>
+</li>
+<li><strong>Ưu điểm</strong>:
+<ul>
+<li>Linh hoạt, mở rộng dễ với dữ liệu lớn (big data).</li>
+<li>Không cần server mạnh, chỉ cần thêm node rẻ.</li>
+</ul>
+</li>
+<li><strong>Hạn chế</strong>:
+<ul>
+<li>Phức tạp trong quản lý phân tán.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>NewSQL</strong>
+<ul>
+<li><strong>Horizontal Scaling (Auto-Sharding)</strong>:
+<ul>
+<li>Tự động phân mảnh dữ liệu qua nhiều node, vẫn giữ giao dịch toàn cục.</li>
+<li><strong>Ví dụ</strong>: CockroachDB tự chia dữ liệu thành range và phân phối qua cluster.</li>
+</ul>
+</li>
+<li><strong>Ưu điểm</strong>:
+<ul>
+<li>Kết hợp scale out của NoSQL với tính toàn vẹn của SQL.</li>
+</ul>
+</li>
+<li><strong>Hạn chế</strong>:
+<ul>
+<li>Cần cấu hình cluster ban đầu.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="how-transaction-is-handled">How Transaction is handled?</h3>
+<ul>
+<li><strong>Relational DB (SQL)</strong>
+<ul>
+<li><strong>Cách xử lý</strong>:
+<ul>
+<li>Hỗ trợ giao dịch đầy đủ theo <strong>ACID</strong> (Atomicity, Consistency, Isolation, Durability).</li>
+<li>Dùng khóa (lock) hoặc multi-version concurrency control (MVCC) để đảm bảo an toàn.</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>:
+<ul>
+<li>Chuyển tiền:
+<code>UPDATE accounts SET balance = balance - 100 WHERE id = 1; và UPDATE accounts SET balance = balance + 100 WHERE id = 2;</code> trong một transaction → hoặc cả hai thành công, hoặc không.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>NoSQL</strong>
+<ul>
+<li><strong>Cách xử lý</strong>:
+<ul>
+<li>Thường không hỗ trợ giao dịch đa tài nguyên (multi-document transaction) đầy đủ.</li>
+<li>Một số (như MongoDB 4.0+) hỗ trợ giao dịch giới hạn, nhưng ưu tiên tốc độ hơn tính nhất quán.</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>:
+<ul>
+<li>MongoDB: Ghi document riêng lẻ nhanh, nhưng giao dịch phức tạp cần tự quản lý logic.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>NewSQL</strong>
+<ul>
+<li><strong>Cách xử lý</strong>:
+<ul>
+<li>Hỗ trợ giao dịch ACID trên hệ thống phân tán, dùng giao thức như 2PC (Two-Phase Commit).</li>
+<li><strong>Ví dụ</strong>: CockroachDB đảm bảo giao dịch chuyển tiền thành công trên nhiều node.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="acid-of-sql-and-base-of-nosql-why-nosql-is-eventual-consistency"><code>ACID</code> of <code>SQL</code> and <code>BASE</code> of <code>NoSQL</code>? Why <code>NoSQL</code> is <code>eventual consistency</code>?</h3>
+<ul>
+<li><strong>ACID (SQL)</strong>
+<ul>
+<li><strong>Atomicity (Nguyên tử)</strong>: Giao dịch hoàn tất toàn bộ hoặc không làm gì.</li>
+<li><strong>Consistency (Nhất quán)</strong>: Dữ liệu luôn đúng theo quy tắc (constraints, foreign key).</li>
+<li><strong>Isolation (Cô lập)</strong>: Giao dịch không ảnh hưởng lẫn nhau khi chạy song song.</li>
+<li><strong>Durability (Bền vững)</strong>: Dữ liệu ghi thành công được lưu vĩnh viễn dù hệ thống crash.</li>
+<li><strong>Ví dụ</strong>: PostgreSQL đảm bảo chuyển tiền không làm mất tiền hay tạo dữ liệu sai.</li>
+</ul>
+</li>
+<li><strong>BASE (NoSQL)</strong>
+<ul>
+<li><strong>Basically Available (Cơ bản khả dụng)</strong>: Hệ thống luôn trả lời, dù dữ liệu có thể chưa nhất quán.</li>
+<li><strong>Soft State (Trạng thái mềm)</strong>: Dữ liệu có thể thay đổi theo thời gian, không cần luôn đúng.</li>
+<li><strong>Eventual Consistency (Nhất quán cuối cùng)</strong>: Dữ liệu sẽ đúng sau một thời gian, không ngay lập tức.</li>
+<li><strong>Ví dụ</strong>: Cassandra ghi dữ liệu vào một node, sau đó đồng bộ dần với node khác.</li>
+</ul>
+</li>
+<li>Tại sao NoSQL là Eventual Consistency?
+<ul>
+<li><strong>Lý do</strong>:
+<ul>
+<li>NoSQL ưu tiên <strong>availability</strong> (khả dụng) và <strong>partition tolerance</strong> (chịu phân vùng) theo CAP Theorem.</li>
+<li>Để nhanh và phân tán, nó hy sinh <strong>consistency</strong> tức thời, chấp nhận dữ liệu “tạm sai” rồi đồng bộ sau (eventual).</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>: Người dùng thấy bài post mới trên node A trước node B → sau vài giây cả hai đồng bộ.</li>
+</ul>
+</li>
+</ul>
+<h3 id="cap-theorem-in-this-case"><code>CAP</code> theorem in this case</h3>
+<p><img src="https://github.com/user-attachments/assets/46f9f062-9035-4da6-9a84-887d39444dec" alt="image.png"></p>
+<ul>
+<li><strong>CAP</strong>: Một hệ thống phân tán chỉ có thể đảm bảo tối đa 2 trong 3 đặc tính:
+<ul>
+<li><strong>Consistency (Nhất quán)</strong>: Mọi node trả về dữ liệu giống nhau.</li>
+<li><strong>Availability (Khả dụng)</strong>: Hệ thống luôn phản hồi.</li>
+<li><strong>Partition Tolerance (Chịu phân vùng)</strong>: Hệ thống hoạt động dù mạng bị chia cắt.</li>
+</ul>
+</li>
+<li><strong>SQL</strong>
+<ul>
+<li><strong>Ưu tiên</strong>: <strong>CA</strong> (Consistency + Availability).</li>
+<li><strong>Chi tiết</strong>:
+<ul>
+<li>Trong hệ thống đơn (non-distributed), SQL đảm bảo dữ liệu nhất quán và khả dụng.</li>
+<li>Không chịu phân vùng tốt (P yếu) vì dữ liệu tập trung.</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>: MySQL master-slave: Nếu master chết, hệ thống không chịu được phân vùng.</li>
+</ul>
+</li>
+<li><strong>NoSQL</strong>
+<ul>
+<li><strong>Ưu tiên</strong>: <strong>AP</strong> (Availability + Partition Tolerance) hoặc <strong>CP</strong>.</li>
+<li><strong>Chi tiết</strong>:
+<ul>
+<li><strong>AP</strong> (như Cassandra): Luôn trả lời, chấp nhận dữ liệu chưa đồng bộ (eventual consistency).</li>
+<li><strong>CP</strong> (như MongoDB với replica): Đảm bảo nhất quán, nhưng có thể từ chối yêu cầu nếu mạng lỗi.</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>: Cassandra vẫn chạy khi một node mất kết nối, đồng bộ sau.</li>
+</ul>
+</li>
+<li><strong>NewSQL</strong>
+<ul>
+<li><strong>Ưu tiên</strong>: <strong>CP</strong> hoặc <strong>CA</strong> trong phạm vi phân tán.</li>
+<li><strong>Chi tiết</strong>:
+<ul>
+<li>Cố gắng cân bằng cả 3, nhưng thường ưu tiên nhất quán (C) và chịu phân vùng (P), dùng giao thức phức tạp như Paxos hoặc Raft.</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>: Google Spanner dùng đồng hồ nguyên tử để đảm bảo C trong hệ thống phân tán.</li>
+</ul>
+</li>
+</ul>
+<h2 id="what-is-parameterized-statement-in-java-its-prepared-statement-how-does-it-work-internally">What is <code>parameterized statement</code> (in Java it’s <code>prepared statement</code>)? How does it work <strong>internally</strong>?</h2>
+<ul>
+<li>
+<p>Định nghĩa</p>
+<ul>
+<li><strong>Parameterized Statement</strong> (trong Java gọi là <code>PreparedStatement</code>) là một loại câu truy vấn SQL được chuẩn bị trước (precompiled) với các tham số (parameters) thay vì giá trị cố định, giúp an toàn và hiệu quả hơn.</li>
+<li><strong>Mục đích</strong>:
+<ul>
+<li>Ngăn chặn SQL injection.</li>
+<li>Tăng hiệu suất khi chạy cùng truy vấn nhiều lần.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Cách Hoạt Động Nội Bộ</p>
+<ul>
+<li><strong>Bước 1: Chuẩn bị (Prepare)</strong>:
+<ul>
+<li>Truy vấn được gửi đến database với các placeholder (dấu <code>?</code>) thay cho giá trị thực.</li>
+<li>Database <strong>compile</strong> truy vấn này thành một kế hoạch thực thi (execution plan), lưu trữ trên server.</li>
+<li>Ví dụ: <code>SELECT * FROM users WHERE id = ? AND name = ?</code>.</li>
+</ul>
+</li>
+<li><strong>Bước 2: Gán tham số (Bind)</strong>:
+<ul>
+<li>Giá trị thực được gán vào placeholder (qua <code>setInt</code>, <code>setString</code> trong Java).</li>
+<li>Database không cần parse lại truy vấn, chỉ thay giá trị vào kế hoạch đã compile.</li>
+</ul>
+</li>
+<li><strong>Bước 3: Thực thi (Execute)</strong>:
+<ul>
+<li>Database chạy kế hoạch thực thi với giá trị đã gán, trả kết quả.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Ví dụ (Java)</strong>:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">import</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> java</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">sql</span><span style="color:#212121;--shiki-dark:#C792EA">.</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">public</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> class</span><span style="color:#6F42C1;--shiki-dark:#FFCB8B"> Main</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    public</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> static</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> main</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#D32F2F;--shiki-dark:#C792EA">String</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">[] </span><span style="color:#24292EFF;--shiki-dark:#D7DBE0">args</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> throws</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> SQLException</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">        Connection</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> conn</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#1976D2;--shiki-dark:#C5E478"> DriverManager</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">getConnection</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">jdbc:mysql://localhost:3306/mydb</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">user</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">pass</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">        String</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> sql</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">SELECT * FROM users WHERE id = ? AND name = ?</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">        PreparedStatement</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> stmt</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#1976D2;--shiki-dark:#C5E478"> conn</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">prepareStatement</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">sql</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// Chuẩn bị</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">        stmt</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setInt</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">1</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 123</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// Gán tham số 1</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">        stmt</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setString</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">2</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">Nam</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// Gán tham số 2</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">        ResultSet</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> rs</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#1976D2;--shiki-dark:#C5E478"> stmt</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">executeQuery</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// Thực thi</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">        while</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> (</span><span style="color:#1976D2;--shiki-dark:#C5E478">rs</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">next</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">) {</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">            System</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#FAF39F;--shiki-dark-font-style:italic">out</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">println</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#1976D2;--shiki-dark:#C5E478">rs</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">getString</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">name</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">))</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        }</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">        conn</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">close</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+<ul>
+<li>Database (như MySQL) lưu kế hoạch thực thi dưới dạng <strong>statement handle</strong>.</li>
+<li>Mỗi lần gọi execute, chỉ cần gửi tham số qua giao thức (như MySQL binary protocol), không cần parse lại SQL.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="what-is-sql-injection-how-to-avoid-it">What is <code>SQL injection</code>? how to avoid it?</h3>
+<ul>
+<li>
+<p>SQL Injection Là Gì?</p>
+<ul>
+<li><strong>Định nghĩa</strong>: Là một kỹ thuật tấn công mà kẻ xấu chèn mã SQL độc hại vào truy vấn, thường qua dữ liệu người dùng (như form nhập liệu).</li>
+<li><strong>Ví dụ</strong>:
+<ul>
+<li>Truy vấn: <code>SELECT * FROM users WHERE username = 'user' AND password = 'pass'</code>.</li>
+<li>Nếu người dùng nhập pass là <code>' OR '1'='1</code>:
+<ul>
+<li>Truy vấn thành:
+<code>SELECT * FROM users WHERE username = 'user' AND password = '' OR '1'='1'</code>.</li>
+<li>Kết quả: Đăng nhập thành công mà không cần mật khẩu đúng.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Hậu quả</strong>: Lộ dữ liệu, xóa database, hoặc chiếm quyền.</li>
+</ul>
+</li>
+<li>
+<p>Cách Tránh SQL Injection</p>
+<ul>
+<li>
+<p><strong>Dùng Parameterized Statement</strong>:</p>
+<ul>
+<li>Thay vì nối chuỗi (string concatenation), dùng placeholder (<code>?</code>) và gán giá trị qua API.</li>
+<li>Database xử lý tham số riêng, không coi chúng là mã SQL → không thể chèn lệnh.</li>
+</ul>
+</li>
+<li>
+<p><strong>Ví dụ an toàn</strong>:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">String</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> sql</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">SELECT * FROM users WHERE username = ? AND password = ?</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">PreparedStatement</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> stmt</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#1976D2;--shiki-dark:#C5E478"> conn</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">prepareStatement</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">sql</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">stmt</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setString</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">1</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> username</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">stmt</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setString</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">2</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> password</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span></code></pre>
+</li>
+<li>
+<p><strong>Các cách khác</strong>:</p>
+<ul>
+<li><strong>Input Validation</strong>: Kiểm tra dữ liệu đầu vào (ví dụ: chỉ cho phép ký tự chữ/số).</li>
+<li><strong>ORM</strong>: Dùng framework như Hibernate, tự động xử lý an toàn.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="how-many-requests-you-have-to-send-to-database-in-a-single-prepared-statement-query">How many “requests” you have to send to <code>Database</code> in a single <code>prepared statement</code> query?</h3>
+<ul>
+<li><strong>Số lượng request gồm 2 request chính</strong>:
+<ol>
+<li><strong>Compile (Chuẩn bị)</strong>: Gửi truy vấn với placeholder (<code>?</code>) để database parse và tạo execution plan.</li>
+<li><strong>Execute (Thực thi)</strong>: Gửi tham số và yêu cầu chạy kế hoạch đã compile.</li>
+</ol>
+</li>
+<li><strong>Chi tiết</strong>:
+<ul>
+<li>Khi gọi <code>conn.prepareStatement(sql)</code>, một request được gửi để compile.</li>
+<li>Khi gọi <code>stmt.executeQuery()</code>, một request khác gửi tham số và thực thi.</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>:
+<ul>
+<li><code>SELECT * FROM users WHERE id = ?</code>:
+<ul>
+<li>Request 1: Gửi truy vấn để compile.</li>
+<li>Request 2: Gửi <code>id = 123</code> để thực thi.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Lưu ý</strong>: Nếu tái sử dụng PreparedStatement, chỉ cần một lần compile, sau đó mỗi lần execute là một request.</li>
+</ul>
+<h3 id="can-you-reuse-the-compiled-query-multiple-times">Can you reuse the <code>compiled</code> query multiple times?</h3>
+<ul>
+<li>
+<p>Câu trả lời là có, PreparedStatement được thiết kế để tái sử dụng.</p>
+</li>
+<li>
+<p><strong>Cách làm</strong>: Sau khi compile truy vấn, mày có thể gọi execute nhiều lần với tham số khác nhau mà không cần compile lại.</p>
+</li>
+<li>
+<p><strong>Ví dụ</strong>:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">PreparedStatement</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> stmt</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#1976D2;--shiki-dark:#C5E478"> conn</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">prepareStatement</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">INSERT INTO users (id, name) VALUES (?, ?)</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">stmt</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setInt</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">1</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">stmt</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setString</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">2</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">Nam</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">stmt</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">executeUpdate</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// Lần 1</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">stmt</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setInt</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">1</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 2</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">stmt</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setString</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">2</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">Lan</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">stmt</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">executeUpdate</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// Lần 2, không cần compile lại</span></span></code></pre>
+</li>
+<li>
+<p>Có Giúp Tăng Tốc Ứng Dụng Không?</p>
+<ul>
+<li>Câu trả lời là có, tái sử dụng giúp tăng tốc đáng kể.</li>
+<li><strong>Lý do</strong>:
+<ol>
+<li><strong>Giảm thời gian parse</strong>: Database không cần phân tích cú pháp (parse) và tối ưu truy vấn mỗi lần.</li>
+<li><strong>Giảm request</strong>: Chỉ gửi tham số, không gửi toàn bộ truy vấn.</li>
+<li><strong>Tối ưu giao thức</strong>: Dùng giao thức nhị phân (binary protocol), nhanh hơn gửi chuỗi SQL.</li>
+</ol>
+</li>
+<li><strong>Ví dụ thực tế</strong>: Thêm 10,000 người dùng:
+<ul>
+<li>Không dùng PreparedStatement: 10,000 lần parse → chậm.</li>
+<li>Dùng PreparedStatement: 1 lần parse, 10,000 lần execute → nhanh hơn 2-3 lần.</li>
+</ul>
+</li>
+<li><strong>Lưu ý</strong>: Hiệu quả rõ rệt khi truy vấn lặp lại nhiều lần (như batch insert).</li>
+</ul>
+</li>
+</ul>
+<h2 id="how-indexing-works-internally">How indexing works internally?</h2>
+<ul>
+<li>
+<p><strong>Indexing</strong> là kỹ thuật tạo cấu trúc dữ liệu (index) để tăng tốc độ truy vấn trong cơ sở dữ liệu, giúp tìm kiếm và truy cập dữ liệu nhanh hơn mà không cần quét toàn bộ bảng (full table scan).</p>
+</li>
+<li>
+<p><strong>Cách Hoạt Động Nội Bộ:</strong></p>
+<ul>
+<li><strong>Tạo Index:</strong> Khi tạo index trên một cột (hoặc nhiều cột), database xây dựng một cấu trúc dữ liệu riêng (thường là cây hoặc bảng băm) chứa giá trị của cột đó và con trỏ (pointer) đến hàng dữ liệu tương ứng trong bảng.</li>
+<li><strong>Truy vấn:</strong> Khi chạy truy vấn (như <code>SELECT * FROM users WHERE age = 5</code>), database không quét toàn bảng mà tra cứu trong index để tìm vị trí dữ liệu nhanh hơn.</li>
+<li><strong>Cập nhật</strong>: Mỗi khi dữ liệu trong bảng thay đổi (INSERT, UPDATE, DELETE), index cũng được cập nhật để giữ đồng bộ.</li>
+</ul>
+</li>
+<li>
+<p><strong>Ví dụ:</strong></p>
+<ul>
+<li>
+<p>Bảng <code>users</code>:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>id | name  | age</span></span>
+<span class="line"><span>1  | Nam   | 25</span></span>
+<span class="line"><span>2  | Lan   | 30</span></span>
+<span class="line"><span>3  | Hùng  | 25</span></span></code></pre>
+</li>
+<li>
+<p>Tạo index trên cột <code>age</code>:</p>
+<ul>
+<li>Index lưu: <code>25 → [row 1, row 3], 30 → [row 2]</code>.</li>
+<li>Truy vấn <code>WHERE age = 25</code> → database tra index, lấy ngay row 1 và 3.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="what-algorithm-and-data-structure-indexing-used-and-why">What algorithm and data structure <code>indexing</code> used? And why?</h3>
+<ul>
+<li><strong>Cấu Trúc Dữ Liệu</strong>
+<ul>
+<li><strong>B-Tree (hoặc B+ Tree)</strong>:
+<ul>
+<li><strong>Phổ biến nhất</strong>: Dùng trong hầu hết database quan hệ (MySQL, PostgreSQL).</li>
+<li><strong>Cấu trúc</strong>: Cây cân bằng, mỗi node chứa nhiều key và con trỏ.</li>
+<li><strong>Tại sao?</strong>:
+<ul>
+<li>Hỗ trợ tìm kiếm nhanh: O(log n).</li>
+<li>Hỗ trợ phạm vi (range query): <code>WHERE age > 5</code>.</li>
+<li>Tối ưu cho đĩa: Giảm số lần đọc/ghi (I/O) vì node chứa nhiều key.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Hash Index</strong>:
+<ul>
+<li><strong>Dùng cho</strong>: Tìm kiếm chính xác (exact match), như <code>WHERE age = 5</code>.</li>
+<li><strong>Cấu trúc</strong>: Bảng băm (hash table), ánh xạ key thành vị trí.</li>
+<li><strong>Tại sao?</strong>:
+<ul>
+<li>Nhanh cho tìm kiếm chính xác: O(1).</li>
+<li>Không tốt cho phạm vi (range query) vì không có thứ tự.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Bitmap Index</strong>:
+<ul>
+<li><strong>Dùng cho</strong>: Cột có ít giá trị khác nhau (low cardinality), như <code>gender</code>.</li>
+<li><strong>Cấu trúc</strong>: Dùng bit để biểu diễn giá trị (0/1).</li>
+<li><strong>Tại sao?</strong>: Nhỏ gọn, tốt cho truy vấn phức tạp (AND, OR).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Thuật Toán</strong>
+<ul>
+<li><strong>Tìm kiếm trên B-Tree</strong>: Dùng thuật toán tìm kiếm nhị phân trong node, sau đó duyệt cây → O(log n).</li>
+<li><strong>Hashing</strong>: Dùng hàm băm (hash function) để ánh xạ key → O(1).</li>
+</ul>
+</li>
+<li><strong>Tại Sao Chọn B-Tree?</strong>
+<ul>
+<li><strong>Linh hoạt</strong>: Hỗ trợ cả tìm kiếm chính xác (<code>=</code>) và phạm vi (<code>></code>, <code>&#x3C;</code>, <code>BETWEEN</code>).</li>
+<li><strong>Hiệu quả</strong>: Cân bằng giữa tốc độ và chi phí lưu trữ.</li>
+<li><strong>Tối ưu I/O</strong>: Database thường đọc dữ liệu từ đĩa, B-Tree giảm số lần I/O.</li>
+</ul>
+</li>
+</ul>
+<h3 id="how-composite-indexing-works">How <code>composite indexing</code> works?</h3>
+<ul>
+<li>
+<p><strong>Composite Index</strong> (index tổng hợp) là index trên nhiều cột (multi-column index), giúp tăng tốc truy vấn liên quan đến nhiều điều kiện.</p>
+</li>
+<li>
+<p><strong>Cách Hoạt Động</strong></p>
+<ul>
+<li><strong>Tạo Index</strong>:
+<ul>
+<li>Tạo index trên nhiều cột, ví dụ: <code>CREATE INDEX idx_composite ON users(age, name)</code>.</li>
+<li>Database xây dựng B-Tree với key là <strong>tuple</strong> <code>(age, name)</code>.</li>
+</ul>
+</li>
+<li><strong>Sắp xếp</strong>:
+<ul>
+<li>Index sắp xếp theo cột đầu tiên (<code>age</code>), sau đó trong mỗi giá trị <code>age</code>, sắp xếp theo cột thứ hai (<code>name</code>).</li>
+</ul>
+</li>
+<li><strong>Truy vấn</strong>:
+<ul>
+<li>Hữu ích khi truy vấn dùng các cột trong index theo thứ tự từ trái sang phải.</li>
+<li>Ví dụ: <code>WHERE age = 25 AND name = 'Nam'</code> → dùng index.</li>
+<li>Nhưng <code>WHERE name = 'Nam'</code> → không dùng index (vì cột đầu không có).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Ví dụ</strong></p>
+<ul>
+<li>
+<p>Bảng <code>users</code>:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>id | name  | age</span></span>
+<span class="line"><span>1  | Nam   | 25</span></span>
+<span class="line"><span>2  | Lan   | 25</span></span>
+<span class="line"><span>3  | Hùng  | 30</span></span></code></pre>
+</li>
+<li>
+<p>Index trên <code>(age, name)</code>:</p>
+<ul>
+<li>B-Tree: <code>(25, Lan) → row 2, (25, Nam) → row 1, (30, Hùng) → row 3</code>.</li>
+<li>Truy vấn <code>WHERE age = 25 AND name = 'Nam'</code> → tìm <code>(25, Nam)</code> trong B-Tree → lấy row 1.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="how-to-know-your-query-is-using-index">How to know your query is using index?</h3>
+<ul>
+<li>
+<p><strong>Cách Kiểm Tra</strong></p>
+<ul>
+<li>
+<p><strong>Dùng EXPLAIN (hoặc EXPLAIN PLAN)</strong>: Hầu hết database (MySQL, PostgreSQL) hỗ trợ lệnh EXPLAIN để xem kế hoạch thực thi (execution plan).</p>
+</li>
+<li>
+<p><strong>Ví dụ (MySQL)</strong>:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">EXPLAIN </span><span style="color:#D32F2F;--shiki-dark:#C792EA">SELECT</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> *</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> FROM</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> users </span><span style="color:#D32F2F;--shiki-dark:#C792EA">WHERE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> age </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 25</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span></code></pre>
+</li>
+<li>
+<p>Kết quả mẫu:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>id | select_type | table | type  | possible_keys | key     | rows | Extra</span></span>
+<span class="line"><span>1  | SIMPLE      | users | ref   | idx_age       | idx_age | 2    | Using where</span></span></code></pre>
+<ul>
+<li><code>key: idx_age</code> → Truy vấn dùng index <code>idx_age</code>.</li>
+<li><code>type: ref</code> → Tìm kiếm chính xác (good).</li>
+<li>Nếu <code>type: ALL</code> → Full table scan (không dùng index).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Dấu Hiệu Không Dùng Index</strong></p>
+<ul>
+<li>Dùng hàm trên cột: <code>WHERE UPPER(name) = 'NAM'</code>.</li>
+<li>Không dùng cột đầu trong composite index: <code>WHERE name = 'Nam'</code> (index là <code>(age, name)</code>).</li>
+<li>Dùng toán tử không hỗ trợ: <code>WHERE age != 25</code> (ít database hỗ trợ).</li>
+</ul>
+</li>
+</ul>
+<h3 id="how-index-work-in-this-case-where-age--5-and-where-age--5-the-complexity-to-go-to-the-next-record">How index work in this case: <code>WHERE age = 5</code> and <code>Where age > 5</code>? The complexity to go to the next record?</h3>
+<ul>
+<li><strong>Trường Hợp <code>WHERE age = 5</code></strong>
+<ul>
+<li><strong>Cách hoạt động</strong>:
+<ul>
+<li>Index (B-Tree) tìm <code>age = 5</code> bằng cách duyệt cây: O(log n).</li>
+<li>Sau khi tìm được, trả về tất cả bản ghi khớp (có thể nhiều bản ghi).</li>
+</ul>
+</li>
+<li><strong>Độ phức tạp</strong>:
+<ul>
+<li>Tìm: O(log n).</li>
+<li>Lấy bản ghi tiếp theo: O(1) (vì B-Tree lưu con trỏ liên tiếp).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Trường Hợp <code>WHERE age > 5</code></strong>
+<ul>
+<li><strong>Cách hoạt động</strong>:
+<ul>
+<li>Index tìm giá trị nhỏ nhất lớn hơn 5: O(log n).</li>
+<li>Sau đó, duyệt tuần tự qua các giá trị lớn hơn trong B-Tree.</li>
+</ul>
+</li>
+<li><strong>Độ phức tạp</strong>:
+<ul>
+<li>Tìm giá trị đầu: O(log n).</li>
+<li>Lấy bản ghi tiếp theo: O(1) (B-Tree có liên kết tuần tự trong lá).</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>:
+<ul>
+<li>Index: <code>5 → [row 1], 6 → [row 2], 7 → [row 3]</code>.</li>
+<li><code>WHERE age > 5</code> → Bắt đầu từ <code>6</code>, duyệt tiếp <code>7</code> → O(1) mỗi bước.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Cả hai đều hiệu quả nhờ B-Tree, nhưng <code>age > 5</code> có thể trả về nhiều bản ghi hơn, cần duyệt thêm.</li>
+</ul>
+<h3 id="indexing-with-char">Indexing with char?</h3>
+<ul>
+<li>
+<p><strong>Cách Hoạt Động</strong></p>
+<ul>
+<li>
+<p><strong>Tạo Index</strong>:</p>
+<ul>
+<li>Index trên cột <code>CHAR</code> hoặc <code>VARCHAR</code> cũng dùng B-Tree (hoặc Hash nếu chỉ tìm chính xác).</li>
+<li>Chuỗi được so sánh theo thứ tự từ điển (lexicographical order).</li>
+</ul>
+</li>
+<li>
+<p><strong>Ví dụ</strong>:</p>
+<ul>
+<li>
+<p>Bảng <code>users</code>:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>id | name</span></span>
+<span class="line"><span>1  | Nam</span></span>
+<span class="line"><span>2  | Lan</span></span>
+<span class="line"><span>3  | Hùng</span></span></code></pre>
+</li>
+<li>
+<p>Index trên <code>name</code>:</p>
+<ul>
+<li>B-Tree: <code>Hùng → row 3, Lan → row 2, Nam → row 1</code>.</li>
+<li>Truy vấn <code>WHERE name = 'Nam'</code> → tìm trong B-Tree → O(log n).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Lưu Ý</strong></p>
+<ul>
+<li><strong>Hiệu suất</strong>:
+<ul>
+<li>Chuỗi dài làm tăng kích thước index, chậm hơn số (int).</li>
+<li>Dùng <strong>prefix index</strong> để tiết kiệm: <code>CREATE INDEX idx_name ON users(name(10))</code> (chỉ index 10 ký tự đầu).</li>
+</ul>
+</li>
+<li><strong>So sánh</strong>:
+<ul>
+<li>Database có thể dùng collation (quy tắc so sánh) để xử lý ký tự (như không phân biệt hoa/thường).</li>
+</ul>
+</li>
+<li><strong>Hạn chế</strong>:
+<ul>
+<li>Truy vấn <code>LIKE '%text%'</code> không dùng index (vì bắt đầu bằng wildcard).</li>
+<li><code>LIKE 'text%'</code> có thể dùng index (vì bắt đầu cố định).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="the-complexity-of-sql-query-how-to-measure-it-how-sql-optimize-a-query">The complexity of SQL query? How to measure it? How SQL optimize a query?</h2>
+<ul>
+<li>
+<p><strong>Độ Phức Tạp Của SQL</strong></p>
+<ul>
+<li><strong>Định nghĩa</strong>: Độ phức tạp của truy vấn SQL là số lượng tài nguyên (CPU, I/O, bộ nhớ) cần để thực thi truy vấn, thường đo bằng số hàng (rows) hoặc trang (pages) cần truy cập.</li>
+<li><strong>Yếu tố ảnh hưởng</strong>:
+<ul>
+<li>Kích thước bảng (số hàng, số cột).</li>
+<li>Có index hay không.</li>
+<li>Loại truy vấn (SELECT, JOIN, ORDER BY, v.v.).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Cách Đo Lường</strong></p>
+<ul>
+<li>
+<p><strong>Dùng EXPLAIN/EXPLAIN PLAN</strong>:</p>
+<ul>
+<li>
+<p>Hiển thị kế hoạch thực thi (execution plan) của database.</p>
+</li>
+<li>
+<p>Ví dụ (MySQL):</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">EXPLAIN </span><span style="color:#D32F2F;--shiki-dark:#C792EA">SELECT</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> *</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> FROM</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> users </span><span style="color:#D32F2F;--shiki-dark:#C792EA">WHERE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> age </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 25</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span></code></pre>
+<p>Kết quả: Cho biết số hàng dự kiến quét (<code>rows</code>), loại truy vấn (<code>type</code>), và index được dùng (<code>key</code>).</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Dùng Công Cụ Hiệu Suất:</strong></p>
+<ul>
+<li>MySQL: <code>SHOW PROFILE</code> (xem thời gian CPU, I/O).</li>
+<li>PostgreSQL: <code>EXPLAIN ANALYZE</code> (thời gian thực tế).</li>
+</ul>
+</li>
+<li>
+<p><strong>Đo Thời Gian Thực Thi</strong>:</p>
+<ul>
+<li>
+<p>Dùng <code>BENCHMARK</code> (MySQL) hoặc đo thủ công:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">SELECT</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> BENCHMARK(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">1000</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, (</span><span style="color:#D32F2F;--shiki-dark:#C792EA">SELECT</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> *</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> FROM</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> users </span><span style="color:#D32F2F;--shiki-dark:#C792EA">WHERE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> age </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 25</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">));</span></span></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Số I/O</strong>:</p>
+<ul>
+<li>Đo số trang (pages) đọc từ đĩa, vì I/O thường là yếu tố chậm nhất.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>SQL Tối Ưu Hóa Truy Vấn Như Thế Nào?</strong></p>
+<ul>
+<li>Query Optimizer là bộ tối ưu truy vấn (query optimizer) trong database (như MySQL, PostgreSQL) phân tích truy vấn và chọn kế hoạch thực thi tốt nhất.</li>
+<li><strong>Cách hoạt động</strong>
+<ol>
+<li><strong>Parse</strong>: Phân tích cú pháp truy vấn.</li>
+<li><strong>Rewrite</strong>: Viết lại truy vấn để tối ưu (ví dụ: loại bỏ điều kiện dư thừa).</li>
+<li><strong>Optimize</strong>: Chọn kế hoạch thực thi dựa trên:
+<ul>
+<li>Thống kê (statistics): Số hàng, phân bố dữ liệu.</li>
+<li>Index: Có index nào dùng được không.</li>
+<li>Chi phí (cost): Ước tính I/O, CPU.</li>
+</ul>
+</li>
+<li><strong>Execute</strong>: Thực thi kế hoạch.</li>
+</ol>
+</li>
+<li><strong>Ví Dụ Tối Ưu</strong>
+<ul>
+<li>Truy vấn: <code>SELECT * FROM users WHERE age = 25 AND id > 100</code>.</li>
+<li><strong>Không index</strong>: Quét toàn bảng → O(n).</li>
+<li><strong>Có index trên <code>age</code></strong>: Tìm <code>age = 25</code> qua B-Tree (O(log n)), sau đó lọc <code>id > 100</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="compare-where-id--a-and-id--b-and-id--c-vs-where-id-in-a-b-c">Compare <code>WHERE id = 'a' AND id = 'b' AND id = 'c'</code> vs <code>WHERE id in (a, b, c)</code>?</h3>
+<ul>
+<li>So Sánh
+<ul>
+<li><strong>Cú pháp</strong>:
+<ul>
+<li><code>WHERE id = 'a' AND id = 'b' AND id = 'c'</code>:
+<ul>
+<li>Điều kiện này <strong>luôn sai</strong> vì một cột không thể có nhiều giá trị cùng lúc (<code>id</code> không thể vừa là <code>'a'</code>, vừa là <code>'b'</code>, vừa là <code>'c'</code>).</li>
+<li>Database tối ưu hóa: Nhận ra điều kiện không thể thỏa mãn → trả về 0 hàng mà không quét bảng.</li>
+</ul>
+</li>
+<li><code>WHERE id IN ('a', 'b', 'c')</code>:
+<ul>
+<li>Tương đương với <code>WHERE id = 'a' OR id = 'b' OR id = 'c'</code>.</li>
+<li>Database tìm các hàng có id khớp với bất kỳ giá trị nào trong danh sách.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Độ Phức Tạp
+<ul>
+<li><strong>AND</strong>:
+<ul>
+<li>Độ phức tạp: O(1) (vì điều kiện không thể thỏa mãn, database không quét bảng).</li>
+</ul>
+</li>
+<li><strong>IN</strong>:
+<ul>
+<li>Có index trên <code>id</code>: Database tìm từng giá trị qua B-Tree → O(k log n), với <code>k</code> là số giá trị (ở đây <code>k = 3</code>).</li>
+<li>Không index: Quét toàn bảng → O(n).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Kết Luận
+<ul>
+<li><code>AND</code> không có ý nghĩa thực tế (luôn trả về 0 hàng).</li>
+<li><code>IN</code> là cách đúng để kiểm tra nhiều giá trị, hiệu quả hơn nếu có index.</li>
+</ul>
+</li>
+</ul>
+<h3 id="complexity-of-this-query-select--from-abc-order-by-name-limit-10-offset-1000000-select-10-record-from-offset-106-after-sort-by-name-which-is-a-char-how-to-optimize-it">Complexity of this query <code>SELECT * FROM abc ORDER BY name LIMIT 10 OFFSET 1000000</code>. SELECT 10 record from offset $10^6$ after sort by name (which is a char)? How to optimize it?</h3>
+<ul>
+<li>
+<p><strong>Giải thích truy Vấn</strong></p>
+<ul>
+<li>Sắp xếp toàn bộ bảng <code>abc</code> theo cột <code>name</code> (kiểu <code>CHAR</code>).</li>
+<li>Bỏ qua 1,000,000 bản ghi đầu (OFFSET), lấy 10 bản ghi tiếp theo (LIMIT).</li>
+</ul>
+</li>
+<li>
+<p><strong>Độ Phức Tạp</strong></p>
+<ul>
+<li><strong>Sắp xếp</strong>:
+<ul>
+<li>Database phải sắp xếp toàn bộ bảng trước: O(n log n), với <code>n</code> là số hàng.</li>
+<li>Cột <code>name</code> là <code>CHAR</code>, so sánh chuỗi chậm hơn số (int).</li>
+</ul>
+</li>
+<li><strong>OFFSET và LIMIT</strong>:
+<ul>
+<li>Database phải duyệt qua 1,000,000 bản ghi để bỏ qua → O(n).</li>
+<li>Lấy 10 bản ghi: O(1).</li>
+</ul>
+</li>
+<li><strong>Tổng độ phức tạp</strong>:
+<ul>
+<li>O(n log n) (sắp xếp) + O(n) (duyệt OFFSET) ≈ O(n log n).</li>
+</ul>
+</li>
+<li><strong>Vấn đề</strong>:
+<ul>
+<li>OFFSET lớn (1,000,000) gây chậm vì phải duyệt qua tất cả bản ghi trước đó, dù không cần.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Cách Tối Ưu</strong></p>
+<ul>
+<li>
+<p><strong>Dùng Index</strong>:</p>
+<ul>
+<li>Tạo index trên <code>name</code>: <code>CREATE INDEX idx_name ON abc(name)</code>.</li>
+<li>Index là B-Tree, đã sắp xếp sẵn → không cần <code>ORDER BY</code> toàn bảng.</li>
+<li>Độ phức tạp: O(log n) để tìm vị trí OFFSET, O(1) để lấy 10 bản ghi.</li>
+</ul>
+</li>
+<li>
+<p><strong>Tránh OFFSET lớn</strong>:</p>
+<ul>
+<li>
+<p>Thay vì OFFSET, dùng điều kiện trên cột đã sắp xếp:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">SELECT</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> *</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> FROM</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> abc </span><span style="color:#D32F2F;--shiki-dark:#C792EA">WHERE</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> name</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> ></span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> (</span><span style="color:#D32F2F;--shiki-dark:#C792EA">SELECT</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> name</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> FROM</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> abc </span><span style="color:#D32F2F;--shiki-dark:#C792EA">ORDER BY</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> name</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> LIMIT</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> OFFSET </span><span style="color:#1976D2;--shiki-dark:#F78C6C">999999</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">) </span><span style="color:#D32F2F;--shiki-dark:#C792EA">ORDER BY</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> name</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> LIMIT</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 10</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span></code></pre>
+<ul>
+<li>Tìm giá trị name tại vị trí 1,000,000 → O(log n) nếu có index.</li>
+<li>Lấy 10 bản ghi tiếp theo → O(1).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Kết quả tối ưu</strong>:</p>
+<ul>
+<li>Độ phức tạp giảm từ O(n log n) xuống O(log n).</li>
+</ul>
+</li>
+</ul>
+<h3 id="what-is-the-complexity-of-count-query">What is the complexity of <code>COUNT(*)</code> query?</h3>
+<ul>
+<li><strong>Độ Phức Tạp</strong>
+<ul>
+<li><strong>Không index</strong>:
+<ul>
+<li>Database quét toàn bảng để đếm số hàng → O(n).</li>
+</ul>
+</li>
+<li><strong>Có index</strong>:
+<ul>
+<li>Nếu có index trên cột (như primary key), database dùng index để đếm → O(log n) (với B-Tree).</li>
+<li>Một số database (như MySQL với InnoDB) lưu số hàng trong metadata → O(1).</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>: <code>SELECT COUNT(*) FROM users</code>:
+<ul>
+<li>Không index: Quét toàn bảng → O(n).</li>
+<li>Có index trên id: Đếm qua B-Tree → O(log n).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Lưu Ý</strong>
+<ul>
+<li><code>COUNT(*)</code> nhanh hơn <code>COUNT(column)</code> vì không cần kiểm tra giá trị NULL.</li>
+</ul>
+</li>
+</ul>
+<h3 id="how-to-write-query-to-avoid-full-table-scan">How to write query to avoid full table scan?</h3>
+<ul>
+<li>Full Table Scan Là Gì? Database quét toàn bộ bảng (mọi hàng) → O(n), rất chậm với bảng lớn.</li>
+<li>Cách Tránh
+<ul>
+<li><strong>Dùng Index</strong>:
+<ul>
+<li>Tạo index trên cột trong <code>WHERE</code>, <code>JOIN</code>, <code>ORDER BY</code>.</li>
+<li>Ví dụ: <code>SELECT * FROM users WHERE age = 25</code> → index trên age.</li>
+</ul>
+</li>
+<li><strong>Hạn Chế Dữ Liệu</strong>:
+<ul>
+<li>Dùng <code>WHERE</code> để lọc sớm: <code>SELECT * FROM users WHERE id > 100 AND id &#x3C; 200</code>.</li>
+</ul>
+</li>
+<li><strong>Tránh Hàm Trên Cột</strong>:
+<ul>
+<li>Sai: <code>WHERE UPPER(name) = 'NAM'</code> → không dùng index.</li>
+<li>Đúng: <code>WHERE name = 'nam'</code> → dùng index (dùng collation nếu cần).</li>
+</ul>
+</li>
+<li><strong>Dùng LIMIT</strong>:
+<ul>
+<li>Giới hạn số hàng trả về: <code>SELECT * FROM users LIMIT 10</code>.</li>
+</ul>
+</li>
+<li><strong>Tối Ưu JOIN</strong>:
+<ul>
+<li>Đảm bảo cột trong <code>ON</code> có index: <code>SELECT * FROM users u JOIN orders o ON u.id = o.user_id</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="complexity-of-join-inner-join-outter-join">Complexity of JOIN, INNER JOIN, OUTTER JOIN?</h3>
+<ul>
+<li><strong>JOIN (Tổng Quát)</strong>
+<ul>
+<li><strong>Cách hoạt động</strong>: Kết hợp dữ liệu từ hai bảng dựa trên điều kiện (thường trong <code>ON</code>).</li>
+<li><strong>Độ phức tạp</strong>:
+<ul>
+<li>Phụ thuộc vào thuật toán JOIN:
+<ul>
+<li><strong>Nested Loop Join</strong>: O(n * m) (n, m là số hàng của hai bảng).</li>
+<li><strong>Hash Join</strong>: O(n + m) (xây bảng băm cho bảng nhỏ, quét bảng lớn).</li>
+<li><strong>Merge Join</strong>: O($n \log n$ + $m \log m$) (sắp xếp trước, gộp).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>INNER JOIN</strong>
+<ul>
+<li><strong>Là gì?</strong>: Chỉ lấy hàng khớp ở cả hai bảng.</li>
+<li><strong>Độ phức tạp</strong>:
+<ul>
+<li>Có index trên cột JOIN: O(n log m) (n là số hàng bảng nhỏ, m là số hàng bảng lớn).</li>
+<li>Không index: O(n * m) (nested loop).</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>:
+<ul>
+<li><code>SELECT * FROM users u INNER JOIN orders o ON u.id = o.user_id</code>:
+<ul>
+<li>Index trên <code>user_id</code>: O($n \log m$).</li>
+<li>Không index: O(n * m).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>OUTER JOIN (LEFT/RIGHT/FULL)</strong>
+<ul>
+<li><strong>Là gì?</strong>: Lấy tất cả hàng từ một bảng (hoặc cả hai), kể cả không khớp.</li>
+<li><strong>Độ phức tạp</strong>:
+<ul>
+<li>Tương tự INNER JOIN, nhưng thêm chi phí xử lý hàng không khớp.</li>
+<li>Có index: O($n \log m$).</li>
+<li>Không index: O(n * m).</li>
+</ul>
+</li>
+<li><strong>Lưu ý</strong>:
+<ul>
+<li>OUTER JOIN thường chậm hơn INNER JOIN vì phải xử lý thêm hàng <code>NULL</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="what-is-database-replicating-when-we-need-it">What is Database Replicating? When we need it?</h2>
+<ul>
+<li><strong>Định nghĩa</strong>
+<ul>
+<li><strong>Database Replication</strong> (Sao chép cơ sở dữ liệu) là quá trình sao chép và đồng bộ dữ liệu từ một cơ sở dữ liệu chính (<strong>Master</strong>) sang một hoặc nhiều cơ sở dữ liệu phụ (<strong>Slave</strong>).</li>
+<li><strong>Mục đích</strong> tạo bản sao dữ liệu để tăng tính khả dụng (availability), chịu lỗi (fault tolerance), và hiệu suất (performance).</li>
+</ul>
+</li>
+<li><strong>Khi Nào Cần Dùng?</strong>
+<ul>
+<li><strong>Tăng hiệu suất đọc (Read Scalability)</strong>:
+<ul>
+<li>Master xử lý ghi (write), Slave xử lý đọc (read) → giảm tải cho Master.</li>
+<li>Ví dụ: Web app có nhiều truy vấn đọc (SELECT) → dùng Slave để phân tải.</li>
+</ul>
+</li>
+<li><strong>Chịu lỗi (High Availability)</strong>:
+<ul>
+<li>Nếu Master gặp sự cố, Slave có thể thay thế (failover).</li>
+<li>Ví dụ: Slave được dùng làm bản sao dự phòng (standby).</li>
+</ul>
+</li>
+<li><strong>Phân tích dữ liệu (Analytics)</strong>:
+<ul>
+<li>Chạy báo cáo hoặc phân tích trên Slave để không ảnh hưởng Master.</li>
+<li>Ví dụ: Báo cáo doanh thu hàng ngày chạy trên Slave.</li>
+</ul>
+</li>
+<li><strong>Sao lưu (Backup)</strong>:
+<ul>
+<li>Slave giữ bản sao dữ liệu, dùng để khôi phục nếu Master mất dữ liệu.</li>
+</ul>
+</li>
+<li><strong>Phân tán địa lý (Geographic Distribution)</strong>:
+<ul>
+<li>Slave ở gần người dùng hơn → giảm độ trễ (latency).</li>
+<li>Ví dụ: Slave ở Việt Nam phục vụ người dùng VN, Master ở Mỹ.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="what-is-bin-log-how-master-db-sync-with-slave-db">What is <code>bin log</code>? How <code>Master DB</code> sync with <code>Slave DB</code>?</h3>
+<ul>
+<li>
+<p><strong>Bin Log Là Gì?</strong></p>
+<ul>
+<li><strong>Binary Log</strong> (bin log) là file nhật ký nhị phân trong database (như MySQL), ghi lại mọi thay đổi dữ liệu (INSERT, UPDATE, DELETE) trên Master.</li>
+<li><strong>Mục đích</strong> dùng để sao chép (replication) và khôi phục (recovery).</li>
+<li><strong>Nội dung</strong>:
+<ul>
+<li>Ghi lại các sự kiện (event) như câu lệnh SQL hoặc thay đổi dữ liệu (row-level changes).</li>
+<li>Ví dụ: <code>INSERT INTO users VALUES (1, 'Nam')</code> → bin log ghi sự kiện này.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Master DB Đồng Bộ Với Slave DB Như Thế Nào?</strong></p>
+<ul>
+<li>
+<p><strong>Quy trình (MySQL Replication)</strong>:</p>
+<ol>
+<li>
+<p><strong>Master Ghi Bin Log</strong>:</p>
+<p>Mỗi thay đổi (INSERT, UPDATE, DELETE) được ghi vào bin log trên Master.</p>
+</li>
+<li>
+<p><strong>Slave Kết Nối Với Master</strong>:</p>
+<p>Slave dùng tài khoản replication để kết nối Master, yêu cầu bin log.</p>
+</li>
+<li>
+<p><strong>Master Gửi Bin Log</strong>:</p>
+<p>Master gửi các sự kiện bin log (từ vị trí cụ thể) qua mạng đến Slave.</p>
+</li>
+<li>
+<p><strong>Slave Lưu Relay Log</strong>:</p>
+<p>Slave nhận bin log, lưu vào <strong>relay log</strong> (bản sao cục bộ).</p>
+</li>
+<li>
+<p><strong>Slave Áp Dụng Thay Đổi</strong>:</p>
+<p>Slave đọc relay log, thực thi lại các sự kiện (replay) để đồng bộ dữ liệu.</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Ví dụ</strong>:</p>
+<ul>
+<li>Master: <code>INSERT INTO users VALUES (1, 'Nam')</code>.</li>
+<li>Bin log ghi: <code>INSERT event</code>.</li>
+<li>Slave nhận, chạy lại <code>INSERT</code> → dữ liệu đồng bộ.</li>
+</ul>
+</li>
+<li>
+<p>Chi Tiết Kỹ Thuật</p>
+<ul>
+<li><strong>Vị trí Bin Log</strong>:
+<ul>
+<li>Bin log được đánh số (như <code>binlog.000001</code>) và có vị trí (position).</li>
+<li>Slave theo dõi vị trí đã đọc để không bỏ sót sự kiện.</li>
+</ul>
+</li>
+<li><strong>Thread trên Slave</strong>:
+<ul>
+<li><strong>I/O Thread</strong>: Kết nối Master, nhận bin log, lưu vào relay log.</li>
+<li><strong>SQL Thread</strong>: Đọc relay log, áp dụng thay đổi.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="can-a-slave-db-be-a-slave-of-another-slave-db-we-do-not-need-to-sync-from-master-db-directly">Can a <code>Slave DB</code> be a slave of another <code>Slave DB</code> (we do not need to sync from <code>Master DB</code> directly)?</h3>
+<ul>
+<li>Đáp Án là Có, Slave DB có thể là Slave của một Slave khác. Đây gọi là <strong>multi-level replication</strong> hoặc <strong>cascading replication</strong>.</li>
+<li><strong>Cách Hoạt Động</strong>
+<ul>
+<li><strong>Cấu trúc</strong>:
+<ul>
+<li>Master → Slave 1 → Slave 2.</li>
+<li>Slave 1 vừa là Slave của Master, vừa là Master của Slave 2.</li>
+</ul>
+</li>
+<li><strong>Quy trình</strong>:
+<ol>
+<li>Master gửi bin log đến Slave 1.</li>
+<li>Slave 1 áp dụng thay đổi, đồng thời ghi bin log của chính nó (nếu bật <code>log-slave-updates</code> trong MySQL).</li>
+<li>Slave 2 kết nối Slave 1, nhận bin log từ Slave 1, áp dụng thay đổi.</li>
+</ol>
+</li>
+<li><strong>Ví dụ</strong>:
+<ul>
+<li>Master: <code>INSERT INTO users VALUES (1, 'Nam')</code>.</li>
+<li>Slave 1 đồng bộ từ Master.</li>
+<li>Slave 2 đồng bộ từ Slave 1.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Lợi Ích</strong>
+<ul>
+<li><strong>Giảm tải Master</strong>: Master không cần gửi bin log cho nhiều Slave, chỉ gửi cho Slave 1.</li>
+<li><strong>Phân tán địa lý</strong>: Slave 1 ở VN, Slave 2 ở Singapore → Slave 2 đồng bộ từ Slave 1 (gần hơn) thay vì Master (ở Mỹ).</li>
+</ul>
+</li>
+<li><strong>Hạn Chế</strong>
+<ul>
+<li><strong>Độ trễ tăng</strong>: Dữ liệu từ Master → Slave 1 → Slave 2 → trễ hơn so với đồng bộ trực tiếp.</li>
+<li><strong>Phức tạp</strong>: Quản lý cấu hình khó hơn, dễ lỗi nếu Slave 1 gặp sự cố.</li>
+</ul>
+</li>
+</ul>
+<h2 id="what-is-database-sharding-when-we-need-it">What is Database Sharding? When we need it?</h2>
+<ul>
+<li><strong>Định nghĩa</strong>
+<ul>
+<li><strong>Database Sharding</strong> (Phân mảnh cơ sở dữ liệu) là kỹ thuật chia dữ liệu trong một cơ sở dữ liệu thành các phần nhỏ (shards) và lưu trữ trên nhiều server (hoặc bảng) để tăng hiệu suất và khả năng mở rộng.</li>
+<li><strong>Mục đích</strong>: Phân tán dữ liệu để xử lý khối lượng lớn (big data) mà một server không thể đáp ứng.</li>
+</ul>
+</li>
+<li><strong>Khi Nào Cần Dùng?</strong>
+<ul>
+<li><strong>Dữ liệu quá lớn</strong>:
+<ul>
+<li>Một bảng có hàng tỷ bản ghi → quét chậm, không đủ RAM/disk trên một server.</li>
+<li>Ví dụ: Bảng <code>users</code> có 1 tỷ người dùng → chia thành 10 shard, mỗi shard 100 triệu.</li>
+</ul>
+</li>
+<li><strong>Tăng hiệu suất</strong>:
+<ul>
+<li>Phân tải truy vấn (query) qua nhiều server → giảm thời gian phản hồi.</li>
+<li>Ví dụ: Web app có 1 triệu truy vấn/giây → mỗi shard xử lý 100,000 truy vấn.</li>
+</ul>
+</li>
+<li><strong>Mở rộng ngang (Horizontal Scaling)</strong>:
+<ul>
+<li>Thêm server mới để tăng dung lượng, thay vì nâng cấp server cũ (vertical scaling).</li>
+</ul>
+</li>
+<li><strong>Phân tán địa lý</strong>:
+<ul>
+<li>Lưu shard gần người dùng để giảm độ trễ.</li>
+<li>Ví dụ: Shard cho người dùng VN ở server VN, shard cho người dùng Mỹ ở server Mỹ.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="which-rule-we-can-apply-to-db-sharding">Which rule we can apply to DB Sharding?</h3>
+<ul>
+<li><strong>Range Sharding (Phân mảnh theo phạm vi)</strong>:
+<ul>
+<li>Chia dữ liệu theo phạm vi giá trị của một cột (shard key).</li>
+<li>Ví dụ: Bảng <code>users</code>:
+<ul>
+<li>Shard 1: <code>id</code> từ 1 đến 1,000,000.</li>
+<li>Shard 2: <code>id</code> từ 1,000,001 đến 2,000,000.</li>
+</ul>
+</li>
+<li><strong>Ưu</strong>: Dễ triển khai, tốt cho truy vấn phạm vi (<code>WHERE id BETWEEN 500,000 AND 600,000</code>).</li>
+<li><strong>Nhược</strong>: Dễ mất cân bằng (hot shard) nếu dữ liệu tập trung vào một phạm vi.</li>
+</ul>
+</li>
+<li><strong>Hash Sharding (Phân mảnh theo hàm băm)</strong>:
+<ul>
+<li>Dùng hàm băm (hash function) trên shard key để quyết định shard.</li>
+<li>Ví dụ: <code>shard = hash(id) % 4</code> → 4 shard.</li>
+<li><strong>Ưu</strong>: Phân bố đều, tránh hot shard.</li>
+<li><strong>Nhược</strong>: Khó truy vấn phạm vi (vì dữ liệu không theo thứ tự).</li>
+</ul>
+</li>
+<li><strong>Directory-Based Sharding (Phân mảnh theo danh mục)</strong>:
+<ul>
+<li>Dùng bảng ánh xạ (lookup table) để xác định shard.</li>
+<li>Ví dụ: Bảng <code>users</code>:
+<ul>
+<li>Lookup: <code>user_id: 1 → shard 1, user_id: 2 → shard 2</code>.</li>
+</ul>
+</li>
+<li><strong>Ưu</strong>: Linh hoạt, dễ thay đổi cách phân mảnh.</li>
+<li><strong>Nhược</strong>: Cần duy trì bảng ánh xạ, có thể là điểm nghẽn.</li>
+</ul>
+</li>
+<li><strong>Geo Sharding (Phân mảnh theo địa lý)</strong>:
+<ul>
+<li>Chia theo vị trí địa lý.</li>
+<li>Ví dụ: Shard 1 cho người dùng VN, Shard 2 cho người dùng Mỹ.</li>
+<li><strong>Ưu</strong>: Giảm độ trễ.</li>
+<li><strong>Nhược</strong>: Khó xử lý nếu người dùng di chuyển.</li>
+</ul>
+</li>
+</ul>
+<h3 id="how-to-ensure-primary-key-is-globally-unique-when-sharding">How to ensure <code>primary key</code> is globally unique when sharding?</h3>
+<ul>
+<li><strong>Vấn Đề</strong>: khi sharding, mỗi shard hoạt động độc lập → có thể tạo primary key trùng nhau (như id = 1 trên cả shard 1 và shard 2).</li>
+<li><strong>Cách Đảm Bảo</strong>
+<ul>
+<li><strong>Dùng UUID (Universally Unique Identifier)</strong>:
+<ul>
+<li>Tạo primary key dạng UUID (chuỗi 128-bit, gần như không trùng).</li>
+<li>Ví dụ: <code>id = "550e8400-e29b-41d4-a716-446655440000"</code>.</li>
+<li><strong>Ưu</strong>: Độc lập, không cần phối hợp giữa các shard.</li>
+<li><strong>Nhược</strong>: Kích thước lớn (so với số), chậm hơn khi so sánh.</li>
+</ul>
+</li>
+<li><strong>Tăng Tự Động Với Offset (Auto-Increment with Offset)</strong>:
+<ul>
+<li>Mỗi shard dùng dải <code>auto-increment</code> khác nhau.</li>
+<li>Ví dụ:
+<ul>
+<li>Shard 1: <code>id</code> bắt đầu từ 1, tăng 1 (1, 2, 3, …).</li>
+<li>Shard 2: <code>id</code> bắt đầu từ 1,000,001, tăng 1 (1,000,001, 1,000,002, …).</li>
+</ul>
+</li>
+<li><strong>Ưu</strong>: Đơn giản, hiệu quả.</li>
+<li><strong>Nhược</strong>: Cần cấu hình trước, khó mở rộng nếu thêm shard.</li>
+</ul>
+</li>
+<li><strong>Dùng Dịch Vụ Tạo ID Toàn Cục</strong>:
+<ul>
+<li>Dùng hệ thống trung tâm (như Snowflake ID) để tạo ID duy nhất.</li>
+<li>Ví dụ: Snowflake ID kết hợp timestamp, machine ID, và sequence number.</li>
+<li><strong>Ưu</strong>: Đảm bảo duy nhất, hỗ trợ mở rộng.</li>
+<li><strong>Nhược</strong>: Phụ thuộc vào dịch vụ, có thể là điểm nghẽn.</li>
+</ul>
+</li>
+<li><strong>Kết Hợp Shard ID Với Primary Key</strong>:
+<ul>
+<li>Thêm shard ID vào primary key.</li>
+<li>Ví dụ: <code>id = (shard_id, local_id)</code> → <code>(1, 1)</code> trên shard 1, <code>(2, 1)</code> trên shard 2.</li>
+<li><strong>Ưu</strong>: Đơn giản, không cần dịch vụ bên ngoài.</li>
+<li><strong>Nhược</strong>: Cần thay đổi schema.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="how-we-can-shard-a-table-to-multiple-tables-same-server-and-multiple-db-multiple-servers">How we can shard a table to multiple tables (same server) and multiple DB (multiple servers)?</h3>
+<ul>
+<li>
+<p><strong>Phân Mảnh Thành Nhiều Bảng (Cùng Server)</strong></p>
+<ul>
+<li>
+<p><strong>Cách làm</strong>:</p>
+<ul>
+<li>Chia bảng lớn thành nhiều bảng nhỏ dựa trên shard key.</li>
+<li>Ví dụ: Bảng <code>users</code>:
+<ul>
+<li>Tạo <code>users_shard1</code> (id 1-1,000,000), <code>users_shard2</code> (id 1,000,001-2,000,000).</li>
+</ul>
+</li>
+<li>Dùng view hoặc logic ứng dụng để truy vấn đúng bảng.</li>
+</ul>
+</li>
+<li>
+<p><strong>Ví dụ</strong>:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">CREATE</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> TABLE</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> users_shard1</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> AS</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> SELECT</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> *</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> FROM</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> users </span><span style="color:#D32F2F;--shiki-dark:#C792EA">WHERE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> id </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1000000</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">CREATE</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> TABLE</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> users_shard2</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> AS</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> SELECT</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> *</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> FROM</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> users </span><span style="color:#D32F2F;--shiki-dark:#C792EA">WHERE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> id </span><span style="color:#D32F2F;--shiki-dark:#C792EA">></span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1000000</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span></code></pre>
+</li>
+<li>
+<p><strong>Ưu</strong>: Đơn giản, không cần nhiều server.</p>
+</li>
+<li>
+<p><strong>Nhược</strong>: Vẫn giới hạn bởi một server (không scale out).</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Phân Mảnh Thành Nhiều DB (Nhiều Server)</strong></p>
+<ul>
+<li><strong>Cách làm</strong>:
+<ul>
+<li>Mỗi shard là một database riêng trên server riêng.</li>
+<li>Ví dụ: Bảng <code>users</code>:
+<ul>
+<li>Shard 1: <code>users</code> trên server 1 (DB1).</li>
+<li>Shard 2: <code>users</code> trên server 2 (DB2).</li>
+</ul>
+</li>
+<li>Ứng dụng (hoặc proxy) quyết định truy vấn shard nào.</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>:
+<ul>
+<li>Server 1: <code>mysql -h server1 -e "CREATE TABLE users (...)"</code>.</li>
+<li>Server 2: <code>mysql -h server2 -e "CREATE TABLE users (...)"</code>.</li>
+</ul>
+</li>
+<li><strong>Ưu</strong>: Scale out, tăng hiệu suất.</li>
+<li><strong>Nhược</strong>: Phức tạp hơn, cần quản lý nhiều server.</li>
+</ul>
+</li>
+</ul>
+<h3 id="how-query-can-work-when-we-sharding-for-example-query-but-the-data-is-in-different-tablesdbs">How query can work when we sharding? for example query but the data is in different tables/dbs?</h3>
+<ul>
+<li>
+<p>Vấn Đề khi dữ liệu nằm ở nhiều shard (bảng hoặc DB), truy vấn như <code>SELECT * FROM users WHERE id = 123</code> cần biết shard nào chứa dữ liệu.</p>
+</li>
+<li>
+<p><strong>Cách Xử Lý</strong></p>
+<ul>
+<li>
+<p><strong>Ứng Dụng Quản Lý (Application-Level)</strong>:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> shardId</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> hash</span><span style="color:#6F42C1;--shiki-dark:#D9F5DD">(</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">id</span><span style="color:#6F42C1;--shiki-dark:#D9F5DD">)</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> %</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 4</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">Connection</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> conn</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> getConnectionForShard</span><span style="color:#6F42C1;--shiki-dark:#D9F5DD">(</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">shardId</span><span style="color:#6F42C1;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">PreparedStatement</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> stmt</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#1976D2;--shiki-dark:#C5E478"> conn</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">prepareStatement</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">SELECT * FROM users WHERE id = ?</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">stmt</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setInt</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">1</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> id</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span></code></pre>
+<ul>
+<li>Ứng dụng xác định shard dựa trên shard key.</li>
+<li>Ví dụ: <code>shard = hash(id) % 4</code> → gửi truy vấn đến shard đúng.</li>
+</ul>
+</li>
+<li>
+<p><strong>Dùng Proxy (Database Proxy)</strong>:</p>
+<ul>
+<li>Proxy (như MySQL Proxy, Vitess) đứng giữa ứng dụng và database, tự động định tuyến truy vấn.</li>
+<li>Ví dụ: Vitess nhận <code>SELECT * FROM users WHERE id = 123</code>, tính shard, gửi đến server đúng.</li>
+</ul>
+</li>
+<li>
+<p><strong>Truy Vấn Phân Tán (Distributed Query)</strong>:</p>
+<ul>
+<li>Nếu truy vấn cần dữ liệu từ nhiều shard (như <code>SELECT * FROM users ORDER BY name</code>), ứng dụng hoặc proxy gửi truy vấn đến tất cả shard, gộp kết quả.</li>
+<li>Ví dụ:
+<ul>
+<li>Gửi <code>SELECT * FROM users</code> đến shard 1, shard 2.</li>
+<li>Gộp kết quả, sắp xếp lại.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Hạn Chế</strong></p>
+<ul>
+<li><strong>Truy vấn phức tạp</strong>: <code>JOIN</code> giữa các shard khó, thường phải xử lý ở ứng dụng.</li>
+<li><strong>Độ trễ</strong>: Truy vấn nhiều shard → tăng thời gian (vì mạng, gộp kết quả).</li>
+</ul>
+</li>
+</ul>
+<h2 id="what-is-database-transaction">What is database transaction?</h2>
+<ul>
+<li>
+<p><strong>Định nghĩa</strong></p>
+<ul>
+<li><strong>Database Transaction</strong> (Giao dịch cơ sở dữ liệu) là một chuỗi thao tác (như INSERT, UPDATE, DELETE) được thực thi như một đơn vị công việc duy nhất, đảm bảo tính toàn vẹn dữ liệu.</li>
+<li><strong>Mục đích</strong>: Đảm bảo dữ liệu luôn ở trạng thái hợp lệ, ngay cả khi có lỗi xảy ra.</li>
+<li><strong>Ví dụ</strong>: Chuyển tiền: Trừ 100$ từ tài khoản A, cộng 100$ vào tài khoản B → cả hai thao tác phải thành công, hoặc không làm gì.</li>
+</ul>
+</li>
+<li>
+<p><strong>Cú pháp cơ bản (SQL)</strong></p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">BEGIN</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> TRANSACTION</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">UPDATE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> accounts </span><span style="color:#D32F2F;--shiki-dark:#C792EA">SET</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> balance </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> balance </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">-</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 100</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> WHERE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> id </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">UPDATE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> accounts </span><span style="color:#D32F2F;--shiki-dark:#C792EA">SET</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> balance </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> balance </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">+</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 100</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> WHERE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> id </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 2</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">COMMIT</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">-- Xác nhận giao dịch</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">-- Nếu lỗi: ROLLBACK; -- Hủy giao dịch</span></span></code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="how-rollback-works-internally">How <code>rollback</code> works internally?</h3>
+<ul>
+<li>
+<p><strong>Rollback</strong> là cơ chế hủy bỏ tất cả thay đổi trong giao dịch nếu có lỗi, đưa database về trạng thái trước khi giao dịch bắt đầu.</p>
+</li>
+<li>
+<p><strong>Cách Hoạt Động Nội Bộ</strong></p>
+<ul>
+<li><strong>Ghi Log (Transaction Log)</strong>:
+<ul>
+<li>Database ghi mọi thay đổi vào <strong>transaction log</strong> (write-ahead log) trước khi áp dụng lên dữ liệu thực.</li>
+<li>Ví dụ: <code>UPDATE accounts SET balance = 900 WHERE id = 1</code> → log ghi: <em>“id=1, old_value=1000, new_value=900”</em>.</li>
+</ul>
+</li>
+<li><strong>Undo (Hoàn tác)</strong>:
+<ul>
+<li>Khi rollback, database đọc log, áp dụng giá trị cũ (old value) để khôi phục.</li>
+<li>Ví dụ: Rollback khôi phục <code>balance = 1000</code> cho <code>id=1</code>.</li>
+</ul>
+</li>
+<li><strong>Chi tiết kỹ thuật</strong>:
+<ul>
+<li>Log được lưu trên đĩa (durable), đảm bảo không mất dữ liệu dù crash.</li>
+<li>Database dùng <strong>checkpoint</strong> để đánh dấu trạng thái ổn định, giảm lượng log cần xử lý.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Ví dụ</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">BEGIN</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> TRANSACTION</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">UPDATE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> accounts </span><span style="color:#D32F2F;--shiki-dark:#C792EA">SET</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> balance </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 900</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> WHERE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> id </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">-- Trừ 100</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">-- Lỗi xảy ra</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">ROLLBACK</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span></code></pre>
+<ul>
+<li>Log: <em>“id=1, old=1000, new=900”</em>.</li>
+<li>Rollback: Đọc log, đặt lại <code>balance = 1000</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="acid-what-is-dirty-read"><code>ACID</code>? What is <code>dirty read</code>?</h3>
+<ul>
+<li><strong>ACID</strong> là tập hợp đặc tính đảm bảo giao dịch đáng tin cậy:
+<ul>
+<li><strong>Atomicity (Nguyên tử)</strong>: Giao dịch là một đơn vị, hoặc hoàn tất toàn bộ, hoặc không làm gì.
+<ul>
+<li>Ví dụ: Chuyển tiền → cả trừ và cộng thành công, hoặc không làm gì.</li>
+</ul>
+</li>
+<li><strong>Consistency (Nhất quán)</strong>: Giao dịch đưa database từ trạng thái hợp lệ sang trạng thái hợp lệ khác (tuân theo constraints, foreign key).
+<ul>
+<li>Ví dụ: <code>balance</code> không được âm.</li>
+</ul>
+</li>
+<li><strong>Isolation (Cô lập)</strong>: Giao dịch chạy song song không ảnh hưởng lẫn nhau.
+<ul>
+<li>Ví dụ: Giao dịch A không thấy thay đổi của giao dịch B cho đến khi B commit.</li>
+</ul>
+</li>
+<li><strong>Durability (Bền vững)</strong>: Sau khi commit, dữ liệu được lưu vĩnh viễn, dù hệ thống crash.
+<ul>
+<li>Ví dụ: Dùng transaction log để khôi phục sau crash.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Dirty Read Là Gì?</strong>
+<ul>
+<li><strong>Dirty Read</strong> xảy ra khi một giao dịch đọc dữ liệu chưa commit (uncommitted) từ giao dịch khác, và giao dịch kia sau đó rollback → dữ liệu đọc được là “bẩn” (không chính xác).</li>
+<li><strong>Ví dụ</strong>:
+<ul>
+<li>Giao dịch A: <code>UPDATE accounts SET balance = 900 WHERE id = 1</code> (chưa commit).</li>
+<li>Giao dịch B: <code>SELECT balance FROM accounts WHERE id = 1</code> → thấy balance = 900.</li>
+<li>Giao dịch A rollback → <code>balance</code> quay lại 1000 → B đã đọc dữ liệu sai.</li>
+</ul>
+</li>
+<li><strong>Cách tránh</strong>: Dùng mức cô lập cao hơn (Isolation Level) như <strong>Read Committed</strong> hoặc <strong>Serializable</strong>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="how-transaction-work-when-there-are-many-concurrent-requests">How transaction work when there are many concurrent requests?</h3>
+<ul>
+<li><strong>Cách Hoạt Động</strong>
+<ul>
+<li><strong>Concurrency Control (Kiểm soát đồng thời)</strong>: Database dùng cơ chế để quản lý nhiều giao dịch đồng thời, đảm bảo tính cô lập (Isolation).</li>
+<li><strong>Cơ chế phổ biến</strong>:
+<ul>
+<li><strong>Locking (Khóa)</strong>:
+<ul>
+<li>Giao dịch khóa tài nguyên (hàng, bảng) để ngăn giao dịch khác truy cập.</li>
+<li>Ví dụ: Giao dịch A khóa hàng <code>id=1</code> → giao dịch B đợi.</li>
+</ul>
+</li>
+<li><strong>Multi-Version Concurrency Control (MVCC)</strong>:
+<ul>
+<li>Tạo bản sao (version) của dữ liệu cho mỗi giao dịch.</li>
+<li>Ví dụ (PostgreSQL): Giao dịch A sửa <code>balance</code>, giao dịch B đọc phiên bản cũ → không cần đợi.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Isolation Levels</strong>:
+<ul>
+<li><strong>Read Uncommitted</strong>: Cho phép dirty read (ít cô lập nhất).</li>
+<li><strong>Read Committed</strong>: Chỉ đọc dữ liệu đã commit.</li>
+<li><strong>Repeatable Read</strong>: Đảm bảo dữ liệu không đổi trong giao dịch.</li>
+<li><strong>Serializable</strong>: Cô lập hoàn toàn, như chạy tuần tự.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong> 100 yêu cầu đồng thời <code>UPDATE accounts SET balance = balance - 10 WHERE id = 1</code>:
+<ul>
+<li><strong>Locking</strong>: Mỗi giao dịch khóa hàng <code>id=1</code>, thực thi lần lượt.</li>
+<li><strong>MVCC</strong>: Mỗi giao dịch thấy phiên bản riêng, database gộp thay đổi sau.</li>
+</ul>
+</li>
+</ul>
+<h3 id="how-to-avoid-race-condition-in-db-readwrite-lock">How to avoid <code>race condition</code> in DB? <code>Read/Write</code> lock?</h3>
+<ul>
+<li>
+<p><strong>Race Condition Là Gì?</strong></p>
+<ul>
+<li><strong>Định nghĩa</strong>: Race condition xảy ra khi nhiều giao dịch truy cập cùng dữ liệu đồng thời, dẫn đến kết quả không mong muốn.</li>
+<li><strong>Ví dụ</strong>:
+<ul>
+<li>Giao dịch A: Đọc <code>balance = 1000</code>, trừ 100 → <code>balance = 900</code>.</li>
+<li>Giao dịch B: Đọc <code>balance = 1000</code> (trước khi A commit), trừ 200 → <code>balance = 800</code>.</li>
+<li>Kết quả: <code>balance = 800</code>, nhưng đúng phải là 700 (1000 - 100 - 200).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Cách Tránh Race Condition</strong></p>
+<ul>
+<li>
+<p><strong>Dùng Lock</strong>:</p>
+<ul>
+<li><strong>Read Lock (Shared Lock)</strong>: Nhiều giao dịch có thể đọc cùng lúc, nhưng không ghi.</li>
+<li><strong>Write Lock (Exclusive Lock)</strong>: Chỉ một giao dịch được ghi, chặn cả đọc và ghi khác.</li>
+<li>Ví dụ: Giao dịch A lấy write lock trên <code>id=1</code> → B đợi.</li>
+</ul>
+</li>
+<li>
+<p><strong>Optimistic Locking</strong>:</p>
+<ul>
+<li>
+<p>Không khóa trước, kiểm tra trước khi commit.</p>
+</li>
+<li>
+<p>Ví dụ: Thêm cột <code>version</code>:</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">UPDATE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> accounts </span><span style="color:#D32F2F;--shiki-dark:#C792EA">SET</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> balance </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> balance </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">-</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 100</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">, </span><span style="color:#D32F2F;--shiki-dark:#C792EA">version</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> version</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> +</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">WHERE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> id </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> AND</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> version</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span></code></pre>
+<p>Nếu <code>version</code> thay đổi (do giao dịch khác), giao dịch thất bại → thử lại.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Serializable Isolation</strong>: Đảm bảo giao dịch chạy như tuần tự, tránh race condition.</p>
+</li>
+<li>
+<p><strong>Dùng Transaction</strong>: Đảm bảo toàn bộ thao tác trong giao dịch là nguyên tử.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Ví dụ truy vấn an toàn:</strong></p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">BEGIN</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> TRANSACTION</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">SELECT</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> balance </span><span style="color:#D32F2F;--shiki-dark:#C792EA">FROM</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> accounts </span><span style="color:#D32F2F;--shiki-dark:#C792EA">WHERE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> id </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> FOR</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> UPDATE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">-- Khóa hàng</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">UPDATE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> accounts </span><span style="color:#D32F2F;--shiki-dark:#C792EA">SET</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> balance </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> balance </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">-</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 100</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> WHERE</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> id </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">COMMIT</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span></code></pre>
+</li>
+</ul>
+<h3 id="distributed-transaction-how-to-make-a-transaction-when-a-query-needs-to-access-multiple-db"><code>Distributed transaction</code>? How to make a transaction when a query needs to access multiple DB?</h3>
+<ul>
+<li><strong>Distributed Transaction Là Gì?</strong>
+<ul>
+<li><strong>Định nghĩa</strong>: Giao dịch phân tán là giao dịch liên quan đến nhiều cơ sở dữ liệu (thường trên nhiều server), cần đảm bảo tính toàn vẹn (ACID) trên toàn hệ thống.</li>
+<li><strong>Ví dụ</strong>: Chuyển tiền từ tài khoản A (DB1) sang tài khoản B (DB2).</li>
+</ul>
+</li>
+<li><strong>Cách Thực Hiện (Two-Phase Commit - 2PC)</strong>
+<ol>
+<li><strong>Phase 1 (Prepare)</strong>:</li>
+</ol>
+<ul>
+<li>Coordinator (bộ điều phối) yêu cầu tất cả DB tham gia chuẩn bị (prepare) giao dịch.</li>
+<li>Mỗi DB ghi log, khóa tài nguyên, trả lời “OK” hoặc “FAIL”.</li>
+</ul>
+<ol>
+<li><strong>Phase 2 (Commit/Rollback)</strong>:</li>
+</ol>
+<ul>
+<li>Nếu tất cả DB trả “OK”, coordinator yêu cầu commit.</li>
+<li>Nếu có DB trả “FAIL”, coordinator yêu cầu rollback.</li>
+</ul>
+</li>
+<li><strong>Ví dụ</strong>:
+<ul>
+<li>DB1: Trừ 100$ từ tài khoản A.</li>
+<li>DB2: Cộng 100$ vào tài khoản B.</li>
+<li>2PC đảm bảo cả hai DB commit hoặc rollback cùng lúc.</li>
+</ul>
+</li>
+<li><strong>Hạn Chế</strong>
+<ul>
+<li><strong>Chậm</strong>: Cần nhiều bước, tăng độ trễ (latency).</li>
+<li><strong>Điểm lỗi</strong>: Nếu coordinator crash giữa Phase 1 và 2, hệ thống có thể bị treo.</li>
+<li><strong>Khóa lâu</strong>: Tài nguyên bị khóa trong suốt 2PC, giảm hiệu suất.</li>
+</ul>
+</li>
+<li><strong>Giải Pháp Thay Thế</strong>
+<ul>
+<li><strong>Eventual Consistency</strong>:
+<ul>
+<li>Không dùng 2PC, chấp nhận dữ liệu không nhất quán tạm thời.</li>
+<li>Ví dụ: Dùng message queue (Kafka) để đồng bộ DB1 và DB2.</li>
+</ul>
+</li>
+<li><strong>Saga Pattern</strong>:
+<ul>
+<li>Chia giao dịch thành các bước nhỏ, mỗi bước có thể rollback riêng.</li>
+<li>Ví dụ: Trừ tiền → gửi message → cộng tiền → nếu lỗi, chạy bù trừ (compensating transaction).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul> </article> <hr class="my-8 border-dashed"> <div class="opacity-80 sm:hidden"><span aria-hidden="true" class="max-sm:hidden">
+|
+</span><a class="space-x-1.5 hover:opacity-75" href="https://github.com/thuongnn/thuongnn.github.io/edit/master/src/data/blog/computer-science/database/basic-knowledge.md" rel="noopener noreferrer" target="_blank"><svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg><span class="italic max-sm:text-sm sm:inline">Suggest Changes</span></a></div> <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/database/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Database</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/computer-science/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-3.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Computer Science</span> </a> </li> </ul> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="ZQIRKt" component-url="/_astro/Comments.pnnUQGGQ.js" component-export="default" renderer-url="/_astro/client.BPIbHqJh.js" props="{}" ssr client="only" opts="{&quot;name&quot;:&quot;Comments&quot;,&quot;value&quot;:&quot;react&quot;}"></astro-island> <div class="mt-4 flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"> <div class="flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start"> <span class="italic">Share this post on:</span> <div class="text-center"> <a href="https://wa.me/?text=https://thuongnn.dev/posts/computer-science/database/basic-knowledge/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> <span class="sr-only">Share this post via WhatsApp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://thuongnn.dev/posts/computer-science/database/basic-knowledge/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://thuongnn.dev/posts/computer-science/database/basic-knowledge/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://thuongnn.dev/posts/computer-science/database/basic-knowledge/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg> <span class="sr-only">Share this post via Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://thuongnn.dev/posts/computer-science/database/basic-knowledge/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg> <span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&#38;body=https://thuongnn.dev/posts/computer-science/database/basic-knowledge/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Share this post via email</span> </a> </div> </div> <button id="back-to-top" class="focus-outline py-1 whitespace-nowrap hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span>Back to Top</span> </button> </div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/computer-science/security/basic-knowledge" class="flex w-full gap-1 hover:opacity-75"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">[Computer Science] Kiến thức về Security cơ bản</div> </div> </a> <a href="/posts/computer-science/operating-system/basic-knowledge" class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">[Computer Science] Kiến thức về OS cơ bản</div> </div> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="w-full mt-auto"> <div class="max-w-3xl mx-auto px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://github.com/thuongnn" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title=" thuongnn.dev on Github"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only"> thuongnn.dev on Github</span> </a><a href="https://www.facebook.com/thuongnn97" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on Facebook"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">thuongnn.dev on Facebook</span> </a><a href="https://www.linkedin.com/in/thuongnn/" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="thuongnn.dev on LinkedIn"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">thuongnn.dev on LinkedIn</span> </a><a href="mailto:thuongnn1997@gmail.com" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to thuongnn.dev"> <svg viewBox="0 0 24 24" role="img"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to thuongnn.dev</span> </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2025</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ml-2 opacity-0 group-hover:opacity-100 focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "copy-code absolute right-3 -top-3 rounded bg-muted px-2 py-1 text-xs leading-4 text-foreground font-medium";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    document.querySelector("#back-to-top")?.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+  }
+  backToTop();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>
