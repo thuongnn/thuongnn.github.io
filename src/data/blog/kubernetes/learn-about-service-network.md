@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2021-11-28T01:29:35Z
-modDatetime: 2025-07-13T06:31:55Z
+modDatetime: 2025-07-13T06:34:05Z
 title: Tìm hiểu về Service network
 draft: false
 isPinned: true
@@ -9,7 +9,7 @@ tags:
   - Kubernetes
   - Networking
 description: Tìm hiểu về network trong Kubernetes Service.
-ogImage: https://github.com/user-attachments/assets/3670a594-98f9-4e60-bd6d-5d9559ad2759
+ogImage: https://github.com/user-attachments/assets/901f1427-bd81-495f-899b-1125d2432917
 ---
 
 Trong phần Pod network chúng ta đều biết rằng Pod resource là đơn vị nhỏ nhất sẽ có chứa ứng dụng bên trong nó khi triển khai và loại resource này khá là linh hoạt (có thể scale up, scale down, stop, re-created, re-allocated,…)
