@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2021-11-28T01:29:35Z
-modDatetime: 2025-07-13T06:34:05Z
+modDatetime: 2025-07-13T06:35:03Z
 title: Tìm hiểu về Service network
 draft: false
 isPinned: true
@@ -363,6 +363,7 @@ subsets:
 ```
 
 ## Tìm hiểu thêm về K8s Networking
+
 - Pod network: [Tìm hiểu về Pod network](/posts/kubernetes/learn-about-pod-network/)
 - Ingress network: [Tìm hiểu về Ingress network](/posts/kubernetes/learn-about-ingress-network/)
 

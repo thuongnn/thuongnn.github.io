@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2021-11-26T23:29:35Z
-modDatetime: 2025-07-13T06:31:55Z
+modDatetime: 2025-07-13T06:35:03Z
 title: Tìm hiểu về Pod network
 draft: false
 tags:
@@ -87,6 +87,7 @@ Mỗi server node là độc lập (với các node khác), card mạng `docker0
 - `kube-proxy` sẽ quản lý (thêm, sửa, xoá) rules trong Routing table, ngoài ra thằng `kube-proxy` này còn có rất nhiều nhiệm vụ khác mà chúng ta sẽ tìm hiểu ở phần service network.
 
 # Tìm hiểu thêm về K8s Networking
+
 - Service network: [Tìm hiểu về Service network](/posts/kubernetes/learn-about-service-network/)
 - Ingress network: [Tìm hiểu về Ingress network](/posts/kubernetes/learn-about-ingress-network/)
 

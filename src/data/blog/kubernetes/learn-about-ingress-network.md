@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2021-11-28T15:29:35Z
-modDatetime: 2025-07-13T06:31:55Z
+modDatetime: 2025-07-13T06:35:03Z
 title: Tìm hiểu về Ingress network
 draft: false
 tags:
@@ -102,6 +102,7 @@ Kubernetes hỗ trợ Ingress Controller dưới dạng một interface mà chú
 - Demonstration triển khai Kubernetes Ingress với Nginx [ở đây](https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-ingress-guide-nginx-example.html).
 
 ## Tìm hiểu thêm về K8s Networking
+
 - Pod network: [Tìm hiểu về Pod network](/posts/kubernetes/learn-about-pod-network/)
 - Service network: [Tìm hiểu về Service network](/posts/kubernetes/learn-about-service-network/)
 
