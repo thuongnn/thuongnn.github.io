@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2021-11-26T23:29:35Z
-modDatetime: 2021-11-26T23:29:35Z
+modDatetime: 2025-07-13T06:31:55Z
 title: Tìm hiểu về Pod network
 draft: false
 tags:
@@ -85,6 +85,10 @@ Mỗi server node là độc lập (với các node khác), card mạng `docker0
 - Bảng routing table ở trên sẽ được quản lý bởi k8s và `kube-proxy`, các bridge network `cbr0` chúng ta đã nói ở trên sẽ được cấu hình tự động trong routing table (khi tạo worker node).
 - Nhìn hình vẽ ta nhầm tưởng rằng Routing table nằm duy nhất ở một nơi nào đó (master hay worker hoặc một nơi nào đó) nhưng thực chất thì bảng này được đặt ở trên tất cả các node trong cụm k8s. Tất cả gói tin ra vào node thì đều đã được routing tới node đích phù hợp.
 - `kube-proxy` sẽ quản lý (thêm, sửa, xoá) rules trong Routing table, ngoài ra thằng `kube-proxy` này còn có rất nhiều nhiệm vụ khác mà chúng ta sẽ tìm hiểu ở phần service network.
+
+# Tìm hiểu thêm về K8s Networking
+- Service network: [Tìm hiểu về Service network](/posts/kubernetes/learn-about-service-network/)
+- Ingress network: [Tìm hiểu về Ingress network](/posts/kubernetes/learn-about-ingress-network/)
 
 # Reference Link
 

@@ -1,7 +1,7 @@
 ---
 author: thuongnn
 pubDatetime: 2021-11-28T01:29:35Z
-modDatetime: 2025-05-30T07:37:55Z
+modDatetime: 2025-07-13T06:31:55Z
 title: Tìm hiểu về Service network
 draft: false
 isPinned: true
@@ -361,6 +361,10 @@ subsets:
     ports:
       - port: 5432
 ```
+
+## Tìm hiểu thêm về K8s Networking
+- Pod network: [Tìm hiểu về Pod network](/posts/kubernetes/learn-about-pod-network/)
+- Ingress network: [Tìm hiểu về Ingress network](/posts/kubernetes/learn-about-ingress-network/)
 
 ## Reference Link
 
