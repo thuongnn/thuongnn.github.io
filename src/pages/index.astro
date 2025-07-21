@@ -9,7 +9,7 @@ import getLatestPosts from "@/utils/getLatestPosts";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import { SITE } from "@/config";
 
-const posts = await getCollection("blog");
+const posts = await getCollection("blog", ({ data }) => !data.draft);
 const recentPosts = posts.sort(getLatestPosts);
 ---
 
