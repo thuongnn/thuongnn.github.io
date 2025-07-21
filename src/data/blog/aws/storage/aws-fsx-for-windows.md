@@ -4,7 +4,7 @@ pubDatetime: 2023-07-12T09:15:33Z
 modDatetime: 2023-07-12T09:15:33Z
 title: "[AWS] Amazon FSx for Windows File Server"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

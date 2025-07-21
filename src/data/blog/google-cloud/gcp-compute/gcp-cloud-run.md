@@ -4,7 +4,7 @@ pubDatetime: 2022-09-20T20:11:55Z
 modDatetime: 2022-09-20T20:11:55Z
 title: "[Google Cloud] GCP Cloud Run"
 folder: "gcp"
-draft: false
+draft: true
 tags:
   - Google Cloud
 description: Tìm hiểu về Cloud Run trong Google Cloud.

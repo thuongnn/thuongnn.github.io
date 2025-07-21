@@ -4,7 +4,7 @@ pubDatetime: 2022-10-06T12:31:52Z
 modDatetime: 2022-10-06T12:31:52Z
 title: "[Google Cloud] Tìm hiểu về Cloud DNS"
 folder: "gcp"
-draft: false
+draft: true
 tags:
   - Google Cloud
 description: Tìm hiểu về dịch vụ Cloud DNS trong Google Cloud.

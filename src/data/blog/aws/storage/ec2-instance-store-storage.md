@@ -4,7 +4,7 @@ pubDatetime: 2023-07-16T14:30:45Z
 modDatetime: 2023-07-16T14:30:45Z
 title: "[AWS] EC2 Instance Store"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

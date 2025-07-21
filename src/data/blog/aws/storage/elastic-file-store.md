@@ -4,7 +4,7 @@ pubDatetime: 2023-07-15T10:20:15Z
 modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] Amazon Elastic File System (EFS)"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

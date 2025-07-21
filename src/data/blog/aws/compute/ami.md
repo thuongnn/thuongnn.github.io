@@ -4,7 +4,7 @@ pubDatetime: 2023-03-21T11:45:22Z
 modDatetime: 2025-05-29T02:30:40Z
 title: "[AWS] Amazon Machine Image (AMI)"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

@@ -4,7 +4,7 @@ pubDatetime: 2023-07-30T10:20:15Z
 modDatetime: 2023-07-30T10:20:15Z
 title: "[AWS] Simple Notification Service – SNS"
 folder: "aws"
-draft: false
+draft: true
 ogImage: "../../../../assets/images/aws/other/aws-sns/1.png"
 tags:
   - AWS

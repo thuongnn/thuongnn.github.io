@@ -4,7 +4,7 @@ pubDatetime: 2023-08-30T11:20:33Z
 modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] AWS Identity and Access Management (IAM) Roles"
 folder: "aws"
-draft: false
+draft: true
 ogImage: "../../../../assets/images/aws/security/aws-iam-role/1.png"
 tags:
   - AWS

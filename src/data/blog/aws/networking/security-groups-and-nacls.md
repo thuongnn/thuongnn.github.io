@@ -4,7 +4,7 @@ pubDatetime: 2023-05-07T14:30:45Z
 modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] Security Groups and Network ACLs"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

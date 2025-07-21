@@ -4,7 +4,7 @@ pubDatetime: 2023-08-02T11:45:22Z
 modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] AWS CloudFormation"
 folder: "aws"
-draft: false
+draft: true
 ogImage: "../../../../assets/images/aws/other/cloudformation/1.png"
 tags:
   - AWS

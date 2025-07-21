@@ -4,7 +4,7 @@ pubDatetime: 2023-07-10T13:45:28Z
 modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] Amazon Simple Storage Service (S3)"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

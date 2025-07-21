@@ -4,7 +4,7 @@ pubDatetime: 2022-10-02T23:01:32Z
 modDatetime: 2022-10-02T23:01:32Z
 title: "[Google Cloud] GCP Pub/Sub"
 folder: "gcp"
-draft: false
+draft: true
 tags:
   - Google Cloud
 description: Tìm hiểu về các dịch vụ liên quan Pub/Sub trong Google Cloud.

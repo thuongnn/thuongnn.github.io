@@ -4,7 +4,7 @@ pubDatetime: 2023-07-31T14:30:45Z
 modDatetime: 2023-07-31T14:30:45Z
 title: "[AWS] AWS Simple Queue Service – SQS"
 folder: "aws"
-draft: false
+draft: true
 ogImage: "../../../../assets/images/aws/other/aws-sqs/1.png"
 tags:
   - AWS

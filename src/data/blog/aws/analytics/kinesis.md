@@ -4,7 +4,7 @@ pubDatetime: 2023-08-01T10:20:15Z
 modDatetime: 2023-08-01T10:20:15Z
 title: "[AWS] Amazon Kinesis"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

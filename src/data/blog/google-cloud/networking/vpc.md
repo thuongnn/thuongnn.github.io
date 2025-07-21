@@ -4,7 +4,7 @@ pubDatetime: 2022-10-05T20:11:22Z
 modDatetime: 2022-10-05T20:11:22Z
 title: "[Google Cloud] Tìm hiểu về VPC trong Networking"
 folder: "gcp"
-draft: false
+draft: true
 tags:
   - Google Cloud
 description: Tìm hiểu về VPC trong Google Cloud.

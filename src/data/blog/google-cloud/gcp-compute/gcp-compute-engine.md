@@ -4,7 +4,7 @@ pubDatetime: 2022-09-14T22:36:35Z
 modDatetime: 2022-09-14T22:36:35Z
 title: "[Google Cloud] GCP Compute Engine"
 folder: "gcp"
-draft: false
+draft: true
 tags:
   - Google Cloud
 description: Tìm hiểu về Compute Engine trong Google Cloud.

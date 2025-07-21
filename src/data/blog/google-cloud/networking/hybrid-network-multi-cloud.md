@@ -4,7 +4,7 @@ pubDatetime: 2022-10-12T22:11:22Z
 modDatetime: 2022-10-12T22:11:22Z
 title: "[Google Cloud] Hybrid Network & Multi-Cloud"
 folder: "gcp"
-draft: false
+draft: true
 tags:
   - Google Cloud
 description: Tìm hiểu về Hybrid Network & Multi-Cloud trong Google Cloud.

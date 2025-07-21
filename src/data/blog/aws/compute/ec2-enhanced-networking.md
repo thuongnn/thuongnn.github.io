@@ -4,7 +4,7 @@ pubDatetime: 2023-03-30T09:15:33Z
 modDatetime: 2025-05-29T02:30:40Z
 title: "[AWS] EC2 Enhanced Networking"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

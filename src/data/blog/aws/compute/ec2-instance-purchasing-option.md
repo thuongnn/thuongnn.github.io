@@ -4,7 +4,7 @@ pubDatetime: 2023-03-23T10:20:15Z
 modDatetime: 2023-03-23T10:20:15Z
 title: "[AWS] EC2 Instance Purchasing Options"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

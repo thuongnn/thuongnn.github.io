@@ -4,7 +4,7 @@ pubDatetime: 2023-04-01T15:30:45Z
 modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] EC2 Instance Lifecycle"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

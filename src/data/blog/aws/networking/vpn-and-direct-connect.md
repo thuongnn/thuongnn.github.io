@@ -4,7 +4,7 @@ pubDatetime: 2023-05-12T14:30:45Z
 modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] VPN and Direct Connect"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

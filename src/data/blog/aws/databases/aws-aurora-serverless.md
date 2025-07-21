@@ -4,7 +4,7 @@ pubDatetime: 2023-07-20T10:20:15Z
 modDatetime: 2023-07-20T10:20:15Z
 title: "[AWS] Amazon Aurora Serverless"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

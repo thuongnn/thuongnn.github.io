@@ -4,7 +4,7 @@ pubDatetime: 2022-09-12T02:11:35Z
 modDatetime: 2022-09-12T02:11:35Z
 title: "[Google Cloud] Resource Hierarchy, Roles and Identities"
 folder: "gcp"
-draft: false
+draft: true
 tags:
   - Google Cloud
 description: Cách tổ chức tài nguyên trong Google Cloud, vai trò và phân quyền.

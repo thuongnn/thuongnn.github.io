@@ -4,7 +4,7 @@ pubDatetime: 2023-05-10T15:30:45Z
 modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] AWS Global Accelerator"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

@@ -4,7 +4,7 @@ pubDatetime: 2022-09-15T16:32:35Z
 modDatetime: 2022-09-15T16:32:35Z
 title: "[Google Cloud] GCP App Engine"
 folder: "gcp"
-draft: false
+draft: true
 tags:
   - Google Cloud
 description: Tìm hiểu về App Engine trong Google Cloud.

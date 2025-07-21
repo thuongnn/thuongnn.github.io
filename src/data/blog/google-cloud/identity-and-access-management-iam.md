@@ -4,7 +4,7 @@ pubDatetime: 2022-09-12T02:32:35Z
 modDatetime: 2022-09-12T02:32:35Z
 title: "[Google Cloud] Identity and Access Management (IAM)"
 folder: "gcp"
-draft: false
+draft: true
 tags:
   - Google Cloud
 description: Cách quản lý danh tính và truy cập trong Google Cloud.

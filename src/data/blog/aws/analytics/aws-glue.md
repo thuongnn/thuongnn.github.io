@@ -4,7 +4,7 @@ pubDatetime: 2023-03-09T11:22:35Z
 modDatetime: 2023-03-09T11:22:35Z
 title: "[AWS] AWS Glue"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

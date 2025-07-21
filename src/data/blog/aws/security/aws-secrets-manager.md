@@ -4,7 +4,7 @@ pubDatetime: 2023-07-23T11:45:22Z
 modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] AWS Secrets Manager"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

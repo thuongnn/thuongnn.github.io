@@ -4,7 +4,7 @@ pubDatetime: 2023-07-17T09:15:33Z
 modDatetime: 2025-05-29T01:52:06Z
 title: "[AWS] Amazon Elastic Block Store (EBS)"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

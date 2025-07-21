@@ -4,7 +4,7 @@ pubDatetime: 2022-10-16T20:31:35Z
 modDatetime: 2022-10-16T20:31:35Z
 title: "[Google Cloud] Load Balancing & Auto Scaling"
 folder: "gcp"
-draft: false
+draft: true
 tags:
   - Google Cloud
 description: Tìm hiểu về Load Balancing & Auto Scaling trong Google Cloud.

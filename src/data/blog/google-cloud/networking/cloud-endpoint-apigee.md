@@ -4,7 +4,7 @@ pubDatetime: 2022-10-07T01:14:22Z
 modDatetime: 2022-10-07T01:14:22Z
 title: "[Google Cloud] Tìm hiểu về Cloud Endpoint & Apigee"
 folder: "gcp"
-draft: false
+draft: true
 tags:
   - Google Cloud
 description: Tìm hiểu về dịch vụ Cloud Endpoint & Apigee trong Google Cloud.

@@ -4,7 +4,7 @@ pubDatetime: 2022-10-06T13:21:12Z
 modDatetime: 2022-10-06T13:21:12Z
 title: "[Google Cloud] Tìm hiểu về Cloud NAT"
 folder: "gcp"
-draft: false
+draft: true
 tags:
   - Google Cloud
 description: Tìm hiểu về dịch vụ Cloud NAT trong Google Cloud.

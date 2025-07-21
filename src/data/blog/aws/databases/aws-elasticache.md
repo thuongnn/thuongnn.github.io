@@ -4,7 +4,7 @@ pubDatetime: 2023-07-18T11:45:22Z
 modDatetime: 2023-07-18T11:45:22Z
 title: "[AWS] Amazon ElastiCache"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

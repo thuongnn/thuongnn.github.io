@@ -4,7 +4,7 @@ pubDatetime: 2023-05-05T14:20:45Z
 modDatetime: 2025-05-29T02:06:28Z
 title: "[AWS] Amazon Virtual Private Cloud (VPC)"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

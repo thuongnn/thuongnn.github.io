@@ -4,7 +4,7 @@ pubDatetime: 2023-01-18T16:20:18Z
 modDatetime: 2023-01-18T16:20:18Z
 title: "[AWS] Amazon Redshift"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

@@ -4,7 +4,7 @@ pubDatetime: 2023-05-13T09:15:33Z
 modDatetime: 2025-05-29T02:30:41Z
 title: "[AWS] VPC PrivateLink"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

@@ -4,7 +4,7 @@ pubDatetime: 2023-03-23T09:15:33Z
 modDatetime: 2023-03-23T09:15:33Z
 title: "[AWS] EC2 Spot Instances"
 folder: "aws"
-draft: false
+draft: true
 tags:
   - AWS
   - Amazon Web Services

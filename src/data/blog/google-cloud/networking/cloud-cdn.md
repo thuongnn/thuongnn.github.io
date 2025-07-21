@@ -4,7 +4,7 @@ pubDatetime: 2022-10-06T20:01:22Z
 modDatetime: 2022-10-06T20:01:22Z
 title: "[Google Cloud] Tìm hiểu về Cloud CDN"
 folder: "gcp"
-draft: false
+draft: true
 tags:
   - Google Cloud
 description: Tìm hiểu về dịch vụ Cloud CDN trong Google Cloud.

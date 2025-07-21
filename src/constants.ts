@@ -96,16 +96,16 @@ export interface Collection {
 }
 
 export const COLLECTIONS: Collection[] = [
-  {
-    folder: "aws",
-    name: "Amazon Web Services",
-    description: "Tổng hợp các bài viết về AWS services",
-  },
-  {
-    folder: "google-cloud",
-    name: "Google Cloud Platform",
-    description: "Tổng hợp các bài viết về Google Cloud services",
-  },
+  // {
+  //   folder: "aws",
+  //   name: "Amazon Web Services",
+  //   description: "Tổng hợp các bài viết về AWS services",
+  // },
+  // {
+  //   folder: "google-cloud",
+  //   name: "Google Cloud Platform",
+  //   description: "Tổng hợp các bài viết về Google Cloud services",
+  // },
   {
     folder: "computer-science",
     name: "Computer Science",

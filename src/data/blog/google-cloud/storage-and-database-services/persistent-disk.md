@@ -4,7 +4,7 @@ pubDatetime: 2022-10-15T18:44:35Z
 modDatetime: 2022-10-15T18:44:35Z
 title: "[Google Cloud] Persistent Disk"
 folder: "gcp"
-draft: false
+draft: true
 tags:
   - Google Cloud
 description: Tìm hiểu về Persistent Disk trong Google Cloud.
